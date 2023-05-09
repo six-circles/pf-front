@@ -1,0 +1,5 @@
+@use "../../styles/variables.scss" as v;
+
+.title {
+  color: v.$color-primary;
+}
