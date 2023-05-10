@@ -2,9 +2,9 @@ import style from "./Header.module.scss";
 
 function Header() {
   return (
-    <div>
+    <header>
       <h1 className={style.title}>Hola</h1>
-    </div>
+    </header>
   );
 }
 
