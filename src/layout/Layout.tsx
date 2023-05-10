@@ -1,13 +1,16 @@
+import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { Footer, Header } from "../components";
 
 function Layout() {
   return (
-    <main>
+    <Fragment>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
-    </main>
+    </Fragment>
   );
 }
 
