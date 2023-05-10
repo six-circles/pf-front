@@ -1,5 +1,5 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Product from "./Product/Product";
+import Products from "./Products/Products";
 
-export { Header, Footer, Product };
+export { Header, Footer, Products };
