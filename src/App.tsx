@@ -1,14 +1,18 @@
-import Header from "./components/Header/Header";
+import { Routes, Route } from "react-router-dom";
+import { CartPage, Detail, Home, Login } from "./pages";
+import Layout from "./layout/Layout";
 
 function App() {
-
   return (
-    <div>
-      <h1>HOLA</h1>
-      <Header />
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route index path="cart" element={<CartPage />} />
+        <Route index path="detail/:id" element={<Detail />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
-
 }
 
 export default App;
