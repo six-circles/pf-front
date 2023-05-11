@@ -21,6 +21,7 @@ function Products() {
       {products.map((item: any) => (
         <CardProduct
           key={item._id}
+          id={item._id}
           name={item.title}
           image={item.image}
           punctuation={item.punctuations}
