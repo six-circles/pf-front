@@ -1,11 +1,11 @@
-
+import logo from "../../assets/icons/logo.svg"
 import styles from "./Footer.module.scss";
 
 function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-        <img src="src\assets\icons\logo.svg" />
+        <img src={logo} alt="SixCircles Logo"/>
         <p className={styles.letras}> 3298 Grant Street Longview</p>
         <p className={styles.letras}> TXUnited Kingdom 75601</p>
         <p className={styles.letras}> 1-202-555-0106  help@shopper.com</p>

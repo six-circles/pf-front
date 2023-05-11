@@ -3,7 +3,7 @@ import { Products } from "../../components";
 import Slider from "../../components/Slider/Slider";
 
 import heroSliderData from "../../utils/data-slider";
-import styles from "./Home.module.scss";
+// import styles from "./Home.module.scss";
 
 function Home() {
   return (
