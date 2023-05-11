@@ -8,7 +8,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.contHeader}>
-        <h1 >SixCircles</h1>
+        <img src="src\assets\icons\logo.svg" />
         <div className={styles.searchCont}>
           <input type="search" className={styles.searchbar}/>
           <button className={styles.contButton}><BsSearch className={styles.icon}/></button>
