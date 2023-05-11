@@ -1,5 +1,32 @@
+@use "../../styles/variables.scss" as v;
+
+
+
+
 .footer {
-  height: 10rem;
+  display: flex;
+  height: fit-content;
   margin-top: auto;
-  background-color: aqua;
+  background-color: v.$color-dark;
+  width: 100%;
+  gap:20rem;
+}
+
+.letras{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  color: v.$color-white;
+  font-size: medium;
+}
+
+.subtitle{
+  display: flex;
+  width: fit-content;
+  padding: 1em;
+  color: v.$color-white;
+  font-weight: 350;
+  font-size: larger;
 }
