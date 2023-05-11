@@ -26,11 +26,16 @@ const Slider = (props: any) => {
 
   return (
     <div className={styles.carousel}>
-      <div>
-        <img className={styles.image} src={props.data[slide].img} alt="..." />
-        <div className={styles.carouselCaption}>
-          <h2>{props.data[slide].title_1}</h2>
-          <p>{props.data[slide].description}</p>
+      <div className={styles.slider}>
+        <div className={styles.contImage}>
+          <img className={styles.image} src={props.data[slide].img} alt="" />
+        </div>
+        <div className={styles.contDesc}>
+          <div className={styles.desc}>
+            <h2>{props.data[slide].title_1}</h2><br />
+            <p>{props.data[slide].description}</p><br />
+            <button>Añadir al carrito</button>
+          </div>
         </div>
       </div>
 
