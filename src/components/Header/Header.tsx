@@ -1,14 +1,16 @@
-import styles from "./Header.module.scss";
 import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
+import styles from "./Header.module.scss";
+import logo from "../../assets/icons/logo.svg";
+
 function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.contHeader}>
-        <img src="src\assets\icons\logo.svg" />
+        <img src={logo} alt="SixCircles Logo" />
         <div className={styles.searchCont}>
           <input type="search" className={styles.searchbar} />
           <button className={styles.contButton}>

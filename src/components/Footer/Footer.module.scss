@@ -1,18 +1,22 @@
 @use "../../styles/variables.scss" as v;
-
-
-
+@use "../../styles/mixins.scss" as m;
 
 .footer {
-  display: flex;
   height: fit-content;
   margin-top: auto;
   background-color: v.$color-dark;
   width: 100%;
-  gap:20rem;
 }
 
-.letras{
+.footer_cont {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 20rem;
+  @include m.container;
+}
+
+.letras {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -22,7 +26,7 @@
   font-size: medium;
 }
 
-.subtitle{
+.subtitle {
   display: flex;
   width: fit-content;
   padding: 1em;

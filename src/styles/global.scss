@@ -39,6 +39,27 @@ h3 {
   font-size: 2.5rem;
 }
 
+input,
+button {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+}
+
 a {
   text-decoration: none;
+}
+
+//global variables
+.cont {
+  margin: 0 auto;
+  width: 95%;
+  max-width: 1200px;
 }
