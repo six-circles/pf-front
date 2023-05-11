@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { CartPage, Detail, Home, Login } from "./pages";
+import { CartPage, Detail, Home, Login,User} from "./pages";
+
 import Layout from "./layout/Layout";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <Route index element={<Home />} />
         <Route index path="cart" element={<CartPage />} />
         <Route index path="detail/:id" element={<Detail />} />
+        <Route path="/user" element={<User />} />
       </Route>
       <Route path="/login" element={<Login />} />
     </Routes>
