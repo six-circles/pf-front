@@ -1,0 +1,87 @@
+@use "../../styles/variables.scss" as v;
+
+.carousel {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: v.$color-gray;
+}
+
+.datos {
+  position: relative;
+  color: v.$color-gray;
+  text-align: center;
+  background-color: white;
+  z-index: -20;
+}
+
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: v.$color-blue;
+
+}
+
+.prevButton {
+  left: 10px;
+  background-image: url(../../assets/images/slider/b-left.svg);
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+}
+
+.nextButton {
+  right: 10px;
+  background-image: url(../../assets/images/slider/b-right.svg);
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+}
+
+.contDesc {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: v.$color-dark;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.desc {
+  margin: 8rem 8rem 8rem 0;
+  text-align: left;
+}
+
+.contDesc button {
+  background-color: v.$color-blue;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+.image {
+  width: 100%;
+  width: 20rem;
+}
+
+.contImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 500px;
+}

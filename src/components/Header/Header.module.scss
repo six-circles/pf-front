@@ -1,5 +1,60 @@
 @use "../../styles/variables.scss" as v;
 
-.title {
-  background-color: v.$primary;
+
+.contHeader{
+  display: flex;
+  width: 95%;
+  max-width: 120rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
 }
+.header{
+  height: 3.5rem;
+  background-color:v.$color-dark;
+  height: fit-content;
+}
+.searchCont{
+  display: flex;
+  height: 3rem;
+  width: 40rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+ 
+}
+.searchbar{
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+
+.icon{
+  width: auto;
+  color:v.$color-dark;
+  font-size: 2.3rem;
+}
+.icons2{
+  font-size: 3rem;
+  color: v.$color-white;
+   margin-left: 1rem;
+  // margin-right: 2rem;
+}
+.contButton{
+  border: none;
+  border-left: 0.2rem solid grey;
+  height: 100%;
+  padding: 0.5rem;
+  background-color:v.$color-white ;
+}
+.contButton:hover{
+  transition:200ms ;
+  background-color: v.$bg-light;
+}
+.nav{
+  display: flex;
+  position: relative;
+  left: 9rem;
+  gap: 8rem;
+}
+
