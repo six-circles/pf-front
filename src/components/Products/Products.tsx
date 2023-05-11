@@ -1,14 +1,26 @@
+import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
-import { productsList } from "../../utils";
+import { productsUtils } from "../../utils";
 
 import styles from "./Products.module.scss";
 
+interface Products {
+  products: object[];
+}
+
+interface State {
+  products: Products;
+}
+
 function Products() {
+  const productsList = useSelector((state: State) => state.products);
+  const { products } = productsList;
+
   return (
     <div className={styles.products}>
-      {productsList.map((item) => (
+      {products.map((item: any) => (
         <CardProduct
-          key={item._id.$oid}
+          key={item._id}
           name={item.title}
           image={item.image}
           punctuation={item.punctuations}

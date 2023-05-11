@@ -1,6 +1,6 @@
+@use "../styles/mixins.scss" as m;
+
 .main {
-  margin: 0 auto;
-  width: 95%;
-  max-width: 1200px;
   padding-block: 5rem;
+  @include m.container;
 }
