@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
-import { productsUtils } from "../../../utils";
 
 import styles from "./Products.module.scss";
 
