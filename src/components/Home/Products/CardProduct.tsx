@@ -17,8 +17,6 @@ function CardProduct(props: Product) {
     navigate(`detail/${props.id}`);
   };
 
-  console.log(props.id);
-
   return (
     <div className={styles.card} onClick={handleClick}>
       <img src={props.image} alt={props.name} />
