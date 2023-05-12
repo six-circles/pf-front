@@ -44,8 +44,8 @@ function Details() {
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
         <div className={styles.details_rating}>
-          <Rating punctuation={detail.punctuations} />
-          <p>({detail.comments.length})</p>
+          <Rating punctuation={detail?.punctuations} />
+          <p>({detail.comments?.length})</p>
         </div>
       </div>
       <div className={styles.price}>
