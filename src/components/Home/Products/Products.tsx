@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
-<<<<<<< HEAD:src/components/Products/Products.tsx
 // import { productsUtils } from "../../utils";
-=======
->>>>>>> develop:src/components/Home/Products/Products.tsx
 
 import styles from "./Products.module.scss";
 
