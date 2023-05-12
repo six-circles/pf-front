@@ -1,52 +1,35 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
-import { getProductDetail } from "../../../redux/actions/productActions.";
 
 interface Detail {
-  questions: [];
-  _id: "645d362216627d3f23a8f67c";
-  title: "Camioneta";
+  questions: object[];
+  _id: string;
+  title: string;
   price: 1;
-  image: "https://unareceta.com/wp-content/uploads/2017/03/huevos-revueltos-americanos.jpg";
-  description: "no sirve";
-  stock: 2;
-  comments: [];
-  user: "645bffa7d17623d616e202c9";
-  createdAt: "2023-05-11T18:38:26.762Z";
-  updatedAt: "2023-05-11T21:00:33.094Z";
-  __v: 0;
-  punctuations: 2;
+  image: string;
+  description: string;
+  stock: number;
+  comments: object[];
+  user: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  punctuations: number;
 }
 
-interface Products {
+interface DetailsProps {
   detail: Detail;
 }
 
-interface State {
-  products: Products;
-}
-
-function Details() {
-  const { id } = useParams<{ id: string }>();
-  const dispatch: Function = useDispatch();
-  const { detail } = useSelector((state: State) => state.products);
-
-  useEffect(() => {
-    dispatch(getProductDetail(id));
-  }, [dispatch, id]);
-
+function Details({ detail }: DetailsProps) {
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
-        <div className={styles.details_rating}>
+        {/* <div className={styles.details_rating}>
           <Rating punctuation={detail?.punctuations} />
           <p>({detail.comments?.length})</p>
-        </div>
+        </div> */}
       </div>
       <div className={styles.price}>
         <h3>${detail.price}</h3>
