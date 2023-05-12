@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { MoreProduct, Details } from "../../components";
-import GalleryDetail from "../../components/GalleryDetail/GalleryDetail";
+import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";

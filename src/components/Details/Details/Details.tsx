@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
 
 function Details() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   return (
     <div className={styles.details}>
