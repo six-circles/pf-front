@@ -16,13 +16,15 @@ export const getProducts = () => {
 
 export const getProductDetail = (id: string | undefined) => {
   return async (dispatch: Function) => {
-    const { data } = await urlAxios(`/product/${id}`);
+    try {
+      const { data } = await urlAxios(`/product/${id}`);
 
-    console.log(data[0]);
-
-    dispatch({
-      type: GET_PRODUCT_DETAIL,
-      payload: data[0],
-    });
+      dispatch({
+        type: GET_PRODUCT_DETAIL,
+        payload: data[0],
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
