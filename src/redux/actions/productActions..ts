@@ -1,11 +1,10 @@
-import axios from "axios";
+import { urlAxios } from "../../utils";
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 
 export const getProducts = () => {
   return async (dispatch: Function) => {
-    const url: string = "http://localhost:3001/product";
-    const { data } = await axios.get(url);
+    const { data } = await urlAxios.get("/product");
 
     dispatch({
       type: GET_PRODUCTS,

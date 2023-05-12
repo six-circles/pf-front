@@ -1,0 +1,15 @@
+@use "../../../styles/variables.scss" as v;
+
+.details {
+  background-color: aqua;
+
+  &_title {
+    margin-bottom: 1rem;
+    border-bottom: 0.1rem solid v.$color-gray;
+
+    &_rating {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}

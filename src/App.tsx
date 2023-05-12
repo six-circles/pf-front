@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { CartPage, Detail, Home, Login,User} from "./pages";
+import { CartPage, Detail, Home, Login, User } from "./pages";
 
 import Layout from "./layout/Layout";
 
 function App() {
+  console.log(import.meta.env);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
