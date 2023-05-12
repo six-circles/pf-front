@@ -34,7 +34,7 @@ function Login() {
           </div>
           <br />
           <div className={styles.links}>
-            <a href="#">Crear cuenta</a>
+            <a href="/login/create_user">Crear cuenta</a>
             <a href="#">Olvidé mi contraseña</a>
           </div>
           <br />
@@ -43,6 +43,11 @@ function Login() {
       </div>
     </div>
   );
+<<<<<<< HEAD
 }
 
+=======
+
+  }
+>>>>>>> 4752033656b8d4846b6854aa867850cbd231c9fa
 export default Login;
