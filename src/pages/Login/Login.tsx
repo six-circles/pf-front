@@ -43,11 +43,6 @@ function Login() {
       </div>
     </div>
   );
-<<<<<<< HEAD
 }
 
-=======
-
-  }
->>>>>>> 4752033656b8d4846b6854aa867850cbd231c9fa
 export default Login;
