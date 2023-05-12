@@ -1,6 +1,5 @@
 @use "../../styles/variables.scss" as v;
 
-
 .container * {
   box-sizing: border-box;
 }
@@ -8,8 +7,7 @@
 .container {
   background-color: v.$bg-light;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px green;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
@@ -44,7 +42,7 @@
   button {
     border-radius: 5px;
     background-color: v.$color-blue;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 30px;
@@ -105,5 +103,4 @@
   padding-top: 1rem;
   text-align: left;
   width: 100%;
-
 }

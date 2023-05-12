@@ -1,7 +1,6 @@
-
 // import React from "react";
-import styles from "./Login.module.scss"
-import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr"
+import styles from "./Login.module.scss";
+import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr";
 import logo from "../../assets/icons/logo.svg";
 
 function Login() {
@@ -15,15 +14,21 @@ function Login() {
         <form action="#">
           <h2>Iniciar sesión</h2>
           <div className={styles.socialContainer}>
-            <a href="#"><GrGoogle /></a>
-            <a href="#"><GrApple /></a>
-            <a href="#"><GrFacebookOption /></a>
+            <a href="#">
+              <GrGoogle />
+            </a>
+            <a href="#">
+              <GrApple />
+            </a>
+            <a href="#">
+              <GrFacebookOption />
+            </a>
           </div>
-          <span></span>
           <div className={styles.inputs}>
             <label htmlFor="">Usuario</label>
             <input type="email" />
-            <br /><br />
+            <br />
+            <br />
             <label htmlFor="">Contraseña</label>
             <input type="password" />
           </div>
@@ -35,10 +40,9 @@ function Login() {
           <br />
           <button>Iniciar sesión</button>
         </form>
-      </div >
-
-    </div >
+      </div>
+    </div>
   );
-
+}
 
 export default Login;
