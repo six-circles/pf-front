@@ -1,13 +1,15 @@
 import { Fragment } from "react";
 import { MoreProduct, Details } from "../../components";
+import GalleryDetail from "../../components/GalleryDetail/GalleryDetail";
 
+import { heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
 
 function Detail() {
   return (
     <Fragment>
       <div className={styles.product_cont}>
-        <div>Imagenes</div>
+        <GalleryDetail data={heroSliderData} />
         <Details />
       </div>
       <MoreProduct />
