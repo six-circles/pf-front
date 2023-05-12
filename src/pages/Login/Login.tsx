@@ -1,3 +1,4 @@
+
 // import React from "react";
 import styles from "./Login.module.scss"
 import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr"
@@ -38,6 +39,6 @@ function Login() {
 
     </div >
   );
-}
+
 
 export default Login;

@@ -1,0 +1,74 @@
+@use "../../../styles/variables.scss" as v;
+
+.details {
+  h3 {
+    font-weight: 400;
+  }
+
+  .details_title {
+    padding-block: 1rem;
+    border-bottom: 0.1rem solid v.$color-gray;
+
+    .details_rating {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .price {
+    padding-block: 1rem;
+    border-bottom: 0.1rem solid v.$color-gray;
+  }
+
+  .caracteristics {
+    padding-block: 1rem;
+    border-bottom: 0.1rem solid v.$color-gray;
+  }
+}
+
+.buttons {
+  padding-block: 1rem;
+
+  .cant {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+
+    input {
+      height: auto;
+      font-size: 2rem;
+      width: 10rem;
+      padding-inline: 1rem;
+      border: 0.25rem solid v.$color-blue;
+    }
+
+    button {
+      border: 0.25rem solid v.$color-blue;
+      background-color: v.$color-white;
+      color: v.$color-blue;
+      padding-block: 1rem;
+      font-size: 2rem;
+      width: 100%;
+      transition: 200ms;
+
+      &:hover {
+        background-color: lighten(v.$color-blue, 40%);
+      }
+    }
+  }
+
+  .button_buy {
+    background-color: v.$color-blue;
+    color: v.$color-white;
+    padding-block: 1rem;
+    font-size: 2rem;
+    width: 100%;
+
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-blue, 10%);
+    }
+  }
+}

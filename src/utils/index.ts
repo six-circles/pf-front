@@ -1,3 +1,5 @@
 import productsUtils from "./products";
+import urlAxios from "./clientAxios";
+import heroSliderData from "./data-slider";
 
-export { productsUtils };
+export { productsUtils, urlAxios, heroSliderData };

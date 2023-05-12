@@ -1,5 +1,6 @@
 @use "../../styles/variables.scss" as v;
 
+
 .container * {
   box-sizing: border-box;
 }
@@ -104,4 +105,5 @@
   padding-top: 1rem;
   text-align: left;
   width: 100%;
+
 }

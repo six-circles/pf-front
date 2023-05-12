@@ -7,9 +7,7 @@
 .contGallery {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
 }
-
 
 .slideMax {
   width: 100%;
@@ -35,18 +33,14 @@
 .carousel {
   width: 100%;
   overflow: auto;
-  scrollbar-width: auto;
-
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow-y: hidden;
 }
 
-.carousel::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  visibility: hidden;
-}
-
+// .carousel::-webkit-scrollbar {
+//   width: 0;
+//   height: 0;
+//   visibility: hidden;
+// }
 
 .thumbnails {
   display: flex;
