@@ -1,6 +1,6 @@
 import img1 from '../assets/images/slider/prod01.png';
-import img2 from '../assets/images/slider/prod01.png';
-import img3 from '../assets/images/slider/prod01.png';
+import img2 from '../assets/images/slider/prod02.png';
+import img3 from '../assets/images/slider/prod03.png';
 import imgbg1 from '../assets/images/slider/bg_slide_1.png'
 import imgbg2 from '../assets/images/slider/bg_slide_1.png'
 
