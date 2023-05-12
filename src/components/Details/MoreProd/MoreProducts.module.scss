@@ -1,0 +1,18 @@
+.contenedor{
+    display: flex;
+    flex-direction:column;
+}
+.card{
+    display: flex;
+    flex-direction:row;
+    
+    gap: 2rem;
+    scale: 0.5;
+    
+}
+.title{
+    font-size: medium;
+    margin-bottom: 2rem;
+    display:flex;
+    justify-content: center;
+}
