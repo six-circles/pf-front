@@ -1,9 +1,9 @@
-import { GET_PRODUCTS } from "../actions/productActions.";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../actions/productActions.";
 
 const initialState = {
   products: [],
   allProducts: [],
-  // detail: {},
+  detail: {},
 };
 
 interface Action {
@@ -20,11 +20,11 @@ const productsReducer = (state = initialState, action: Action) => {
         allProducts: [...action.payload],
       };
 
-    // case GET_PRODUCT_DETAIL:
-    //   return {
-    //     ...state,
-    //     detail: action.payload,
-    //   };
+    case GET_PRODUCT_DETAIL:
+      return {
+        ...state,
+        detail: { ...action.payload },
+      };
 
     default:
       return state;

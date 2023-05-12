@@ -1,11 +1,16 @@
 import { urlAxios } from ".";
 
-interface Data {
-  data: string;
-}
+const detailFetch = async (
+  id: string | undefined,
+  detail: object,
+  setDetail: Function
+) => {
+  try {
+    const { data } = await urlAxios.get(`/product/${id}`);
+    setDetail({ detail, ...data });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-// const detailFetch = (id: string) => {
-//   const data: Data = urlAxios(`/product/${id}`);
-
-//   return data.data;
-// };
+export default detailFetch;
