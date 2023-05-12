@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Rating from "./Rating";
 import styles from "./CardProduct.module.scss";
+import { Rating } from "../..";
 
 interface Product {
   id: string;
