@@ -11,6 +11,7 @@ function App() {
         <Route index path="cart" element={<CartPage />} />
         <Route index path="detail/:id" element={<Detail />} />
         <Route path="user" element={<User />} />
+        <Route path="user/create_product" element={<User />} />
       </Route>
       <Route path="/login" element={<Login />} />
     </Routes>
