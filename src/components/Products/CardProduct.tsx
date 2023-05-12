@@ -15,7 +15,7 @@ function CardProduct(props: Product) {
       <img src={props.image} alt={props.name} />
       <div className={styles.card_info}>
         <p>{props.name}</p>
-        {/* <Rating punctuation={props.punctuation} /> */}
+        <Rating punctuation={props.punctuation} />
         <p>${props.price}</p>
       </div>
     </div>
