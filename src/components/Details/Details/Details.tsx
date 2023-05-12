@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Rating } from "../..";
@@ -5,6 +6,11 @@ import styles from "./Details.module.scss";
 
 function Details() {
   const { id } = useParams();
+  // const [detail, setDetail] = useState({});
+
+  // useEffect(() => {
+  //   dispatch(getProductDetail(id));
+  // }, []);
 
   return (
     <div className={styles.details}>
