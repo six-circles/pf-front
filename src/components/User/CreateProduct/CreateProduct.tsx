@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { createProduct, urlAxios } from "../../../utils";
+import { urlAxios } from "../../../utils";
 
 export default function CreateProduct() {
   const [form, setForm] = useState({
@@ -31,8 +31,6 @@ export default function CreateProduct() {
       // punctuation: form.punctuation,
       userId: "645eefb28b3c093f34e543a7",
     };
-
-    console.log(obj);
 
     try {
       await urlAxios.post("/product", obj);
