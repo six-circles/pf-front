@@ -1,6 +1,12 @@
 @use "../../../styles/variables.scss" as v;
 
 .details {
+  h2 {
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
   h3 {
     font-weight: 400;
   }
@@ -45,11 +51,11 @@
       font-size: 2rem;
       width: 10rem;
       padding-inline: 1rem;
-      border: 0.2rem solid v.$color-blue;
+      border: 0.15rem solid v.$color-blue;
     }
 
     button {
-      border: 0.2rem solid v.$color-blue;
+      border: 0.15rem solid v.$color-blue;
       background-color: v.$color-white;
       color: v.$color-blue;
       padding-block: 1rem;
@@ -58,7 +64,7 @@
       transition: 200ms;
 
       &:hover {
-        background-color: lighten(v.$color-blue, 40%);
+        background-color: lighten(v.$color-blue, 35%);
       }
     }
   }

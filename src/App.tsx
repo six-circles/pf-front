@@ -14,7 +14,7 @@ function App() {
         {/* <Route path="user/ventas/create_product" element={<User />} /> */}
       </Route>
       <Route path="/login" element={<Login />} />
-      <Route path="/login/create_user" element={<CreateUser />} />
+      <Route path="/register" element={<CreateUser />} />
     </Routes>
   );
 }
