@@ -5,7 +5,6 @@ import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
 import { urlAxios } from "../../utils"
-import axios from "axios";
 
 interface Credentials {
   email: string;
