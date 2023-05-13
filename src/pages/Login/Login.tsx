@@ -3,6 +3,7 @@
 import styles from "./Login.module.scss"
 // import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr"
 import logo from "../../assets/icons/logo.svg";
+import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
 
 interface Credentials {
@@ -10,48 +11,27 @@ interface Credentials {
   password: string;
 }
 
-interface Validation {
-  email: boolean;
-  password: boolean;
-}
-
 function Login() {
   const [credentials, setCredentials] = useState<Credentials>({ email: "", password: "" });
-  const [validation, setValidation] = useState<Validation>({ email: false, password: false });
-  const [showErrors, setShowErrors] = useState(false);
+  const [errors, setErrors] = useState<any>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
 
-    setShowErrors(true);
-    if (showErrors) {
-      setValidation({ ...validation, [name]: validateField(name, value) });
-    }
+    setErrors(validateField({ ...credentials, [name]: value }, errors))
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowErrors(true);
 
-    if (validation.email && validation.password) {
+    if (errors.email === "" && errors.password === "") {
       console.log("Iniciando sesión...");
+    } else {
+      setErrors(firstValidateField({ ...credentials }, errors))
     }
-  };
 
-  const validateField = (name: string, value: string): boolean => {
-    switch (name) {
-      case "email":
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(value);
-      case "password":
-        return value.length >= 6;
-      default:
-        return false;
-    }
   };
-
-  const buttonEna = showErrors && !(validation.email && validation.password)
 
   return (
     <div className={styles.container}>
@@ -70,13 +50,13 @@ function Login() {
           <div className={styles.inputs}>
             <label htmlFor="">Usuario</label>
             <input type="email" name="email" value={credentials.email} onChange={handleInputChange} />
-            {showErrors && !validation.email && (<p>Por favor, ingresa un correo electrónico válido.</p>)}
+
+            {errors.email && <p>{errors.email}</p>}
+
             <br /><br />
             <label htmlFor="">Contraseña</label>
             <input type="password" name="password" value={credentials.password} onChange={handleInputChange} />
-            {showErrors && !validation.password && (
-              <p>La contraseña debe tener al menos 6 caracteres.</p>
-            )}
+            {errors.password && <p>{errors.password}</p>}
           </div>
           <br />
           <div className={styles.links}>
@@ -84,7 +64,7 @@ function Login() {
             <a href="#">Olvidé mi contraseña</a>
           </div>
           <br />
-          <button type="submit" disabled={buttonEna}>Iniciar sesión</button>
+          <button type="submit">Iniciar sesión</button>
         </form>
       </div >
 
