@@ -1,24 +1,9 @@
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
-
-interface Detail {
-  questions: object[];
-  _id: string;
-  title: string;
-  price: 1;
-  image: string;
-  description: string;
-  stock: number;
-  comments: object[];
-  user: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  punctuations: number;
-}
+import { DetailProd } from "../../../utils";
 
 interface DetailsProps {
-  detail: Detail;
+  detail: DetailProd;
 }
 
 function Details({ detail }: DetailsProps) {
@@ -26,7 +11,6 @@ function Details({ detail }: DetailsProps) {
     <div className={styles.details}>
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
-
         <div className={styles.details_rating}>
           {detail.punctuations && <Rating punctuation={detail.punctuations} />}
           <p>({detail.comments?.length})</p>
