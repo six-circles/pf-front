@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Products } from "../../components";
+import { Products, Filter, Comments} from "../../components";
 import Slider from "../../components/Slider/Slider";
 
 import heroSliderData from "../../utils/data-slider";
@@ -10,6 +10,8 @@ function Home() {
     <Fragment>
       <Slider data={heroSliderData} />
       <Products />
+      <Filter/>
+     <Comments />
     </Fragment>
   );
 }
