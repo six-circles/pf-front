@@ -46,7 +46,7 @@ function Detail() {
   return (
     <Fragment>
       <div className={styles.product_cont}>
-        <GalleryDetail data={heroSliderData} />
+        <GalleryDetail detail={detail} data={heroSliderData} />
         <Details detail={detail} />
       </div>
       <MoreProduct />
