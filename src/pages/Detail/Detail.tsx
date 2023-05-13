@@ -1,17 +1,21 @@
-// import React from "react";
-import { MoreProduct } from "../../components";
+import { Fragment } from "react";
+import { MoreProduct, Details } from "../../components";
+import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
+
+import { heroSliderData } from "../../utils";
+import styles from "./Detail.module.scss";
+
 function Detail() {
-  return(
-    <div>
-     <div>Detail</div>
-     <h1>HOla</h1>
-     <h1>HOla</h1>
-     <h1>HOla</h1>
-     <h1>HOla</h1>
-     <MoreProduct/>
-     <div>Comentarios| Preguntas</div>
-     </div>
-     )
+  return (
+    <Fragment>
+      <div className={styles.product_cont}>
+        <GalleryDetail data={heroSliderData} />
+        <Details />
+      </div>
+      <MoreProduct />
+      <div>Comentarios | Preguntas</div>
+    </Fragment>
+  );
 }
 
 export default Detail;

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import CardProduct from "../../Home/Products/CardProduct";
 import styles from "./MoreProducts.module.scss"
-//mapear los 4/5 primeros productos del vendedor de la publicación y renderizarlos. (esto llevarlo a pages-Detail y renderizarlo alla)
+
 //ver de recibir SOLO los productos del vendedor de la publi
 interface Products {
     products: object[];
