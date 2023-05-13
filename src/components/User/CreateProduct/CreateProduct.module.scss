@@ -1,0 +1,58 @@
+@use "../../../styles/variables.scss" as v;
+
+.form {
+  h2 {
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
+
+  button {
+    padding: 1rem;
+    background-color: v.$color-blue;
+    color: v.$color-white;
+    width: 15rem;
+    margin-top: 3rem;
+    font-size: 1.8rem;
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-blue, 10%);
+    }
+  }
+}
+
+.form_camp {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    height: 4rem;
+    padding-left: 1rem;
+    background-color: v.$color-white;
+    max-width: 30rem;
+    border: 0.1rem solid v.$color-gray;
+    transition: 150ms;
+
+    &:focus {
+      border: 0.1rem solid lighten(v.$color-blue, 10%);
+    }
+  }
+
+  textarea {
+    max-width: 30rem;
+    padding: 1rem;
+    height: 10rem;
+    background-color: v.$color-white;
+    border: 0.1rem solid v.$color-gray;
+    transition: 150ms;
+
+    &:focus {
+      border: 0.1rem solid lighten(v.$color-blue, 10%);
+    }
+  }
+}

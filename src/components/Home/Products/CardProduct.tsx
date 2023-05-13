@@ -15,6 +15,7 @@ function CardProduct(props: Product) {
 
   const handleClick = () => {
     navigate(`detail/${props.id}`);
+    scrollTo(0, 0);
   };
 
   let shortName: string = props.name;
