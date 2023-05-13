@@ -1,0 +1,18 @@
+.filterC{
+    display: flex;
+    flex-direction: row;
+    justify-content: center ;
+    justify-content: space-evenly ;
+    font-size: 16px;
+  
+  }
+  .select{
+    background: rgb(178, 179, 178);
+    cursor: pointer;
+    display:inline-block;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px;
+    border-style: groove;
+  }
