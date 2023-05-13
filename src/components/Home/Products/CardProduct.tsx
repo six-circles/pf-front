@@ -1,0 +1,41 @@
+import { useNavigate } from "react-router-dom";
+import styles from "./CardProduct.module.scss";
+import { Rating } from "../..";
+
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  punctuation: number;
+  price: number;
+}
+
+function CardProduct(props: Product) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`detail/${props.id}`);
+    scrollTo(0, 0);
+  };
+
+  let shortName: string = props.name;
+
+  if (shortName.length > 50) {
+    shortName = props.name.slice(0, 50) + "...";
+  }
+
+  return (
+    <div className={styles.card} onClick={handleClick}>
+      <div className={styles.card_image}>
+        <img src={props.image} alt={props.name.slice(0, 10)} />
+      </div>
+      <div className={styles.card_info}>
+        <p>{shortName}</p>
+        <Rating punctuation={props.punctuation} />
+        <p className={styles.card_price}>${props.price}</p>
+      </div>
+    </div>
+  );
+}
+
+export default CardProduct;
