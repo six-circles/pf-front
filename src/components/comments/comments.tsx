@@ -35,7 +35,9 @@ type Comment = {
   // Mostrar comentarios
   commentSection.displayComments();
   return (
-    <h1>Hola</h1>
+    <div>
+      <h1>probando</h1>
+    </div>
  )
 }
 

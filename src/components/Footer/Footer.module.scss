@@ -1,32 +1,37 @@
 @use "../../styles/variables.scss" as v;
-
-
-
+@use "../../styles/mixins.scss" as m;
 
 .footer {
-  display: flex;
   height: fit-content;
   margin-top: auto;
   background-color: v.$color-dark;
   width: 100%;
-  gap:20rem;
 }
 
-.letras{
+.footer_cont {
+  padding-block: 4rem;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.5;
+  gap: 1rem;
+  @include m.container;
+
+  img {
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.letras {
   width: fit-content;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
-  margin-left: 1em;
   color: v.$color-white;
-  font-size: medium;
 }
 
-.subtitle{
+.subtitle {
   display: flex;
   width: fit-content;
-  padding: 1em;
   color: v.$color-white;
-  font-weight: 350;
-  font-size: larger;
+  margin-bottom: 1.5rem;
 }
