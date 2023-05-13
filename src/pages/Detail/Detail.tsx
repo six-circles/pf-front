@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { MoreProduct, Details } from "../../components";
 import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail";
 
-import { Detail, heroSliderData } from "../../utils";
+import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-import { getProductDetail } from "../../redux/actions/productActions.";
+import {
+  getProductDetail,
+  getProducts,
+} from "../../redux/actions/productActions.";
 
 interface Products {
-  detail: Detail;
+  detail: DetailProd;
 }
 
 interface State {
@@ -23,7 +26,7 @@ function Detail() {
   const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
-    console.log("adios");
+    dispatch(getProducts());
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
 

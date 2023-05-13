@@ -1,4 +1,4 @@
-export interface Detail {
+export interface DetailProd {
   questions: object[];
   _id: string;
   title: string;

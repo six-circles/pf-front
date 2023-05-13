@@ -1,9 +1,9 @@
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
-import { Detail } from "../../../utils";
+import { DetailProd } from "../../../utils";
 
 interface DetailsProps {
-  detail: Detail;
+  detail: DetailProd;
 }
 
 function Details({ detail }: DetailsProps) {
