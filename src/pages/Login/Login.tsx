@@ -4,7 +4,8 @@ import styles from "./Login.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
-import { urlAxios } from "../../utils"
+import { useNavigate } from "react-router-dom";
+import { urlAxios } from "../../utils";
 
 interface Credentials {
   email: string;
@@ -12,6 +13,7 @@ interface Credentials {
 }
 
 function Login() {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
     password: "",
@@ -29,23 +31,21 @@ function Login() {
     e.preventDefault();
 
     if (errors.email === "" && errors.password === "") {
-
       try {
-        let { status } = await urlAxios.post("/login", credentials);
+        let data = await urlAxios.post("/login", credentials);
 
-        if (status === 202) {
-          alert("Bienvenido")
+        if (data.status === 202) {
+          window.localStorage.setItem("Auth", data.data);
+          alert("Bienvenido");
+          navigate("/");
         }
-      }
-      catch (error: any) {
-        console.log(error.message)
+      } catch (error: any) {
+        console.log(error.message);
         // console.log(error.response.data)
         // console.log(error.response.status)
-        if (error.response.status === 401) alert("Contraseña incorrecta")
-        if (error.response.status === 404) alert("Usuario no encontrado")
+        if (error.response.status === 401) alert("Contraseña incorrecta");
+        if (error.response.status === 404) alert("Usuario no encontrado");
       }
-
-
     } else {
       setErrors(firstValidateField({ ...credentials }, errors));
     }

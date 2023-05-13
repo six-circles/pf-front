@@ -28,18 +28,25 @@ const GalleryDetail = (props: any) => {
     <div className={styles.contGallery}>
       <div className={styles.slideMax}>
         <div className={styles.slide}>
-          <img src={props.detail.image} alt="" />
+          {props.detail.image && (
+            <img src={props.detail.image[0]} alt="Imagen Principal" />
+          )}
         </div>
       </div>
       <div className={styles.carousel}>
         <div className={styles.thumbnails}>
-          {props.data.map((elem: any, index: any) => {
-            return (
-              <div onClick={() => setSlide(index)} className={styles.thumbnail}>
-                <img src={elem.img} alt="" />
-              </div>
-            );
-          })}
+          {props.detail.image &&
+            props.detail.image.map((elem: any, index: any) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => setSlide(index)}
+                  className={styles.thumbnail}
+                >
+                  <img src={elem} alt="" />
+                </div>
+              );
+            })}
 
           {/* <div className={styles.thumbnail}>
             <img src={props.data[slide].img} alt="" />
