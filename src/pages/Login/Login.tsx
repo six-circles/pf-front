@@ -35,7 +35,7 @@ function Login() {
         let data = await urlAxios.post("/login", credentials);
 
         if (data.status === 202) {
-          window.localStorage.setItem("Auth", data.data);
+          window.localStorage.setItem("Auth", data.data.id);
           alert("Bienvenido");
           navigate("/");
         }
