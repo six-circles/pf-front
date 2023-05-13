@@ -1,10 +1,11 @@
-
 // import React from "react";
 import styles from "./Login.module.scss"
 // import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr"
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
+import { urlAxios } from "../../utils"
+import axios from "axios";
 
 interface Credentials {
   email: string;
@@ -22,11 +23,27 @@ function Login() {
     setErrors(validateField({ ...credentials, [name]: value }, errors))
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (errors.email === "" && errors.password === "") {
-      console.log("Iniciando sesión...");
+
+      try {
+        let { status } = await urlAxios.post("/login", credentials);
+
+        if (status === 202) {
+          alert("Bienvenido")
+        }
+      }
+      catch (error: any) {
+        console.log(error.message)
+        // console.log(error.response.data)
+        // console.log(error.response.status)
+        if (error.response.status === 401) alert("Contraseña incorrecta")
+        if (error.response.status === 404) alert("Usuario no encontrado")
+      }
+
+
     } else {
       setErrors(firstValidateField({ ...credentials }, errors))
     }
