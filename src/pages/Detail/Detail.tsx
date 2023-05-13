@@ -5,25 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { MoreProduct, Details } from "../../components";
 import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail";
 
-import { heroSliderData } from "../../utils";
+import { Detail, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
 import { getProductDetail } from "../../redux/actions/productActions.";
-
-interface Detail {
-  questions: object[];
-  _id: string;
-  title: string;
-  price: 1;
-  image: string;
-  description: string;
-  stock: number;
-  comments: object[];
-  user: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  punctuations: number;
-}
 
 interface Products {
   detail: Detail;
