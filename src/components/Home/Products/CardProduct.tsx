@@ -14,8 +14,8 @@ function CardProduct(props: Product) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`detail/${props.id}`);
-    scrollTo(0, 0);
+    navigate(`/detail/${props.id}`);
+    window.scrollTo(0, 0);
   };
 
   let shortName: string = props.name;
@@ -27,7 +27,7 @@ function CardProduct(props: Product) {
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
-        <img src={props.image} alt={props.name.slice(0, 10)} />
+        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
       </div>
       <div className={styles.card_info}>
         <p>{shortName}</p>
