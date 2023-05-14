@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 function Header() {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: Function = useDispatch();
 
   const handleNavigate = () => navigate("/");
 
