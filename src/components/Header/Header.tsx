@@ -24,7 +24,7 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    handleNavigate()
     dispatch(getProducts(title));
   };
 
