@@ -22,6 +22,7 @@ export default function (){
 
     const [error,setError]=useState({
         password:"",
+        email:""
        
     })
 
@@ -56,7 +57,7 @@ export default function (){
             } 
         catch (error:any) {
                 console.log(error.message)
-                alert("Las contraseñas deben coincidir")
+                alert("Revise los campos")
             }
         
     }
@@ -73,13 +74,14 @@ export default function (){
 
                         <label htmlFor="Contraseña" className={styles.name}>Contraseña</label>
                         <input type="password" name="password" className={styles.input} value={form.password} onChange={handleChange}/>
-                            <p>{error.password}</p>
+                            <p className={styles.errorPasw}>{error.password}</p>
                         <label htmlFor="Repita contraseña">Repita contraseña</label>
                         <input type="password" name="repeatPassword" value={form.repeatPassword} className={styles.input}  onChange={handleChange}/>
                     </div>
                     <div className={styles.form}>
                         <label htmlFor="Correo">Correo</label>
                         <input type="email" name="email" className={styles.input} value={form.email} onChange={handleChange}/>
+                         <p className={styles.errorEmail}>{error.email}</p>
 
                         <label htmlFor="Telefono">Telefono</label>
                         <input type="number" name="phone" className={styles.input} value={form.phone} onChange={handleChange}/>
@@ -88,7 +90,12 @@ export default function (){
                         <input type="date" name="birthday" className={styles.input} value={form.birthday} onChange={handleChange}/>
                     </div>
                 </div>
-                <button className={styles.buttonRes}>Registrar</button>
+               {
+                error.password.length === 0 && error.email.length === 0 ? 
+                <button className={styles.buttonRes}>Registrar</button> :
+                <button className={styles.buttonResDisabl} disabled>Registrar</button> 
+                
+                }
             </form>
         </div>
     </div>
