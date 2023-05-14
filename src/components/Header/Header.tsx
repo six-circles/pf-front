@@ -29,7 +29,11 @@ function Header() {
           <a href="#" className={styles.letras}>
             <AiOutlineShoppingCart className={styles.icons2} />
           </a>
-          <a href="#" className={styles.letras}>
+          <a
+            href="#"
+            className={styles.letras}
+            onClick={() => navigate("/user")}
+          >
             <MdOutlineAccountCircle className={styles.icons2} />
           </a>
         </nav>

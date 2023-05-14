@@ -14,16 +14,25 @@ function CardProduct(props: Product) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`detail/${props.id}`);
+    navigate(`/detail/${props.id}`);
+    window.scrollTo(0, 0);
   };
+
+  let shortName: string = props.name;
+
+  if (shortName.length > 50) {
+    shortName = props.name.slice(0, 50) + "...";
+  }
 
   return (
     <div className={styles.card} onClick={handleClick}>
-      <img src={props.image} alt={props.name} />
+      <div className={styles.card_image}>
+        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+      </div>
       <div className={styles.card_info}>
-        <p>{props.name}</p>
+        <p>{shortName}</p>
         <Rating punctuation={props.punctuation} />
-        <p>${props.price}</p>
+        <p className={styles.card_price}>${props.price}</p>
       </div>
     </div>
   );

@@ -1,28 +1,33 @@
-// import { useParams } from "react-router-dom";
-
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
+import { DetailProd } from "../../../utils";
 
-function Details() {
-  // const { id } = useParams();
+interface DetailsProps {
+  detail: DetailProd;
+}
 
+function Details({ detail }: DetailsProps) {
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
-        <h2>Nombre</h2>
+        <h2>{detail.title}</h2>
         <div className={styles.details_rating}>
-          <Rating punctuation={5} />
-          <p>(Reviews)</p>
+          {detail.punctuations && <Rating punctuation={detail.punctuations} />}
+          <p>({detail.comments?.length})</p>
         </div>
       </div>
       <div className={styles.price}>
-        <h3>Precio</h3>
+        <h3>${detail.price}</h3>
       </div>
       <div className={styles.caracteristics}>
         <h3>Caracteristicas</h3>
         <p>Color</p>
         <p>Capacidad</p>
         <p>Tamaño</p>
+      </div>
+      <div className={styles.description}>
+        <h3>Descripcion</h3>
+        <p>{detail.description}</p>
       </div>
       <div className={styles.buttons}>
         <div className={styles.cant}>

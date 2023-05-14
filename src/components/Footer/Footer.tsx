@@ -6,7 +6,10 @@ import logo from "../../assets/icons/logo.svg";
 function Footer() {
   const navigate = useNavigate();
 
-  const handleNavigate = () => navigate("/");
+  const handleNavigate = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
 
   return (
     <footer className={styles.footer}>
