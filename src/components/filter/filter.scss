@@ -1,106 +1,25 @@
-.bkg{
-    background-image: url('../icons/home-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment:fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    /* display: flex; */
-    /* flex-direction: column; */
-    
-}
-.select{
-  background: rgb(178, 179, 178);
-  cursor: pointer;
-  display:inline-block;
-  justify-content: center;
-  text-align: center;
-  padding: 15px;
-  border-radius: 15px;
-  border-style: groove;
-}
-.cards{
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 25% 25% 25% 25%;
-    gap: 20px;
-}
+@use "../../styles/variables.scss" as v;
+@use "../../styles/mixins.scss" as m;
 
-.paginado{
+.seccion {
   display: flex;
-  flex-direction: row; 
-  justify-content: center;
-  
+  flex-direction: column;
+  min-width: 20rem;
+}
+.filtro,
+.categoria {
+  background-color: rgb(228, 226, 226);
+  padding: auto;
+}
+h4 {
+  background-color: rgb(47, 47, 253);
+  margin-bottom: 15px;
+  color: white;
 }
 
-.filterC{
-  display: flex;
-  flex-direction: row;
-  justify-content: center ;
-  justify-content: space-evenly ;
-  font-size: 16px;
-
+ul {
+  list-style-type: none;
 }
-.refresh{
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  font-family: italic;
-  color: #000000;
-  font-size: 16px;
-  background: rgb(219, 220, 221);
-  padding:  3px 13px 3px 13px ;
-  text-decoration: none;
-  
-}
-.input{
-  
-  background-color: #e2e2df;
-}
-.create{
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  font-family: italic;
-  color: #000000;
-  font-size: 14px;
-  background: rgb(225, 226, 225);
-  padding:  3px 13px 3px 13px ;
-  text-decoration: none;
-}
-.search{
-  display: flex;
-  justify-content: start;
-  margin-left: 50px;
-  margin-bottom: 25px;
-  margin-top: 15px;
-}
-.btnsearch {
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 12px;
-  font-family: italic;
-  color: #000000;
-  font-size: 14px;
-  background: #9b9b9b;
-  padding:  3px 13px 3px 13px ;
-  text-decoration: none;
-}
-
-.btnsearch:hover {
-  background: #d4d4cf;
-  text-decoration: none;
-  cursor: pointer;
-}
-.create:hover {
-  background: #e3e4e1;
-  text-decoration: none;
-  cursor: pointer;
-}
-.refresh:hover {
-  background: #dddddc;
-  text-decoration: none;
-  cursor: pointer;
+li {
+  margin-bottom: 15px;
 }

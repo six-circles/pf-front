@@ -55,7 +55,7 @@
 }
 
 .desc {
-  margin: 8rem 8rem 8rem 0;
+  margin: 0 8rem 0 0;
   text-align: left;
 }
 
@@ -82,5 +82,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  height: 500px;
+  // padding: 5rem 0;
+  height: 400px;
 }
