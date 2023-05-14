@@ -1,27 +1,25 @@
 @use "../../styles/variables.scss" as v;
 @use "../../styles/mixins.scss" as m;
+
 .seccion {
-    flex-direction: column;   
-    padding: auto;
-    margin: 40px;
-    width: 170px;
-  }
-  .filtro, .categoria{
-    background-color: rgb(228, 226, 226);
-    padding: auto;
-  }
-  h4 {
-   background-color: rgb(47, 47, 253);
-    margin-bottom: 15px;
-    color: white;
-  }
-  
-  ul {
-    list-style-type: none;
-  }
-  li{
-    margin-bottom: 15px;
-  }
-  
-  
-  
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+}
+.filtro,
+.categoria {
+  background-color: rgb(228, 226, 226);
+  padding: auto;
+}
+h4 {
+  background-color: rgb(47, 47, 253);
+  margin-bottom: 15px;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+li {
+  margin-bottom: 15px;
+}
