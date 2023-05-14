@@ -21,7 +21,7 @@ const GalleryDetail = (props: any) => {
                 <div
                   key={index}
                   onClick={() => setSlide(index)}
-                  className={styles.thumbnail}
+                  className={index === slide ? styles.thumbnailAct : styles.thumbnail}
                 >
                   <img src={elem} alt="" />
                 </div>
