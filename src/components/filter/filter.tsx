@@ -1,4 +1,4 @@
-
+import './filter.scss';
 
 
 function Filter (){
@@ -35,7 +35,7 @@ return (
  
   <div className="seccion">
 <div className="filtro">
-  <h2>Filtro</h2>
+  <h4>Filtros</h4>
   <ul>
     <li>Nombre</li>
     <li>Precio ascendente</li>
@@ -44,7 +44,7 @@ return (
 </div>
 
 <div className="categoria">
-  <h2>Categoría</h2>
+  <h4>Categorías</h4>
   <ul>
     <li>Videojuegos</li>
     <li>Ropa</li>
