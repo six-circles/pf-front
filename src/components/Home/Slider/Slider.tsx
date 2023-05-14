@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Slider.module.scss";
+import { useSelector } from "react-redux";
 
-const Slider = (props: any) => {
+const Slider = () => {
+  const productsList = useSelector((state: any) => state.products);
+  const { products } = productsList;
+
   const [slide, setSlide] = useState(0);
-  const cant = props.data.length;
+  const cant = 3;
 
   const goToPrevSlide = () => {
     slide > 0 ? setSlide(slide - 1) : setSlide(cant - 1);
@@ -27,13 +31,13 @@ const Slider = (props: any) => {
     <div className={styles.carousel}>
       <div className={styles.slider}>
         <div className={styles.contImage}>
-          <img className={styles.image} src={props.data[slide].img} alt="" />
+          <img className={styles.image} src={products[slide].image[0]} alt="" />
         </div>
         <div className={styles.contDesc}>
           <div className={styles.desc}>
-            <h2>{props.data[slide].title_1}</h2>
+            <h2>{products[slide].title}</h2>
             <br />
-            <p>{props.data[slide].description}</p>
+            <p>{products[slide].description}</p>
             <br />
             <button>Añadir al carrito</button>
           </div>

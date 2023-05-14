@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Products, Slider,Filter, Comments } from "../../components";
 
 
-import { heroSliderData } from "../../utils";
 import { getProducts } from "../../redux/actions/productActions.";
 
 function Home() {
@@ -16,7 +15,7 @@ function Home() {
 
   return (
     <Fragment>
-      <Slider data={heroSliderData} />
+      <Slider />
       <Products />
       <Filter/>
      <Comments />
