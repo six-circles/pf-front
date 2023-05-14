@@ -40,7 +40,7 @@ function Detail() {
       <MoreProduct />
       <div>Comentarios | Preguntas</div>
       <div className="card">
-  <span className="title">Comments</span>
+  
   <div className="comments">
     <div className="comment-react">
       <button>

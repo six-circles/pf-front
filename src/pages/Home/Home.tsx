@@ -15,9 +15,11 @@ function Home() {
 
   return (
     <Fragment>
+      
       <Slider />
-      <Products />
       <Filter/>
+      <Products />
+      
      <Comments />
     </Fragment>
   );

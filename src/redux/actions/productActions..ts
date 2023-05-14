@@ -5,7 +5,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const ORDER_PRODUCTS ="ORDER_PRODUCTS";
 export const getProducts = (title: string | undefined = "") => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     let data;
     if (!title) {
       data = await urlAxios("/product");
@@ -34,10 +34,14 @@ export const getProductDetail = (id: string | undefined) => {
     }
   };
 };
-
+interface Dispatch{
+  type:string,
+  payload:any
+}
 export const orderProducts= (order:any )=>{
-  return  (dispatch: Function) => {
-dispatch({
+  return  (dispatch:any) => {
+    
+dispatch ({
   type: ORDER_PRODUCTS,
   payload: order,
   })
