@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./GalleryDetail.module.scss";
 
 const GalleryDetail = (props: any) => {
   const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    setSlide(0);
+  }, [])
 
   return (
     <div className={styles.contGallery}>
