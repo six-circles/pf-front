@@ -83,7 +83,7 @@ export default function (){
                         <input type="email" name="email" className={styles.input} value={form.email} onChange={handleChange}/>
                          <p className={styles.errorEmail}>{error.email}</p>
 
-                        <label htmlFor="Telefono">Telefono</label>
+                        <label htmlFor="Telefono">Teléfono</label>
                         <input type="number" name="phone" className={styles.input} value={form.phone} onChange={handleChange}/>
 
                         <label htmlFor="Fecha de nacimiento">Fecha de nacimiento</label>
