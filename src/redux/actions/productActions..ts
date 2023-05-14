@@ -5,7 +5,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 
 export const getProducts = (title: string | undefined = "") => {
-  return async (dispatch: Dispatch<AnyAction>) => {
+  return async (dispatch: Function) => {
     let data;
     if (!title) {
       data = await urlAxios("/product");
