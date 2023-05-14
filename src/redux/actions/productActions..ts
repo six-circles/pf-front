@@ -3,7 +3,7 @@ import { AnyAction, Dispatch } from "redux";
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
-
+export const ORDER_PRODUCTS ="ORDER_PRODUCTS";
 export const getProducts = (title: string | undefined = "") => {
   return async (dispatch: Dispatch<AnyAction>) => {
     let data;
@@ -34,3 +34,11 @@ export const getProductDetail = (id: string | undefined) => {
     }
   };
 };
+
+export const orderProducts= (order:any )=>{
+  return  (dispatch: Function) => {
+dispatch({
+  type: ORDER_PRODUCTS,
+  payload: order,
+  })
+}}
