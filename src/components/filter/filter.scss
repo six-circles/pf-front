@@ -8,18 +8,20 @@
 }
 .filtro,
 .categoria {
-  background-color: rgb(228, 226, 226);
-  padding: auto;
+  background-color: v.$color-white;
 }
+
 h4 {
-  background-color: rgb(47, 47, 253);
-  margin-bottom: 15px;
+  background-color: v.$color-blue;
   color: white;
+  padding: 1rem;
 }
 
 ul {
   list-style-type: none;
 }
+
 li {
-  margin-bottom: 15px;
+  padding: 1rem;
+  cursor: pointer;
 }
