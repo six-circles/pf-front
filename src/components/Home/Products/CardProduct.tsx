@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./CardProduct.module.scss";
 import { Rating } from "../..";
+import { useDispatch } from "react-redux";
+import { clearProducts } from "../../../redux/actions/productActions.";
 
 interface Product {
   id: string;
@@ -12,8 +14,10 @@ interface Product {
 
 function CardProduct(props: Product) {
   const navigate = useNavigate();
+  const dispatch: Function = useDispatch();
 
   const handleClick = () => {
+    dispatch(clearProducts());
     navigate(`/detail/${props.id}`);
     window.scrollTo(0, 0);
   };

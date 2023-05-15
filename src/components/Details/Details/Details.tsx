@@ -7,7 +7,6 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
-  console.log(detail.punctuations);
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
