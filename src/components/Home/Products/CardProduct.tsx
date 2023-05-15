@@ -21,7 +21,7 @@ function CardProduct(props: Product) {
   let shortName: string = props.name;
 
   if (shortName.length > 50) {
-    shortName = props.name.slice(0, 50) + "...";
+    shortName = props.name.slice(0, 40) + "...";
   }
 
   return (

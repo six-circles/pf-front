@@ -48,6 +48,22 @@
     padding: 12px 30px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    max-width: 300px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .buttonInvitado {
+    border-radius: 5px;
+    background-color: v.$color-gray;
+    color: v.$color-dark;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    max-width: 300px;
+    width: 100%;
     cursor: pointer;
   }
 }
