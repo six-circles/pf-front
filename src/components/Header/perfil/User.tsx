@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function User() {
   const navigate = useNavigate();
-  const username: any = window.localStorage.getItem("user");
+//   const username: any = window.localStorage.getItem("user");
 
   const handleClick = () => {
     const salir = confirm("Desea cerrar sesion?");
