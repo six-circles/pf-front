@@ -11,8 +11,7 @@ import './comments.scss'
 import {
   getProductDetail,
   getProducts,
-  postComments,
-  viewComments
+  
 } from "../../redux/actions/productActions.";
 
 interface Products {
@@ -21,20 +20,19 @@ interface Products {
 
 interface State {
   products: Products;
+  
 }
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
- //const { comments } = useSelector((state: State) => state.products);
-
+ 
 
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getProductDetail(id));
-    //dispatch(viewComments(comments));
-    //dispatch (postComments(comments));
+    
   }, [dispatch, id]);
 
   return (
