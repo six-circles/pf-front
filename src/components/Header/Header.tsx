@@ -9,11 +9,15 @@ import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
+// import Favs from "./PopUps/Favs/Favs";
 
 function Header() {
+  // const [showFavs, setShowFavs] = useState(true);
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+  const obj: any = window.localStorage.getItem("user");
+  const { user } = JSON.parse(obj);
 
   const handleNavigate = () => navigate("/");
 
@@ -45,18 +49,24 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
+          {/* <div style={{ position: "relative" }}> */}
           <a href="#" className={styles.letras}>
             <AiOutlineHeart className={styles.icons2} />
           </a>
+          {/* {showFavs && <Favs />} */}
+          {/* </div> */}
+
           <a href="#" className={styles.letras}>
             <AiOutlineShoppingCart className={styles.icons2} />
           </a>
+
           <a
             href="#"
             className={styles.letras}
             onClick={() => navigate("/user")}
           >
             <MdOutlineAccountCircle className={styles.icons2} />
+            {!user ? "Ingresar" : user}
           </a>
         </nav>
       </div>
