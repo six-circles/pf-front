@@ -39,9 +39,13 @@ const Slider = () => {
           <div className={styles.desc}>
             <h2>{products[slide]?.title}</h2>
             <br />
-            <p>{products[slide]?.description.length > 250 ? products[slide]?.description.slice(0, 250) + "..." : products[slide]?.description}</p>
+            <p>
+              {products[slide]?.description.length > 250
+                ? products[slide]?.description.slice(0, 250) + "..."
+                : products[slide]?.description}
+            </p>
             <br />
-            <button>Añadir al carrito</button>
+            {/* <button>Añadir al carrito</button> */}
           </div>
         </div>
       </div>

@@ -27,9 +27,9 @@ function Header() {
   }
 
   const handleNavigate = () => {
-    navigate("/")
+    navigate("/");
     dispatch(getProducts());
-    setTitle("")
+    setTitle("");
   };
 
   const handleChange = (event: any) => {
@@ -42,9 +42,9 @@ function Header() {
     handleNavigate();
     dispatch(getProducts(title));
     navigate({
-      pathname: '/',
+      pathname: "/",
       search: `?search=${title}`,
-    })
+    });
   };
 
   return (
@@ -65,27 +65,43 @@ function Header() {
         </form>
         <nav className={styles.nav}>
           {/* <div style={{ position: "relative" }}> */}
-          <a href="#" className={styles.letras}>
+          {/* <a href="#" className={styles.letras}>
             <AiOutlineHeart className={styles.icons2} />
-          </a>
+          </a> */}
           {/* {showFavs && <Favs />} */}
           {/* </div> */}
-          <div style={{position:"relative"}}>
-            <a href="#" className={styles.letras} onClick={()=> {if(showCarrito === false){setShowCarrito(true)} else{setShowCarrito(false)}}}>
-              <AiOutlineShoppingCart className={styles.icons2} />
-            </a>
-            {showCarrito &&<Carrito/> }
-          </div>
-          <div style={{position:"relative"}}>
+          <div style={{ position: "relative" }}>
             <a
               href="#"
               className={styles.letras}
-              onClick={()=> {if(showUser === false){setShowUser(true)} else{setShowUser(false)}}}
+              onClick={() => {
+                if (showCarrito === false) {
+                  setShowCarrito(true);
+                } else {
+                  setShowCarrito(false);
+                }
+              }}
+            >
+              <AiOutlineShoppingCart className={styles.icons2} />
+            </a>
+            {showCarrito && <Carrito />}
+          </div>
+          <div style={{ position: "relative" }}>
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={() => {
+                if (showUser === false) {
+                  setShowUser(true);
+                } else {
+                  setShowUser(false);
+                }
+              }}
             >
               <MdOutlineAccountCircle className={styles.icons2} />
               {!user?.user ? "Ingresar" : user?.user}
             </a>
-            {showUser &&<User/> }
+            {showUser && <User />}
           </div>
         </nav>
       </div>

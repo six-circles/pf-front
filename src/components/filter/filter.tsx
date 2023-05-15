@@ -61,7 +61,7 @@ const Filter: React.FC = () => {
   return (
     <div className="seccion">
       <div className="filtro">
-        <h4>Filtros</h4>
+        <h4>Orden</h4>
         <ul>
           <li id="mayor" onClick={handleclick}>
             Precio ascendente

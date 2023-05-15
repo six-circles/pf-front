@@ -34,10 +34,12 @@ function Details({ detail }: DetailsProps) {
       </div>
       <div className={styles.buttons}>
         <div className={styles.cant}>
-          <input type="number" placeholder="0" />
-          <button>Agregar al carrito</button>
+          <input disabled type="number" placeholder="0" />
+          <button disabled>Agregar al carrito</button>
         </div>
-        <button className={styles.button_buy}>Comprar</button>
+        <button className={styles.button_buy} disabled>
+          Comprar
+        </button>
       </div>
     </div>
   );

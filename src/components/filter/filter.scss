@@ -24,4 +24,9 @@ ul {
 li {
   padding: 1rem;
   cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: lighten(v.$color-blue, 35%);
+  }
 }

@@ -7,11 +7,10 @@ import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-import {Comments} from "../../components";
+import { Comments } from "../../components";
 import {
   getProductDetail,
   getProducts,
-  
 } from "../../redux/actions/productActions.";
 
 interface Products {
@@ -20,20 +19,19 @@ interface Products {
 
 interface State {
   products: Products;
-  
 }
 
 function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
- 
 
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getProductDetail(id));
-    
   }, [dispatch, id]);
+
+  const { comments } = detail;
 
   return (
     <Fragment>
@@ -42,9 +40,8 @@ function Detail() {
         <Details detail={detail} />
       </div>
       <MoreProduct />
-      <div>Comentarios | Preguntas</div>
-      <Comments />
-    
+      {/* <div>Comentarios | Preguntas</div> */}
+      <Comments comments={detail?.comments} />
     </Fragment>
   );
 }
