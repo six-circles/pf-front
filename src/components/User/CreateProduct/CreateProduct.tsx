@@ -26,6 +26,7 @@ export default function CreateProduct() {
     const user: any = window.localStorage.getItem("user");
     let id;
     let config;
+    let obj;
 
     if (!user) {
       id = "";
@@ -38,7 +39,7 @@ export default function CreateProduct() {
         headers: { _id: id.id },
       };
 
-      const obj = {
+      obj = {
         title: form.title,
         image: [form.image1, form.image2, form.image3],
         stock: Number(form.stock),
@@ -46,16 +47,16 @@ export default function CreateProduct() {
         description: form.description,
         userId: id,
       };
+    }
 
-      try {
-        await urlAxios.post("/product", obj, config);
-        alert("Objeto Creado");
-      } catch (error: any) {
-        if (!error.response.data.error) {
-          alert(error.response.data);
-        } else {
-          alert(error.response.data.error);
-        }
+    try {
+      await urlAxios.post("/product", obj, config);
+      alert("Objeto Creado");
+    } catch (error: any) {
+      if (!error.response.data.error) {
+        alert(error.response.data);
+      } else {
+        alert(error.response.data.error);
       }
     }
   };
