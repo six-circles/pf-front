@@ -8,7 +8,7 @@ import Details from "./Details/Details/Details";
 import Rating from "./Rating";
 import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
-import Comments from "./comments/comments";
+import Comments from "./Details/coments/comments";
 import Carrito from "./Header/carrito/Carrito";
 export {
   Header,
