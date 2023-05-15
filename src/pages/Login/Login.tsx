@@ -19,6 +19,7 @@ function Login() {
     password: "",
   });
   const [errors, setErrors] = useState<any>({});
+  const [message, setMessage] = useState<any>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,6 +30,7 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setMessage("");
 
     if (errors.email === "" && errors.password === "") {
       try {
@@ -36,15 +38,16 @@ function Login() {
 
         if (data.status === 202) {
           window.localStorage.setItem("user", JSON.stringify(data.data));
-          alert("Bienvenido");
+          // alert("Bienvenido");
           navigate("/");
         }
       } catch (error: any) {
-        console.log(error.message);
+        // console.log(error.message);
         // console.log(error.response.data)
         // console.log(error.response.status)
-        if (error.response.status === 401) alert("Contraseña incorrecta");
-        if (error.response.status === 404) alert("Usuario no encontrado");
+        setMessage("Usuario o contraseña incorrecta");
+        // if (error.response.status === 401) alert("Contraseña incorrecta");
+        // if (error.response.status === 404) alert("Usuario no encontrado");
       }
     } else {
       setErrors(firstValidateField({ ...credentials }, errors));
@@ -92,6 +95,7 @@ function Login() {
             <a href="/register">Crear cuenta</a>
             <a href="#">Olvidé mi contraseña</a>
           </div>
+          {message && <p className={styles.message}>{message}</p>}
           <br />
           <button type="submit">Iniciar sesión</button><br />
           <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
