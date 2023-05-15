@@ -32,6 +32,7 @@ export default function () {
   };
 
   const handleChange = (e: any) => {
+    e.preventDefault();
     const property: string = e.target.name;
     const value: string = e.target.value;
     setForm({ ...form, [property]: value });
@@ -52,10 +53,14 @@ export default function () {
         repeatPassword: "",
       });
     } catch (error: any) {
-      console.log(error.message);
-      alert(error.response.data.error);
+      if (error.response.data.error.includes("duplicate key")) {
+        alert("Email ya registrado");
+      } else {
+        alert(error.response.data.error);
+      }
     }
   };
+
   return (
     <div className={styles.contenedor}>
       <div className={styles.contenedor}>
