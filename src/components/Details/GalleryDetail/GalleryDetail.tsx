@@ -6,7 +6,7 @@ const GalleryDetail = (props: any) => {
 
   useEffect(() => {
     setSlide(0);
-  }, [])
+  }, []);
 
   return (
     <div className={styles.contGallery}>
@@ -25,13 +25,14 @@ const GalleryDetail = (props: any) => {
                 <div
                   key={index}
                   onClick={() => setSlide(index)}
-                  className={index === slide ? styles.thumbnailAct : styles.thumbnail}
+                  className={
+                    index === slide ? styles.thumbnailAct : styles.thumbnail
+                  }
                 >
                   <img src={elem} alt="" />
                 </div>
               );
             })}
-
         </div>
       </div>
     </div>

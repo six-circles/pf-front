@@ -9,6 +9,7 @@ import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
 import { Comments } from "../../components";
 import {
+  clearProducts,
   getProductDetail,
   getProducts,
 } from "../../redux/actions/productActions.";
@@ -27,6 +28,7 @@ function Detail() {
   const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
+    clearProducts();
     dispatch(getProducts());
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
