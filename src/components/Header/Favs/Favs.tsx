@@ -1,4 +1,4 @@
-import { MdPadding } from "react-icons/md";
+// import { MdPadding } from "react-icons/md";
 
 function Favs() {
   return (

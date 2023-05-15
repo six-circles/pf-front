@@ -62,19 +62,23 @@ function Header() {
           </a>
           {/* {showFavs && <Favs />} */}
           {/* </div> */}
-
-          <a href="#" className={styles.letras}>
-            <AiOutlineShoppingCart className={styles.icons2} />
-          </a>
-
-          <a
-            href="#"
-            className={styles.letras}
-            onClick={() => navigate("/user")}
-          >
-            <MdOutlineAccountCircle className={styles.icons2} />
-            {!user?.user ? "Ingresar" : user?.user}
-          </a>
+          <div style={{position:"relative"}}>
+            <a href="#" className={styles.letras} onClick={()=> {if(showCarrito === false){setShowCarrito(true)} else{setShowCarrito(false)}}}>
+              <AiOutlineShoppingCart className={styles.icons2} />
+            </a>
+            {showCarrito &&<Carrito/> }
+          </div>
+          <div style={{position:"relative"}}>
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={()=> {if(showUser === false){setShowUser(true)} else{setShowUser(false)}}}
+            >
+              <MdOutlineAccountCircle className={styles.icons2} />
+              {!user?.user ? "Ingresar" : user?.user}
+            </a>
+            {showUser &&<User/> }
+          </div>
         </nav>
       </div>
     </header>
