@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const urlAxios = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: import.meta.env.VITE_BACK_URL,
 });
 
 export default urlAxios;
