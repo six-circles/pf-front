@@ -32,7 +32,7 @@ function Details({ detail }: DetailsProps) {
         <h3>Descripcion</h3>
         <p>{detail.description}</p>
       </div>
-      <div className={styles.buttons}>
+      {/* <div className={styles.buttons}>
         <div className={styles.cant}>
           <input disabled type="number" placeholder="0" />
           <button disabled>Agregar al carrito</button>
@@ -40,7 +40,7 @@ function Details({ detail }: DetailsProps) {
         <button className={styles.button_buy} disabled>
           Comprar
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
