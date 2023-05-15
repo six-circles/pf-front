@@ -27,8 +27,6 @@ const Slider = () => {
     };
   }, [slide]);
 
-  console.log(products[slide]?.image[0]);
-
   return (
     <div className={styles.carousel}>
       <div className={styles.slider}>
@@ -41,7 +39,7 @@ const Slider = () => {
           <div className={styles.desc}>
             <h2>{products[slide]?.title}</h2>
             <br />
-            <p>{products[slide]?.description}</p>
+            <p>{products[slide]?.description.length > 250 ? products[slide]?.description.slice(0, 250) + "..." : products[slide]?.description}</p>
             <br />
             <button>Añadir al carrito</button>
           </div>

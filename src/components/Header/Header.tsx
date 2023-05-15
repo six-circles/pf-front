@@ -26,7 +26,11 @@ function Header() {
     user = JSON.parse(username);
   }
 
-  const handleNavigate = () => navigate("/");
+  const handleNavigate = () => {
+    navigate("/")
+    dispatch(getProducts());
+    setTitle("")
+  };
 
   const handleChange = (event: any) => {
     const { value } = event.target;
@@ -37,6 +41,10 @@ function Header() {
     event.preventDefault();
     handleNavigate();
     dispatch(getProducts(title));
+    navigate({
+      pathname: '/',
+      search: `?search=${title}`,
+    })
   };
 
   return (
