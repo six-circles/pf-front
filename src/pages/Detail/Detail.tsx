@@ -31,8 +31,6 @@ function Detail() {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
 
-  console.log(detail.comments);
-
   return (
     <Fragment>
       <div className={styles.product_cont}>
@@ -40,7 +38,7 @@ function Detail() {
         <Details detail={detail} />
       </div>
       <MoreProduct />
-      {/* <div>Comentarios | Preguntas</div> */}
+      <div>Comentarios | Preguntas</div>
       {detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
