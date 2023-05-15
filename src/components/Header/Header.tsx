@@ -1,20 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
+// import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/Carrito"
-import User from "./perfil/User"
+import Carrito from "./carrito/Carrito";
+import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
+// import Favs from "./PopUps/Favs/Favs";
 
 function Header() {
+  // const [showFavs, setShowFavs] = useState(true);
   const [title, setTitle] = useState("");
-  const [showCarrito,setShowCarrito]=useState(false)
-  const [showUser,setShowUser]=useState(false)
+  const [showCarrito, setShowCarrito] = useState(false);
+  const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
 
@@ -67,29 +69,46 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-          <a href="#" 
-          className={styles.letras}
-          >
+          {/* <div style={{ position: "relative" }}> */}
+          {/* <a href="#" className={styles.letras}>
             <AiOutlineHeart className={styles.icons2} />
-          </a>
-          <div style={{position:"relative"}}>
-          <a href="#" className={styles.letras} onClick={()=> {if(showCarrito === false){setShowCarrito(true)} else{setShowCarrito(false)}}}>
-            <AiOutlineShoppingCart className={styles.icons2} />
-           </a>
-           {showCarrito &&<Carrito/ >}
+          </a> */}
+          {/* {showFavs && <Favs />} */}
+          {/* </div> */}
+          <div style={{ position: "relative" }}>
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={() => {
+                if (showCarrito === false) {
+                  setShowCarrito(true);
+                } else {
+                  setShowCarrito(false);
+                }
+              }}
+            >
+              <AiOutlineShoppingCart className={styles.icons2} />
+            </a>
+            {showCarrito && <Carrito />}
           </div>
           <div style={{ position: "relative" }} onClick={handleLogin}>
             <a
               href="#"
               className={styles.letras}
-              onClick={()=> {if(showUser === false){setShowUser(true)} else{setShowUser(false)}}}
-              >
-            <MdOutlineAccountCircle className={styles.icons2} />
+              onClick={() => {
+                if (showUser === false) {
+                  setShowUser(true);
+                } else {
+                  setShowUser(false);
+                }
+              }}
+            >
+              <MdOutlineAccountCircle className={styles.icons2} />
+              {!user?.user ? "Ingresar" : user?.user}
             </a>
             {showUser && !!username ? <User /> : null}
           </div>
         </nav>
-           
       </div>
     </header>
   );
