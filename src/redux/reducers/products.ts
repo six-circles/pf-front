@@ -1,9 +1,11 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from "../actions/productActions.";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS, VIEW_COMMENTS,POST_COMMENTS } from "../actions/productActions.";
 
 const initialState = {
   products: [],
   allProducts: [],
   detail: {},
+  view: [],
+  post: [],
 };
 
 interface Action {
@@ -26,9 +28,34 @@ const productsReducer = (state = initialState, action: Action) => {
         detail: { ...action.payload },
       };
 
+      case ORDER_PRODUCTS:
+  
+    return {
+      ...state,
+      products: [...state.products.sort((a:any,b:any )=>{
+        if (action.payload==='mayor'){
+        return b.price - a.price
+      }else {
+        return a.price - b.price
+      }
+      })],
+    };
+  
+    case VIEW_COMMENTS:
+      return {
+        ...state,
+        view: { ...action.payload },
+      };
+
+      case POST_COMMENTS:
+      return {
+        ...state,
+        post: { ...action.payload },
+      };
+
     default:
       return state;
-  }
-};
+  
+};}
 
 export default productsReducer;

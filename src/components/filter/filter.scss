@@ -1,0 +1,32 @@
+@use "../../styles/variables.scss" as v;
+@use "../../styles/mixins.scss" as m;
+
+.seccion {
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+}
+.filtro,
+.categoria {
+  background-color: v.$color-white;
+}
+
+h4 {
+  background-color: v.$color-blue;
+  color: white;
+  padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 1rem;
+  cursor: pointer;
+  transition: 200ms;
+
+  &:hover {
+    background-color: lighten(v.$color-blue, 35%);
+  }
+}

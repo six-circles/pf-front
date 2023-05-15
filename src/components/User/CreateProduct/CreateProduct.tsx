@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { createProduct, urlAxios } from "../../../utils";
+import { urlAxios } from "../../../utils";
 
 export default function CreateProduct() {
   const [form, setForm] = useState({
@@ -22,23 +22,41 @@ export default function CreateProduct() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const user: any = window.localStorage.getItem("user");
+    let id;
+    let config;
+
+    if (!user) {
+      id = "";
+      config = {
+        headers: { _id: id },
+      };
+    } else {
+      id = JSON.parse(user);
+      config = {
+        headers: { _id: id.id },
+      };
+    }
+
     const obj = {
       title: form.title,
       image: [form.image1, form.image2, form.image3],
-      stock: form.stock,
-      price: form.price,
+      stock: Number(form.stock),
+      price: Number(form.price),
       description: form.description,
-      // punctuation: form.punctuation,
-      userId: "645eefb28b3c093f34e543a7",
+      userId: id,
     };
 
-    console.log(obj);
-
     try {
-      await urlAxios.post("/product", obj);
+      await urlAxios.post("/product", obj, config);
       alert("Objeto Creado");
     } catch (error: any) {
-      alert(error.response.data.error);
+      if (!error.response.data.error) {
+        alert(error.response.data);
+      } else {
+        alert(error.response.data.error);
+      }
     }
   };
 
@@ -112,7 +130,7 @@ export default function CreateProduct() {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.form_camp}>
+      {/* <div className={styles.form_camp}>
         <label>Calificacion</label>
         <input
           type="number"
@@ -125,7 +143,7 @@ export default function CreateProduct() {
           value={form.punctuation}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
       <div className={styles.form_camp}>
         <label>Descripcion</label>
         <textarea

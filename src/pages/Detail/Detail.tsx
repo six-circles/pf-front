@@ -7,6 +7,7 @@ import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
+import { Comments } from "../../components";
 import {
   getProductDetail,
   getProducts,
@@ -30,6 +31,8 @@ function Detail() {
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
 
+  const { comments } = detail;
+
   return (
     <Fragment>
       <div className={styles.product_cont}>
@@ -37,7 +40,8 @@ function Detail() {
         <Details detail={detail} />
       </div>
       <MoreProduct />
-      <div>Comentarios | Preguntas</div>
+      {/* <div>Comentarios | Preguntas</div> */}
+      <Comments comments={detail?.comments} />
     </Fragment>
   );
 }
