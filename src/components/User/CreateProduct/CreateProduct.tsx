@@ -75,6 +75,7 @@ export default function CreateProduct() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      <button onClick={()=>navigate("/user")}>Volver a perfil</button>
       <h2>Crear Producto</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>
