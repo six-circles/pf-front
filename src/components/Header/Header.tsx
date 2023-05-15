@@ -73,7 +73,7 @@ function Header() {
             onClick={() => navigate("/user")}
           >
             <MdOutlineAccountCircle className={styles.icons2} />
-            {!user.user ? "Ingresar" : user.user}
+            {!user?.user ? "Ingresar" : user?.user}
           </a>
         </nav>
       </div>
