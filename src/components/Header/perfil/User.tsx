@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function User() {
   const navigate = useNavigate();
+  const username: any = window.localStorage.getItem("user");
+
   const handleClick = () => {
     const salir = confirm("Desea cerrar sesion?");
 
@@ -11,6 +13,7 @@ export default function User() {
       navigate("/login");
     }
   };
+
   return (
     <div>
       <div className={styles.contenedor}>
