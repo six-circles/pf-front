@@ -83,7 +83,7 @@ function Header() {
               onClick={()=> {if(showUser === false){setShowUser(true)} else{setShowUser(false)}}}
             >
               <MdOutlineAccountCircle className={styles.icons2} />
-              {!user?.user ? "Ingresar" : user?.user}
+              {!user?.user ? "Ingresar" : user?.user }
             </a>
             {showUser &&<User/> }
           </div>
