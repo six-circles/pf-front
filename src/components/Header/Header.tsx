@@ -69,12 +69,12 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-          {/* <div style={{ position: "relative" }}> */}
-          {/* <a href="#" className={styles.letras}>
-            <AiOutlineHeart className={styles.icons2} />
-          </a> */}
-          {/* {showFavs && <Favs />} */}
-          {/* </div> */}
+          <div style={{ position: "relative" }}>
+            <a href="#" className={styles.letras}>
+              <AiOutlineHeart className={styles.icons2} />
+            </a>
+            {/* {showFavs && <Favs />} */}
+          </div>
           <div style={{ position: "relative" }}>
             <a
               href="#"

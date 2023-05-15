@@ -52,7 +52,7 @@ const Slider = () => {
                 : products[slide]?.description}
             </p>
             <br />
-            {/* <button>Añadir al carrito</button> */}
+            <button>Añadir al carrito</button>
           </div>
         </div>
       </div>
