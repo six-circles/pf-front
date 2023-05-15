@@ -56,6 +56,7 @@ export default function () {
                     password:"",
                     repeatPassword:""
                 })
+                navigate("/login")
             } 
             catch (error:any) {
                 if (error.response.data.error.includes("duplicate key")){
