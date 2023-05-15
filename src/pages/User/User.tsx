@@ -10,10 +10,20 @@ function User() {
   // const { pathname } = useLocation();
   const checkAuch = async () => {
     const user: any = window.localStorage.getItem("user");
-    const { id } = JSON.parse(user);
-    const config = {
-      headers: { _id: id },
-    };
+    let id;
+    let config;
+
+    if (!user) {
+      id = "";
+      config = {
+        headers: { _id: id },
+      };
+    } else {
+      id = JSON.parse(user);
+      config = {
+        headers: { _id: id.id },
+      };
+    }
 
     try {
       await urlAxios.post("/product", null, config);

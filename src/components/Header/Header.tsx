@@ -4,8 +4,8 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/Carrito"
-import User from "./perfil/User"
+import Carrito from "./carrito/Carrito";
+import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts } from "../../redux/actions/productActions.";
@@ -15,12 +15,16 @@ import { useDispatch } from "react-redux";
 function Header() {
   // const [showFavs, setShowFavs] = useState(true);
   const [title, setTitle] = useState("");
-  const [showCarrito,setShowCarrito]=useState(false)
-  const [showUser,setShowUser]=useState(false)
+  const [showCarrito, setShowCarrito] = useState(false);
+  const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
-  const obj: any = window.localStorage.getItem("user");
-  const { user } = JSON.parse(obj);
+
+  const username: any = window.localStorage.getItem("user");
+  let user;
+  if (username) {
+    user = JSON.parse(username);
+  }
 
   const handleNavigate = () => navigate("/");
 
@@ -31,7 +35,7 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleNavigate()
+    handleNavigate();
     dispatch(getProducts(title));
   };
 
@@ -52,7 +56,6 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-
           {/* <div style={{ position: "relative" }}> */}
           <a href="#" className={styles.letras}>
             <AiOutlineHeart className={styles.icons2} />
@@ -70,10 +73,9 @@ function Header() {
             onClick={() => navigate("/user")}
           >
             <MdOutlineAccountCircle className={styles.icons2} />
-            {!user ? "Ingresar" : user}
+            {!user.user ? "Ingresar" : user.user}
           </a>
         </nav>
-           
       </div>
     </header>
   );
