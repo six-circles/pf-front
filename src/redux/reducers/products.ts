@@ -1,9 +1,11 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS } from "../actions/productActions.";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS, VIEW_COMMENTS,POST_COMMENTS } from "../actions/productActions.";
 
 const initialState = {
   products: [],
   allProducts: [],
   detail: {},
+  view: [],
+  post: [],
 };
 
 interface Action {
@@ -39,12 +41,17 @@ const productsReducer = (state = initialState, action: Action) => {
       })],
     };
   
- 
+    case VIEW_COMMENTS:
+      return {
+        ...state,
+        view: { ...action.payload },
+      };
 
-        
-      
-
-        
+      case POST_COMMENTS:
+      return {
+        ...state,
+        post: { ...action.payload },
+      };
 
     default:
       return state;
