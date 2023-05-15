@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./CreateProduct.module.scss";
 import { urlAxios } from "../../../utils";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateProduct() {
   const [form, setForm] = useState({
@@ -13,6 +14,7 @@ export default function CreateProduct() {
     description: "",
     punctuation: 0,
   });
+  const navigate = useNavigate();
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -51,6 +53,17 @@ export default function CreateProduct() {
     try {
       await urlAxios.post("/product", obj, config);
       alert("Objeto Creado");
+      setForm({
+        title: "",
+        image1: "",
+        image2: "",
+        image3: "",
+        stock: 0,
+        price: 0,
+        description: "",
+        punctuation: 0,
+      });
+      navigate("/");
     } catch (error: any) {
       if (!error.response.data.error) {
         alert(error.response.data);

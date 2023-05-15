@@ -1,15 +1,27 @@
-import styles from "./User.module.scss"
+import styles from "./User.module.scss";
+import { useNavigate } from "react-router-dom";
 
-export default function User(){
-    
-  
+export default function User() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const salir = confirm("Desea cerrar sesion?");
 
-    
-    return(
+    if (salir) {
+      window.localStorage.setItem("user", "");
+      navigate("/login");
+    }
+  };
+  return (
     <div>
-       <div className={styles.contenedor}>
-        <a href="/user" className={styles.links}> Crear producto</a>
-        <a href="/login" className={styles.links}>Salir</a>
-       </div>
-    </div>)
+      <div className={styles.contenedor}>
+        <a href="/user" className={styles.links}>
+          {" "}
+          Crear producto
+        </a>
+        <a className={styles.links} onClick={handleClick}>
+          Salir
+        </a>
+      </div>
+    </div>
+  );
 }
