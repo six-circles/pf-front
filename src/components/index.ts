@@ -9,6 +9,7 @@ import Rating from "./Rating";
 import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
 import Comments from "./comments/comments";
+import Carrito from "./Header/carrito/Carrito";
 export {
   Header,
   Footer,
@@ -19,5 +20,6 @@ export {
   Rating,
   CreateProduct,
   Filter,
-  Comments
+  Comments,
+  Carrito
 };

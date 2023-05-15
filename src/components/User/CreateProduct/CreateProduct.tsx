@@ -23,8 +23,8 @@ export default function CreateProduct() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const id = window.localStorage.getItem("Auth");
-
+    const user: any = window.localStorage.getItem("user");
+    const { id } = JSON.parse(user);
     const config = {
       headers: { _id: id },
     };
