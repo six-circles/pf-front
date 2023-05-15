@@ -27,19 +27,19 @@ function QuestionList() {
 
   return (
     <div className='card'>
-      <h1>Preguntas</h1>
-
+      <h1>Preguntas</h1><br />
       <form onSubmit={handleQuestionSubmit}>
         <div className='new'>
-        <input
+        <input className='new'
           type="text"
           value={newQuestion}
           onChange={event => setNewQuestion(event.target.value)}
           placeholder="Escribe tu pregunta"
         />
         </div>
+        <br />
         <div className='send'>
-        <button type="submit">Publicar pregunta</button>
+        <button  className='send' type="submit">Publicar pregunta</button>
       </div>
       </form>
 
