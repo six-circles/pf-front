@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { urlAxios } from "../../utils";
 
 export const CLEAR_PRODUCTS = "CLEAR_PRODUCTS";
@@ -26,15 +27,15 @@ export const getProducts = (title: string | undefined = "") => {
         type: GET_PRODUCTS,
         payload: data.data,
       });
-
-    } catch (error:any) {
-      if(error.message.includes(404)){
-      alert("No se encontró el producto buscado")
+    } catch (error: any) {
+      if (error.message.includes(404)) {
+        Swal.fire({
+          icon: "error",
+          title: "No se encontraron productos",
+        });
       }
-      console.log(error.message)
+      console.log(error.message);
     }
-
-   
   };
 };
 
