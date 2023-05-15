@@ -21,6 +21,7 @@ export default function () {
   const [error, setError] = useState({
     password: "",
     email: "",
+    birthday:0,
   });
 
   const newUser: object = {

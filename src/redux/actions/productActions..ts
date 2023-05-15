@@ -6,19 +6,29 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const ORDER_PRODUCTS ="ORDER_PRODUCTS";
 export const VIEW_COMMENTS="VIEW_COMMENTS";
 export const POST_COMMENTS="POST_COMMENTS";
+
 export const getProducts = (title: string | undefined = "") => {
   return async (dispatch: Dispatch<AnyAction>) => {
     let data;
-    if (!title) {
-      data = await urlAxios("/product");
-    } else {
-      data = await urlAxios(`/product?title=${title}`);
+    try {
+      if (!title) {
+        data = await urlAxios("/product");
+      } else {
+        data = await urlAxios(`/product?title=${title}`);
+      }
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: data.data,
+      });
+
+    } catch (error:any) {
+      if(error.message.includes(404)){
+      alert("No se encontró el producto buscado")
+      }
+      console.log(error.message)
     }
 
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: data.data,
-    });
+   
   };
 };
 
