@@ -4,7 +4,8 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-
+import Carrito from "./carrito/Carrito"
+import User from "./perfil/User"
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts } from "../../redux/actions/productActions.";
@@ -12,6 +13,8 @@ import { useDispatch } from "react-redux";
 
 function Header() {
   const [title, setTitle] = useState("");
+  const [showCarrito,setShowCarrito]=useState(false)
+  const [showUser,setShowUser]=useState(false)
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
 
@@ -45,20 +48,29 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-          <a href="#" className={styles.letras}>
+          <a href="#" 
+          className={styles.letras}
+          >
             <AiOutlineHeart className={styles.icons2} />
           </a>
-          <a href="#" className={styles.letras}>
+          <div style={{position:"relative"}}>
+          <a href="#" className={styles.letras} onClick={()=> {if(showCarrito === false){setShowCarrito(true)} else{setShowCarrito(false)}}}>
             <AiOutlineShoppingCart className={styles.icons2} />
-          </a>
-          <a
-            href="#"
-            className={styles.letras}
-            onClick={() => navigate("/user")}
-          >
+           </a>
+           {showCarrito &&<Carrito/> }
+          </div>
+          <div style={{position:"relative"}}>
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={()=> {if(showUser === false){setShowUser(true)} else{setShowUser(false)}}}
+              >
             <MdOutlineAccountCircle className={styles.icons2} />
-          </a>
+            </a>
+            {showUser &&<User/> }
+          </div>
         </nav>
+           
       </div>
     </header>
   );
