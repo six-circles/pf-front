@@ -16,16 +16,25 @@ export const clearProducts = () => {
 export const getProducts = (title: string | undefined = "") => {
   return async (dispatch: Function) => {
     let data;
-    if (!title) {
-      data = await urlAxios("/product");
-    } else {
-      data = await urlAxios(`/product?title=${title}`);
+    try {
+      if (!title) {
+        data = await urlAxios("/product");
+      } else {
+        data = await urlAxios(`/product?title=${title}`);
+      }
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: data.data,
+      });
+
+    } catch (error:any) {
+      if(error.message.includes(404)){
+      alert("No se encontró el producto buscado")
+      }
+      console.log(error.message)
     }
 
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: data.data,
-    });
+   
   };
 };
 
