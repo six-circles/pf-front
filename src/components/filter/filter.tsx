@@ -1,8 +1,10 @@
 import './filter.scss';
-import axios from 'axios';
+import redux from 'redux';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { orderProducts } from '../../redux/actions/productActions.';
 
-const Filter: React.FC = () => {
+/*const Filter: React.FC = () => {
   type Item = {
     name: string;
     price: number;
@@ -49,29 +51,28 @@ const Filter: React.FC = () => {
 
     setFilteredItems([...sortedItems]);
   };
-
+*/
+const Filter: React.FC = () => {
+  const dispatch:any= useDispatch()
+  function handleclick(e){
+//console.log(e.target.id);
+dispatch (
+  orderProducts(e.target.id)
+)
+  }
   return (
     <div className="seccion">
       <div className="filtro">
         <h4>Filtros</h4>
         <ul>
-          <li onClick={() => handleFilterSelection('name')}>Nombre</li>
-          <li onClick={() => handleFilterSelection('priceAsc')}>Precio ascendente</li>
-          <li onClick={() => handleFilterSelection('priceDesc')}>Precio descendente</li>
+          
+          <li id='mayor' onClick={handleclick}>Precio ascendente</li>
+          <li id='menor' onClick={handleclick}>Precio descendente</li>
+          
         </ul>
       </div>
 
-      <div className="categoria">
-        <h4>Categorías</h4>
-        <ul>
-          <li>Videojuegos</li>
-          <li>Ropa</li>
-          <li>Electrónica</li>
-          <li>Teléfonos</li>
-          <li>Computadoras</li>
-          <li>Deportes</li>
-        </ul>
-      </div>
+      
     </div>
   );
 };

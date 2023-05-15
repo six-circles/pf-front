@@ -1,9 +1,11 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS } from "../actions/productActions.";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS, VIEW_COMMENTS,POST_COMMENTS } from "../actions/productActions.";
 
 const initialState = {
   products: [],
   allProducts: [],
   detail: {},
+  view: [],
+  post: [],
 };
 
 interface Action {
@@ -25,26 +27,35 @@ const productsReducer = (state = initialState, action: Action) => {
         ...state,
         detail: { ...action.payload },
       };
+
       case ORDER_PRODUCTS:
-  if (action.payload.some((item: any) => item.name === 'name')) {
-    const sortedProducts = [...state.products].sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
-    );
+  
     return {
       ...state,
-      products: sortedProducts,
+      products: [...state.products.sort((a:any,b:any )=>{
+        if (action.payload==='mayor'){
+        return b.price - a.price
+      }else {
+        return a.price - b.price
+      }
+      })],
     };
-  }
-  return state;
+  
+    case VIEW_COMMENTS:
+      return {
+        ...state,
+        view: { ...action.payload },
+      };
 
-        
-      
-
-        
+      case POST_COMMENTS:
+      return {
+        ...state,
+        post: { ...action.payload },
+      };
 
     default:
       return state;
-  }
-};
+  
+};}
 
 export default productsReducer;
