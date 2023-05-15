@@ -93,7 +93,8 @@ function Login() {
             <a href="#">Olvidé mi contraseña</a>
           </div>
           <br />
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit">Iniciar sesión</button><br />
+          <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
         </form>
       </div>
     </div>
