@@ -26,7 +26,6 @@ export default function CreateProduct() {
     const user: any = window.localStorage.getItem("user");
     let id;
     let config;
-    let obj;
 
     if (!user) {
       id = "";
@@ -38,16 +37,16 @@ export default function CreateProduct() {
       config = {
         headers: { _id: id.id },
       };
-
-      obj = {
-        title: form.title,
-        image: [form.image1, form.image2, form.image3],
-        stock: Number(form.stock),
-        price: Number(form.price),
-        description: form.description,
-        userId: id,
-      };
     }
+
+    const obj = {
+      title: form.title,
+      image: [form.image1, form.image2, form.image3],
+      stock: Number(form.stock),
+      price: Number(form.price),
+      description: form.description,
+      userId: id.id,
+    };
 
     try {
       await urlAxios.post("/product", obj, config);
