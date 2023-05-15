@@ -29,7 +29,6 @@ function Header() {
   const handleNavigate = () => {
     navigate("/");
     dispatch(getProducts());
-    setTitle("");
   };
 
   const handleChange = (event: any) => {
@@ -39,12 +38,11 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleNavigate();
-    dispatch(getProducts(title));
     navigate({
       pathname: "/",
       search: `?search=${title}`,
     });
+    dispatch(getProducts(title));
   };
 
   return (
