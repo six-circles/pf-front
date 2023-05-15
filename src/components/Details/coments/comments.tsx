@@ -28,8 +28,8 @@ function Comments({ comments }: { comments: object[] }) {
           {/* <span>14</span> */}
         </div>
         <div>
-          {comments?.map((item: any) => (
-            <div>
+          {comments?.map((item: any, i) => (
+            <div key={i}>
               <strong>{item.userName}</strong>
               <p>{item.body}</p>
               <Rating punctuation={item.punctuation} />

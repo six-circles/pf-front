@@ -11,6 +11,7 @@ export default function User() {
       navigate("/login");
     }
   };
+
   return (
     <div>
       <div className={styles.contenedor}>

@@ -9,6 +9,7 @@ import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
 import { Comments } from "../../components";
 import {
+  clearProducts,
   getProductDetail,
   getProducts,
 } from "../../redux/actions/productActions.";
@@ -27,11 +28,10 @@ function Detail() {
   const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
+    clearProducts();
     dispatch(getProducts());
     dispatch(getProductDetail(id));
   }, [dispatch, id]);
-
-  const { comments } = detail;
 
   return (
     <Fragment>
@@ -40,8 +40,8 @@ function Detail() {
         <Details detail={detail} />
       </div>
       <MoreProduct />
-      {/* <div>Comentarios | Preguntas</div> */}
-      <Comments comments={detail?.comments} />
+      <div>Comentarios | Preguntas</div>
+      {detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
 }

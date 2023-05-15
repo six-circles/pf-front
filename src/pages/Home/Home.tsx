@@ -3,7 +3,10 @@ import { useDispatch } from "react-redux";
 import { Products, Slider, Filter } from "../../components";
 import { useSearchParams } from "react-router-dom";
 
-import { getProducts } from "../../redux/actions/productActions.";
+import {
+  clearProducts,
+  getProducts,
+} from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
 
 function Home() {
@@ -14,6 +17,7 @@ function Home() {
 
   useEffect(() => {
     if (!paramSearch) {
+      dispatch(clearProducts());
       dispatch(getProducts());
     }
   }, []);
