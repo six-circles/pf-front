@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import styles from "./Slider.module.scss";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const { products } = useSelector((state: any) => state.products);
   // const { products } = productsList;
+  const navigate = useNavigate();
 
   const [slide, setSlide] = useState(0);
   const cant = 3;
+
+  const handleClick = () => {
+    navigate(`/detail/${products[slide]._id}`);
+    window.scrollTo(0, 0);
+  };
 
   const goToPrevSlide = () => {
     slide > 0 ? setSlide(slide - 1) : setSlide(cant - 1);
@@ -30,14 +37,14 @@ const Slider = () => {
   return (
     <div className={styles.carousel}>
       <div className={styles.slider}>
-        <div className={styles.contImage}>
+        <div className={styles.contImage} onClick={handleClick}>
           {products[slide]?.image[0] && (
             <img className={styles.image} src={products[slide].image} alt="" />
           )}
         </div>
         <div className={styles.contDesc}>
           <div className={styles.desc}>
-            <h2>{products[slide]?.title}</h2>
+            <h2 onClick={handleClick}>{products[slide]?.title}</h2>
             <br />
             <p>
               {products[slide]?.description.length > 250

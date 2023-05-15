@@ -27,6 +27,7 @@ function Header() {
   const handleNavigate = () => {
     navigate("/");
     dispatch(getProducts());
+    setTitle("");
   };
 
   const handleChange = (event: any) => {
