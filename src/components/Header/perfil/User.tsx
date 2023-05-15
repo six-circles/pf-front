@@ -17,7 +17,7 @@ export default function User() {
       <div className={styles.contenedor}>
         <a href="/user" className={styles.links}>
           {" "}
-          Crear producto
+          Mi Perfil
         </a>
         <a className={styles.links} onClick={handleClick}>
           Salir
