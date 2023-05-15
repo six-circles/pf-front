@@ -15,7 +15,11 @@ function Header() {
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
 
-  const handleNavigate = () => navigate("/");
+  const handleNavigate = () => {
+    navigate("/")
+    dispatch(getProducts());
+    setTitle("")
+  };
 
   const handleChange = (event: any) => {
     const { value } = event.target;
@@ -26,6 +30,10 @@ function Header() {
     event.preventDefault();
 
     dispatch(getProducts(title));
+    navigate({
+      pathname: '/',
+      search: `?search=${title}`,
+    })
   };
 
   return (
