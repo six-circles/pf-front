@@ -18,7 +18,16 @@ function Header() {
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
 
-  const handleNavigate = () => navigate("/");
+  const username: any = window.localStorage.getItem("user");
+  let user;
+  if (username) {
+    user = JSON.parse(username);
+  }
+
+  const handleNavigate = () => {
+    navigate("/");
+    dispatch(getProducts());
+  };
 
   const handleChange = (event: any) => {
     const { value } = event.target;
@@ -27,7 +36,10 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleNavigate()
+    navigate({
+      pathname: "/",
+      search: `?search=${title}`,
+    });
     dispatch(getProducts(title));
   };
 

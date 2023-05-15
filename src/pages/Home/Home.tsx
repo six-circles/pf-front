@@ -10,13 +10,13 @@ function Home() {
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
 
+  let paramSearch = params.get("search");
+
   useEffect(() => {
     if (!paramSearch) {
       dispatch(getProducts());
     }
   }, []);
-
-  let paramSearch = params.get("search");
 
   return (
     <Fragment>
