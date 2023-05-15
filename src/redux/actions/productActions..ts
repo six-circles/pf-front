@@ -35,7 +35,7 @@ export const getProducts = (title: string | undefined = "") => {
     }
 
    
-  };
+  }
 };
 
 export const getProductDetail = (id: string | undefined) => {

@@ -1,4 +1,4 @@
-import CreateProduct from "../../components/User/CreateProduct/CreateProduct";
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlAxios } from "../../utils";
@@ -43,7 +43,8 @@ function User() {
   return (
     <div className={styles.user}>
       <div>perfil usuario</div>
-      <CreateProduct />
+      <button onClick={()=> navigate("/create_product")}>CREAR PRODUCTO</button>
+      
     </div>
   );
 }
