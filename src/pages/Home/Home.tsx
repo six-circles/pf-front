@@ -11,7 +11,9 @@ function Home() {
   const dispatch: any = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    if (!paramSearch) {
+      dispatch(getProducts());
+    }
   }, []);
 
   let paramSearch = params.get("search");
