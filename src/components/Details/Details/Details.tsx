@@ -32,15 +32,18 @@ function Details({ detail }: DetailsProps) {
         <h3>Descripcion</h3>
         <p>{detail.description}</p>
       </div>
-      {/* <div className={styles.buttons}>
+      <div className={styles.buttons}>
         <div className={styles.cant}>
-          <input disabled type="number" placeholder="0" />
-          <button disabled>Agregar al carrito</button>
+          <input
+            type="number"
+            placeholder={`1 - ${detail.stock}`}
+            min={1}
+            max={detail.stock}
+          />
+          <button>Agregar al carrito</button>
         </div>
-        <button className={styles.button_buy} disabled>
-          Comprar
-        </button>
-      </div> */}
+        <button className={styles.button_buy}>Comprar</button>
+      </div>
     </div>
   );
 }
