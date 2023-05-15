@@ -39,12 +39,17 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleNavigate();
-    dispatch(getProducts(title));
     navigate({
       pathname: "/",
       search: `?search=${title}`,
     });
+    dispatch(getProducts(title));
+  };
+
+  const handleLogin = () => {
+    if (!username) {
+      navigate("/login");
+    }
   };
 
   return (
@@ -86,7 +91,7 @@ function Header() {
             </a>
             {showCarrito && <Carrito />}
           </div>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative" }} onClick={handleLogin}>
             <a
               href="#"
               className={styles.letras}
@@ -101,7 +106,7 @@ function Header() {
               <MdOutlineAccountCircle className={styles.icons2} />
               {!user?.user ? "Ingresar" : user?.user}
             </a>
-            {showUser && <User />}
+            {showUser && !!username ? <User /> : null}
           </div>
         </nav>
       </div>
