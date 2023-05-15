@@ -30,7 +30,7 @@ function Comments({ comments }: { comments: object[] }) {
         <div>
           {comments?.map((item: any) => (
             <div>
-              <p>{item.user}</p>
+              <strong>{item.userName}</strong>
               <p>{item.body}</p>
               <Rating punctuation={item.punctuation} />
               <br />

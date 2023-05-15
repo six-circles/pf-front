@@ -44,6 +44,12 @@ function Header() {
     dispatch(getProducts(title));
   };
 
+  const handleLogin = () => {
+    if (!username) {
+      navigate("/login");
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.contHeader}>
@@ -72,7 +78,7 @@ function Header() {
            </a>
            {showCarrito &&<Carrito/ >}
           </div>
-          <div style={{position:"relative"}}>
+          <div style={{ position: "relative" }} onClick={handleLogin}>
             <a
               href="#"
               className={styles.letras}
@@ -80,7 +86,7 @@ function Header() {
               >
             <MdOutlineAccountCircle className={styles.icons2} />
             </a>
-            {showUser &&<User/> }
+            {showUser && !!username ? <User /> : null}
           </div>
         </nav>
            
