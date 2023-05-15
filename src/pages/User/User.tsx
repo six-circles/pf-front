@@ -9,10 +9,21 @@ function User() {
   const navigate = useNavigate();
   // const { pathname } = useLocation();
   const checkAuch = async () => {
-    const id = window.localStorage.getItem("Auth");
-    const config = {
-      headers: { _id: id },
-    };
+    const user: any = window.localStorage.getItem("user");
+    let id;
+    let config;
+
+    if (!user) {
+      id = "";
+      config = {
+        headers: { _id: id },
+      };
+    } else {
+      id = JSON.parse(user);
+      config = {
+        headers: { _id: id.id },
+      };
+    }
 
     try {
       await urlAxios.post("/product", null, config);

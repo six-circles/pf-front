@@ -23,11 +23,21 @@ export default function CreateProduct() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const id = window.localStorage.getItem("Auth");
+    const user: any = window.localStorage.getItem("user");
+    let id;
+    let config;
 
-    const config = {
-      headers: { _id: id },
-    };
+    if (!user) {
+      id = "";
+      config = {
+        headers: { _id: id },
+      };
+    } else {
+      id = JSON.parse(user);
+      config = {
+        headers: { _id: id.id },
+      };
+    }
 
     const obj = {
       title: form.title,
@@ -37,8 +47,6 @@ export default function CreateProduct() {
       description: form.description,
       userId: id,
     };
-
-    console.log(obj);
 
     try {
       await urlAxios.post("/product", obj, config);

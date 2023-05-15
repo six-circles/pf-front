@@ -1,0 +1,28 @@
+@use "../../../styles/variables.scss" as v;
+
+.contenedor{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    background-color: v.$color-dark;
+    color: v.$color-white;
+    width: fit-content;
+    height: fit-content;
+    top: 2.5rem;
+    left: 2rem;
+    opacity: 0.8;
+    gap: 2rem;
+    z-index: 1;
+    
+}
+.links{
+    margin-top: 1rem;
+    color: v.$color-white;
+    font-size: larger;
+    
+}
+
+.links:hover{
+    color:v.$color-blue ;
+}

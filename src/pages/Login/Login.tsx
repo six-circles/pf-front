@@ -35,7 +35,7 @@ function Login() {
         let data = await urlAxios.post("/login", credentials);
 
         if (data.status === 202) {
-          window.localStorage.setItem("Auth", data.data.id);
+          window.localStorage.setItem("user", JSON.stringify(data.data));
           alert("Bienvenido");
           navigate("/");
         }
@@ -93,7 +93,8 @@ function Login() {
             <a href="#">Olvidé mi contraseña</a>
           </div>
           <br />
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit">Iniciar sesión</button><br />
+          <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
         </form>
       </div>
     </div>

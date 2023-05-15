@@ -7,12 +7,15 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
+  console.log(detail.punctuations);
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
         <div className={styles.details_rating}>
-          {detail.punctuations && <Rating punctuation={detail.punctuations} />}
+          {(detail.punctuations || detail.punctuations === 0) && (
+            <Rating punctuation={detail.punctuations} />
+          )}
           <p>({detail.comments?.length})</p>
         </div>
       </div>
