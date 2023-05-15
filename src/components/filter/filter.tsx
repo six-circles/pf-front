@@ -1,8 +1,8 @@
-import './filter.scss';
-import redux from 'redux';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { orderProducts } from '../../redux/actions/productActions.';
+import "./filter.scss";
+import redux from "redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { orderProducts } from "../../redux/actions/productActions.";
 
 /*const Filter: React.FC = () => {
   type Item = {
@@ -53,29 +53,26 @@ import { orderProducts } from '../../redux/actions/productActions.';
   };
 */
 const Filter: React.FC = () => {
-  const dispatch:any= useDispatch()
-  function handleclick(e){
-//console.log(e.target.id);
-dispatch (
-  orderProducts(e.target.id)
-)
+  const dispatch: any = useDispatch();
+  function handleclick(e: any) {
+    //console.log(e.target.id);
+    dispatch(orderProducts(e.target.id));
   }
   return (
     <div className="seccion">
       <div className="filtro">
-        <h4>Filtros</h4>
+        <h4>Orden</h4>
         <ul>
-          
-          <li id='mayor' onClick={handleclick}>Precio ascendente</li>
-          <li id='menor' onClick={handleclick}>Precio descendente</li>
-          
+          <li id="mayor" onClick={handleclick}>
+            Precio ascendente
+          </li>
+          <li id="menor" onClick={handleclick}>
+            Precio descendente
+          </li>
         </ul>
       </div>
-
-      
     </div>
   );
 };
 
 export default Filter;
-
