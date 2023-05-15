@@ -32,48 +32,35 @@ export default function () {
   };
 
   const handleChange = (e: any) => {
+    e.preventDefault();
     const property: string = e.target.name;
     const value: string = e.target.value;
     setForm({ ...form, [property]: value });
     setError({ ...validation({ ...form, [property]: value }) });
   };
 
-
-    const handleChange=(e:any)=>{
-        e.preventDefault()
-        const property:string= e.target.name
-        const value:string= e.target.value
-        setForm({...form,[property]:value})
-        setError({...validation({...form,[property]:value})}) 
-    }
-    
-    const submit= async(event:React.FormEvent)=>{
-        event.preventDefault();
-         try {
-                await urlAxios.post("/user",newUser)
-                alert("Usuario creado con exito")
-                setForm({
-                    name:"",
-                    email:"",
-                    phone:"",
-                    birthday:"",
-                    password:"",
-                    repeatPassword:""
-                })
-            } 
-            catch (error:any) {
-                if (error.response.data.error.includes("duplicate key")){
-                    alert("Email ya registrado")
-                }else{
-
-                    alert(error.response.data.error)
-                }
-             
-            }
-        
-
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      await urlAxios.post("/user", newUser);
+      alert("Usuario creado con exito");
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        birthday: "",
+        password: "",
+        repeatPassword: "",
+      });
+    } catch (error: any) {
+      if (error.response.data.error.includes("duplicate key")) {
+        alert("Email ya registrado");
+      } else {
+        alert(error.response.data.error);
+      }
     }
   };
+
   return (
     <div className={styles.contenedor}>
       <div className={styles.contenedor}>
