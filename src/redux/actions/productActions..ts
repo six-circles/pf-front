@@ -14,14 +14,18 @@ export const clearProducts = () => {
   };
 };
 
-export const getProducts = (title: string | undefined = "") => {
+export const getProducts = (
+  title: string | undefined = "",
+  order: string | undefined = "",
+  type: string | undefined = ""
+) => {
   return async (dispatch: Function) => {
     let data;
     try {
       if (!title) {
-        data = await urlAxios("/product");
+        data = await urlAxios(`/product?${order}=${type}`);
       } else {
-        data = await urlAxios(`/product?title=${title}`);
+        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
       }
       dispatch({
         type: GET_PRODUCTS,
