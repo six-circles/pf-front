@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./comments.scss";
 import { Rating } from "../..";
 import CommentList from "./CommentsList";
@@ -18,12 +18,16 @@ function Comments({ comments }: { comments: object[] }) {
               <p>{item.body}</p>
               <Rating punctuation={item.punctuation} />
               <br />
+              
             </div>
-          ))}
-          
+          ))} 
+          <div>
+         <CommentList/>
+         
+         </div>
         </div>
       </div>  
-      <CommentList/>  
+        
     </div>
     
   );
