@@ -3,18 +3,18 @@ import { urlAxios } from "..";
 
 const checkAuth = async (route: string, navigate: Function) => {
   const user: any = window.localStorage.getItem("user");
-  let id;
+  let token;
   let config;
 
   if (!user) {
-    id = "";
+    token = "";
     config = {
-      headers: { _id: id },
+      headers: { token },
     };
   } else {
-    id = JSON.parse(user);
+    token = JSON.parse(user).token;
     config = {
-      headers: { _id: id.id },
+      headers: { token },
     };
   }
 
