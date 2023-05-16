@@ -5,6 +5,7 @@ import {
   VIEW_COMMENTS,
   POST_COMMENTS,
   CLEAR_PRODUCTS,
+  POST_QUESTIONS,
 } from "../actions/productActions.";
 
 const initialState = {
@@ -67,6 +68,7 @@ const productsReducer = (state = initialState, action: Action) => {
         detail: {},
       };
     }
+
 
     default:
       return state;
