@@ -20,9 +20,9 @@ function User() {
         <div className={styles.perfil}>
           <h3  className={styles.title}>Mis Datos</h3>
           {/* <hr></hr> */}
-          <Link to="user/shopping">Compras</Link>
-          <Link to="user/products">Ventas</Link>
-          <Link to="user/qa">Preguntas</Link>
+          <Link to="/user/shopping">Compras</Link>
+          <Link to="/user/products">Ventas</Link>
+          <Link to="/user/qa">Preguntas</Link>
           <Link to="#">Salir</Link>
         </div>
       </div>
