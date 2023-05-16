@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { CartPage, Detail, Home, Login, User, CreateUser } from "./pages";
+import { CartPage, Detail, Home, Login, User, CreateUser,AboutUs } from "./pages";
 import { CreateProduct } from "./components";
 
 import Layout from "./layout/Layout";
@@ -17,6 +17,7 @@ function App() {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<CreateUser />} />
+      <Route path="/aboutUs" element={<AboutUs/>} />
     </Routes>
   );
 }
