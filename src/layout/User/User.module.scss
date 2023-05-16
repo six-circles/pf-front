@@ -45,17 +45,17 @@
   right: 15rem;
   bottom: 5rem;
   gap: 1rem;
+  a{
+    display: flex;
+    color: v.$color-dark;
+    justify-content: center;
+    width: 100%;
+    font-weight: 500;
+  }
+  a:hover{
+    color: v.$color-blue;
+  }
 }
-.botones{
-  display: flex;
-  justify-content: center;
-  color: v.$color-dark;
-  background-color: v.$bg-light;
-  width: 100%;
+.title{
+  padding: 0.5rem;
 }
-.botones:hover{
-  color: v.$color-blue;
-}
-// .title{
-
-// }
