@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { checkAuth, urlAxios } from "../../utils";
 import styles from "./User.module.scss";
 import { CgProfile } from "react-icons/cg"
+import { Link } from "react-router-dom";
 //CreateProduct el formulario para crear nuevo producto dentro de ventas---> /user
 
 function User() {
@@ -18,10 +19,10 @@ function User() {
         <h1  onClick={()=>navigate("/user")} className={styles.icon}><CgProfile/></h1>
         <div className={styles.perfil}>
           <h3  className={styles.title}>Mis Datos</h3>
-          <a href="#" className={styles.botones}>Compras</a>
-          <a href="#" className={styles.botones}>Ventas</a>
-          <a href="#" className={styles.botones}>Preguntas</a>
-          <a href="#" className={styles.botones}>Salir</a>
+          <Link to="#">Compras</Link>
+          <Link to="#">Ventas</Link>
+          <Link to="#">Preguntas</Link>
+          <Link to="#">Salir</Link>
         </div>
       </div>
 
