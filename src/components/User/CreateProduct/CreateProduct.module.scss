@@ -26,7 +26,8 @@
   flex-direction: column;
   margin-bottom: 1.5rem;
 
-  label {
+  label,
+  p {
     margin-bottom: 0.5rem;
   }
 
@@ -53,6 +54,36 @@
 
     &:focus {
       border: 0.1rem solid lighten(v.$color-blue, 10%);
+    }
+  }
+}
+
+.form_camp_cond {
+  display: flex;
+  gap: 2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+      margin: 0;
+    }
+  }
+}
+
+.form_camp_chars {
+  display: flex;
+  gap: 2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    label {
+      margin: 0;
     }
   }
 }

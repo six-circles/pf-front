@@ -28,6 +28,8 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
+          {/* <Link to="/user">Panel de control</Link> */}
+
           <a className={styles.letras} href="/user">
             Panel de control
           </a>
@@ -40,13 +42,25 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
-          <a className={styles.letras} target= "_blank"href="https://twitter.com/?lang=es">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://twitter.com/?lang=es"
+          >
             Twitter
           </a>
-          <a className={styles.letras}  target= "_blank" href="https://www.instagram.com/">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://www.instagram.com/"
+          >
             Instagram
           </a>
-          <a className={styles.letras} target= "_blank" href="https://es-la.facebook.com/">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://es-la.facebook.com/"
+          >
             Facebook
           </a>
         </div>
