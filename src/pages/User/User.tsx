@@ -15,7 +15,7 @@ function User() {
   return (
     <div className={styles.user}>
       <div>perfil usuario</div>
-      <button onClick={() => navigate("/user/create_product")}>
+      <button onClick={() => navigate("/user/create_product")} className={styles.crearProd}>
         CREAR PRODUCTO
       </button>
     </div>
