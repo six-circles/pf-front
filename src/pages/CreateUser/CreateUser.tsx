@@ -137,10 +137,10 @@ export default function () {
                 value={form.birthday}
                 onChange={handleChange}
               />
-              <p className={styles.errorPasw}>{error.birthday}</p>
+              <p className={styles.errorBirth}>{error.birthday}</p>
             </div>
           </div>
-          {error.password.length === 0 && error.email.length === 0 ? (
+          {error.password.length === 0 && error.email.length === 0 && error.birthday.length ===0 ? (
             <button className={styles.buttonRes}>Registrar</button>
           ) : (
             <button className={styles.buttonResDisabl} disabled>
