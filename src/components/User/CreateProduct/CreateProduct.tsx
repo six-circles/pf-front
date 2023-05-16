@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { urlAxios } from "../../../utils";
+import { checkAuth, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function CreateProduct() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkAuth("product", navigate);
+  });
+
   const [form, setForm] = useState({
     title: "",
     image1: "",
@@ -14,7 +21,6 @@ export default function CreateProduct() {
     description: "",
     punctuation: 0,
   });
-  const navigate = useNavigate();
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -52,7 +58,13 @@ export default function CreateProduct() {
 
     try {
       await urlAxios.post("/product", obj, config);
-      alert("Objeto Creado");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: "Producto creado",
+        showConfirmButton: false,
+        timer: 1500
+      });
       setForm({
         title: "",
         image1: "",
@@ -66,15 +78,22 @@ export default function CreateProduct() {
       navigate("/");
     } catch (error: any) {
       if (!error.response.data.error) {
-        alert(error.response.data);
+        Swal.fire({
+          icon: "error",
+          title: error.response.data,
+        });
       } else {
-        alert(error.response.data.error);
+        Swal.fire({
+          icon: "error",
+          title: error.response.data.error,
+        });
       }
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      <button onClick={() => navigate("/user")}>Volver a perfil</button>
       <h2>Crear Producto</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>

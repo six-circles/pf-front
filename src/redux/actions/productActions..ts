@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { urlAxios } from "../../utils";
 
 export const CLEAR_PRODUCTS = "CLEAR_PRODUCTS";
@@ -6,35 +7,39 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
-
+export const POST_QUESTIONS="QUESTIONS";
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
   };
 };
 
-export const getProducts = (title: string | undefined = "") => {
+export const getProducts = (
+  title: string | undefined = "",
+  order: string | undefined = "",
+  type: string | undefined = ""
+) => {
   return async (dispatch: Function) => {
     let data;
     try {
       if (!title) {
-        data = await urlAxios("/product");
+        data = await urlAxios(`/product?${order}=${type}`);
       } else {
-        data = await urlAxios(`/product?title=${title}`);
+        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
       }
       dispatch({
         type: GET_PRODUCTS,
         payload: data.data,
       });
-
-    } catch (error:any) {
-      if(error.message.includes(404)){
-      alert("No se encontró el producto buscado")
+    } catch (error: any) {
+      if (error.message.includes(404)) {
+        Swal.fire({
+          icon: "error",
+          title: "No se encontraron productos",
+        });
       }
-      console.log(error.message)
+      console.log(error.message);
     }
-
-   
   };
 };
 
@@ -79,3 +84,14 @@ export const postComments = (post: any) => {
     });
   };
 };
+
+export const Questions = (questions: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: POST_QUESTIONS,
+      payload: questions,
+    });
+  };
+};
+
+

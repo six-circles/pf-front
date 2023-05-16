@@ -3,7 +3,8 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 const Rating = ({ punctuation }: { punctuation: number }) => {
   const fullStars = Math.floor(punctuation);
   const hasHalfStar = punctuation % 1 !== 0;
-  const voidStar = Math.floor(5 - punctuation);
+  // console.log(hasHalfStar, punctuation);
+  const voidStar = Math.floor(5 - Math.ceil(punctuation));
 
   return (
     <div style={{ color: "orange" }}>

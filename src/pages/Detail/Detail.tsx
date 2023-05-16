@@ -2,12 +2,13 @@ import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { MoreProduct, Details } from "../../components";
+import { MoreProduct, Details, Comments, QuestionList } from "../../components";
 import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail";
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-import { Comments } from "../../components";
+
+
 import {
   clearProducts,
   getProductDetail,
@@ -41,6 +42,8 @@ function Detail() {
       </div>
       <MoreProduct />
       <div>Comentarios | Preguntas</div>
+      
+      {detail.questions && <QuestionList questions={detail?.questions} />}
       {detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );

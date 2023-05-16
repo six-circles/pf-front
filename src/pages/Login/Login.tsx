@@ -6,6 +6,7 @@ import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlAxios } from "../../utils";
+import Swal from "sweetalert2";
 
 interface Credentials {
   email: string;
@@ -39,6 +40,13 @@ function Login() {
         if (data.status === 202) {
           window.localStorage.setItem("user", JSON.stringify(data.data));
           // alert("Bienvenido");
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: "Bienvenido a Six Circles",
+            showConfirmButton: false,
+            timer: 2000
+          });
           navigate("/");
         }
       } catch (error: any) {
