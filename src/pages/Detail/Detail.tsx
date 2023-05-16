@@ -7,8 +7,7 @@ import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-import { Comments} from "../../components";
-import  QuestionList from "../../components/Details/QA/QuestionList";
+import { Comments } from "../../components";
 import {
   clearProducts,
   getProductDetail,
@@ -26,7 +25,7 @@ interface State {
 function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
-  const { detail} = useSelector((state: State) => state.products);
+  const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
     clearProducts();
@@ -42,7 +41,6 @@ function Detail() {
       </div>
       <MoreProduct />
       <div>Comentarios | Preguntas</div>
-      {detail.questions && <QuestionList qa={detail?.questions} />}
       {detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
