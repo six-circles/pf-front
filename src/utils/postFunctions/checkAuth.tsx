@@ -1,6 +1,7 @@
+import Swal from "sweetalert2";
 import { urlAxios } from "..";
 
-const checkAuch = async (route: string, navigate: Function) => {
+const checkAuth = async (route: string, navigate: Function) => {
   const user: any = window.localStorage.getItem("user");
   let id;
   let config;
@@ -21,13 +22,15 @@ const checkAuch = async (route: string, navigate: Function) => {
     await urlAxios.post(`/${route}`, null, config);
   } catch (error: any) {
     const { data } = error.response;
-    // console.error(error.response.data);
     if (data === "You need to be logged in") {
-      navigate("/login");
+      Swal.fire({
+        title: "Debes estar registrado",
+        icon: "warning",
+      }).then(() => navigate("/login"));
     }
   }
 
   return;
 };
 
-export default checkAuch;
+export default checkAuth;

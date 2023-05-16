@@ -6,7 +6,6 @@ import styles from "./User.module.scss";
 
 function User() {
   const navigate: Function = useNavigate();
-  // const { pathname } = useLocation();
 
   useEffect(() => {
     checkAuth("product", navigate);
