@@ -9,6 +9,7 @@ import Rating from "./Rating";
 import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
 import Comments from "./Details/coments/comments";
+import QuestionList from "./Details/QA/QuestionList";
 import Carrito from "./Header/carrito/Carrito";
 export {
   Header,
@@ -20,6 +21,7 @@ export {
   Rating,
   CreateProduct,
   Filter,
+  QuestionList,
   Comments,
   Carrito
 };
