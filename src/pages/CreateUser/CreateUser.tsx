@@ -50,7 +50,7 @@ export default function () {
     try {
       await urlAxios.post("/user", newUser)
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: "Usuario creado con exito",
         showConfirmButton: false,
@@ -64,7 +64,7 @@ export default function () {
         password: "",
         repeatPassword: ""
       })
-      navigate("/login")
+      navigate("/")
     }
     catch (error: any) {
       if (error.response.data.error.includes("duplicate key")) {
