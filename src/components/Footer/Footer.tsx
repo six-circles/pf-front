@@ -40,13 +40,13 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
-          <a className={styles.letras} href="https://twitter.com/?lang=es">
+          <a className={styles.letras} target= "_blank"href="https://twitter.com/?lang=es">
             Twitter
           </a>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras}  target= "_blank" href="https://www.instagram.com/">
             Instagram
           </a>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} target= "_blank" href="https://es-la.facebook.com/">
             Facebook
           </a>
         </div>
