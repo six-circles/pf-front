@@ -8,6 +8,7 @@ interface Question {
 function QuestionList(props:any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState('');
+  
 
   const handleQuestionSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -30,7 +31,7 @@ console.log(props.questions);
     <div className='card'>
       <h1>Preguntas</h1>
       <br />
-      <div>
+      <div className='view'>
        {props?.questions&& props?.questions.map((item:any,index:any)=>(
         <div key={index}>
           <p>{item.userName}</p>
