@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
 import { checkAuth, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function CreateProduct() {
   const navigate = useNavigate();
@@ -57,7 +58,13 @@ export default function CreateProduct() {
 
     try {
       await urlAxios.post("/product", obj, config);
-      alert("Objeto Creado");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: "Producto creado",
+        showConfirmButton: false,
+        timer: 1500
+      });
       setForm({
         title: "",
         image1: "",
@@ -71,9 +78,15 @@ export default function CreateProduct() {
       navigate("/");
     } catch (error: any) {
       if (!error.response.data.error) {
-        alert(error.response.data);
+        Swal.fire({
+          icon: "error",
+          title: error.response.data,
+        });
       } else {
-        alert(error.response.data.error);
+        Swal.fire({
+          icon: "error",
+          title: error.response.data.error,
+        });
       }
     }
   };
