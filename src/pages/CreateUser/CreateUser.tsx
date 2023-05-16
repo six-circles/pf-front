@@ -21,7 +21,7 @@ export default function () {
   const [error, setError] = useState({
     password: "",
     email: "",
-    birthday:0,
+    birthday:"",
   });
 
   const newUser: object = {
@@ -137,6 +137,7 @@ export default function () {
                 value={form.birthday}
                 onChange={handleChange}
               />
+              <p className={styles.errorPasw}>{error.birthday}</p>
             </div>
           </div>
           {error.password.length === 0 && error.email.length === 0 ? (

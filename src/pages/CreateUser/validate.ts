@@ -2,13 +2,13 @@
 interface Form{
     password:string
     email:string
-    birthday:number
+    birthday:string
 }
 export default function validation(form:any){
     const error:Form={
         password:"",
         email:"",
-        birthday:0,
+        birthday:"",
     }
     if(form.password !== form.repeatPassword){
         error.password="Las contraseñas tienen que coincidir"
@@ -30,8 +30,13 @@ export default function validation(form:any){
         error.email="Email invalido"
     }
     const yearForm:number=form.birthday.slice(0,4)
-    const añoForm = new Date().getFullYear()
-    if(yearForm >= añoForm ){alert(`Ingrese una fecha menor a ${añoForm}`)}
+    const añoActual = new Date().getFullYear()
+    const edad= añoActual - yearForm
+    
+    if(edad < 14 || edad > 100){
+        error.birthday="Debe ser mayor de 14 años para registrarse "
+    }
+    
     
 return error
 }
