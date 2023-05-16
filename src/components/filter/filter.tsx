@@ -33,7 +33,7 @@ const Filter: React.FC = () => {
             Precio descendente
           </li>
         </ul> */}
-        <select name="order" onChange={handleChange}>
+        <select name="order" onChange={handleChange} className="filtrp-select">
           <option disabled>Default</option>
           <option value="orderPrice 1">Precio Ascendente</option>
           <option value="orderPrice -1">Precio Descendente</option>
