@@ -1,10 +1,10 @@
 @use "../../../styles/variables.scss" as v;
 
-.contGallery * {
-  box-sizing: border-box;
-}
-
 .contGallery {
+  * {
+    box-sizing: border-box;
+  }
+
   display: flex;
   flex-direction: column;
 }
@@ -15,12 +15,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: bisque;
 
   .slide {
     width: 100%;
     height: 100%;
     background-color: v.$color-gray;
+    position: relative;
 
     img {
       width: 100%;
@@ -36,12 +36,6 @@
   overflow-y: hidden;
 }
 
-// .carousel::-webkit-scrollbar {
-//   width: 0;
-//   height: 0;
-//   visibility: hidden;
-// }
-
 .thumbnails {
   display: flex;
   height: 20%;
@@ -55,8 +49,12 @@
     background-color: v.$color-gray;
     flex: 0 0 calc(100% / 3);
     cursor: pointer;
-    border: 2px solid v.$color-gray;
+    border: 0.2rem solid v.$color-gray;
     opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   img {
@@ -74,8 +72,55 @@
     border: 2px solid v.$color-gray;
     opacity: 1;
   }
+}
 
-  .thumbnail:hover {
-    opacity: 1;
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 37, 37, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.slide {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.slide2 {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.enlarged {
+  width: 100%;
+  height: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: v.$color-dark;
+  font-size: 2.4rem;
+  cursor: pointer;
+
+  &:hover {
+    color: v.$color-blue;
   }
 }
