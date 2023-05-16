@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { urlAxios } from "../../../utils";
+import { checkAuth, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateProduct() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkAuth("product", navigate);
+  });
+
   const [form, setForm] = useState({
     title: "",
     image1: "",
@@ -14,7 +20,6 @@ export default function CreateProduct() {
     description: "",
     punctuation: 0,
   });
-  const navigate = useNavigate();
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -75,7 +80,7 @@ export default function CreateProduct() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <button onClick={()=>navigate("/user")}>Volver a perfil</button>
+      <button onClick={() => navigate("/user")}>Volver a perfil</button>
       <h2>Crear Producto</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>
