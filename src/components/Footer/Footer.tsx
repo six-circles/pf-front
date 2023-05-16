@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
 import logo from "../../assets/icons/logo.svg";
-
+//agregarle validacion al "ingresa" si está ingresado salga un pop up -->ya estas ingresado
 function Footer() {
   const navigate = useNavigate();
 
@@ -22,23 +22,13 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}>Informacion</h3>
-          <a className={styles.letras} href="/aboutUs">
-            Sobre Nosotros
-          </a>
+          <Link to="/aboutUs">Sobre Nosotros</Link>
         </div>
         <div>
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
-          {/* <Link to="/user">Panel de control</Link> */}
-
-          <a className={styles.letras} href="/user">
-            Panel de control
-          </a>
-          <a className={styles.letras} href="/login">
-            Ingresa
-          </a>
-          <a className={styles.letras} href="/user/create_product">
-            Vender
-          </a>
+          <Link to="/user">Panel de control</Link>
+          <Link to="/login">Ingresa</Link>
+          <Link to="/user/create_product">Vender</Link>
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
