@@ -27,7 +27,8 @@ function QuestionList() {
 
   return (
     <div className='card'>
-      <h1>Preguntas</h1><br />
+      <h1>Preguntas</h1>
+      <br />
       <form onSubmit={handleQuestionSubmit}>
         <div className='new'>
         <input className='new'
