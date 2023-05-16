@@ -6,7 +6,7 @@ import AboutUs from "./AboutUs/AboutUS"
 
 
 
-import User from "./User/User";
+import User from "../layout/User/User";
 import CreateUser from "./CreateUser/CreateUser"
 export { Home, CartPage, Detail, Login,User, CreateUser,AboutUs };
 

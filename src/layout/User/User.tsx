@@ -16,7 +16,13 @@ function User() {
     <div className={styles.user}>
       <div className={styles.contenedorPerfil}>
         <h1  onClick={()=>navigate("/user")} className={styles.icon}><CgProfile/></h1>
-        <div className={styles.perfil}>perfil usuario</div>
+        <div className={styles.perfil}>
+          <h3  className={styles.title}>Mis Datos</h3>
+          <a href="#" className={styles.botones}>Compras</a>
+          <a href="#" className={styles.botones}>Ventas</a>
+          <a href="#" className={styles.botones}>Preguntas</a>
+          <a href="#" className={styles.botones}>Salir</a>
+        </div>
       </div>
 
       <button onClick={() => navigate("/user/create_product")} className={styles.crearProd}>

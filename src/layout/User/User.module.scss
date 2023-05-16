@@ -17,22 +17,45 @@
   
 }
 .icon{
-  // display:flex;
-  // position: relative;
+  display:flex;
+  position:relative;
+  left: 1.5rem;
   font-size: 10rem;
-  // position: absolute;
 }
 .perfil{
   display: flex;
- 
-  color: v.$color-dark;
+  flex-direction: column;
+  // align-items: center;
+  // color: v.$color-dark;
   position: absolute;
   top: 10rem;
+  left: 1rem;
   border: 0.15rem solid #000;
   border-color: v.$color-dark;
+  gap: 3rem;
+  background-color: v.$color-gray;
+  height: auto;
+  width: auto;
 }
 .contenedorPerfil{
   display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
   position: relative;
-
+  right: 15rem;
+  bottom: 5rem;
+  gap: 1rem;
 }
+.botones{
+  display: flex;
+  justify-content: center;
+  color: v.$color-dark;
+  background-color: v.$bg-light;
+  width: 100%;
+}
+.botones:hover{
+  color: v.$color-blue;
+}
+// .title{
+
+// }
