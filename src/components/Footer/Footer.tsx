@@ -22,25 +22,25 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}>Informacion</h3>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} href="/aboutUs">
             Sobre Nosotros
           </a>
         </div>
         <div>
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} href="/user">
             Panel de control
           </a>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} href="/login">
             Ingresa
           </a>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} href="/user/create_product">
             Vender
           </a>
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
-          <a className={styles.letras} href="#">
+          <a className={styles.letras} href="https://twitter.com/?lang=es">
             Twitter
           </a>
           <a className={styles.letras} href="#">
