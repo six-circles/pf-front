@@ -19,6 +19,7 @@ function User() {
         <h1  onClick={()=>navigate("/user")} className={styles.icon}><CgProfile/></h1>
         <div className={styles.perfil}>
           <h3  className={styles.title}>Mis Datos</h3>
+          {/* <hr></hr> */}
           <Link to="#">Compras</Link>
           <Link to="#">Ventas</Link>
           <Link to="#">Preguntas</Link>
