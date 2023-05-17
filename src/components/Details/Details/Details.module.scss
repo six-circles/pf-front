@@ -15,9 +15,33 @@
     padding-block: 1rem;
     border-bottom: 0.1rem solid v.$color-gray;
 
+    h2 {
+      margin-bottom: 0;
+    }
+
     .details_rating {
       display: flex;
       gap: 1rem;
+    }
+
+    .new,
+    .used {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+      width: fit-content;
+      margin-bottom: 1rem;
+    }
+
+    .new {
+      background-color: v.$color-green-l;
+      color: v.$color-green-s;
+    }
+
+    .used {
+      background-color: v.$color-orange-l;
+      color: v.$color-orange-s;
     }
   }
 

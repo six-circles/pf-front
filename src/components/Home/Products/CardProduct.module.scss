@@ -64,9 +64,32 @@
     flex-direction: column;
     gap: 1rem;
 
+    .info {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .card_price {
       font-weight: 500;
       font-size: 1.8rem;
+    }
+
+    .new,
+    .used {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .new {
+      background-color: v.$color-green-l;
+      color: v.$color-green-s;
+    }
+
+    .used {
+      background-color: v.$color-orange-l;
+      color: v.$color-orange-s;
     }
   }
 }

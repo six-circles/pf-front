@@ -26,6 +26,7 @@ function Products() {
           image={item.image}
           punctuation={item.punctuations}
           price={item.price}
+          condition={item.condition}
         />
       ))}
     </div>
