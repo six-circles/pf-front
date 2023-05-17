@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { checkAuth, urlAxios } from "../../../utils";
+import { checkAuth, getToken, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -56,22 +56,24 @@ export default function CreateProduct() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const user: any = window.localStorage.getItem("user");
+    // const user: any = window.localStorage.getItem("user");
 
-    let token;
-    let config;
+    // let token;
+    // let config;
 
-    if (!user) {
-      token = "";
-      config = {
-        headers: { token },
-      };
-    } else {
-      token = JSON.parse(user).token;
-      config = {
-        headers: { token },
-      };
-    }
+    // if (!user) {
+    //   token = "";
+    //   config = {
+    //     headers: { token },
+    //   };
+    // } else {
+    //   token = JSON.parse(user).token;
+    //   config = {
+    //     headers: { token },
+    //   };
+    // }
+
+    const { token, config } = getToken();
 
     const obj = {
       condition: form.condition,
