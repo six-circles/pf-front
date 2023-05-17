@@ -29,8 +29,6 @@ const checkAuth = async (route: string, navigate: Function) => {
       }).then(() => navigate("/login"));
     }
   }
-
-  return;
 };
 
 export default checkAuth;
