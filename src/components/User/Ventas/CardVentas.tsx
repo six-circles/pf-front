@@ -1,4 +1,4 @@
-import styles from "./CardCompras.module.scss";
+import styles from "./Ventas.module.scss";
 
 interface Product {
   id: string;
@@ -16,7 +16,7 @@ export default function (props: Product) {
       <div className={styles.info}>
         <h3 className={styles.title}>{props.name}</h3>
         <p className={styles.precio}>${props.price}</p>
-        <p className={styles.entrega}>Entregado el 08/02/2023</p>
+        {/* <p className={styles.entrega}>Entregado el 08/02/2023</p> */}
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 @use "../../../styles/variables.scss" as v;
+
 .card {
   display: flex;
   background-color: v.$color-white;
+  width: auto;
   height: 10rem;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -17,7 +19,9 @@
 
 .card_image {
   min-width: 10rem;
-  aspect-ratio: 1/1;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
 
   img {
     object-fit: contain;

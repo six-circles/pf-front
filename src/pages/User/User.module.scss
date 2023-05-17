@@ -1,11 +1,10 @@
 @use "../../styles/variables.scss" as v;
 
 .user {
-  width: 90%;
-  max-width: 120rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
 .crearProd {
   padding: 2rem;
   background-color: v.$color-blue;
