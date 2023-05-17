@@ -1,0 +1,38 @@
+@use "../../../styles/variables.scss" as v;
+.card {
+    display: flex;
+    background-color: v.$color-white;
+    width: auto;
+    // height:10rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: 200ms;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    &:hover {
+      // box-shadow: 0 1rem 0.5rem v.$color-gray;
+      scale: 1.025;
+    }
+}
+.card_image {
+    // display: flex;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    position: relative;
+
+    img {
+      width:15rem;
+      scale: 0.5;
+      object-fit: contain;
+    }
+}
+// .info{
+  
+// }
+.title{
+    font-size: medium;
+    
+}

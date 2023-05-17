@@ -36,20 +36,6 @@ const productsReducer = (state = initialState, action: Action) => {
         detail: { ...action.payload },
       };
 
-    case ORDER_PRODUCTS:
-      return {
-        ...state,
-        products: [
-          ...state.products.sort((a: any, b: any) => {
-            if (action.payload === "mayor") {
-              return b.price - a.price;
-            } else {
-              return a.price - b.price;
-            }
-          }),
-        ],
-      };
-
     case VIEW_COMMENTS:
       return {
         ...state,
