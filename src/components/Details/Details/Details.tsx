@@ -7,6 +7,7 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
+  console.log(detail);
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
