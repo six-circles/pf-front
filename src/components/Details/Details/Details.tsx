@@ -33,10 +33,19 @@ function Details({ detail }: DetailsProps) {
         {prodChars &&
           prodChars.map((prop: any) => (
             <div key={prop[0]}>
-              <strong>{prop[0]}</strong>
+              <p>{prop[0]}</p>
               <div style={{ display: "flex", gap: "1rem" }}>
                 {prop[1].map((char: any) => (
-                  <p key={char}>{char}</p>
+                  <div
+                    key={char}
+                    className={styles.char}
+                    style={{ backgroundColor: `${char}` }}
+                  >
+                    <input
+                      type="radio"
+                      style={{ backgroundColor: `${char}` }}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
