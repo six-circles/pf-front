@@ -18,62 +18,83 @@ export default function CreateProduct() {
     image3: "",
     stock: 0,
     price: 0,
+    category: "",
+    condition: "",
     description: "",
     punctuation: 0,
+    moreCharacteristics: {},
   });
 
-  const handleChange = (event: any) => {
-    const { name, value } = event.target;
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
+  ) => {
+    const { name, value, id } = event.target;
 
-    setForm({ ...form, [name]: value });
+    if (event.target.type === "radio") {
+      if (event.target.checked) {
+        setForm({ ...form, [name]: id });
+      }
+    } else if (event.target.type === "select") {
+    } else {
+      setForm({ ...form, [name]: value });
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const user: any = window.localStorage.getItem("user");
-    let id;
+
+    let token;
     let config;
 
     if (!user) {
-      id = "";
+      token = "";
       config = {
-        headers: { _id: id },
+        headers: { token },
       };
     } else {
-      id = JSON.parse(user);
+      token = JSON.parse(user).token;
       config = {
-        headers: { _id: id.id },
+        headers: { token },
       };
     }
 
     const obj = {
+      condition: form.condition,
       title: form.title,
       image: [form.image1, form.image2, form.image3],
       stock: Number(form.stock),
       price: Number(form.price),
       description: form.description,
-      userId: id.id,
+      token,
+      category: "Technology",
+      moreCharacteristics: { colors: ["rojo", "azul"] },
     };
+
+    console.log(obj);
 
     try {
       await urlAxios.post("/product", obj, config);
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
+        position: "top-end",
+        icon: "success",
         title: "Producto creado",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
       setForm({
+        condition: "",
         title: "",
         image1: "",
         image2: "",
         image3: "",
         stock: 0,
         price: 0,
+        moreCharacteristics: {},
         description: "",
         punctuation: 0,
+        category: "",
       });
       navigate("/");
     } catch (error: any) {
@@ -106,6 +127,29 @@ export default function CreateProduct() {
         />
       </div>
       <div className={styles.form_camp}>
+        <label>Estado</label>
+        <div className={styles.form_camp_cond}>
+          <div>
+            <input
+              type="radio"
+              id="Nuevo"
+              name="condition"
+              onChange={handleChange}
+            />
+            <label htmlFor="nuevo">Nuevo</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="Usado"
+              name="condition"
+              onChange={handleChange}
+            />
+            <label htmlFor="usado">Usado</label>
+          </div>
+        </div>
+      </div>
+      <div className={styles.form_camp}>
         <label>Imagen 1</label>
         <input
           placeholder="Ingrese al menos una imagen"
@@ -119,7 +163,6 @@ export default function CreateProduct() {
         <label>Imagen 2</label>
         <input
           placeholder="Ingrese al menos una imagen"
-          required
           value={form.image2}
           name="image2"
           onChange={handleChange}
@@ -129,12 +172,50 @@ export default function CreateProduct() {
         <label>Imagen 3</label>
         <input
           placeholder="Ingrese al menos una imagen"
-          required
           value={form.image3}
           name="image3"
           onChange={handleChange}
         />
       </div>
+
+      <div className={styles.form_camp}>
+        <p>Categoria</p>
+        <select name="category">
+          <option disabled>--- Seleccione una categoria ---</option>
+          <option value="Technology">Tecnologia</option>
+          <option value="Indumentary">Ropa</option>
+          <option value="Furniture">Muebles</option>
+          <option value="Others">Otros</option>
+        </select>
+      </div>
+
+      <div className={styles.form_camp}>
+        <p>Caracteristicas</p>
+        <label htmlFor="colors">Color</label>
+        <div className={styles.form_camp_chars}>
+          <div className="camp_chars">
+            <input type="checkbox" value="red" />
+            <label htmlFor="color_red">Rojo</label>
+          </div>
+          <div className="camp_chars">
+            <input type="checkbox" value="blue" />
+            <label htmlFor="color_blue">Azul</label>
+          </div>
+          <div className="camp_chars">
+            <input type="checkbox" value="black" />
+            <label htmlFor="color_black">Negro</label>
+          </div>
+          <div className="camp_chars">
+            <input type="checkbox" value="white" />
+            <label htmlFor="color_white">Blanco</label>
+          </div>
+          <div className="camp_chars">
+            <input type="checkbox" value="green" />
+            <label htmlFor="color_green">Verde</label>
+          </div>
+        </div>
+      </div>
+
       <div className={styles.form_camp}>
         <label>Precio</label>
         <input
@@ -162,20 +243,6 @@ export default function CreateProduct() {
           onChange={handleChange}
         />
       </div>
-      {/* <div className={styles.form_camp}>
-        <label>Calificacion</label>
-        <input
-          type="number"
-          placeholder="Campo solo para desarrollo"
-          required
-          min={0}
-          max={5}
-          name="punctuation"
-          step="0.1"
-          value={form.punctuation}
-          onChange={handleChange}
-        />
-      </div> */}
       <div className={styles.form_camp}>
         <label>Descripcion</label>
         <textarea

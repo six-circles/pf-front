@@ -22,31 +22,35 @@ function Footer() {
         </div>
         <div>
           <h3 className={styles.subtitle}>Informacion</h3>
-          <Link to="/aboutUs">
-            Sobre Nosotros
-          </Link >
+          <Link to="/aboutUs">Sobre Nosotros</Link>
         </div>
         <div>
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
-          <Link to="/user">
-            Panel de control
-          </Link>
-          <Link to="/login">
-            Ingresa
-          </Link>
-          <Link to="/user/create_product">
-            Vender
-          </Link>
+          <Link to="/user">Panel de control</Link>
+          <Link to="/login">Ingresa</Link>
+          <Link to="/user/create_product">Vender</Link>
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
-          <a className={styles.letras} target= "_blank"href="https://twitter.com/?lang=es">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://twitter.com/?lang=es"
+          >
             Twitter
           </a>
-          <a className={styles.letras}  target= "_blank" href="https://www.instagram.com/">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://www.instagram.com/"
+          >
             Instagram
           </a>
-          <a className={styles.letras} target= "_blank" href="https://es-la.facebook.com/">
+          <a
+            className={styles.letras}
+            target="_blank"
+            href="https://es-la.facebook.com/"
+          >
             Facebook
           </a>
         </div>
