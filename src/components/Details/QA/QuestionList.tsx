@@ -1,17 +1,30 @@
 import React, { Fragment, useState } from "react";
 import "./QA.scss";
+import  { Axios } from "axios";
 
 interface Question {
   id: number;
   text: string;
 }
 
-function QuestionList(props: any) {
+export function QuestionList(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
 
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+if (newQuestion.length > 0) {
+  const response = await Axios.post("/api/question/", {
+    text: newQuestion,
+    });
+    if (response.data.success) {
+      const questions = await Axios.get("/api/question/");
+
+      setQuestions(questions.data.questions);
+      setNewQuestion("");
+      }
+
+      
 
     if (newQuestion.trim() === "") {
       return;
@@ -23,7 +36,7 @@ function QuestionList(props: any) {
     };
 
     // Simulación del envío a la base de datos
-    try {
+    /*try {
       await saveQuestionToDatabase(newQuestionObj);
       setQuestions([...questions, newQuestionObj]);
       setNewQuestion("");
@@ -41,7 +54,7 @@ function QuestionList(props: any) {
         resolve();
       }, 1000);
     });
-  };
+  };*/
 
   return (
     <Fragment>
@@ -85,5 +98,5 @@ function QuestionList(props: any) {
       </Fragment>
 );
 }
-
-export default QuestionList;
+}
+} 

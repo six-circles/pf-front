@@ -11,6 +11,7 @@ import Filter from "./filter/filter";
 import Comments from "./Details/coments/comments";
 import QuestionList from "./Details/QA/QuestionList";
 import Carrito from "./Header/carrito/Carrito";
+import chat from "./chat/chat";
 export {
   Header,
   Footer,
@@ -23,5 +24,6 @@ export {
   Filter,
   QuestionList,
   Comments,
-  Carrito
+  Carrito,
+  chat
 };
