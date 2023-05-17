@@ -11,7 +11,7 @@ export default function CreateProduct() {
     checkAuth("product", navigate);
   });
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<any>({
     title: "",
     image1: "",
     image2: "",
@@ -28,16 +28,36 @@ export default function CreateProduct() {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
   ) => {
-    const { name, value, id } = event.target;
+    const { name, value } = event.target;
 
     if (event.target.type === "radio") {
       if (event.target.checked) {
-        setForm({ ...form, [name]: id });
+        setForm({ ...form, [name]: value });
       }
     } else if (event.target.type === "select") {
     } else {
       setForm({ ...form, [name]: value });
     }
+  };
+
+  const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked } = event.target;
+
+    setForm((prevForm: any) => {
+      const { moreCharacteristics } = prevForm;
+
+      const updatedCharacteristics = {
+        ...moreCharacteristics,
+        [name]: checked
+          ? [...(moreCharacteristics[name] || []), value]
+          : moreCharacteristics[name].filter((item: string) => item !== value),
+      };
+
+      return {
+        ...prevForm,
+        moreCharacteristics: updatedCharacteristics,
+      };
+    });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,13 +87,13 @@ export default function CreateProduct() {
       stock: Number(form.stock),
       price: Number(form.price),
       description: form.description,
+      category: form.category,
+      moreCharacteristics: form.moreCharacteristics,
       token,
-      category: "Technology",
-      moreCharacteristics: { colors: ["rojo", "azul"] },
     };
 
     console.log(obj);
-
+    return;
     try {
       await urlAxios.post("/product", obj, config);
       Swal.fire({
@@ -132,7 +152,7 @@ export default function CreateProduct() {
           <div>
             <input
               type="radio"
-              id="Nuevo"
+              value="Nuevo"
               name="condition"
               onChange={handleChange}
             />
@@ -141,7 +161,7 @@ export default function CreateProduct() {
           <div>
             <input
               type="radio"
-              id="Usado"
+              value="Usado"
               name="condition"
               onChange={handleChange}
             />
@@ -180,8 +200,10 @@ export default function CreateProduct() {
 
       <div className={styles.form_camp}>
         <p>Categoria</p>
-        <select name="category">
-          <option disabled>--- Seleccione una categoria ---</option>
+        <select name="category" onChange={handleChange}>
+          <option disabled value="">
+            --- Seleccione una categoria ---
+          </option>
           <option value="Technology">Tecnologia</option>
           <option value="Indumentary">Ropa</option>
           <option value="Furniture">Muebles</option>
@@ -194,24 +216,49 @@ export default function CreateProduct() {
         <label htmlFor="colors">Color</label>
         <div className={styles.form_camp_chars}>
           <div className="camp_chars">
-            <input type="checkbox" value="red" />
-            <label htmlFor="color_red">Rojo</label>
+            <input
+              type="checkbox"
+              value="red"
+              name="color"
+              onChange={handleChars}
+            />
+            <label>Rojo</label>
           </div>
           <div className="camp_chars">
-            <input type="checkbox" value="blue" />
-            <label htmlFor="color_blue">Azul</label>
+            <input
+              type="checkbox"
+              value="blue"
+              onChange={handleChars}
+              name="color"
+            />
+            <label>Azul</label>
           </div>
           <div className="camp_chars">
-            <input type="checkbox" value="black" />
-            <label htmlFor="color_black">Negro</label>
+            <input
+              type="checkbox"
+              value="black"
+              name="color"
+              onChange={handleChars}
+            />
+            <label>Negro</label>
           </div>
           <div className="camp_chars">
-            <input type="checkbox" value="white" />
-            <label htmlFor="color_white">Blanco</label>
+            <input
+              type="checkbox"
+              value="white"
+              name="color"
+              onChange={handleChars}
+            />
+            <label>Blanco</label>
           </div>
           <div className="camp_chars">
-            <input type="checkbox" value="green" />
-            <label htmlFor="color_green">Verde</label>
+            <input
+              type="checkbox"
+              value="green"
+              name="color"
+              onChange={handleChars}
+            />
+            <label>Verde</label>
           </div>
         </div>
       </div>

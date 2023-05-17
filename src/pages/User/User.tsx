@@ -21,15 +21,16 @@ function User() {
         </h1>
         <div className={styles.perfil}>
           <h3 className={styles.title}>Mis Datos</h3>
-          <Link to="#">Compras</Link>
-          <Link to="#">Ventas</Link>
-          <Link to="#">Preguntas</Link>
+          {/* <hr></hr> */}
+          <Link to="/user/shopping">Compras</Link>
+          <Link to="/user/products">Ventas</Link>
+          <Link to="/user/qa">Preguntas</Link>
           <Link to="#">Salir</Link>
         </div>
       </div>
 
       <button
-        onClick={() => navigate("/user/create_product")}
+        onClick={() => navigate("/user/products/create_product")}
         className={styles.crearProd}
       >
         CREAR PRODUCTO
