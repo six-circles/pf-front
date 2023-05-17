@@ -6,15 +6,23 @@ import { urlAxios } from "../../../utils";
 import Swal from "sweetalert2";
 
 interface Credentials {
-    email: string;
-    password: string;
+    name: string,
+    email: string,
+    phone: string,
+    birthday: string,
+    password: string,
+    repeatPassword: string,
 }
 
 export default function () {
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState<Credentials>({
+        name: "",
         email: "",
+        phone: "",
+        birthday: "",
         password: "",
+        repeatPassword: "",
     });
     const [errors, setErrors] = useState<any>({});
     const [message, setMessage] = useState<any>("");
@@ -35,7 +43,6 @@ export default function () {
                 let data = await urlAxios.post("/login", credentials);
 
                 if (data.status === 202) {
-                    window.localStorage.setItem("user", JSON.stringify(data.data));
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -59,12 +66,14 @@ export default function () {
             <div className={styles.group}>
                 <p><b>Datos de cuenta</b></p>
                 <div className={styles.dato}>
-                    <label htmlFor="" className={styles.campo}>Email</label>
-                    <input autoComplete="email" className={styles.campo} type="text" value={"hola@mail.com"} onChange={handleInputChange} />
+                    <label htmlFor="" className={styles.campo}>Correo</label>
+                    <input autoComplete="email" className={styles.campo} type="text" value={"hola@mail.com"} name="email" onChange={handleInputChange} />
                 </div>
                 <div className={styles.dato}>
                     <label htmlFor="" className={styles.campo}>Contraseña</label>
-                    <input autoComplete="new-password" className={styles.campo} type="text" name="" value={""} onChange={handleInputChange} />
+                    <input autoComplete="new-password" className={styles.campo} type="text" name="password" value={""} onChange={handleInputChange} />
+                    <label htmlFor="" className={styles.campo}>Repetir contraseña</label><br />
+                    <input autoComplete="new-password" className={styles.campo} type="text" name="repeatPassword" value={""} onChange={handleInputChange} />
                 </div>
             </div>
             <div className={styles.group}>
