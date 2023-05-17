@@ -5,7 +5,7 @@ import styles from "./LayoutUser.module.scss";
 
 function LayoutUser() {
   return (
-    <div className={styles.user}>
+    <div className={styles.perfil}>
       <User />
       <div>
         <Outlet />

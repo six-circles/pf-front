@@ -29,12 +29,12 @@ function User() {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={() => navigate("/user/products/create_product")}
         className={styles.crearProd}
       >
         CREAR PRODUCTO
-      </button>
+      </button> */}
     </div>
   );
 }
