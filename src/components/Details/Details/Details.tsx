@@ -42,6 +42,7 @@ function Details({ detail }: DetailsProps) {
                     style={{ backgroundColor: `${char}` }}
                   >
                     <input
+                      name={prop[0]}
                       type="radio"
                       style={{ backgroundColor: `${char}` }}
                     />

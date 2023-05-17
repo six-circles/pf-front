@@ -66,6 +66,9 @@
     }
 
     .char {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 3rem;
@@ -81,7 +84,7 @@
       }
 
       input {
-        display: none;
+        opacity: 0;
       }
     }
   }
