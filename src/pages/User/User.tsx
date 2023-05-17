@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuth, urlAxios } from "../../utils";
+import { checkAuth} from "../../utils";
 import styles from "./User.module.scss";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
