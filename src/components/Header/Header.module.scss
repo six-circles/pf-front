@@ -47,12 +47,15 @@
 .contButton {
   border: none;
   height: 100%;
-  padding-inline: 1rem;
   background-color: v.$color-blue;
   cursor: pointer;
   transition: 200ms;
   border-end-start-radius: 0;
   border-start-start-radius: 0;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contButton:hover {

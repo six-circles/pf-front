@@ -48,6 +48,14 @@ button {
 
 button {
   cursor: pointer;
+  padding: 1rem;
+  background-color: v.$color-blue;
+  color: v.$color-white;
+  transition: 200ms;
+
+  &:hover {
+    background-color: darken(v.$color-blue, 10%);
+  }
 }
 
 input {

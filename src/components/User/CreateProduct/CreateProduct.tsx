@@ -56,23 +56,6 @@ export default function CreateProduct() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // const user: any = window.localStorage.getItem("user");
-
-    // let token;
-    // let config;
-
-    // if (!user) {
-    //   token = "";
-    //   config = {
-    //     headers: { token },
-    //   };
-    // } else {
-    //   token = JSON.parse(user).token;
-    //   config = {
-    //     headers: { token },
-    //   };
-    // }
-
     const { token, config } = getToken();
 
     const obj = {
@@ -86,8 +69,6 @@ export default function CreateProduct() {
       moreCharacteristics: form.moreCharacteristics,
       token,
     };
-
-    console.log(obj);
 
     try {
       await urlAxios.post("/product", obj, config);
