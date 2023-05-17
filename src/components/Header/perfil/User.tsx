@@ -1,15 +1,30 @@
 import styles from "./User.module.scss";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function User() {
   const navigate = useNavigate();
   const handleClick = () => {
-    const salir = confirm("Desea cerrar sesion?");
+    // const salir = confirm("Desea cerrar sesion?");
 
-    if (salir) {
-      window.localStorage.setItem("user", "");
-      navigate("/login");
-    }
+    // if (salir) {
+    //   window.localStorage.setItem("user", "");
+    //   navigate("/login");
+    // }
+
+    Swal.fire({
+      title: '¿Desea cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, salir!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.localStorage.setItem("user", "");
+        navigate("/login");
+      }
+    })
   };
 
   return (

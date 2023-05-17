@@ -100,27 +100,38 @@
 }
 
 .slide2 {
+  width: 80rem;
+  height: 60rem;
+  overflow: hidden;
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
+  background-color: #33333399;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: v.$color-gray;
+    font-size: 2.4rem;
+    cursor: pointer;
+
+    &:hover {
+      color: v.$color-blue;
+    }
+  }
 }
 
 .enlarged {
   width: 100%;
   height: auto;
-}
-
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: v.$color-dark;
-  font-size: 2.4rem;
-  cursor: pointer;
-
-  &:hover {
-    color: v.$color-blue;
-  }
 }

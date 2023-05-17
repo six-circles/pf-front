@@ -4,7 +4,13 @@ import styles from "./CardProduct.module.scss";
 import { Rating } from "../..";
 import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiFillHeart,
+} from "react-icons/ai";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoCartSharp } from "react-icons/io5";
 
 interface Product {
   id: string;
@@ -50,8 +56,8 @@ function CardProduct(props: Product) {
         <img src={props.image[0]} alt={props.name.slice(0, 10)} />
         {showIcons && (
           <div className={styles.card_icons}>
-            <AiOutlineHeart className={styles.icon} />
-            <AiOutlineShoppingCart className={styles.icon} />
+            <AiFillHeart className={styles.icon_heart} />
+            <IoCartSharp className={styles.icon_cart} />
           </div>
         )}
       </div>
