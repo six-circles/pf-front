@@ -1,0 +1,15 @@
+.ventas {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin-left: auto;
+  }
+}
+
+.products {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}

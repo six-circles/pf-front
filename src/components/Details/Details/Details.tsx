@@ -7,11 +7,14 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
-  console.log(detail);
+  const prodChars = Object.entries(detail.moreCharacteristics);
+  console.log(prodChars);
+
   return (
     <div className={styles.details}>
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
+        <p>{detail.condition}</p>
         <div className={styles.details_rating}>
           {(detail.punctuations || detail.punctuations === 0) && (
             <Rating punctuation={detail.punctuations} />
@@ -24,9 +27,16 @@ function Details({ detail }: DetailsProps) {
       </div>
       <div className={styles.caracteristics}>
         <h3>Caracteristicas</h3>
-        <p>Color</p>
-        <p>Capacidad</p>
-        <p>Tamaño</p>
+        {prodChars.map((prop: any) => (
+          <div key={prop[0]}>
+            <strong>{prop[0]}</strong>
+            <div style={{ display: "flex", gap: "1rem" }}>
+              {prop[1].map((char: any) => (
+                <p key={char}>{char}</p>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
       <div className={styles.description}>
         <h3>Descripcion</h3>

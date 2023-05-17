@@ -27,7 +27,7 @@ export default function () {
     <div className={styles.ventas}>
       <button onClick={() => navigate("create_product")}>Crear Producto</button>
 
-      <div>
+      <div className={styles.products}>
         {products?.map((item: any, i) => (
           <CardProduct
             key={i}
