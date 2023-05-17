@@ -20,10 +20,11 @@ function User() {
           <CgProfile />
         </h1>
         <div className={styles.perfil}>
-          <h3 className={styles.title}>Mis Datos</h3>
-          <Link to="#">Compras</Link>
-          <Link to="#">Ventas</Link>
-          <Link to="#">Preguntas</Link>
+          <h3  className={styles.title}>Mis Datos</h3>
+          {/* <hr></hr> */}
+          <Link to="/user/shopping">Compras</Link>
+          <Link to="/user/products">Ventas</Link>
+          <Link to="/user/qa">Preguntas</Link>
           <Link to="#">Salir</Link>
         </div>
       </div>
