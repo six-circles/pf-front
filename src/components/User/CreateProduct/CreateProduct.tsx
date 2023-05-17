@@ -86,7 +86,7 @@ export default function CreateProduct() {
     };
 
     console.log(obj);
-    return;
+
     try {
       await urlAxios.post("/product", obj, config);
       Swal.fire({
@@ -194,7 +194,7 @@ export default function CreateProduct() {
       <div className={styles.form_camp}>
         <p>Categoria</p>
         <select name="category" onChange={handleChange}>
-          <option disabled value="">
+          <option disabled selected={true}>
             --- Seleccione una categoria ---
           </option>
           <option value="Technology">Tecnologia</option>
