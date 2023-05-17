@@ -28,7 +28,7 @@ function Footer() {
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
           <Link to="/user">Panel de control</Link>
           <Link to="/login">Ingresa</Link>
-          <Link to="/user/create_product">Vender</Link>
+          <Link to="/user/products">Vender</Link>
         </div>
         <div>
           <h3 className={styles.subtitle}> Redes Sociales</h3>
