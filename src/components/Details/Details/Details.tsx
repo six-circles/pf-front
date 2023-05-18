@@ -9,7 +9,6 @@ interface DetailsProps {
 function Details({ detail }: DetailsProps) {
   const prodChars =
     detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
-  console.log(prodChars);
 
   return (
     <div className={styles.details}>
