@@ -18,6 +18,7 @@ interface Product {
   image: string;
   punctuation: number;
   price: number;
+  condition?: string;
 }
 
 function CardProduct(props: Product) {
@@ -62,9 +63,14 @@ function CardProduct(props: Product) {
         )}
       </div>
       <div className={styles.card_info}>
+        <div className={styles.info}>
+          <p className={styles.card_price}>${props.price}</p>
+          <p className={props.condition === "Nuevo" ? styles.new : styles.used}>
+            {props.condition}
+          </p>
+        </div>
         <p>{shortName}</p>
         <Rating punctuation={props.punctuation} />
-        <p className={styles.card_price}>${props.price}</p>
       </div>
     </div>
   );

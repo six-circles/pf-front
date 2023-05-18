@@ -12,4 +12,7 @@ export interface DetailProd {
   updatedAt: string;
   __v: number;
   punctuations: number;
+  condition: string;
+  category: string;
+  moreCharacteristics: object;
 }

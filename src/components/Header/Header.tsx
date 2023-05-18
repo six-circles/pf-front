@@ -65,7 +65,7 @@ function Header() {
             onChange={handleChange}
           />
           <button className={styles.contButton}>
-            <BsSearch className={styles.icon} />
+            <BsSearch />
           </button>
         </form>
         <nav className={styles.nav}>
