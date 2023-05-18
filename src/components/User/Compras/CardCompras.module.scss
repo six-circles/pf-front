@@ -9,7 +9,7 @@
   cursor: pointer;
   margin-bottom: 1rem;
   gap: 1rem;
-  width: 100%;
+  width: fit-content;
 
   &:hover {
     scale: 1.025;
@@ -30,25 +30,35 @@
 .title {
   font-size: medium;
   margin-bottom: 1rem;
-  width: auto;
+  width: 15rem;
+  height: 6.7rem;
 }
 .entregado{
     display: flex;
-    // margin-top: 5.5rem;
-    margin-left: 5rem;
     position: relative;
+    width: 10rem;
+    
 }
 .buttonDetails{
-    display: flex;
-    // position: absolute;
     width: fit-content;
     height: fit-content;
+    font-size: smaller;
+    margin-top: 0.5rem;
+    margin-left: 3rem;
 }
 .entrega{
-    position: relative;
-    margin-top: 4rem;
+    position: absolute;
+    margin-top: 6rem;
+    margin-left: 4.5rem;
+   font-size: xx-small;
 }
 .precio{
     width: auto;
     font-size: small;
+}
+.rating{
+    background-color: v.$color-gray;
+    font-size: xx-small;
+    color: v.$color-dark;
+    
 }

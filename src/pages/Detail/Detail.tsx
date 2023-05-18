@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,7 +7,6 @@ import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-
 
 import {
   clearProducts,
@@ -28,10 +27,12 @@ function Detail() {
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
 
+  console.log(detail);
+
   useEffect(() => {
     clearProducts();
-    dispatch(getProducts());
     dispatch(getProductDetail(id));
+    dispatch(getProducts());
   }, [dispatch, id]);
 
   return (
@@ -40,9 +41,9 @@ function Detail() {
         <GalleryDetail detail={detail} data={heroSliderData} />
         <Details detail={detail} />
       </div>
-      <MoreProduct />
+      {detail?.user && <MoreProduct />}
       <div>Comentarios | Preguntas</div>
-      
+
       {detail.questions && <QuestionList questions={detail?.questions} />}
       {detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>

@@ -23,6 +23,7 @@
   // left: 1.5rem;
   margin: 0 auto;
   font-size: 10rem;
+  cursor: pointer;
 }
 
 .perfil {
@@ -61,5 +62,9 @@
   }
 }
 .title {
+  display: flex;
+  justify-content: center;
   padding: 0.5rem;
+  cursor: pointer;
+  
 }

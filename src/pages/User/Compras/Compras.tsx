@@ -31,6 +31,7 @@ export default function (){
               name={item.title}
               image={item.image}
               price={item.price}
+              punctuation={item.punctuation}
             />
           ))
         }
