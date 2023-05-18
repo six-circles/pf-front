@@ -29,15 +29,7 @@ export default function CreateProduct() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
   ) => {
     const { name, value } = event.target;
-
-    if (event.target.type === "radio") {
-      if (event.target.checked) {
         setForm({ ...form, [name]: value });
-      }
-    } else if (event.target.type === "select") {
-    } else {
-      setForm({ ...form, [name]: value });
-    }
   };
 
   const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,8 +84,6 @@ export default function CreateProduct() {
       token,
     };
 
-    console.log(obj);
-    return;
     try {
       await urlAxios.post("/product", obj, config);
       Swal.fire({
