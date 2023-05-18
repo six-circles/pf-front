@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import "./QA.scss";
-import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
+import { getToken, urlAxios } from "../../utils";
 interface Question {
   id: number;
   text: string;
 }
 
-export function QuestionList(props: any) {
+export function QuestionUser(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
   const {id}=useParams()
@@ -68,4 +68,3 @@ if (newQuestion.length > 0) {
       </Fragment>
 );
 }
-

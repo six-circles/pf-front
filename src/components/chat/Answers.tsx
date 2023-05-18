@@ -1,26 +1,26 @@
 import React, { Fragment, useState } from "react";
 import "./QA.scss";
-import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
-interface Question {
-  id: number;
+import { getToken, urlAxios } from "../../utils";
+interface Answer {
+    questionId: number;
   text: string;
 }
 
-export function QuestionList(props: any) {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [newQuestion, setNewQuestion] = useState("");
-  const {id}=useParams()
+export function Answers(props: any) {
+  const [answer, setAnswers] = useState<Answer[]>([]);
+  const [newAnswer, setNewAnswer] = useState("");
+  const {questionId}=useParams()
 const {token, config}=getToken()
 
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-if (newQuestion.length > 0) {
-  const body ={token,productId:id,body:newQuestion}
+if (newAnswer.length > 0) {
+  const body ={token,questionId:questionId,body:newAnswer}
   console.log(body);
   
   try{
-    const response = await urlAxios.post( "/product/questions", body,config);
+    const response = await urlAxios.post( "/product/questions/answers", body,config);
     console.log(response);}
   catch(error:any){
     console.log(error.response.data);
@@ -29,11 +29,11 @@ if (newQuestion.length > 0) {
   return (
     <Fragment>
     <div className="card">
-      <h1>Preguntas</h1>
+      <h1>Respuestas</h1>
       <br />
       <div>
-        {props?.questions &&
-          props?.questions.map((item: any, index: any) => (
+        {props?.answer &&
+          props?.answer.map((item: any, index: any) => (
             <div key={index}>
               <p>{item.userName}</p>
               <p>{item.body}</p>
@@ -46,26 +46,25 @@ if (newQuestion.length > 0) {
           <input
             className="new"
             type="text"
-            value={newQuestion}
-            onChange={(event) => setNewQuestion(event.target.value)}
-            placeholder="Escribe tu pregunta"
+            value={newAnswer}
+            onChange={(event) => setNewAnswer(event.target.value)}
+            placeholder="Escribe tu respuesta"
           />
         </div>
         <br />
         <div className="send">
           <button className="send" type="submit">
-            Publicar pregunta
+            Publicar respuesta
           </button>
         </div>
       </form>
 
       <ul>
-        {questions.map((question) => (
-          <li key={question.id}>{question.text}</li>
+        {answer.map((answer) => (
+          <li key={answer.questionId}>{answer.text}</li>
         ))}
       </ul>
       </div>
       </Fragment>
 );
 }
-
