@@ -31,8 +31,8 @@ function Detail() {
 
   useEffect(() => {
     clearProducts();
-    dispatch(getProducts());
     dispatch(getProductDetail(id));
+    dispatch(getProducts());
   }, [dispatch, id]);
 
   return (

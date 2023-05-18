@@ -46,9 +46,8 @@ export const getProducts = (
 export const getProductDetail = (id: string | undefined) => {
   return async (dispatch: Function) => {
     try {
-      console.log("hola");
+      console.log(id);
       const { data } = await urlAxios(`/product/${id}`);
-      console.log(data);
       dispatch({
         type: GET_PRODUCT_DETAIL,
         payload: data[0],

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
 import { checkAuth, getToken, urlAxios } from "../../../utils";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,15 +21,18 @@ interface State {
 
 function CreateProduct() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const location = useLocation();
+  const searchParams: any = new URLSearchParams(location.search);
+  const product = searchParams.get("product");
   const dispatch: Function = useDispatch();
-  const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
     checkAuth("product", navigate);
     dispatch(clearProducts());
-    dispatch(getProductDetail(id));
-  }, [dispatch, id]);
+    dispatch(getProductDetail(product));
+  }, [dispatch, product]);
+
+  const { detail } = useSelector((state: State) => state.products);
 
   const [form, setForm] = useState<any>({
     title: detail.title,
@@ -130,9 +133,7 @@ function CreateProduct() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <button onClick={() => navigate("/user/products")}>
-        Volver a perfil
-      </button>
+      <button onClick={() => navigate("/user/products")}>Volver</button>
       <h2>Crear Producto</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>
