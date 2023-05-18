@@ -3,7 +3,7 @@ import "./QA.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
 interface Answer {
-    questionId: number;
+ id: number;
   text: string;
 }
 
@@ -16,9 +16,9 @@ const {token, config}=getToken()
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 if (newAnswer.length > 0) {
-  const body ={token,questionId:questionId,body:newAnswer}
+  const body ={token, id:questionId,body:newAnswer}
   console.log(body);
-  
+   
   try{
     const response = await urlAxios.post( "/product/questions/answers", body,config);
     console.log(response);}
@@ -29,7 +29,7 @@ if (newAnswer.length > 0) {
   return (
     <Fragment>
     <div className="card">
-      <h1>Respuestas</h1>
+      <center><h1>Respuestas</h1></center>
       <br />
       <div>
         {props?.answer &&
@@ -52,16 +52,15 @@ if (newAnswer.length > 0) {
           />
         </div>
         <br />
-        <div className="send">
+        <center><div className="send">
           <button className="send" type="submit">
-            Publicar respuesta
-          </button>
-        </div>
+            Publicar respuesta</button>
+        </div></center>
       </form>
 
       <ul>
         {answer.map((answer) => (
-          <li key={answer.questionId}>{answer.text}</li>
+          <li key={answer.id}>{answer.text}</li>
         ))}
       </ul>
       </div>

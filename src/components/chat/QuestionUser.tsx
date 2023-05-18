@@ -29,7 +29,7 @@ if (newQuestion.length > 0) {
   return (
     <Fragment>
     <div className="card">
-      <h1>Preguntas</h1>
+      <center><h1>Preguntas</h1></center>
       <br />
       <div>
         {props?.questions &&
@@ -52,11 +52,10 @@ if (newQuestion.length > 0) {
           />
         </div>
         <br />
-        <div className="send">
-          <button className="send" type="submit">
-            Publicar pregunta
+        <center><div className="send">
+          <button className="send" type="submit">Publicar pregunta
           </button>
-        </div>
+        </div></center>
       </form>
 
       <ul>
