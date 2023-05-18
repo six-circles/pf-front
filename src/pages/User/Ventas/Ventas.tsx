@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getToken, urlAxios } from "../../../utils";
-import CardProduct from "../../../components/Home/Products/CardProduct";
+import { useNavigate } from "react-router-dom";
+import { CardVentas } from "../../../components";
 
 import styles from "./Ventas.module.scss";
-import { useNavigate } from "react-router-dom";
 
 export default function () {
   const [products, setProducts] = useState([]);
@@ -28,14 +28,15 @@ export default function () {
       <button onClick={() => navigate("create_product")}>Crear Producto</button>
 
       <div className={styles.products}>
-        {products?.map((item: any, i) => (
-          <CardProduct
-            key={i}
-            id={item.id}
+        {products?.map((item: any) => (
+          <CardVentas
+            key={item._id}
+            id={item._id}
             punctuation={item.punctuations}
             image={item.image}
             price={item.price}
             name={item.title}
+            condition={item.condition}
           />
         ))}
       </div>
