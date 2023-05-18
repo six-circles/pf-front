@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { AiFillEdit } from "react-icons/ai";
 import { GoEyeClosed } from "react-icons/go";
+import { getToken, urlAxios } from "../../../utils";
 
 interface Product {
   id: string;
@@ -15,12 +16,15 @@ interface Product {
   punctuation: number;
   price: number;
   condition?: string;
+  enable: boolean;
 }
 
 function CardVentas(props: Product) {
   const [showIcons, setShowIcons] = useState(false);
+  const [enable, setEnable] = useState(props.enable);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+  const { config } = getToken();
 
   const handleClick = () => {
     dispatch(clearProducts());
@@ -34,6 +38,26 @@ function CardVentas(props: Product) {
       pathname: "create_product",
       search: `?product=${props.id}`,
     });
+  };
+
+  const handleDisabled = async (event: any) => {
+    event.stopPropagation();
+
+    if (enable) {
+      setEnable(false);
+      try {
+        await urlAxios.patch(`/product/${props.id}`, { enable: false }, config);
+      } catch (error: any) {
+        console.error(error.response.data);
+      }
+    } else {
+      setEnable(true);
+      try {
+        await urlAxios.patch(`/product/${props.id}`, { enable: true }, config);
+      } catch (error: any) {
+        console.error(error.response.data);
+      }
+    }
   };
 
   const handleMouseEnter = () => {
@@ -52,7 +76,7 @@ function CardVentas(props: Product) {
 
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${!enable && styles.disabled}`}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -62,7 +86,7 @@ function CardVentas(props: Product) {
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillEdit className={styles.icon_edit} onClick={handleEdit} />
-            <GoEyeClosed className={styles.icon_del} />
+            <GoEyeClosed className={styles.icon_del} onClick={handleDisabled} />
           </div>
         )}
       </div>

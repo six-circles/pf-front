@@ -1,27 +1,46 @@
 import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
 import { checkAuth, getToken, urlAxios } from "../../../utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearProducts,
+  getProductDetail,
+} from "../../../redux/actions/productActions.";
+
+import { DetailProd } from "../../../utils";
+
+interface Products {
+  detail: DetailProd;
+}
+
+interface State {
+  products: Products;
+}
 
 function CreateProduct() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const dispatch: Function = useDispatch();
+  const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
     checkAuth("product", navigate);
+    dispatch(clearProducts());
+    dispatch(getProductDetail(id));
   }, []);
 
   const [form, setForm] = useState<any>({
-    title: "",
+    title: detail.title,
     image1: "",
     image2: "",
     image3: "",
-    stock: 0,
-    price: 0,
-    category: "",
-    condition: "",
-    description: "",
-    punctuation: 0,
+    stock: detail.stock,
+    price: detail.price,
+    category: detail.category,
+    condition: detail.condition,
+    description: detail.description,
     moreCharacteristics: {},
   });
 
@@ -89,7 +108,6 @@ function CreateProduct() {
         price: 0,
         moreCharacteristics: {},
         description: "",
-        punctuation: 0,
         category: "",
       });
       navigate("/");
