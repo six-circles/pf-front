@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
-import { checkAuth, urlAxios } from "../../../utils";
+import { checkAuth, getToken, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function CreateProduct() {
+function CreateProduct() {
   const navigate = useNavigate();
 
   useEffect(() => {
     checkAuth("product", navigate);
-  });
+  }, []);
 
   const [form, setForm] = useState<any>({
     title: "",
@@ -56,22 +56,7 @@ export default function CreateProduct() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const user: any = window.localStorage.getItem("user");
-
-    let token;
-    let config;
-
-    if (!user) {
-      token = "";
-      config = {
-        headers: { token },
-      };
-    } else {
-      token = JSON.parse(user).token;
-      config = {
-        headers: { token },
-      };
-    }
+    const { token, config } = getToken();
 
     const obj = {
       condition: form.condition,
@@ -84,8 +69,6 @@ export default function CreateProduct() {
       moreCharacteristics: form.moreCharacteristics,
       token,
     };
-
-    console.log(obj);
 
     try {
       await urlAxios.post("/product", obj, config);
@@ -194,9 +177,7 @@ export default function CreateProduct() {
       <div className={styles.form_camp}>
         <p>Categoria</p>
         <select name="category" onChange={handleChange}>
-          <option disabled selected={true}>
-            --- Seleccione una categoria ---
-          </option>
+          <option value="">--- Seleccione una categoria ---</option>
           <option value="Technology">Tecnologia</option>
           <option value="Indumentary">Ropa</option>
           <option value="Furniture">Muebles</option>
@@ -297,3 +278,5 @@ export default function CreateProduct() {
     </form>
   );
 }
+
+export default CreateProduct;

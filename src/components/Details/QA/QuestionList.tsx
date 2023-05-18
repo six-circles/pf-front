@@ -1,16 +1,42 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./QA.scss";
+
+import { getToken, urlAxios } from "../../../utils";
+import { Axios } from "axios";
+import { useParams } from "react-router-dom";
 interface Question {
   id: number;
   text: string;
 }
 
-function QuestionList(props: any) {
+export function QuestionList(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
+  const {id}=useParams()
+const {token, config}=getToken()
 
-  const handleQuestionSubmit = (event: React.FormEvent) => {
+  const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+if (newQuestion.length > 0) {
+  const body ={token,productId:id,body:newQuestion}
+  console.log(body);
+  
+  try{
+    const response = await urlAxios.post( "/product/questions", body,config);
+    console.log(response);}
+  catch(error:any){
+    console.log(error.response.data);
+  }}}
+  
+  
+   /* if (response.data.success) {
+      const questions = await urlAxios.get("/api/question/");
+
+      setQuestions(questions.data.questions);
+      setNewQuestion("");
+      }
+
+      
 
     if (newQuestion.trim() === "") {
       return;
@@ -21,11 +47,29 @@ function QuestionList(props: any) {
       text: newQuestion,
     };
 
-    setQuestions([...questions, newQuestionObj]);
-    setNewQuestion("");
+    // Simulación del envío a la base de datos
+    /*try {
+      await saveQuestionToDatabase(newQuestionObj);
+      setQuestions([...questions, newQuestionObj]);
+      setNewQuestion("");
+    } catch (error) {
+      console.error("Error al guardar la pregunta:", error);
+    }
   };
 
+  const saveQuestionToDatabase = (question: Question) => {
+    
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        
+        console.log("Pregunta guardada en la base de datos:", question);
+        resolve();
+      }, 1000);
+    });
+  };*/
+
   return (
+    <Fragment>
     <div className="card">
       <h1>Preguntas</h1>
       <br />
@@ -62,8 +106,8 @@ function QuestionList(props: any) {
           <li key={question.id}>{question.text}</li>
         ))}
       </ul>
-    </div>
-  );
+      </div>
+      </Fragment>
+);
 }
 
-export default QuestionList;

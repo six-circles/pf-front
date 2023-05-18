@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./CardProduct.module.scss";
+import styles from "./CardVentas.module.scss";
+
 import { Rating } from "../..";
 import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiFillHeart,
-} from "react-icons/ai";
-import { FaShoppingCart } from "react-icons/fa";
-import { IoCartSharp } from "react-icons/io5";
+import { AiFillEdit } from "react-icons/ai";
+import { GoEyeClosed } from "react-icons/go";
 
 interface Product {
   id: string;
@@ -21,7 +17,7 @@ interface Product {
   condition?: string;
 }
 
-function CardProduct(props: Product) {
+function CardVentas(props: Product) {
   const [showIcons, setShowIcons] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
@@ -30,6 +26,14 @@ function CardProduct(props: Product) {
     dispatch(clearProducts());
     navigate(`/detail/${props.id}`);
     window.scrollTo(0, 0);
+  };
+
+  const handleEdit = (event: any) => {
+    event.stopPropagation();
+    navigate({
+      pathname: "create_product",
+      search: `?product=${props.id}`,
+    });
   };
 
   const handleMouseEnter = () => {
@@ -57,8 +61,8 @@ function CardProduct(props: Product) {
         <img src={props.image[0]} alt={props.name.slice(0, 10)} />
         {showIcons && (
           <div className={styles.card_icons}>
-            <AiFillHeart className={styles.icon_heart} />
-            <IoCartSharp className={styles.icon_cart} />
+            <AiFillEdit className={styles.icon_edit} onClick={handleEdit} />
+            <GoEyeClosed className={styles.icon_del} />
           </div>
         )}
       </div>
@@ -76,4 +80,4 @@ function CardProduct(props: Product) {
   );
 }
 
-export default CardProduct;
+export default CardVentas;
