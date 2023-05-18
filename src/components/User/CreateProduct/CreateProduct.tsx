@@ -22,9 +22,9 @@ interface State {
 function CreateProduct() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch: Function = useDispatch();
   const searchParams: any = new URLSearchParams(location.search);
   const product = searchParams.get("product");
-  const dispatch: Function = useDispatch();
 
   useEffect(() => {
     checkAuth("product", navigate);
@@ -41,8 +41,8 @@ function CreateProduct() {
     image3: "",
     stock: detail.stock,
     price: detail.price,
-    category: "",
-    condition: "",
+    category: detail.category,
+    condition: detail.condition,
     description: detail.description,
     moreCharacteristics: {},
   });
@@ -82,7 +82,7 @@ function CreateProduct() {
 
     const { token, config } = getToken();
 
-    const obj = {
+    const obj_post = {
       condition: form.condition,
       title: form.title,
       image: [form.image1, form.image2, form.image3],
@@ -94,12 +94,22 @@ function CreateProduct() {
       token,
     };
 
+    const obj_put = {
+      title: form.title,
+      stock: Number(form.stock),
+      price: Number(form.price),
+      description: form.description,
+    };
+
     try {
-      await urlAxios.post("/product", obj, config);
+      let data;
+      if (product)
+        data = await urlAxios.patch(`/product/${product}`, obj_put, config);
+      else data = await urlAxios.post("/product", obj_post, config);
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Producto creado",
+        title: `${product ? "Producto Editado" : "Producto Creado"}`,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -145,121 +155,125 @@ function CreateProduct() {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.form_camp}>
-        <label>Estado</label>
-        <div className={styles.form_camp_cond}>
-          <div>
+      {!product && (
+        <>
+          <div className={styles.form_camp}>
+            <label>Estado</label>
+            <div className={styles.form_camp_cond}>
+              <div>
+                <input
+                  type="radio"
+                  value="Nuevo"
+                  name="condition"
+                  onChange={handleChange}
+                />
+                <label htmlFor="nuevo">Nuevo</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  value="Usado"
+                  name="condition"
+                  onChange={handleChange}
+                />
+                <label htmlFor="usado">Usado</label>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.form_camp}>
+            <label>Imagen 1</label>
             <input
-              type="radio"
-              value="Nuevo"
-              name="condition"
+              placeholder="Ingrese al menos una imagen"
+              required
+              value={form.image1}
+              name="image1"
               onChange={handleChange}
             />
-            <label htmlFor="nuevo">Nuevo</label>
           </div>
-          <div>
+          <div className={styles.form_camp}>
+            <label>Imagen 2</label>
             <input
-              type="radio"
-              value="Usado"
-              name="condition"
+              placeholder="Ingrese al menos una imagen"
+              value={form.image2}
+              name="image2"
               onChange={handleChange}
             />
-            <label htmlFor="usado">Usado</label>
           </div>
-        </div>
-      </div>
-      <div className={styles.form_camp}>
-        <label>Imagen 1</label>
-        <input
-          placeholder="Ingrese al menos una imagen"
-          required
-          value={form.image1}
-          name="image1"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.form_camp}>
-        <label>Imagen 2</label>
-        <input
-          placeholder="Ingrese al menos una imagen"
-          value={form.image2}
-          name="image2"
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.form_camp}>
-        <label>Imagen 3</label>
-        <input
-          placeholder="Ingrese al menos una imagen"
-          value={form.image3}
-          name="image3"
-          onChange={handleChange}
-        />
-      </div>
+          <div className={styles.form_camp}>
+            <label>Imagen 3</label>
+            <input
+              placeholder="Ingrese al menos una imagen"
+              value={form.image3}
+              name="image3"
+              onChange={handleChange}
+            />
+          </div>
 
-      <div className={styles.form_camp}>
-        <p>Categoria</p>
-        <select name="category" onChange={handleChange}>
-          <option value="">--- Seleccione una categoria ---</option>
-          <option value="Technology">Tecnologia</option>
-          <option value="Indumentary">Ropa</option>
-          <option value="Furniture">Muebles</option>
-          <option value="Others">Otros</option>
-        </select>
-      </div>
+          <div className={styles.form_camp}>
+            <p>Categoria</p>
+            <select name="category" onChange={handleChange}>
+              <option value="">--- Seleccione una categoria ---</option>
+              <option value="Technology">Tecnologia</option>
+              <option value="Indumentary">Ropa</option>
+              <option value="Furniture">Muebles</option>
+              <option value="Others">Otros</option>
+            </select>
+          </div>
 
-      <div className={styles.form_camp}>
-        <p>Caracteristicas</p>
-        <label htmlFor="colors">Color</label>
-        <div className={styles.form_camp_chars}>
-          <div className="camp_chars">
-            <input
-              type="checkbox"
-              value="red"
-              name="color"
-              onChange={handleChars}
-            />
-            <label>Rojo</label>
+          <div className={styles.form_camp}>
+            <p>Caracteristicas</p>
+            <label htmlFor="colors">Color</label>
+            <div className={styles.form_camp_chars}>
+              <div className="camp_chars">
+                <input
+                  type="checkbox"
+                  value="red"
+                  name="color"
+                  onChange={handleChars}
+                />
+                <label>Rojo</label>
+              </div>
+              <div className="camp_chars">
+                <input
+                  type="checkbox"
+                  value="blue"
+                  onChange={handleChars}
+                  name="color"
+                />
+                <label>Azul</label>
+              </div>
+              <div className="camp_chars">
+                <input
+                  type="checkbox"
+                  value="black"
+                  name="color"
+                  onChange={handleChars}
+                />
+                <label>Negro</label>
+              </div>
+              <div className="camp_chars">
+                <input
+                  type="checkbox"
+                  value="white"
+                  name="color"
+                  onChange={handleChars}
+                />
+                <label>Blanco</label>
+              </div>
+              <div className="camp_chars">
+                <input
+                  type="checkbox"
+                  value="green"
+                  name="color"
+                  onChange={handleChars}
+                />
+                <label>Verde</label>
+              </div>
+            </div>
           </div>
-          <div className="camp_chars">
-            <input
-              type="checkbox"
-              value="blue"
-              onChange={handleChars}
-              name="color"
-            />
-            <label>Azul</label>
-          </div>
-          <div className="camp_chars">
-            <input
-              type="checkbox"
-              value="black"
-              name="color"
-              onChange={handleChars}
-            />
-            <label>Negro</label>
-          </div>
-          <div className="camp_chars">
-            <input
-              type="checkbox"
-              value="white"
-              name="color"
-              onChange={handleChars}
-            />
-            <label>Blanco</label>
-          </div>
-          <div className="camp_chars">
-            <input
-              type="checkbox"
-              value="green"
-              name="color"
-              onChange={handleChars}
-            />
-            <label>Verde</label>
-          </div>
-        </div>
-      </div>
-
+        </>
+      )}
       <div className={styles.form_camp}>
         <label>Precio</label>
         <input
@@ -297,7 +311,7 @@ function CreateProduct() {
           onChange={handleChange}
         ></textarea>
       </div>
-      <button>Crear</button>
+      <button>{product ? "Editar" : "Crear"}</button>
     </form>
   );
 }
