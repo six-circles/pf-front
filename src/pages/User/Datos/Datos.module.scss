@@ -6,7 +6,7 @@
   flex-direction: column;
   margin-bottom: 2.5rem;
   border: 1px solid v.$color-gray;
-  width: 80%;
+  width: 100%;
   padding: 0.8rem;
   border-radius: 5px;
 
@@ -17,12 +17,17 @@
   .dato {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    padding: 0.7rem 0.8rem;
+    padding: 0.7rem 0;
 
     .campo {
       display: flex;
       align-items: center;
       padding: 0.5rem;
+    }
+
+    p {
+      color: red;
+      font-size: 1.3rem;
     }
 
   }
@@ -36,4 +41,15 @@
   background-color: v.$color-blue;
   text-align: center;
   padding: 0.8rem;
+  margin: 1.5rem;
+}
+
+.link2 {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  color: v.$color-blue;
+  background-color: v.$color-gray;
+  text-align: center;
+  padding: 0.8rem;
+  margin: 1.5rem;
 }
