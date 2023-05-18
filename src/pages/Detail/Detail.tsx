@@ -41,7 +41,7 @@ function Detail() {
         <GalleryDetail detail={detail} data={heroSliderData} />
         <Details detail={detail} />
       </div>
-      <MoreProduct />
+      {detail?.user && <MoreProduct />}
       <div>Comentarios | Preguntas</div>
 
       {detail.questions && <QuestionList questions={detail?.questions} />}
