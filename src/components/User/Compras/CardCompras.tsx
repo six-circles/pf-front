@@ -6,7 +6,6 @@ interface Product {
   image: string;
   price: number;
 }
-
 export default function (props: Product) {
   return (
     <div className={styles.card}>
@@ -16,8 +15,9 @@ export default function (props: Product) {
       <div className={styles.info}>
         <h3 className={styles.title}>{props.name}</h3>
         <p className={styles.precio}>${props.price}</p>
-        <p className={styles.entrega}>Entregado el 08/02/2023</p>
       </div>
+
+      <p className={styles.entrega}>Entregado el 08/02/2023</p>
     </div>
   );
 }
