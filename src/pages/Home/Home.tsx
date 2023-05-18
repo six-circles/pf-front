@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Products, Slider, Filter } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { Products, Slider, Filter, Paginator } from "../../components";
 import { useSearchParams } from "react-router-dom";
 
 import {
@@ -9,9 +9,19 @@ import {
 } from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
 
+interface Product {
+  products: object[];
+}
+
+interface State {
+  products: Product;
+}
+
 function Home() {
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
+  const productsList = useSelector((state: State) => state.products);
+  const { products } = productsList;
 
   let paramSearch = params.get("search");
 
@@ -28,7 +38,8 @@ function Home() {
         <Filter />
         <div>
           {paramSearch ? "" : <Slider />}
-          <Products />
+          <Products products={products} />
+          <Paginator items={products} />
         </div>
       </div>
     </Fragment>

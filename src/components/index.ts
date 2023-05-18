@@ -13,8 +13,10 @@ import { QuestionList } from "./Details/QA/QuestionList";
 import Carrito from "./Header/carrito/Carrito";
 import CardCompras from "./User/Compras/CardCompras";
 import CardVentas from "./User/Ventas/CardVentas";
+import Paginator from "./Home/Paginator/Paginator";
 
 export {
+  Paginator,
   CardVentas,
   CardCompras,
   Header,

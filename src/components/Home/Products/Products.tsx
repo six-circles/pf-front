@@ -12,10 +12,7 @@ interface State {
   products: Products;
 }
 
-function Products() {
-  const productsList = useSelector((state: State) => state.products);
-  const { products } = productsList;
-
+function Products({ products }: any) {
   return (
     <div className={styles.products}>
       {products.map((item: any) => (
