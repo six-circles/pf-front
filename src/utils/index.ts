@@ -5,6 +5,7 @@ import detailFetch from "./detailFetch";
 import { DetailProd } from "./interfaces";
 import { createProduct } from "./postFunctions/products";
 import checkAuth from "./postFunctions/checkAuth";
+import { getUserLocal, getTokenAsHeaders, getUserRemote } from "./userLR";
 
 export {
   productsUtils,
@@ -13,5 +14,8 @@ export {
   detailFetch,
   createProduct,
   checkAuth,
+  getUserLocal,
+  getTokenAsHeaders,
+  getUserRemote,
 };
 export type { DetailProd };
