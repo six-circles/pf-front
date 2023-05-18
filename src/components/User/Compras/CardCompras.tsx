@@ -2,11 +2,14 @@ import styles from "./CardCompras.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+// import  {Rating } from "../../index"
+
 interface Product {
   id: string;
   name: string;
   image: string;
   price: number;
+  punctuation: number;
 }
 export default function (props: Product) {
   const navigate = useNavigate();
@@ -25,6 +28,8 @@ export default function (props: Product) {
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{props.name}</h3>
+        {/* <Rating punctuation={props.punctuation} /> */}
+        < button className={styles.rating}>Dejale tu comentario al vendedor!</button>
       </div>
       <div className={styles.precio}>
         <p className={styles.precio}>Total ${props.price}</p>

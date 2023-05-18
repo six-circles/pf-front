@@ -21,8 +21,7 @@ function User() {
           <CgProfile />
         </h1>
         <div className={styles.perfil}>
-          <h3  className={styles.title}>Mis Datos</h3>
-          {/* <hr></hr> */}
+          <h3 className={styles.title}  onClick={() => navigate("/user")}>Mis Datos</h3>
           <Link to="/user/shopping">Compras</Link>
           <Link to="/user/products">Ventas</Link>
           <Link to="/user/qa">Preguntas</Link>
