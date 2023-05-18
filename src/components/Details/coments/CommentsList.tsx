@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { getToken, urlAxios } from '../../../utils';
+import { useParams } from 'react-router-dom';
 
     interface Comment {
         id: number;
@@ -8,26 +10,37 @@ import React, { useState } from 'react'
       function CommentList(props:any) {
         const [comments, setComments] = useState<Comment[]>([]);
         const [newComment, setNewComment] = useState('');
-      
-        const handleCommentSubmit = (event: React.FormEvent) => {
+        const [rating, setRating]= useState(0);
+        const {token, config}=getToken()
+        const {id}=useParams()
+        const handleCommentSubmit = async(event: React.FormEvent) => {
           event.preventDefault();
       
           if (newComment.trim() === '') {
             return;
           }
       
-          const newCommentObj: Comment = {
-            id: comments.length + 1,
-            text: newComment
+          const newCommentObj= {
+            productsId: id,
+            body: newComment,
+            punctuation:rating,
+            token
           };
+          try{
+            const response = await urlAxios.post( "/product/comments", newCommentObj,config);
+            console.log(response);
+            setNewComment('');
+          }catch(error:any){
+            console.log(error.response.data);
+          }}
       
-          setComments([...comments, newCommentObj]);
-          setNewComment('');
-        };
+          //setComments([...comments, newCommentObj]);
+          
+       
       console.log(props.comments);
+      
       return (
         <div >
-        
           <div className='view'>
            {props?.comments&& props?.comments.map((item:any,index:any)=>(
             <div key={index}>
@@ -39,7 +52,8 @@ import React, { useState } from 'react'
            <br />
           <form onSubmit={handleCommentSubmit}>
             <div className='new'>
-            <input className='new'
+              <input type="number" value={rating} onChange={(event:any) => setRating(event.target.value)} min={0} max={5}/>
+            <input className='new' 
               type="text"
               value={newComment}
               onChange={event => setNewComment(event.target.value)}

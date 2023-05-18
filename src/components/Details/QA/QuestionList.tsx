@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from "react";
 import "./QA.scss";
-import  { Axios } from "axios";
 
+import { getToken, urlAxios } from "../../../utils";
+import { Axios } from "axios";
+import { useParams } from "react-router-dom";
 interface Question {
   id: number;
   text: string;
@@ -10,15 +12,25 @@ interface Question {
 export function QuestionList(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
+  const {id}=useParams()
+const {token, config}=getToken()
 
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 if (newQuestion.length > 0) {
-  const response = await Axios.post("/api/question/", {
-    text: newQuestion,
-    });
-    if (response.data.success) {
-      const questions = await Axios.get("/api/question/");
+  const body ={token,productId:id,body:newQuestion}
+  console.log(body);
+  
+  try{
+    const response = await urlAxios.post( "/product/questions", body,config);
+    console.log(response);}
+  catch(error:any){
+    console.log(error.response.data);
+  }}}
+  
+  
+   /* if (response.data.success) {
+      const questions = await urlAxios.get("/api/question/");
 
       setQuestions(questions.data.questions);
       setNewQuestion("");
@@ -98,5 +110,4 @@ if (newQuestion.length > 0) {
       </Fragment>
 );
 }
-}
-} 
+
