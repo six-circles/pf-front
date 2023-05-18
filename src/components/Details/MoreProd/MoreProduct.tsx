@@ -1,31 +1,45 @@
 import { urlAxios } from "../../../utils";
 import { useEffect, useState } from "react";
-import {getToken} from "../../../utils";
 import CardProduct from "../../Home/Products/CardProduct";
 import styles from "./MoreProducts.module.scss"
+import { useSelector} from "react-redux";
+// import { useParams } from "react-router";
+ import { DetailProd } from "../../../utils";
 
+interface Products {
+  detail: DetailProd;
+}
 
- 
+interface State {
+  products: Products;
+}
+
 export default function MoreProduct(){
-
   const [moreProducts,setMoreProducts]=useState([])
-    
-    //conseguir el token del usuario al que ingreso en detail ??
-  const getProduct =async ()=>{
-      const info = getToken()
-      const token = info.token
-      const {data} = await urlAxios(`${token}/product`)
-    //   const {data} = await urlAxios("/users")
-    // console.log(data)
-      setMoreProducts(data)
-      return moreProducts
+  // const { id } = useParams<{ id: string }>();
+  // const dispatch: Function = useDispatch();
+  const { detail } = useSelector((state: State) => state.products);
+ 
+  const getID =()=>{
+    detail 
+    const {user} =detail
+    const idUser = user?._id
+    return idUser 
   }
+  
+  const getProduct=async()=>{
+    const id = getID()
+    const {data}= await urlAxios(`/product/moreproducts/${id}`)
+    setMoreProducts(data)
+  }
+  useEffect(() => {
+    getProduct();
+}, []);
+  
+  
 
-  useEffect(  ()=>{
-      getProduct()  
-  },[])
     
-    const moreProd=moreProducts.slice(0,2)
+    const moreProd = moreProducts.slice(0,5)
     
     return (
     <div className={styles.contenedor}>
