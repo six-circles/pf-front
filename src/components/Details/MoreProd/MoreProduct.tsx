@@ -14,8 +14,9 @@ export default function MoreProduct(){
   const getProduct =async ()=>{
       const info = getToken()
       const token = info.token
-
       const {data} = await urlAxios(`${token}/product`)
+    //   const {data} = await urlAxios("/users")
+    // console.log(data)
       setMoreProducts(data)
       return moreProducts
   }
