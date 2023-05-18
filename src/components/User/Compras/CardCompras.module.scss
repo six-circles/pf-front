@@ -9,6 +9,7 @@
   cursor: pointer;
   margin-bottom: 1rem;
   gap: 1rem;
+  width: 100%;
 
   &:hover {
     scale: 1.025;
@@ -29,4 +30,25 @@
 .title {
   font-size: medium;
   margin-bottom: 1rem;
+  width: auto;
+}
+.entregado{
+    display: flex;
+    // margin-top: 5.5rem;
+    margin-left: 5rem;
+    position: relative;
+}
+.buttonDetails{
+    display: flex;
+    // position: absolute;
+    width: fit-content;
+    height: fit-content;
+}
+.entrega{
+    position: relative;
+    margin-top: 4rem;
+}
+.precio{
+    width: auto;
+    font-size: small;
 }
