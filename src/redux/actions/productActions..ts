@@ -7,7 +7,7 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
-export const POST_QUESTIONS="QUESTIONS";
+export const POST_QUESTIONS = "QUESTIONS";
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
@@ -46,8 +46,9 @@ export const getProducts = (
 export const getProductDetail = (id: string | undefined) => {
   return async (dispatch: Function) => {
     try {
+      console.log("hola");
       const { data } = await urlAxios(`/product/${id}`);
-
+      console.log(data);
       dispatch({
         type: GET_PRODUCT_DETAIL,
         payload: data[0],
@@ -93,5 +94,3 @@ export const Questions = (questions: any) => {
     });
   };
 };
-
-

@@ -29,7 +29,7 @@ function CreateProduct() {
     checkAuth("product", navigate);
     dispatch(clearProducts());
     dispatch(getProductDetail(id));
-  }, []);
+  }, [dispatch, id]);
 
   const [form, setForm] = useState<any>({
     title: detail.title,
@@ -38,11 +38,13 @@ function CreateProduct() {
     image3: "",
     stock: detail.stock,
     price: detail.price,
-    category: detail.category,
-    condition: detail.condition,
+    category: "",
+    condition: "",
     description: detail.description,
     moreCharacteristics: {},
   });
+
+  console.log(detail);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
@@ -128,7 +130,9 @@ function CreateProduct() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <button onClick={() => navigate("/user")}>Volver a perfil</button>
+      <button onClick={() => navigate("/user/products")}>
+        Volver a perfil
+      </button>
       <h2>Crear Producto</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>
