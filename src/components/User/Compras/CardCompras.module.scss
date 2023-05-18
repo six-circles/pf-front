@@ -1,0 +1,54 @@
+@use "../../../styles/variables.scss" as v;
+.card {
+  display: flex;
+  background-color: v.$color-white;
+  height: 10rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: 200ms;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  width: 100%;
+
+  &:hover {
+    scale: 1.025;
+  }
+}
+
+.card_image {
+  min-width: 10rem;
+  aspect-ratio: 1/1;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.title {
+  font-size: medium;
+  margin-bottom: 1rem;
+  width: auto;
+}
+.entregado{
+    display: flex;
+    // margin-top: 5.5rem;
+    margin-left: 5rem;
+    position: relative;
+}
+.buttonDetails{
+    display: flex;
+    // position: absolute;
+    width: fit-content;
+    height: fit-content;
+}
+.entrega{
+    position: relative;
+    margin-top: 4rem;
+}
+.precio{
+    width: auto;
+    font-size: small;
+}

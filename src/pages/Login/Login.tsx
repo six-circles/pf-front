@@ -39,7 +39,6 @@ function Login() {
 
         if (data.status === 202) {
           window.localStorage.setItem("user", JSON.stringify(data.data));
-          // alert("Bienvenido");
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -77,11 +76,12 @@ function Login() {
             <a href="#"><GrFacebookOption /></a>
           </div> */}
           <div className={styles.inputs}>
-            <label htmlFor="">Usuario</label>
+            <label htmlFor="">Correo</label>
             <input
               type="email"
               name="email"
               value={credentials.email}
+              autoComplete="email"
               onChange={handleInputChange}
             />
 
@@ -94,6 +94,7 @@ function Login() {
               type="password"
               name="password"
               value={credentials.password}
+              autoComplete="current-password"
               onChange={handleInputChange}
             />
             {errors.password && <p>{errors.password}</p>}
