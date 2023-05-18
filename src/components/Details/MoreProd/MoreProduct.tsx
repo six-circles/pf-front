@@ -1,21 +1,30 @@
-import { useSelector } from "react-redux"
+import { urlAxios } from "../../../utils";
+import { useEffect, useState } from "react";
+import {getToken} from "../../../utils";
 import CardProduct from "../../Home/Products/CardProduct";
 import styles from "./MoreProducts.module.scss"
 
-//ver de recibir SOLO los productos del vendedor de la publi
-interface Products {
-    products: object[];
-  }
-  
-  interface State {
-    products: Products;
-  }
+
  
 export default function MoreProduct(){
-    const prod =useSelector((s:State)=>s.products)
-    const {products} = prod
+
+  const [moreProducts,setMoreProducts]=useState([])
     
-    const moreProd=products.slice(0,2)
+    //conseguir el token del usuario al que ingreso en detail ??
+  const getProduct =async ()=>{
+      const info = getToken()
+      const token = info.token
+
+      const {data} = await urlAxios(`${token}/product`)
+      setMoreProducts(data)
+      return moreProducts
+  }
+
+  useEffect(  ()=>{
+      getProduct()  
+  },[])
+    
+    const moreProd=moreProducts.slice(0,2)
     
     return (
     <div className={styles.contenedor}>
