@@ -34,13 +34,13 @@ const Filter: React.FC = () => {
           </li>
         </ul> */}
         <select name="order" onChange={handleChange} className="filtrp-select">
-          <option disabled>Default</option>
-          <option value="orderPrice 1">Precio Ascendente</option>
-          <option value="orderPrice -1">Precio Descendente</option>
-          <option value="orderPunctuations 1">Rating Ascendente</option>
-          <option value="orderPunctuations -1">Rating Descendente</option>
-          <option value="orderTitle 1">Nombre Ascendente</option>
-          <option value="orderTitle -1">Nombre Descendente</option>
+          <option  className="option" disabled>Default</option>
+          <option className="option" value="orderPrice 1">Precio Ascendente</option>
+          <option className="option" value="orderPrice -1">Precio Descendente</option>
+          <option className="option" value="orderPunctuations 1">Rating Ascendente</option>
+          <option className="option" value="orderPunctuations -1">Rating Descendente</option>
+          <option className="option" value="orderTitle 1">Nombre Ascendente</option>
+          <option className="option" value="orderTitle -1">Nombre Descendente</option>
         </select>
       </div>
     </div>

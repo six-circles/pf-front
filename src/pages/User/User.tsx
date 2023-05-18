@@ -4,6 +4,7 @@ import { checkAuth} from "../../utils";
 import styles from "./User.module.scss";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
+
 //CreateProduct el formulario para crear nuevo producto dentro de ventas---> /user
 
 function User() {
@@ -20,7 +21,7 @@ function User() {
           <CgProfile />
         </h1>
         <div className={styles.perfil}>
-          <h3 className={styles.title}>Mis Datos</h3>
+          <h3  className={styles.title}>Mis Datos</h3>
           {/* <hr></hr> */}
           <Link to="/user/shopping">Compras</Link>
           <Link to="/user/products">Ventas</Link>
@@ -32,7 +33,8 @@ function User() {
       {/* <button
         onClick={() => navigate("/user/products/create_product")}
         className={styles.crearProd}
-      >
+      > 
+        
         CREAR PRODUCTO
       </button> */}
     </div>
