@@ -24,7 +24,7 @@ if (newQuestion.length > 0) {
     console.log(response);}
   catch(error:any){
     console.log(error.response.data);
-  }}}
+  }}}   
   
   return (
     <Fragment>
