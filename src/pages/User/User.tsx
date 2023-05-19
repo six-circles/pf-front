@@ -5,8 +5,6 @@ import styles from "./User.module.scss";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 
-//CreateProduct el formulario para crear nuevo producto dentro de ventas---> /user
-
 function User() {
   const navigate: Function = useNavigate();
 
@@ -29,14 +27,6 @@ function User() {
           <Link to="#">Salir</Link>
         </div>
       </div>
-
-      {/* <button
-        onClick={() => navigate("/user/products/create_product")}
-        className={styles.crearProd}
-      > 
-        
-        CREAR PRODUCTO
-      </button> */}
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
 import logo from "../../assets/icons/logo.svg";
+import { getToken } from "../../utils";
+import {useEffect} from "react"
 //agregarle validacion al "ingresa" si está ingresado salga un pop up -->ya estas ingresado
 function Footer() {
   const navigate = useNavigate();
@@ -10,7 +12,10 @@ function Footer() {
     navigate("/");
     window.scrollTo(0, 0);
   };
-
+  // useEffect(()=>{
+    
+  // },[])
+  
   return (
     <footer className={styles.footer}>
       <div className={styles.footer_cont}>
