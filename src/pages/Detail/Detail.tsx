@@ -26,13 +26,8 @@ function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
-<<<<<<< HEAD
-
-  
-=======
   const [state, setState] = useState('questions')
   console.log(detail);
->>>>>>> develop
 
   useEffect(() => {
     clearProducts();
@@ -57,9 +52,9 @@ function Detail() {
      
      <br />
      {
-    tipo === "question"
+         tipo === "question"
          ? detail.questions && <QuestionList questions={detail?.questions} />: detail.comments && <Comments comments={detail?.comments} />
-}
+      }
       
       
     </Fragment>
