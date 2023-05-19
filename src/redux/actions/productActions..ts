@@ -44,7 +44,7 @@ export const getProducts = (
           title: "No se encontraron productos",
         });
       }
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 };
