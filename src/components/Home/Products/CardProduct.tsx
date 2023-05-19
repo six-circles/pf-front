@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
-import { urlAxios } from "../../../utils";
+import { getToken, urlAxios } from "../../../utils";
 
 interface Product {
   id: string;
@@ -22,6 +22,8 @@ function CardProduct(props: Product) {
   const [showIcons, setShowIcons] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+
+  const { token } = getToken();
 
   const handleClick = () => {
     dispatch(clearProducts());
@@ -42,13 +44,13 @@ function CardProduct(props: Product) {
 
     const prod = {
       productsId: props.id,
-      userId: props.user,
+      token,
     };
     try {
       const { data } = await urlAxios.post("/user/shoppingCart", prod);
       console.log(data);
     } catch (error: any) {
-      console.log(error.response.data);
+      console.log(error.response.data.error);
     }
   };
 

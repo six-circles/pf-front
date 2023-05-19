@@ -19,6 +19,19 @@ interface State {
   products: Products;
 }
 
+const initState = {
+  condition: "",
+  title: "",
+  image1: "",
+  image2: "",
+  image3: "",
+  stock: 0,
+  price: 0,
+  moreCharacteristics: {},
+  description: "",
+  category: "",
+};
+
 function CreateProduct() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,49 +40,28 @@ function CreateProduct() {
   const product = searchParams.get("product");
   const { detail } = useSelector((state: State) => state.products);
 
-  // const getDetails = async() =>{
+  const getDetails = async () => {
+    await dispatch(clearProducts());
+    await dispatch(getProductDetail(product));
 
-  // }
+    if (detail) {
+      setForm({
+        ...form,
+        title: detail?.title,
+        stock: detail?.stock,
+        price: detail?.price,
+        description: detail?.description,
+      });
+    }
+  };
 
   useEffect(() => {
-    setForm({
-      title: "",
-      image1: "",
-      image2: "",
-      image3: "",
-      stock: "",
-      price: "",
-      category: "",
-      condition: "",
-      description: "",
-      moreCharacteristics: {},
-    });
+    setForm(initState);
     checkAuth("product", navigate);
-    dispatch(clearProducts());
-    dispatch(getProductDetail(product));
-    // if (detail) {
-    //   setForm({
-    //     ...form,
-    //     title: detail?.title,
-    //     stock: detail?.stock,
-    //     price: detail?.price,
-    //     description: detail?.description,
-    //   });
-    // }
+    getDetails();
   }, [dispatch, product]);
 
-  const [form, setForm] = useState<any>({
-    title: "",
-    image1: "",
-    image2: "",
-    image3: "",
-    stock: "",
-    price: "",
-    category: "",
-    condition: "",
-    description: "",
-    moreCharacteristics: {},
-  });
+  const [form, setForm] = useState<any>(initState);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
@@ -133,18 +125,7 @@ function CreateProduct() {
         showConfirmButton: false,
         timer: 1500,
       });
-      setForm({
-        condition: "",
-        title: "",
-        image1: "",
-        image2: "",
-        image3: "",
-        stock: 0,
-        price: 0,
-        moreCharacteristics: {},
-        description: "",
-        category: "",
-      });
+      setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
       if (!error.response.data.error) {
@@ -334,6 +315,12 @@ function CreateProduct() {
             ></textarea>
           </div>
           <button>{product ? "Guardar Cambios" : "Crear"}</button>
+          <button
+            className={styles.button_back}
+            onClick={() => navigate("/user/products")}
+          >
+            Cancelar
+          </button>
         </form>
       )}{" "}
     </>
