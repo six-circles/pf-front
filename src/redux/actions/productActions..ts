@@ -8,7 +8,7 @@ export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
-export const POST_ANSWERS = "POST_ANSWERS"
+export const POST_ANSWERS = "POST_ANSWERS";
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
@@ -18,21 +18,19 @@ export const clearProducts = () => {
 export const getProducts = (
   title: string | undefined = "",
   order: string | undefined = "",
-  type: string | undefined = "",
-  index1: number | undefined = 1,
-  index2: number | undefined = 12
+  type: string | undefined = ""
+  // index1: number | undefined = 1,
+  // index2: number | undefined = 12
 ) => {
   return async (dispatch: Function) => {
     let data;
+    // `/product?index1=${index1}&index2=${index2}&${order}=${type}`
+
     try {
       if (!title) {
-        data = await urlAxios(
-          `/product?index1=${index1}&index2=${index2}&${order}=${type}`
-        );
+        data = await urlAxios(`/product?${order}=${type}`);
       } else {
-        data = await urlAxios(
-          `/product?index1=${index1}&index2=${index2}&title=${title}&${order}=${type}`
-        );
+        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
       }
       dispatch({
         type: GET_PRODUCTS,
