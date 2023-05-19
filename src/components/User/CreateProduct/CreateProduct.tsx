@@ -41,6 +41,8 @@ function CreateProduct() {
   const { detail } = useSelector((state: State) => state.products);
 
   const getDetails = async () => {
+    setForm(initState);
+
     await dispatch(clearProducts());
     await dispatch(getProductDetail(product));
 
@@ -56,7 +58,6 @@ function CreateProduct() {
   };
 
   useEffect(() => {
-    setForm(initState);
     checkAuth("product", navigate);
     getDetails();
   }, [dispatch, product]);
