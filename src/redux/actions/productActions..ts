@@ -8,6 +8,7 @@ export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
+export const POST_ANSWERS = "POST_ANSWERS"
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
@@ -90,6 +91,15 @@ export const Questions = (questions: any) => {
     dispatch({
       type: POST_QUESTIONS,
       payload: questions,
+    });
+  };
+};
+
+export const postAnswers = (answer: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: POST_ANSWERS,
+      payload: answer,
     });
   };
 };

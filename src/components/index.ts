@@ -1,6 +1,5 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-
 import Products from "./Home/Products/Products";
 import Slider from "./Home/Slider/Slider";
 import MoreProduct from "./Details/MoreProd/MoreProduct";
@@ -13,6 +12,9 @@ import { QuestionList } from "./Details/QA/QuestionList";
 import Carrito from "./Header/carrito/Carrito";
 import CardCompras from "./User/Compras/CardCompras";
 import CardVentas from "./User/Ventas/CardVentas";
+import { QuestionUser } from "./chat/QuestionUser";
+import { Answers } from "./chat/Answers";
+
 
 export {
   CardVentas,
@@ -29,4 +31,6 @@ export {
   QuestionList,
   Comments,
   Carrito,
+  QuestionUser, 
+  Answers
 };

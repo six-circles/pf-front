@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { CardCompras } from "../../components"  //recibe un producto
 import { useSelector } from "react-redux"
 
@@ -24,4 +25,8 @@ export default function (){
         
     </div>
     )
+=======
+export default function (){
+    return <div>carrito</div>
+>>>>>>> develop
 }

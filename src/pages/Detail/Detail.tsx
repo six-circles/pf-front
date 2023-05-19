@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,14 +26,24 @@ function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
+<<<<<<< HEAD
 
   
+=======
+  const [state, setState] = useState('questions')
+  console.log(detail);
+>>>>>>> develop
 
   useEffect(() => {
     clearProducts();
     dispatch(getProductDetail(id));
     dispatch(getProducts());
   }, [dispatch, id]);
+
+  const [tipo, setTipo] = useState("comentarios");
+  const handleClick = (tipo:any) => {
+    setTipo(tipo);
+  };
 
   return (
     <Fragment>
@@ -42,10 +52,16 @@ function Detail() {
         <Details detail={detail} />
       </div>
       {detail?.user && <MoreProduct />}
-      <div>Comentarios | Preguntas</div>
-
-      {detail.questions && <QuestionList questions={detail?.questions} />}
-      {detail.comments && <Comments comments={detail?.comments} />}
+      <div><a onClick={()=>handleClick('comentarios')}>Comentario | </a><a onClick={()=>handleClick('question')}>Pregunta</a></div>
+      <br />
+     
+     <br />
+     {
+    tipo === "question"
+         ? detail.questions && <QuestionList questions={detail?.questions} />: detail.comments && <Comments comments={detail?.comments} />
+}
+      
+      
     </Fragment>
   );
 }
