@@ -52,9 +52,9 @@ function Detail() {
      
      <br />
      {
-    tipo === "question"
+         tipo === "question"
          ? detail.questions && <QuestionList questions={detail?.questions} />: detail.comments && <Comments comments={detail?.comments} />
-}
+      }
       
       
     </Fragment>
