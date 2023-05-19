@@ -43,7 +43,7 @@ function Header() {
       pathname: "/",
       search: `?search=${title}`,
     });
-    dispatch(getProducts(title));
+    // dispatch(getProducts(title));
   };
 
   const handleLogin = () => {

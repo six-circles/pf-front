@@ -13,14 +13,15 @@ function Home() {
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const queryParamsString = queryParams.toString();
+
   let paramSearch = params.get("search");
 
   useEffect(() => {
-    if (!paramSearch) {
-      dispatch(clearProducts());
-      dispatch(getProducts());
-    }
-  }, []);
+    dispatch(clearProducts());
+    dispatch(getProducts(queryParamsString));
+  }, [queryParams]);
 
   return (
     <Fragment>
