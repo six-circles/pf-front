@@ -50,7 +50,7 @@ function CardProduct(props: Product) {
     };
     try {
       const { data } = await urlAxios.post("/user/shoppingCart", prod);
-      console.log(data.response);
+      console.log(data);
     } catch (error: any) {
       console.log(error.response.data);
     }
