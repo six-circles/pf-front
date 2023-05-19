@@ -18,15 +18,9 @@ export const clearProducts = () => {
 export const getProducts = (
   title: string | undefined = "",
   order: string | undefined = "",
-<<<<<<< HEAD
-  type: string | undefined = "",
-  index1: number | undefined = 1,
-  index2: number | undefined = 50
-=======
   type: string | undefined = ""
   // index1: number | undefined = 1,
   // index2: number | undefined = 12
->>>>>>> c7e3da7aa93e82fc62b8c5b92515a5d7f475d42a
 ) => {
   return async (dispatch: Function) => {
     let data;
