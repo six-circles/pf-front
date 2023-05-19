@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getToken, urlAxios } from "../../../utils";
+import { checkAuth, getToken, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import { CardVentas } from "../../../components";
 
@@ -20,6 +20,7 @@ export default function () {
   };
 
   useEffect(() => {
+    // checkAuth("product", navigate);
     getProducts();
   }, []);
 

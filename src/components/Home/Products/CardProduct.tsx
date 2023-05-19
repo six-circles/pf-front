@@ -4,13 +4,9 @@ import styles from "./CardProduct.module.scss";
 import { Rating } from "../..";
 import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiFillHeart,
-} from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
-import { getToken, urlAxios } from "../../../utils";
+import { urlAxios } from "../../../utils";
 
 interface Product {
   id: string;
