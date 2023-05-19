@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { checkAuth, getToken, urlAxios } from "../../../utils";
+import { getToken, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
 import { CardVentas } from "../../../components";
 

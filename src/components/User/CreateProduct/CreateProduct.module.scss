@@ -19,9 +19,19 @@
     margin-top: 1rem;
     font-size: 1.8rem;
     transition: 200ms;
+    margin-right: 1rem;
 
     &:hover {
       background-color: darken(v.$color-blue, 10%);
+    }
+  }
+
+  .button_back {
+    color: v.$color-dark;
+    background-color: v.$color-gray;
+
+    &:hover {
+      background-color: darken(v.$color-gray, 10%);
     }
   }
 }

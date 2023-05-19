@@ -9,6 +9,7 @@ export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
 export const POST_ANSWERS = "POST_ANSWERS";
+
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
@@ -34,7 +35,7 @@ export const getProducts = (
       }
       dispatch({
         type: GET_PRODUCTS,
-        payload: data.data,
+        payload: data.data.products,
       });
     } catch (error: any) {
       if (error.message.includes(404)) {
@@ -51,7 +52,6 @@ export const getProducts = (
 export const getProductDetail = (id: string | undefined) => {
   return async (dispatch: Function) => {
     try {
-      console.log(id);
       const { data } = await urlAxios(`/product/${id}`);
       dispatch({
         type: GET_PRODUCT_DETAIL,

@@ -26,8 +26,8 @@ function Detail() {
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
-  const [state, setState] = useState('questions')
-  console.log(detail);
+
+  const [state, setState] = useState("questions");
 
   useEffect(() => {
     clearProducts();
@@ -36,7 +36,7 @@ function Detail() {
   }, [dispatch, id]);
 
   const [tipo, setTipo] = useState("comentarios");
-  const handleClick = (tipo:any) => {
+  const handleClick = (tipo: any) => {
     setTipo(tipo);
   };
 
@@ -47,16 +47,16 @@ function Detail() {
         <Details detail={detail} />
       </div>
       {detail?.user && <MoreProduct />}
-      <div><a onClick={()=>handleClick('comentarios')}>Comentario | </a><a onClick={()=>handleClick('question')}>Pregunta</a></div>
+      <div>
+        <a onClick={() => handleClick("comentarios")}>Comentario | </a>
+        <a onClick={() => handleClick("question")}>Pregunta</a>
+      </div>
       <br />
-     
-     <br />
-     {
-         tipo === "question"
-         ? detail.questions && <QuestionList questions={detail?.questions} />: detail.comments && <Comments comments={detail?.comments} />
-      }
-      
-      
+
+      <br />
+      {tipo === "question"
+        ? detail.questions && <QuestionList questions={detail?.questions} />
+        : detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
 }
