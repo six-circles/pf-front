@@ -25,6 +25,7 @@ function User() {
           <Link to="/user/shopping">Compras</Link>
           <Link to="/user/products">Ventas</Link>
           <Link to="/user/qa">Preguntas</Link>
+          <Link to="/user/favoritos">Favoritos</Link>
           <Link to="#">Salir</Link>
         </div>
       </div>
