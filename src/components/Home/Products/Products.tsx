@@ -1,16 +1,6 @@
-import { useSelector } from "react-redux";
 import CardProduct from "./CardProduct";
-// import { productsUtils } from "../../utils";
 
 import styles from "./Products.module.scss";
-
-interface Products {
-  products: object[];
-}
-
-interface State {
-  products: Products;
-}
 
 function Products({ products }: any) {
   return (
@@ -24,6 +14,7 @@ function Products({ products }: any) {
           punctuation={item.punctuations}
           price={item.price}
           condition={item.condition}
+          user={item.user}
         />
       ))}
     </div>
