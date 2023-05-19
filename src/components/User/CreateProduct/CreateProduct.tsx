@@ -41,8 +41,8 @@ function CreateProduct() {
     image3: "",
     stock: detail.stock,
     price: detail.price,
-    category: detail.category,
-    condition: detail.condition,
+    category: "",
+    condition: "",
     description: detail.description,
     moreCharacteristics: {},
   });
@@ -102,10 +102,8 @@ function CreateProduct() {
     };
 
     try {
-      let data;
-      if (product)
-        data = await urlAxios.patch(`/product/${product}`, obj_put, config);
-      else data = await urlAxios.post("/product", obj_post, config);
+      if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
+      else await urlAxios.post("/product", obj_post, config);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -144,7 +142,7 @@ function CreateProduct() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <button onClick={() => navigate("/user/products")}>Volver</button>
-      <h2>Crear Producto</h2>
+      <h2>{product ? "Crear Producto" : "Editar Producto"}</h2>
       <div className={styles.form_camp}>
         <label>Nombre</label>
         <input

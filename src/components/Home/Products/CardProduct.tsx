@@ -11,6 +11,7 @@ import {
 } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoCartSharp } from "react-icons/io5";
+import { getToken, urlAxios } from "../../../utils";
 
 interface Product {
   id: string;
@@ -19,6 +20,7 @@ interface Product {
   punctuation: number;
   price: number;
   condition?: string;
+  user: string;
 }
 
 function CardProduct(props: Product) {
@@ -40,6 +42,21 @@ function CardProduct(props: Product) {
     setShowIcons(false);
   };
 
+  const addToCarrito = async (event: any) => {
+    event.stopPropagation();
+
+    const prod = {
+      productsId: props.id,
+      userId: props.user,
+    };
+    try {
+      const { data } = await urlAxios.post("/user/shoppingCart", prod);
+      console.log(data.response);
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+  };
+
   let shortName: string = props.name;
 
   if (shortName.length > 50) {
@@ -58,7 +75,7 @@ function CardProduct(props: Product) {
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillHeart className={styles.icon_heart} />
-            <IoCartSharp className={styles.icon_cart} />
+            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           </div>
         )}
       </div>
