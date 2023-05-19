@@ -20,7 +20,7 @@ export const getProducts = (
   order: string | undefined = "",
   type: string | undefined = "",
   index1: number | undefined = 1,
-  index2: number | undefined = 12
+  index2: number | undefined = 50
 ) => {
   return async (dispatch: Function) => {
     let data;
@@ -45,7 +45,7 @@ export const getProducts = (
           title: "No se encontraron productos",
         });
       }
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 };

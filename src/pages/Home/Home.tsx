@@ -32,7 +32,7 @@ function Home() {
     console.log(index1, index2);
     if (!paramSearch) {
       dispatch(clearProducts());
-      dispatch(getProducts("", "", "", index1, index2));
+      dispatch(getProducts());
     }
   }, [index1, index2]);
 
@@ -45,11 +45,11 @@ function Home() {
           <Products products={products} />
         </div>
       </div>
-      <Paginator
+      {/* <Paginator
         setIndex1={setIndex1}
         setIndex2={setIndex2}
         itemsPerPage={itemsPerPage}
-      />
+      /> */}
     </Fragment>
   );
 }
