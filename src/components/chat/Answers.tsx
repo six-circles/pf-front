@@ -16,7 +16,7 @@ const {token, config}=getToken()
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 if (newAnswer.length > 0) {
-  const body ={token, id:questionId,body:newAnswer}
+  const body ={token, id:questionId, body:newAnswer}
   console.log(body);
    
   try{

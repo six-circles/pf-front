@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { getToken, urlAxios } from '../../../utils';
 import { useParams } from 'react-router-dom';
-
+import './comments.scss'
     interface Comment {
         id: number;
         text: string;
@@ -42,6 +42,7 @@ import { useParams } from 'react-router-dom';
       return (
         <div >
           <div className='view'>
+            <h1>Comentarios</h1>
            {props?.comments&& props?.comments.map((item:any,index:any)=>(
             <div key={index}>
               <p>{item.userName}</p>

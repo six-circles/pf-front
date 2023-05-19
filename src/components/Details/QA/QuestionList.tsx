@@ -29,9 +29,10 @@ if (newQuestion.length > 0) {
   return (
     <Fragment>
     <div className="card">
+      <div className="view">
       <h1>Preguntas</h1>
       <br />
-      <div>
+      <div></div>
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
