@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Products, Slider, Filter, Paginator } from "../../components";
 import { useSearchParams } from "react-router-dom";
@@ -18,6 +18,9 @@ interface State {
 }
 
 function Home() {
+  const itemsPerPage = 12;
+  const [index1, setIndex1] = useState(1);
+  const [index2, setIndex2] = useState(itemsPerPage);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const productsList = useSelector((state: State) => state.products);
@@ -26,11 +29,12 @@ function Home() {
   let paramSearch = params.get("search");
 
   useEffect(() => {
+    console.log(index1, index2);
     if (!paramSearch) {
       dispatch(clearProducts());
-      dispatch(getProducts());
+      dispatch(getProducts("", "", "", index1, index2));
     }
-  }, []);
+  }, [index1, index2]);
 
   return (
     <Fragment>
@@ -39,9 +43,13 @@ function Home() {
         <div>
           {paramSearch ? "" : <Slider />}
           <Products products={products} />
-          <Paginator items={products} />
         </div>
       </div>
+      <Paginator
+        setIndex1={setIndex1}
+        setIndex2={setIndex2}
+        itemsPerPage={itemsPerPage}
+      />
     </Fragment>
   );
 }

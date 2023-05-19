@@ -1,39 +1,31 @@
-import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../../../redux/actions/productActions.";
 
-function Paginator({ items }: any) {
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 10;
-  const dispatch: Function = useDispatch();
+import styles from "./Paginator.module.scss";
 
-  // Simulate fetching items from another resources.
-  // (This could be items from props; or items loaded in a local state
-  // from an API endpoint with useEffect and useState)
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
-
-  // Invoke when user click to request another page.
+function Paginator(props: any) {
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    setItemOffset(newOffset);
+    // console.log(event.target);
+    const newStart = event.selected * props.itemsPerPage;
+    if (newStart === 0) props.setIndex1(newStart + 1);
+    else props.setIndex1(newStart);
+    props.setIndex2(newStart + props.itemsPerPage);
   };
-
-  //   useEffect(() => {
-  //     dispatch(getProducts(currentItems));
-  //   });
 
   return (
     <ReactPaginate
       breakLabel="..."
       nextLabel="Next"
       onPageChange={handlePageClick}
-      pageRangeDisplayed={5}
-      pageCount={pageCount}
+      pageRangeDisplayed={3}
+      marginPagesDisplayed={3}
+      pageCount={3}
       previousLabel="Prev"
       renderOnZeroPageCount={null}
+      containerClassName={styles.paginator}
+      activeClassName={styles.active}
+      pageClassName={styles.page}
+      previousClassName={styles.prev}
+      nextClassName={styles.next}
     />
   );
 }
