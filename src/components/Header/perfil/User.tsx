@@ -5,12 +5,6 @@ import Swal from "sweetalert2";
 export default function User() {
   const navigate = useNavigate();
   const handleClick = () => {
-    // const salir = confirm("Desea cerrar sesion?");
-
-    // if (salir) {
-    //   window.localStorage.setItem("user", "");
-    //   navigate("/login");
-    // }
 
     Swal.fire({
       title: '¿Desea cerrar sesión?',

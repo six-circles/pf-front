@@ -16,8 +16,6 @@ interface State {
 
 export default function MoreProduct(){
   const [moreProducts,setMoreProducts]=useState([])
-  // const { id } = useParams<{ id: string }>();
-  // const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
  
   const getID =()=>{
@@ -53,6 +51,7 @@ export default function MoreProduct(){
           image={item.image}
           punctuation={item.punctuations}
           price={item.price}
+          condition={item.condition}
         />
       ))}
       </div>

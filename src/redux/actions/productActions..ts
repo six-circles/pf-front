@@ -8,6 +8,8 @@ export const ORDER_PRODUCTS = "ORDER_PRODUCTS";
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
+export const POST_ANSWERS = "POST_ANSWERS";
+
 export const clearProducts = () => {
   return (dispatch: Function) => {
     dispatch({ type: CLEAR_PRODUCTS });
@@ -19,6 +21,8 @@ export const getProducts = (
 ) => {
   return async (dispatch: Function) => {
     let data;
+    // `/product?index1=${index1}&index2=${index2}&${order}=${type}`
+
     try {
       // if (!title) {
       //   data = await urlAxios(`/product?${order}=${type}`);
@@ -33,7 +37,7 @@ export const getProducts = (
       // }
       dispatch({
         type: GET_PRODUCTS,
-        payload: data.data,
+        payload: data.data.products,
       });
     } catch (error: any) {
       if (error.message.includes(404)) {
@@ -42,7 +46,7 @@ export const getProducts = (
           title: "No se encontraron productos",
         });
       }
-      console.log(error.message);
+      // console.log(error.message);
     }
   };
 };
@@ -50,7 +54,6 @@ export const getProducts = (
 export const getProductDetail = (id: string | undefined) => {
   return async (dispatch: Function) => {
     try {
-      console.log(id);
       const { data } = await urlAxios(`/product/${id}`);
       dispatch({
         type: GET_PRODUCT_DETAIL,
@@ -94,6 +97,15 @@ export const Questions = (questions: any) => {
     dispatch({
       type: POST_QUESTIONS,
       payload: questions,
+    });
+  };
+};
+
+export const postAnswers = (answer: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: POST_ANSWERS,
+      payload: answer,
     });
   };
 };

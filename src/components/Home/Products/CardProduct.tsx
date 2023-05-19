@@ -4,13 +4,9 @@ import styles from "./CardProduct.module.scss";
 import { Rating } from "../..";
 import { useDispatch } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiFillHeart,
-} from "react-icons/ai";
-import { FaShoppingCart } from "react-icons/fa";
+import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
+import { getToken, urlAxios } from "../../../utils";
 
 interface Product {
   id: string;
@@ -19,12 +15,15 @@ interface Product {
   punctuation: number;
   price: number;
   condition?: string;
+  user?: string;
 }
 
 function CardProduct(props: Product) {
   const [showIcons, setShowIcons] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+
+  const { token } = getToken();
 
   const handleClick = () => {
     dispatch(clearProducts());
@@ -38,6 +37,21 @@ function CardProduct(props: Product) {
 
   const handleMouseLeave = () => {
     setShowIcons(false);
+  };
+
+  const addToCarrito = async (event: any) => {
+    event.stopPropagation();
+
+    const prod = {
+      productsId: props.id,
+      token,
+    };
+    try {
+      const { data } = await urlAxios.post("/user/shoppingCart", prod);
+      console.log(data);
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
   };
 
   let shortName: string = props.name;
@@ -58,7 +72,7 @@ function CardProduct(props: Product) {
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillHeart className={styles.icon_heart} />
-            <IoCartSharp className={styles.icon_cart} />
+            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           </div>
         )}
       </div>

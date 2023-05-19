@@ -20,6 +20,7 @@ export default function () {
   };
 
   useEffect(() => {
+    // checkAuth("product", navigate);
     getProducts();
   }, []);
 
