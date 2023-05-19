@@ -1,11 +1,10 @@
 function getToken() {
   const user: any = window.localStorage.getItem("user");
 
-  let token: string;
-  let config: object;
+  let token: string | undefined = undefined;
+  let config: object = {};
 
   if (!user) {
-    token = "";
     config = {
       headers: { token },
     };

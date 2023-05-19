@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuth} from "../../utils";
+import { checkAuth } from "../../utils";
 import styles from "./User.module.scss";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 function User() {
   const navigate: Function = useNavigate();
 
-  useEffect(() => {
-    checkAuth("product", navigate);
-  }, []);
+  // useEffect(() => {
+  //   checkAuth("product", navigate);
+  // }, []);
 
   const handleClick = () => {
 
@@ -39,7 +39,9 @@ function User() {
           <CgProfile />
         </h1>
         <div className={styles.perfil}>
-          <h3 className={styles.title}  onClick={() => navigate("/user")}>Mis Datos</h3>
+          <h3 className={styles.title} onClick={() => navigate("/user")}>
+            Mis Datos
+          </h3>
           <Link to="/user/shopping">Compras</Link>
           <Link to="/user/products">Ventas</Link>
           <Link to="/user/qa">Preguntas</Link>
