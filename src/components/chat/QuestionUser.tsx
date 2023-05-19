@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import "./QA.scss";
-import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
+import { getToken, urlAxios } from "../../utils";
 interface Question {
   id: number;
   text: string;
 }
 
-export function QuestionList(props: any) {
+export function QuestionUser(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
   const {id}=useParams()
@@ -24,15 +24,14 @@ if (newQuestion.length > 0) {
     console.log(response);}
   catch(error:any){
     console.log(error.response.data);
-  }}}   
+  }}}
   
   return (
     <Fragment>
     <div className="card">
-      <div className="view">
-      <h1>Preguntas</h1>
+      <center><h1>Preguntas</h1></center>
       <br />
-      <div></div>
+      <div>
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
@@ -53,11 +52,10 @@ if (newQuestion.length > 0) {
           />
         </div>
         <br />
-        <div className="send">
-          <button className="send" type="submit">
-            Publicar pregunta
+        <center><div className="send">
+          <button className="send" type="submit">Publicar pregunta
           </button>
-        </div>
+        </div></center>
       </form>
 
       <ul>
@@ -69,4 +67,3 @@ if (newQuestion.length > 0) {
       </Fragment>
 );
 }
-
