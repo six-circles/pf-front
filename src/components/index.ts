@@ -15,7 +15,7 @@ import CardVentas from "./User/Ventas/CardVentas";
 import { QuestionUser } from "./chat/QuestionUser";
 import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
-
+import CardCarrito from "./Header/carrito/CardCarrito";
 export {
   Paginator,
   CardVentas,
@@ -34,4 +34,5 @@ export {
   Carrito,
   QuestionUser,
   Answers,
+  CardCarrito
 };

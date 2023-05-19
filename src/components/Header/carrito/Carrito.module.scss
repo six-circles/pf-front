@@ -2,7 +2,7 @@
 
 .contenedor{
     display: flex;
-
+    flex-direction: column;
     background-color: v.$color-dark;
     color: v.$color-white;
     width: fit-content;
@@ -14,7 +14,24 @@
     z-index: 1;
     
 }
-.hola{
+.buttonCarrito{
+    display: flex;
+    white-space:nowrap;
     color:v.$color-white;
+    width: fit-content;
+    height: fit-content;
+    // margin: 0.3rem;
+    &:hover{
+        color:v.$color-dark;
+    }
 }
-
+.product{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.contenedor{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
