@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
 import logo from "../../assets/icons/logo.svg";
+import { getToken } from "../../utils";
+import Swal from "sweetalert2";
 //agregarle validacion al "ingresa" si está ingresado salga un pop up -->ya estas ingresado
 function Footer() {
   const navigate = useNavigate();
@@ -10,7 +12,26 @@ function Footer() {
     navigate("/");
     window.scrollTo(0, 0);
   };
-
+  const info=getToken()
+  const token= info.token
+  
+  const handleClick = () => {
+      Swal.fire({
+      title: '¿Desea cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, salir!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.localStorage.setItem("user", "");
+        navigate("/login");
+      }else{
+        navigate("/")
+      }
+    })
+  };
   return (
     <footer className={styles.footer}>
       <div className={styles.footer_cont}>
@@ -27,7 +48,10 @@ function Footer() {
         <div>
           <h3 className={styles.subtitle}> Mi Cuenta</h3>
           <Link to="/user">Panel de control</Link>
-          <Link to="/login">Ingresa</Link>
+          {
+            token? <Link to="/login" onClick={handleClick}>Salir</Link> :  <Link to="/login">Ingresa</Link>
+            
+          }
           <Link to="/user/products">Vender</Link>
         </div>
         <div>
