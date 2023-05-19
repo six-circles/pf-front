@@ -9,7 +9,6 @@ import {
   AiOutlineShoppingCart,
   AiFillHeart,
 } from "react-icons/ai";
-import { FaShoppingCart } from "react-icons/fa";
 import { IoCartSharp } from "react-icons/io5";
 import { getToken, urlAxios } from "../../../utils";
 
@@ -20,7 +19,7 @@ interface Product {
   punctuation: number;
   price: number;
   condition?: string;
-  user: string;
+  user?: string;
 }
 
 function CardProduct(props: Product) {
@@ -51,7 +50,7 @@ function CardProduct(props: Product) {
     };
     try {
       const { data } = await urlAxios.post("/user/shoppingCart", prod);
-      console.log(data.response);
+      console.log(data);
     } catch (error: any) {
       console.log(error.response.data);
     }
