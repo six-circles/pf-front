@@ -47,15 +47,15 @@ function CreateProduct() {
     checkAuth("product", navigate);
     dispatch(clearProducts());
     dispatch(getProductDetail(product));
-    if (detail) {
-      setForm({
-        ...form,
-        title: detail?.title,
-        stock: detail?.stock,
-        price: detail?.price,
-        description: detail?.description,
-      });
-    }
+    // if (detail) {
+    //   setForm({
+    //     ...form,
+    //     title: detail?.title,
+    //     stock: detail?.stock,
+    //     price: detail?.price,
+    //     description: detail?.description,
+    //   });
+    // }
   }, [dispatch, product]);
 
   const [form, setForm] = useState<any>({
