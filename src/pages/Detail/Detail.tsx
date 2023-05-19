@@ -27,7 +27,7 @@ function Detail() {
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
 
-  console.log(detail);
+  
 
   useEffect(() => {
     clearProducts();
