@@ -1,6 +1,9 @@
 @use "../../../styles/variables.scss" as v;
 
 .form {
+  margin: 0 20rem;
+  width: fit-content;
+
   h2 {
     margin-bottom: 3rem;
     font-weight: 400;
@@ -10,7 +13,9 @@
     padding: 1rem;
     background-color: v.$color-blue;
     color: v.$color-white;
-    width: 15rem;
+    min-width: 15rem;
+    width: auto;
+    max-width: 30rem;
     margin-top: 1rem;
     font-size: 1.8rem;
     transition: 200ms;
@@ -55,6 +60,10 @@
     &:focus {
       border: 0.1rem solid lighten(v.$color-blue, 10%);
     }
+  }
+
+  select {
+    width: 30rem;
   }
 }
 

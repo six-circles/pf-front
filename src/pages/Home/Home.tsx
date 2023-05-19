@@ -18,9 +18,9 @@ interface State {
 }
 
 function Home() {
-  const itemsPerPage = 12;
-  const [index1, setIndex1] = useState(1);
-  const [index2, setIndex2] = useState(itemsPerPage);
+  // const itemsPerPage = 12;
+  // const [index1, setIndex1] = useState(1);
+  // const [index2, setIndex2] = useState(itemsPerPage);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const productsList = useSelector((state: State) => state.products);
@@ -29,12 +29,11 @@ function Home() {
   let paramSearch = params.get("search");
 
   useEffect(() => {
-    console.log(index1, index2);
     if (!paramSearch) {
       dispatch(clearProducts());
       dispatch(getProducts());
     }
-  }, [index1, index2]);
+  }, [dispatch]);
 
   return (
     <Fragment>
