@@ -23,7 +23,7 @@ export default function Carrito() {
     <div>
       <div className={styles.contenedor}>
         <div className={styles.product}>
-      { prueba ? prueba.map((e:any)=><CardCarritoMenuDespl prueba={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
+      { prueba ? prueba.map((e:any)=><CardCarritoMenuDespl key={e._id}prueba={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
 
       }
         </div>

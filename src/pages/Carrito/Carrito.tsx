@@ -1,4 +1,4 @@
-// import { CardCarritoMenuDespl } from "../../components/index"
+import { CardCarritoMenuDespl } from "../../components/index"
 
 import { useSelector } from "react-redux"
 
@@ -10,7 +10,9 @@ export default function (){
 
     return (
     <div>
-        hola
+        {
+            products?.map((e:any)=><CardCarritoMenuDespl key={e._id}prueba={e}/>)
+        }
         {/* <CardCarritoMenuDespl/> */}
 
     </div>
