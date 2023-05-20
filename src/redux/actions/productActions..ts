@@ -9,6 +9,7 @@ export const VIEW_COMMENTS = "VIEW_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
 export const POST_ANSWERS = "POST_ANSWERS";
+export const SELECT_PAGE = "SELECT_PAGE";
 
 export const clearProducts = () => {
   return (dispatch: Function) => {
@@ -16,26 +17,26 @@ export const clearProducts = () => {
   };
 };
 
-export const getProducts = (
-  title: string | undefined = "",
-  order: string | undefined = "",
-  type: string | undefined = ""
-  // index1: number | undefined = 1,
-  // index2: number | undefined = 12
-) => {
+export const getProducts = (query?: any) => {
   return async (dispatch: Function) => {
     let data;
     // `/product?index1=${index1}&index2=${index2}&${order}=${type}`
 
     try {
-      if (!title) {
-        data = await urlAxios(`/product?${order}=${type}`);
-      } else {
-        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
-      }
+      // if (!title) {
+      //   data = await urlAxios(`/product?${order}=${type}`);
+      // } else {
+      //   data = await urlAxios(`/product?title=${title}&${order}=${type}`);
+      // }
+
+      // if (query) {
+      data = await urlAxios(`/product?${query}`);
+      // } else {
+      // data = await urlAxios(`/product`);
+      // }
       dispatch({
         type: GET_PRODUCTS,
-        payload: data.data.products,
+        payload: data.data,
       });
     } catch (error: any) {
       if (error.message.includes(404)) {
@@ -104,6 +105,15 @@ export const postAnswers = (answer: any) => {
     dispatch({
       type: POST_ANSWERS,
       payload: answer,
+    });
+  };
+};
+
+export const selectPage = (page: number = 0) => {
+  return (dispatch: Function) => {
+    dispatch({
+      type: SELECT_PAGE,
+      payload: page,
     });
   };
 };

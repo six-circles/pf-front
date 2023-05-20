@@ -1,11 +1,12 @@
 // import React from "react";
 import styles from "./Login.module.scss";
-// import { GrFacebookOption, GrGoogle, GrApple } from "react-icons/gr"
+import { GrGoogle } from "react-icons/gr" //GrApple, GrFacebookOption
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlAxios } from "../../utils";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface Credentials {
@@ -14,6 +15,7 @@ interface Credentials {
 }
 
 function Login() {
+  const urlBack = import.meta.env.VITE_BACK_URL || '';
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
@@ -70,11 +72,11 @@ function Login() {
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
-          {/* <div className={styles.socialContainer}>
-            <a href="#"><GrGoogle /></a>
-            <a href="#"><GrApple /></a>
-            <a href="#"><GrFacebookOption /></a>
-          </div> */}
+          <div className={styles.socialContainer}>
+            <Link to={`${urlBack}/auth/google`}><GrGoogle /></Link>
+            {/* <Link to="#"><GrApple /></Link>
+            <Link to="#"><GrFacebookOption /></Link> */}
+          </div>
           <div className={styles.inputs}>
             <label htmlFor="">Correo</label>
             <input

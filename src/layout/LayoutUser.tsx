@@ -8,7 +8,6 @@ function LayoutUser() {
   const navigate: Function = useNavigate();
 
   useEffect(() => {
-    console.log("hola");
     checkAuth("product", navigate);
   }, []);
 

@@ -1,4 +1,3 @@
-import productsUtils from "./products";
 import urlAxios from "./clientAxios";
 import heroSliderData from "./data-slider";
 import detailFetch from "./detailFetch";
@@ -10,7 +9,6 @@ import { getUserLocal, getTokenAsHeaders, getUserRemote } from "./userLR";
 
 export {
   getToken,
-  productsUtils,
   urlAxios,
   heroSliderData,
   detailFetch,
