@@ -44,7 +44,7 @@ export const validateField = (form: Credentials, err: any): object => {
   if (edad < 14) {
     error.birthday = edad + "Debe ser mayor de 14 años para registrarse "
   } else if (edad > 100) {
-    error.birthday = edad + "Edad incorrecta"
+    error.birthday = "Edad incorrecta"
   } else error.birthday = "";
 
   return error

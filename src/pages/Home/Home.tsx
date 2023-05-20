@@ -26,7 +26,11 @@ function Home() {
   const productsList = useSelector((state: State) => state.products);
   const { products } = productsList;
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const queryParamsString = queryParams.toString();
+
   let paramSearch = params.get("search");
+
 
   // const getPages = async () => {
   //   const { data }: any = await urlAxios("/product");
@@ -34,12 +38,11 @@ function Home() {
   // };
 
   useEffect(() => {
-    if (!paramSearch) {
-      dispatch(clearProducts());
-      // getPages();
-      dispatch(getProducts("", "", "", index));
-    }
-  }, [dispatch, index]);
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("index", index.toString())
+    dispatch(clearProducts());
+    dispatch(getProducts(queryParams.toString()));
+  }, [queryParamsString, index]);
 
   return (
     <Fragment>
