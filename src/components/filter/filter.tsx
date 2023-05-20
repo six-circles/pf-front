@@ -11,13 +11,15 @@ const Filter: React.FC = () => {
   const [orderBy, setOrderBy] = useState<'price' | 'name' | ''>(searchParams.get('order') as 'price' | 'name' || '');
   const [category, setCategory] = useState<string>(searchParams.get('category') || '');
   const [minPrice, setMinPrice] = useState<string>(searchParams.get('minPrice') ?? minP);
-  const [maxPrice, setMaxPrice] = useState<string>(searchParams.get('minPrice') ?? maxP);
-  const [minRating, setMinRating] = useState<string>(searchParams.get('minPrice') ?? minR);
-  const [maxRating, setMaxRating] = useState<string>(searchParams.get('minPrice') ?? maxR);
+  const [maxPrice, setMaxPrice] = useState<string>(searchParams.get('maxPrice') ?? maxP);
+  const [minRating, setMinRating] = useState<string>(searchParams.get('minRating') ?? minR);
+  const [maxRating, setMaxRating] = useState<string>(searchParams.get('maxRating') ?? maxR);
 
   useEffect(() => {
-    if (orderBy !== '') searchParams.set('order', orderBy);
-    if (category !== '') searchParams.set('category', category);
+    if (orderBy === '') searchParams.delete('order')
+    else searchParams.set('order', orderBy)
+    if (category === '') searchParams.delete('category')
+    else searchParams.set('category', category);
 
     if (minPrice !== minP || maxPrice !== maxP) {
       searchParams.set('minPrice', minPrice.toString());
@@ -99,9 +101,7 @@ const Filter: React.FC = () => {
         <label>Max Rating ({maxRating})</label>
         <input type="range" min={0} max={maxR} value={maxRating} onChange={(e) => setMaxRating(e.target.value)} />
         <br />
-        <button type="submit" >
-          Submit
-        </button>
+        <button type="submit" >Submit</button>
       </form>
 
     </div>
