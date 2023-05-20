@@ -2,28 +2,19 @@ import styles from "./Carrito.module.scss";
 import { useSelector } from "react-redux";
 import {CardCarritoMenuDespl} from "../../../index"
 import { useNavigate } from "react-router-dom";
-interface Products {
- products: any;
- 
-}
-
-interface State {
-  products: Products;
-  
-}
 
 export default function Carrito() {
 
   const navigate=useNavigate()
-  const {products} =useSelector((state:State)=>state.products)
+  const {cartProducts} =useSelector((state:any)=>state.carrito)
  
-  const prueba = products.slice(0,2)
-  console.log("Carrito",prueba)
+  const prueba = cartProducts.slice(0,2)
+  
   return (
     <div>
       <div className={styles.contenedor}>
         <div className={styles.product}>
-      { prueba ? prueba.map((e:any)=><CardCarritoMenuDespl key={e._id}prueba={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
+      { prueba ? prueba.map((e:any)=><CardCarritoMenuDespl key={e._id}product={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
 
       }
         </div>
