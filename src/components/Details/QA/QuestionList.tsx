@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./QA.scss";
+import { getToken, urlAxios } from "../../../utils";
+import { useParams } from "react-router-dom";
 interface Question {
   id: number;
   text: string;
 }
 
-function QuestionList(props: any) {
+export function QuestionList(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
+  const {id}=useParams()
+const {token, config}=getToken()
 
-  const handleQuestionSubmit = (event: React.FormEvent) => {
+  const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (newQuestion.trim() === "") {
-      return;
-    }
-
-    const newQuestionObj: Question = {
-      id: questions.length + 1,
-      text: newQuestion,
-    };
-
-    setQuestions([...questions, newQuestionObj]);
-    setNewQuestion("");
-  };
-
+if (newQuestion.length > 0) {
+  const body ={token,productId:id,body:newQuestion}
+  console.log(body);
+  
+  try{
+    const response = await urlAxios.post( "/product/questions", body,config);
+    console.log(response);}
+  catch(error:any){
+    console.log(error.response.data);
+  }}}   
+  
   return (
+    <Fragment>
     <div className="card">
+      <div className="view">
       <h1>Preguntas</h1>
       <br />
-      <div>
+      <div></div>
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
@@ -62,8 +65,8 @@ function QuestionList(props: any) {
           <li key={question.id}>{question.text}</li>
         ))}
       </ul>
-    </div>
-  );
+      </div>
+      </Fragment>
+);
 }
 
-export default QuestionList;

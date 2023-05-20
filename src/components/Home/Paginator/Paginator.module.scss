@@ -1,0 +1,33 @@
+@use "../../../styles/variables.scss" as v;
+
+.paginator {
+  width: fit-content;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.active {
+  background-color: lighten(v.$color-blue, 30%);
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+}
+
+.prev,
+.next {
+  background-color: v.$color-blue;
+  color: v.$color-white;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: darken(v.$color-blue, 10%);
+  }
+}

@@ -1,9 +1,16 @@
-// import { Fragment } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import User from "../pages/User/User";
 import styles from "./LayoutUser.module.scss";
+import { checkAuth } from "../utils";
 
 function LayoutUser() {
+  const navigate: Function = useNavigate();
+
+  useEffect(() => {
+    checkAuth("product", navigate);
+  }, []);
+
   return (
     <div className={styles.perfil}>
       <User />

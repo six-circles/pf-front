@@ -1,50 +1,112 @@
-import "./filter.scss";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  getProducts,
-  orderProducts,
-} from "../../redux/actions/productActions.";
-import { useSearchParams } from "react-router-dom";
+import styles from "./filter.module.scss"
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Filter: React.FC = () => {
-  const dispatch: any = useDispatch();
-  const [params] = useSearchParams();
-  const title = params.get("search") || "";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  let minP = "0", maxP = "5000", minR = "0", maxR = "5";
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = event.target;
-    const order = value.split(" ")[0];
-    const type = value.split(" ")[1];
-    dispatch(getProducts(title, order, type));
+  const [orderBy, setOrderBy] = useState<'price' | 'name' | ''>(searchParams.get('order') as 'price' | 'name' || '');
+  const [category, setCategory] = useState<string>(searchParams.get('category') || '');
+  const [minPrice, setMinPrice] = useState<string>(searchParams.get('minPrice') ?? minP);
+  const [maxPrice, setMaxPrice] = useState<string>(searchParams.get('maxPrice') ?? maxP);
+  const [minRating, setMinRating] = useState<string>(searchParams.get('minRating') ?? minR);
+  const [maxRating, setMaxRating] = useState<string>(searchParams.get('maxRating') ?? maxR);
+
+  useEffect(() => {
+    if (orderBy === '') searchParams.delete('order')
+    else searchParams.set('order', orderBy)
+    if (category === '') searchParams.delete('category')
+    else searchParams.set('category', category);
+
+    if (minPrice !== minP || maxPrice !== maxP) {
+      searchParams.set('minPrice', minPrice.toString());
+      searchParams.set('maxPrice', maxPrice.toString());
+    }
+
+    if (minRating !== minR || maxRating !== maxR) {
+      searchParams.set('minRating', minRating.toString());
+      searchParams.set('maxRating', maxRating.toString());
+    }
+
+    navigate({ search: searchParams.toString() });
+  }, [orderBy, category]);
+
+  const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOrderBy = event.target.value as 'price' | 'name' | '';
+    setOrderBy(selectedOrderBy);
   };
 
-  // !!falta combinarlo con la busqueda por nombre
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCategory = event.target.value;
+    setCategory(selectedCategory);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    const searchParams = new URLSearchParams(location.search);
+
+    // if (orderBy !== '') searchParams.set('order', orderBy);
+    // if (category !== '') searchParams.set('category', category);
+
+    if (minPrice !== minR || maxPrice !== maxP) {
+      searchParams.set('minPrice', minPrice.toString());
+      searchParams.set('maxPrice', maxPrice.toString());
+    }
+
+    if (minRating !== minR || maxRating !== maxR) {
+      searchParams.set('minRating', minRating.toString());
+      searchParams.set('maxRating', maxRating.toString());
+    }
+
+    navigate({ search: searchParams.toString() });
+  };
 
   return (
-    <div className="seccion">
-      <div className="filtro">
-        <h4>Orden</h4>
-        {/* <ul>
-          <li id="" onClick={handleclick}>
-            Precio ascendente
-          </li>
-          <li id="menor" onClick={handleclick}>
-            Precio descendente
-          </li>
-        </ul> */}
-        <select name="order" onChange={handleChange} className="filtrp-select">
-          <option disabled>Default</option>
-          <option value="orderPrice 1">Precio Ascendente</option>
-          <option value="orderPrice -1">Precio Descendente</option>
-          <option value="orderPunctuations 1">Rating Ascendente</option>
-          <option value="orderPunctuations -1">Rating Descendente</option>
-          <option value="orderTitle 1">Nombre Ascendente</option>
-          <option value="orderTitle -1">Nombre Descendente</option>
+    <div>
+      <form className={styles.contForm}>
+        <label>Ordenar por: </label>
+        <select value={orderBy} onChange={handleOrderByChange}>
+          <option value="">Ninguno</option>
+          <option value="price">Precio Ascendente</option>
+          <option value="-price">Precio Descendente</option>
+          <option value="title">Nombre Ascendente</option>
+          <option value="-title">Nombre Descendente</option>
+          <option value="punctuations">Rating Ascendente</option>
+          <option value="-punctuations">Rating Descendente</option>
         </select>
-      </div>
+
+        <br />
+        <label> Categoría:</label>
+        <select value={category} onChange={handleCategoryChange}>
+          <option value="">Ninguno</option>
+          <option value="Technology">Tecnología</option>
+          <option value="Indumentary">Ropa</option>
+          <option value="Furniture">Muebles</option>
+          <option value="Others">Otros</option>
+        </select>
+      </form>
+      <br />
+      <form onSubmit={handleSubmit} className={styles.contForm}>
+        <label>Precio mínimo ({minPrice})</label>
+        <input type="range" min={0} max={maxP} value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+        <label>Precio máximo ({maxPrice})</label>
+        <input type="range" min={0} max={maxP} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+        <br />
+
+        <label>Rating minimo ({minRating})</label>
+        <input type="range" min={0} max={maxR} value={minRating} onChange={(e) => setMinRating(e.target.value)} />
+        <label>Rating máximo ({maxRating})</label>
+        <input type="range" min={0} max={maxR} value={maxRating} onChange={(e) => setMaxRating(e.target.value)} />
+        <br />
+        <button type="submit" >Filtros max y min</button>
+      </form>
+
     </div>
   );
 };
+
 
 export default Filter;

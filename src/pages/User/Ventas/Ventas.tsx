@@ -20,6 +20,7 @@ export default function () {
   };
 
   useEffect(() => {
+    // checkAuth("product", navigate);
     getProducts();
   }, []);
 
@@ -37,6 +38,7 @@ export default function () {
             price={item.price}
             name={item.title}
             condition={item.condition}
+            enable={item.enable}
           />
         ))}
       </div>

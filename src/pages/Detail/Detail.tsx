@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,7 +7,6 @@ import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail"
 
 import { DetailProd, heroSliderData } from "../../utils";
 import styles from "./Detail.module.scss";
-
 
 import {
   clearProducts,
@@ -30,9 +29,14 @@ function Detail() {
 
   useEffect(() => {
     clearProducts();
-    dispatch(getProducts());
     dispatch(getProductDetail(id));
+    dispatch(getProducts());
   }, [dispatch, id]);
+
+  const [tipo, setTipo] = useState("comentarios");
+  const handleClick = (tipo: any) => {
+    setTipo(tipo);
+  };
 
   return (
     <Fragment>
@@ -40,11 +44,17 @@ function Detail() {
         <GalleryDetail detail={detail} data={heroSliderData} />
         <Details detail={detail} />
       </div>
-      <MoreProduct />
-      <div>Comentarios | Preguntas</div>
-      
-      {detail.questions && <QuestionList questions={detail?.questions} />}
-      {detail.comments && <Comments comments={detail?.comments} />}
+      {detail?.user && <MoreProduct />}
+      <div>
+        <a onClick={() => handleClick("comentarios")}>Comentario | </a>
+        <a onClick={() => handleClick("question")}>Pregunta</a>
+      </div>
+      <br />
+
+      <br />
+      {tipo === "question"
+        ? detail.questions && <QuestionList questions={detail?.questions} />
+        : detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
 }

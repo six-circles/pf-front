@@ -1,11 +1,10 @@
 import {
   GET_PRODUCTS,
   GET_PRODUCT_DETAIL,
-  ORDER_PRODUCTS,
   VIEW_COMMENTS,
   POST_COMMENTS,
   CLEAR_PRODUCTS,
-  POST_QUESTIONS,
+ POST_ANSWERS
 } from "../actions/productActions.";
 
 const initialState = {
@@ -55,6 +54,11 @@ const productsReducer = (state = initialState, action: Action) => {
       };
     }
 
+    case POST_ANSWERS:
+      return {
+        ...state,
+        answer: { ...action.payload },
+      };
 
     default:
       return state;

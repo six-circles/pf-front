@@ -20,8 +20,8 @@ export const validateField = (form: Credentials, err: any): object => {
     } else errors.email = ""
   }
   if (form.password) {
-    if (form.password.length < 6) {
-      errors.password = "La contraseña debe tener al menos 6 caracteres.";
+    if (form.password.length < 8) {
+      errors.password = "La contraseña debe tener al menos 8 caracteres.";
     } else errors.password = ""
   }
 

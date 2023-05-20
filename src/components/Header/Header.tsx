@@ -4,7 +4,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/Carrito";
+import Carrito from "./carrito/MenuDespleg/Carrito";
 import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
@@ -19,6 +19,9 @@ function Header() {
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+
+  const queryParams = new URLSearchParams(window.location.search);
+  // queryParams.toString();
 
   const username: any = window.localStorage.getItem("user");
   let user;
@@ -39,11 +42,8 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate({
-      pathname: "/",
-      search: `?search=${title}`,
-    });
-    dispatch(getProducts(title));
+    queryParams.set("search", title)
+    navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {

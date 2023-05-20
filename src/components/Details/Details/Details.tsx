@@ -1,14 +1,51 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
-import { DetailProd } from "../../../utils";
+import { DetailProd, getToken, urlAxios } from "../../../utils";
+import { getCartProducts } from "../../../redux/actions/carritoActions";
 
 interface DetailsProps {
   detail: DetailProd;
 }
 
 function Details({ detail }: DetailsProps) {
+  const { token } = getToken();
+  const config = { token, productsId: detail._id };
+  const productInit = {
+    cantidad: 0,
+    characteristics: {},
+  };
+  const [cart, setCart] = useState(productInit);
+  const dispatch: Function = useDispatch();
+
   const prodChars =
     detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
+
+  const handleSetCart = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setCart({ ...cart, [name]: value });
+
+    console.log(detail, config);
+  };
+
+  const submitAddCart = async (event: any) => {
+    event.preventDefault();
+    console.log(cart);
+
+    if (cart.cantidad > 0) {
+      try {
+        for (let i = 0; i < cart.cantidad; i++) {
+          await urlAxios.post("user/shoppingCart", config);
+        }
+
+        dispatch(getCartProducts());
+        setCart(productInit);
+      } catch (err: any) {
+        console.log(err.response);
+      }
+    }
+  };
 
   return (
     <div className={styles.details}>
@@ -59,11 +96,14 @@ function Details({ detail }: DetailsProps) {
         <div className={styles.cant}>
           <input
             type="number"
+            name="cantidad"
             placeholder={`1 - ${detail.stock}`}
+            value={!cart.cantidad ? "" : cart.cantidad}
             min={1}
             max={detail.stock}
+            onChange={handleSetCart}
           />
-          <button>Agregar al carrito</button>
+          <button onClick={submitAddCart}>Agregar al carrito</button>
         </div>
         <button className={styles.button_buy}>Comprar</button>
       </div>
