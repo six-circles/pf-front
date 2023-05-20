@@ -24,6 +24,8 @@ export default function (props: any) {
     navigate(`/detail/${id}`)
     }
   const name = prod.title.slice(0,13)
+  const cant = prod.cantidadCarrito
+  console.log(cant)
   return (
     <div>
       { 
@@ -39,10 +41,10 @@ export default function (props: any) {
                 className={styles.input}
                 type="number"
                 name="cantidad"
-                placeholder={`1`}
-                value="1"
+                placeholder={cant}
+                value={cant}
                 min={1}
-                max={1}  
+                max={cant}  
             />
           </div>
           <button onClick={()=>details(id)} className={styles.buttonDetails}>Detalles</button>
