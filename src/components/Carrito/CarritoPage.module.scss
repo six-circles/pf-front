@@ -33,9 +33,10 @@
 .cantidad{
     display: flex;
     flex-direction: row;
-    margin-left: 5rem;
+    margin-left: 8rem;
     width:fit-content;
     height: 3rem;
+    gap: 1rem;
 }
 .buttonDetails{
     display: flex;
