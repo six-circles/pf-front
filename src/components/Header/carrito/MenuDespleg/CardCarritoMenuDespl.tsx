@@ -1,4 +1,4 @@
-import styles from "./CardCarrito.module.scss"
+import styles from "./CardCarritoMenuDespl.module.scss"
 
 export default function(props:any){
 

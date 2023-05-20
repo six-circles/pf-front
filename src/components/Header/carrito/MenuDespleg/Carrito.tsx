@@ -1,6 +1,6 @@
 import styles from "./Carrito.module.scss";
 import { useSelector } from "react-redux";
-import {CardCarrito} from "../../index"
+import {CardCarritoMenuDespl} from "../../../index"
 import { useNavigate } from "react-router-dom";
 interface Products {
  products: any;
@@ -23,7 +23,7 @@ export default function Carrito() {
     <div>
       <div className={styles.contenedor}>
         <div className={styles.product}>
-      { prueba ? prueba.map((e:any)=><CardCarrito prueba={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
+      { prueba ? prueba.map((e:any)=><CardCarritoMenuDespl prueba={e}/>) : <p className={styles.hola}>No hay nada aquí!</p>
 
       }
         </div>

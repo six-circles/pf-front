@@ -9,13 +9,13 @@ import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
 import Comments from "./Details/coments/comments";
 import { QuestionList } from "./Details/QA/QuestionList";
-import Carrito from "./Header/carrito/Carrito";
+import Carrito from "./Header/carrito/MenuDespleg/Carrito";
 import CardCompras from "./User/Compras/CardCompras";
 import CardVentas from "./User/Ventas/CardVentas";
 import { QuestionUser } from "./chat/QuestionUser";
 import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
-import CardCarrito from "./Header/carrito/CardCarrito";
+import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 export {
   Paginator,
   CardVentas,
@@ -34,5 +34,5 @@ export {
   Carrito,
   QuestionUser,
   Answers,
-  CardCarrito
+  CardCarritoMenuDespl,
 };
