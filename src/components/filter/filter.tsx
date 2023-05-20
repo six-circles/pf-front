@@ -1,16 +1,13 @@
 import styles from "./filter.module.scss"
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  getProducts,
-  // orderProducts,
-} from "../../redux/actions/productActions.";
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Filter: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
+
+  // let minP = "0", maxP = "5000", minR = "0", maxR = "5";
 
   const [orderBy, setOrderBy] = useState<'price' | 'name' | ''>(
     searchParams.get('order') as 'price' | 'name' || ''
@@ -26,7 +23,7 @@ const Filter: React.FC = () => {
     if (category !== '') newSearchParams.set('category', category);
 
     navigate({ search: newSearchParams.toString() });
-  }, [orderBy, category, history]);
+  }, [orderBy, category]);
 
   const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOrderBy = event.target.value as 'price' | 'name' | '';
@@ -40,6 +37,18 @@ const Filter: React.FC = () => {
     setCategory(selectedCategory);
   };
 
+  // const handleMinMaxSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+
+  //   const form = event.target as HTMLFormElement;
+  //   const minPrice = form.elements['minPrice'].value;
+  //   const maxPrice = form.elements['maxPrice'].value;
+  //   const minRating = form.elements['minRating'].value;
+  //   const maxRating = form.elements['maxRating'].value;
+
+  //   // setMyQuery({ ...myQuery, minPrice: minPrice, maxPrice: maxPrice, minRating: minRating, maxRating: maxRating })
+  // };
+
   return (
     <div>
       <form className={styles.contForm}>
@@ -48,8 +57,10 @@ const Filter: React.FC = () => {
           <option value="">Ninguno</option>
           <option value="price">Precio Ascendente</option>
           <option value="-price">Precio Descendente</option>
-          <option value="rating">Rating Ascendente</option>
-          <option value="-rating">Rating Descendente</option>
+          <option value="title">Nombre Ascendente</option>
+          <option value="-title">Nombre Descendente</option>
+          <option value="punctuations">Rating Ascendente</option>
+          <option value="-punctuations">Rating Descendente</option>
         </select>
 
         <br />
@@ -64,16 +75,16 @@ const Filter: React.FC = () => {
       </form>
 
       {/* <form onSubmit={handleMinMaxSubmit}>
-        <label htmlFor="minPrice">Min Price ({myQuery.minPrice}):</label>
+        <label htmlFor="minPrice">Min Price ({minPrice}):</label>
         <input name="minPrice" defaultValue={minP} min={minP} max={maxP} type="range" />
 
-        <label htmlFor="maxPrice">Max Price ({myQuery.maxPrice}):</label>
+        <label htmlFor="maxPrice">Max Price ({maxPrice}):</label>
         <input name="maxPrice" defaultValue={maxP} min={minP} max={maxP} type="range" />
 
-        <label htmlFor="minRating">Min Rating ({myQuery.minRating}):</label>
+        <label htmlFor="minRating">Min Rating ({minRating}):</label>
         <input name="minRating" defaultValue={minR} min={minR} max={maxR} type="range" />
 
-        <label htmlFor="maxRating">Max Rating ({myQuery.maxRating}):</label>
+        <label htmlFor="maxRating">Max Rating ({maxRating}):</label>
         <input name="maxRating" defaultValue={maxR} min={minR} max={maxR} type="range" />
 
         <button type="submit">Filtrar</button>

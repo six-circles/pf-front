@@ -34,7 +34,7 @@ function Home() {
   useEffect(() => {
     dispatch(clearProducts());
     dispatch(getProducts(queryParamsString));
-  }, [queryParams]);
+  }, [queryParamsString]);
 
   return (
     <Fragment>
