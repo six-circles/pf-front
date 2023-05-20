@@ -42,9 +42,9 @@ export default function (props: any) {
                 type="number"
                 name="cantidad"
                 placeholder={cant}
-                value={cant}
+                // value={cant}
                 min={1}
-                max={cant}  
+                max={""}  
             />
           </div>
           <button onClick={()=>details(id)} className={styles.buttonDetails}>Detalles</button>
