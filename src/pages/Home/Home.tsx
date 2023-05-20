@@ -8,6 +8,7 @@ import {
   getProducts,
 } from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
+import { urlAxios } from "../../utils";
 
 interface Product {
   products: object[];
@@ -18,22 +19,30 @@ interface State {
 }
 
 function Home() {
-  // const itemsPerPage = 12;
-  // const [index1, setIndex1] = useState(1);
-  // const [index2, setIndex2] = useState(itemsPerPage);
+  const [index, setIndex] = useState(0);
+  const [pages, setPages] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const productsList = useSelector((state: State) => state.products);
   const { products } = productsList;
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const queryParamsString = queryParams.toString();
+
   let paramSearch = params.get("search");
 
+
+  // const getPages = async () => {
+  //   const { data }: any = await urlAxios("/product");
+  //   console.log(data);
+  // };
+
   useEffect(() => {
-    if (!paramSearch) {
-      dispatch(clearProducts());
-      dispatch(getProducts());
-    }
-  }, [dispatch]);
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("index", index.toString())
+    dispatch(clearProducts());
+    dispatch(getProducts(queryParams.toString()));
+  }, [queryParamsString, index]);
 
   return (
     <Fragment>
@@ -44,11 +53,7 @@ function Home() {
           <Products products={products} />
         </div>
       </div>
-      {/* <Paginator
-        setIndex1={setIndex1}
-        setIndex2={setIndex2}
-        itemsPerPage={itemsPerPage}
-      /> */}
+      <Paginator setIndex={setIndex} pages={pages} />
     </Fragment>
   );
 }

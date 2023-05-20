@@ -10,6 +10,7 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
+import { useDetailProduct } from "../../../hooks/products";
 
 interface Products {
   detail: DetailProd;
@@ -19,49 +20,48 @@ interface State {
   products: Products;
 }
 
-const initState = {
-  condition: "",
-  title: "",
-  image1: "",
-  image2: "",
-  image3: "",
-  stock: 0,
-  price: 0,
-  moreCharacteristics: {},
-  description: "",
-  category: "",
-};
-
 function CreateProduct() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch: Function = useDispatch();
-  const searchParams: any = new URLSearchParams(location.search);
-  const product = searchParams.get("product");
-  const { detail } = useSelector((state: State) => state.products);
-
-  const getDetails = async () => {
-    await dispatch(clearProducts());
-    await dispatch(getProductDetail(product));
-
-    if (detail) {
-      setForm({
-        ...form,
-        title: detail?.title,
-        stock: detail?.stock,
-        price: detail?.price,
-        description: detail?.description,
-      });
-    }
+  const initState = {
+    condition: "",
+    title: "",
+    image1: "",
+    image2: "",
+    image3: "",
+    stock: 0,
+    price: 0,
+    moreCharacteristics: {},
+    description: "",
+    category: "",
   };
 
-  useEffect(() => {
-    setForm(initState);
-    checkAuth("product", navigate);
-    getDetails();
-  }, [dispatch, product]);
-
   const [form, setForm] = useState<any>(initState);
+  const navigate = useNavigate();
+  const dispatch: Function = useDispatch();
+  const { detail } = useSelector((state: State) => state.products);
+
+  // const getDetails = async () => {
+  //   const tempForm = { ...initState }; // Estado local temporal para mantener los valores
+
+  //   console.log(product);
+
+  //   await dispatch(clearProducts());
+  //   await dispatch(getProductDetail(product));
+
+  //   if (product && detail) {
+  //     tempForm.title = detail.title;
+  //     tempForm.stock = detail.stock;
+  //     tempForm.price = detail.price;
+  //     tempForm.description = detail.description;
+  //   }
+
+  //   setForm(tempForm); // Asigna el estado actualizado
+  // };
+
+  useEffect(() => {
+    checkAuth("product", navigate);
+  }, []);
+
+  const product = "hola";
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>

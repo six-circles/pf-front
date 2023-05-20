@@ -17,22 +17,24 @@ export const clearProducts = () => {
 };
 
 export const getProducts = (
-  title: string | undefined = "",
-  order: string | undefined = "",
-  type: string | undefined = ""
-  // index1: number | undefined = 1,
-  // index2: number | undefined = 12
+  query?: any
 ) => {
   return async (dispatch: Function) => {
     let data;
     // `/product?index1=${index1}&index2=${index2}&${order}=${type}`
 
     try {
-      if (!title) {
-        data = await urlAxios(`/product?${order}=${type}`);
-      } else {
-        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
-      }
+      // if (!title) {
+      //   data = await urlAxios(`/product?${order}=${type}`);
+      // } else {
+      //   data = await urlAxios(`/product?title=${title}&${order}=${type}`);
+      // }
+
+      // if (query) {
+      data = await urlAxios(`/product?${query}`);
+      // } else {
+      // data = await urlAxios(`/product`);
+      // }
       dispatch({
         type: GET_PRODUCTS,
         payload: data.data.products,
