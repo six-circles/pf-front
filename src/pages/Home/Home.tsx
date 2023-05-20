@@ -31,15 +31,18 @@ function Home() {
 
   let paramSearch = params.get("search");
 
+
   // const getPages = async () => {
   //   const { data }: any = await urlAxios("/product");
   //   console.log(data);
   // };
 
   useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("index", index.toString())
     dispatch(clearProducts());
-    dispatch(getProducts(queryParamsString));
-  }, [queryParamsString]);
+    dispatch(getProducts(queryParams.toString()));
+  }, [queryParamsString, index]);
 
   return (
     <Fragment>
