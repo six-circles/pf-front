@@ -11,10 +11,10 @@ interface DetailsProps {
 
 function Details({ detail }: DetailsProps) {
   const { token } = getToken();
+  const config = { token, productsId: detail._id };
   const productInit = {
     cantidad: 0,
     characteristics: {},
-    config: { token, productsId: detail._id },
   };
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
@@ -25,9 +25,9 @@ function Details({ detail }: DetailsProps) {
   const handleSetCart = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCart({ ...cart, [name]: value });
-  };
 
-  console.log(detail);
+    console.log(detail, config);
+  };
 
   const submitAddCart = async (event: any) => {
     event.preventDefault();
@@ -35,17 +35,13 @@ function Details({ detail }: DetailsProps) {
 
     if (cart.cantidad > 0) {
       try {
-        const promises = [];
         for (let i = 0; i < cart.cantidad; i++) {
-          promises.push(urlAxios.post("/user/shoppingCart", cart.config));
+          await urlAxios.post("user/shoppingCart", config);
         }
-        console.log(promises);
-        await Promise.all(promises);
-
         dispatch(getCartProducts());
         setCart(productInit);
       } catch (err: any) {
-        console.log(err.reponse);
+        console.log(err.response);
       }
     }
   };
