@@ -7,6 +7,7 @@ import { clearProducts } from "../../../redux/actions/productActions.";
 import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
 import { getToken, urlAxios } from "../../../utils";
+import { getCartProducts } from "../../../redux/actions/carritoActions";
 
 interface Product {
   id: string;
@@ -47,8 +48,8 @@ function CardProduct(props: Product) {
       token,
     };
     try {
-      const { data } = await urlAxios.post("/user/shoppingCart", prod);
-      console.log(data);
+      await urlAxios.post("/user/shoppingCart", prod);
+      dispatch(getCartProducts());
     } catch (error: any) {
       console.log(error.response.data.error);
     }
