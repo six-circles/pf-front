@@ -3,23 +3,27 @@
     display: flex;
     height:10rem;
     background-color:v.$color-gray ;
-    // width:auto;
 }
 .precio{
     display: flex;
     position: relative;
     left: 4rem;
+    cursor:default;
+    width: fit-content;
 }
 .title{
+    width: fit-content;
     margin-left: 2rem;
     margin-right: 2rem;
     white-space: nowrap;
+    cursor:default;
 }
 .img{
     width: fit-content;
 }
 .buttonEliminar{
-    // display: flex;
+    display: flex;
+    position: relative;
     height: fit-content;
     width: fit-content;
     background-color: red;
@@ -33,6 +37,7 @@
 .cantidad{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin-left: 8rem;
     width:fit-content;
     height: 3rem;
@@ -45,4 +50,7 @@
     font-size: xx-small;
     width: fit-content;
     height: fit-content;
+}
+.cant{
+    width: fit-content;
 }
