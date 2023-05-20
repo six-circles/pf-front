@@ -4,7 +4,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/Carrito";
+import Carrito from "./carrito/MenuDespleg/Carrito";
 import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";

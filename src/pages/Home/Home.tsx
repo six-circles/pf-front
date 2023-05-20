@@ -8,6 +8,7 @@ import {
   getProducts,
 } from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
+import { urlAxios } from "../../utils";
 
 interface Product {
   products: object[];
@@ -18,9 +19,8 @@ interface State {
 }
 
 function Home() {
-  // const itemsPerPage = 12;
-  // const [index1, setIndex1] = useState(1);
-  // const [index2, setIndex2] = useState(itemsPerPage);
+  const [index, setIndex] = useState(0);
+  const [pages, setPages] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const productsList = useSelector((state: State) => state.products);
@@ -30,6 +30,11 @@ function Home() {
   const queryParamsString = queryParams.toString();
 
   let paramSearch = params.get("search");
+
+  // const getPages = async () => {
+  //   const { data }: any = await urlAxios("/product");
+  //   console.log(data);
+  // };
 
   useEffect(() => {
     dispatch(clearProducts());
@@ -45,11 +50,7 @@ function Home() {
           <Products products={products} />
         </div>
       </div>
-      {/* <Paginator
-        setIndex1={setIndex1}
-        setIndex2={setIndex2}
-        itemsPerPage={itemsPerPage}
-      /> */}
+      <Paginator setIndex={setIndex} pages={pages} />
     </Fragment>
   );
 }
