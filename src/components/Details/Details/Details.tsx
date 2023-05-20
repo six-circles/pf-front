@@ -38,6 +38,7 @@ function Details({ detail }: DetailsProps) {
         for (let i = 0; i < cart.cantidad; i++) {
           await urlAxios.post("user/shoppingCart", config);
         }
+
         dispatch(getCartProducts());
         setCart(productInit);
       } catch (err: any) {
