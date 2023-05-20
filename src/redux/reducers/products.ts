@@ -4,7 +4,8 @@ import {
   VIEW_COMMENTS,
   POST_COMMENTS,
   CLEAR_PRODUCTS,
- POST_ANSWERS
+  POST_ANSWERS,
+  SELECT_PAGE,
 } from "../actions/productActions.";
 
 const initialState = {
@@ -13,11 +14,18 @@ const initialState = {
   detail: {},
   view: [],
   post: [],
+  currentPage: 0,
+  totalPages: 1,
 };
+
+interface Payload {
+  products: object[];
+  cantidad: number;
+}
 
 interface Action {
   type: string;
-  payload: object[];
+  payload: Payload;
 }
 
 const productsReducer = (state = initialState, action: Action) => {
@@ -25,8 +33,9 @@ const productsReducer = (state = initialState, action: Action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: [...action.payload],
-        allProducts: [...action.payload],
+        products: [...action.payload.products],
+        allProducts: [...action.payload.products],
+        totalPages: action.payload.cantidad,
       };
 
     case GET_PRODUCT_DETAIL:
@@ -58,6 +67,12 @@ const productsReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         answer: { ...action.payload },
+      };
+
+    case SELECT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
 
     default:

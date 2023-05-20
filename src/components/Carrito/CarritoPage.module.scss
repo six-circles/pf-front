@@ -1,0 +1,21 @@
+@use "../../styles/variables.scss" as v;
+.card{
+    display: flex;
+    height: 10rem;
+    background-color:v.$color-gray ;
+    width: fit-content;
+}
+.img{
+    
+}
+.title{
+    margin-left: 2rem;
+}
+.buttonEliminar{
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 12rem;
+    background-color: red;
+    font-size:x-small;
+}
