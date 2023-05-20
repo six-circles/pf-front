@@ -6,48 +6,61 @@ const Filter: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
+  let minP = "0", maxP = "5000", minR = "0", maxR = "5";
 
-  // let minP = "0", maxP = "5000", minR = "0", maxR = "5";
-
-  const [orderBy, setOrderBy] = useState<'price' | 'name' | ''>(
-    searchParams.get('order') as 'price' | 'name' || ''
-  );
-  const [category, setCategory] = useState<string>(
-    searchParams.get('category') || ''
-  );
+  const [orderBy, setOrderBy] = useState<'price' | 'name' | ''>(searchParams.get('order') as 'price' | 'name' || '');
+  const [category, setCategory] = useState<string>(searchParams.get('category') || '');
+  const [minPrice, setMinPrice] = useState<string>(searchParams.get('minPrice') ?? minP);
+  const [maxPrice, setMaxPrice] = useState<string>(searchParams.get('minPrice') ?? maxP);
+  const [minRating, setMinRating] = useState<string>(searchParams.get('minPrice') ?? minR);
+  const [maxRating, setMaxRating] = useState<string>(searchParams.get('minPrice') ?? maxR);
 
   useEffect(() => {
-    const newSearchParams = new URLSearchParams();
+    if (orderBy !== '') searchParams.set('order', orderBy);
+    if (category !== '') searchParams.set('category', category);
 
-    if (orderBy !== '') newSearchParams.set('order', orderBy);
-    if (category !== '') newSearchParams.set('category', category);
+    if (minPrice !== minP || maxPrice !== maxP) {
+      searchParams.set('minPrice', minPrice.toString());
+      searchParams.set('maxPrice', maxPrice.toString());
+    }
 
-    navigate({ search: newSearchParams.toString() });
+    if (minRating !== minR || maxRating !== maxR) {
+      searchParams.set('minRating', minRating.toString());
+      searchParams.set('maxRating', maxRating.toString());
+    }
+
+    navigate({ search: searchParams.toString() });
   }, [orderBy, category]);
 
   const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOrderBy = event.target.value as 'price' | 'name' | '';
-
     setOrderBy(selectedOrderBy);
   };
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = event.target.value;
-
     setCategory(selectedCategory);
   };
 
-  // const handleMinMaxSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    const searchParams = new URLSearchParams();
 
-  //   const form = event.target as HTMLFormElement;
-  //   const minPrice = form.elements['minPrice'].value;
-  //   const maxPrice = form.elements['maxPrice'].value;
-  //   const minRating = form.elements['minRating'].value;
-  //   const maxRating = form.elements['maxRating'].value;
+    if (orderBy !== '') searchParams.set('order', orderBy);
+    if (category !== '') searchParams.set('category', category);
 
-  //   // setMyQuery({ ...myQuery, minPrice: minPrice, maxPrice: maxPrice, minRating: minRating, maxRating: maxRating })
-  // };
+    if (minPrice !== minR || maxPrice !== maxP) {
+      searchParams.set('minPrice', minPrice.toString());
+      searchParams.set('maxPrice', maxPrice.toString());
+    }
+
+    if (minRating !== minR || maxRating !== maxR) {
+      searchParams.set('minRating', minRating.toString());
+      searchParams.set('maxRating', maxRating.toString());
+    }
+
+    navigate({ search: searchParams.toString() });
+  };
 
   return (
     <div>
@@ -73,22 +86,24 @@ const Filter: React.FC = () => {
           <option value="Others">Otros</option>
         </select>
       </form>
+      <br />
+      <form onSubmit={handleSubmit} className={styles.contForm}>
+        <label>Min Price ({minPrice})</label>
+        <input type="range" min={0} max={maxP} value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+        <label>Max Price ({maxPrice})</label>
+        <input type="range" min={0} max={maxP} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+        <br />
 
-      {/* <form onSubmit={handleMinMaxSubmit}>
-        <label htmlFor="minPrice">Min Price ({minPrice}):</label>
-        <input name="minPrice" defaultValue={minP} min={minP} max={maxP} type="range" />
+        <label>Min Rating ({minRating})</label>
+        <input type="range" min={0} max={maxR} value={minRating} onChange={(e) => setMinRating(e.target.value)} />
+        <label>Max Rating ({maxRating})</label>
+        <input type="range" min={0} max={maxR} value={maxRating} onChange={(e) => setMaxRating(e.target.value)} />
+        <br />
+        <button type="submit" >
+          Submit
+        </button>
+      </form>
 
-        <label htmlFor="maxPrice">Max Price ({maxPrice}):</label>
-        <input name="maxPrice" defaultValue={maxP} min={minP} max={maxP} type="range" />
-
-        <label htmlFor="minRating">Min Rating ({minRating}):</label>
-        <input name="minRating" defaultValue={minR} min={minR} max={maxR} type="range" />
-
-        <label htmlFor="maxRating">Max Rating ({maxRating}):</label>
-        <input name="maxRating" defaultValue={maxR} min={minR} max={maxR} type="range" />
-
-        <button type="submit">Filtrar</button>
-      </form> */}
     </div>
   );
 };
