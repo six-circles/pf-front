@@ -3,19 +3,15 @@ import {CarritoPage} from "../../components/index"
 import { useSelector } from "react-redux"
 import styles from "./Carrito.module.scss"
 export default function (){
-    
     const {cartProducts} = useSelector((state:any)=>state.carrito)
     
-   const product=cartProducts[0]
+//    const product=cartProducts[0]
     
     return (
     <div>
        
-        {/* {
-             cartProducts?.map((e:any)=><CarritoPage key={e._id}producto={e}/>)
-        } */}
         <div className={styles.card}>
-        {product?<CarritoPage key={product._id}producto={product}/>:null}
+        {cartProducts?.map((p:any)=> <CarritoPage key={p._id}producto={p}/>)}
         </div>
     </div>
     )
