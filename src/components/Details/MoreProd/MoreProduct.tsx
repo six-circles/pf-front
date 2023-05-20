@@ -1,21 +1,43 @@
-import { useSelector } from "react-redux"
+import { urlAxios } from "../../../utils";
+import { useEffect, useState } from "react";
 import CardProduct from "../../Home/Products/CardProduct";
 import styles from "./MoreProducts.module.scss"
+import { useSelector} from "react-redux";
+// import { useParams } from "react-router";
+ import { DetailProd } from "../../../utils";
 
-//ver de recibir SOLO los productos del vendedor de la publi
 interface Products {
-    products: object[];
+  detail: DetailProd;
+}
+
+interface State {
+  products: Products;
+}
+
+export default function MoreProduct(){
+  const [moreProducts,setMoreProducts]=useState([])
+  const { detail } = useSelector((state: State) => state.products);
+ 
+  const getID =()=>{
+    detail 
+    const {user} =detail
+    const idUser = user?._id
+    return idUser 
   }
   
-  interface State {
-    products: Products;
+  const getProduct=async()=>{
+    const id = getID()
+    const {data}= await urlAxios(`/product/moreproducts/${id}`)
+    setMoreProducts(data)
   }
- 
-export default function MoreProduct(){
-    const prod =useSelector((s:State)=>s.products)
-    const {products} = prod
+  useEffect(() => {
+    getProduct();
+}, []);
+  
+  
+
     
-    const moreProd=products.slice(0,2)
+    const moreProd = moreProducts.slice(0,5)
     
     return (
     <div className={styles.contenedor}>
@@ -29,6 +51,7 @@ export default function MoreProduct(){
           image={item.image}
           punctuation={item.punctuations}
           price={item.price}
+          condition={item.condition}
         />
       ))}
       </div>

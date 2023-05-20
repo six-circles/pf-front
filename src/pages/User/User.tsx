@@ -1,49 +1,54 @@
-import CreateProduct from "../../components/User/CreateProduct/CreateProduct";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { urlAxios } from "../../utils";
+import { checkAuth } from "../../utils";
 import styles from "./User.module.scss";
-//CreateProduct el formulario para crear nuevo producto dentro de ventas---> /user
-
+import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 function User() {
-  const navigate = useNavigate();
-  // const { pathname } = useLocation();
-  const checkAuch = async () => {
-    const user: any = window.localStorage.getItem("user");
-    let id;
-    let config;
+  const navigate: Function = useNavigate();
 
-    if (!user) {
-      id = "";
-      config = {
-        headers: { _id: id },
-      };
-    } else {
-      id = JSON.parse(user);
-      config = {
-        headers: { _id: id.id },
-      };
-    }
+  // useEffect(() => {
+  //   checkAuth("product", navigate);
+  // }, []);
 
-    try {
-      await urlAxios.post("/product", null, config);
-    } catch (error: any) {
-      const { data } = error.response;
-      console.error(error.response.data);
-      if (data === "You need to be logged in") {
+  const handleClick = () => {
+
+    Swal.fire({
+      title: '¿Desea cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, salir!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.localStorage.setItem("user", "");
         navigate("/login");
+      }else{
+        navigate("/")
       }
-    }
+    })
   };
 
-  useEffect(() => {
-    checkAuch();
-  }, []);
 
   return (
     <div className={styles.user}>
-      <div>perfil usuario</div>
-      <CreateProduct />
+      <div className={styles.contenedorPerfil}>
+        <h1 onClick={() => navigate("/user")} className={styles.icon}>
+          <CgProfile />
+        </h1>
+        <div className={styles.perfil}>
+          <h3 className={styles.title} onClick={() => navigate("/user")}>
+            Mis Datos
+          </h3>
+          <Link to="/user/shopping">Compras</Link>
+          <Link to="/user/products">Ventas</Link>
+          <Link to="/user/qa">Preguntas</Link>
+          <Link to="/user/favoritos">Favoritos</Link>
+          <Link to="login" onClick={handleClick} >Salir</Link>
+        </div>
+      </div>
     </div>
   );
 }

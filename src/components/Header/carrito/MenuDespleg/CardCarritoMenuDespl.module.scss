@@ -1,0 +1,17 @@
+.card{
+    display: flex;
+    flex-direction:row;
+    background-color: gray;
+    margin: 0.2rem;
+}
+.img{
+    width:5rem;
+    height: auto;
+}
+.title{
+    margin-right: 0.3rem;
+}
+.button{
+    margin-right: 2rem;
+    margin-left: 0.5rem;
+}

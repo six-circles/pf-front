@@ -1,4 +1,12 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, ORDER_PRODUCTS, VIEW_COMMENTS,POST_COMMENTS } from "../actions/productActions.";
+import {
+  GET_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  VIEW_COMMENTS,
+  POST_COMMENTS,
+  CLEAR_PRODUCTS,
+  POST_ANSWERS,
+  SELECT_PAGE,
+} from "../actions/productActions.";
 
 const initialState = {
   products: [],
@@ -6,11 +14,18 @@ const initialState = {
   detail: {},
   view: [],
   post: [],
+  currentPage: 0,
+  totalPages: 1,
 };
+
+interface Payload {
+  products: object[];
+  cantidad: number;
+}
 
 interface Action {
   type: string;
-  payload: object[];
+  payload: Payload;
 }
 
 const productsReducer = (state = initialState, action: Action) => {
@@ -18,8 +33,9 @@ const productsReducer = (state = initialState, action: Action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: [...action.payload],
-        allProducts: [...action.payload],
+        products: [...action.payload.products],
+        allProducts: [...action.payload.products],
+        totalPages: action.payload.cantidad,
       };
 
     case GET_PRODUCT_DETAIL:
@@ -28,34 +44,40 @@ const productsReducer = (state = initialState, action: Action) => {
         detail: { ...action.payload },
       };
 
-      case ORDER_PRODUCTS:
-  
-    return {
-      ...state,
-      products: [...state.products.sort((a:any,b:any )=>{
-        if (action.payload==='mayor'){
-        return b.price - a.price
-      }else {
-        return a.price - b.price
-      }
-      })],
-    };
-  
     case VIEW_COMMENTS:
       return {
         ...state,
         view: { ...action.payload },
       };
 
-      case POST_COMMENTS:
+    case POST_COMMENTS:
       return {
         ...state,
         post: { ...action.payload },
       };
 
+    case CLEAR_PRODUCTS: {
+      return {
+        ...state,
+        detail: {},
+      };
+    }
+
+    case POST_ANSWERS:
+      return {
+        ...state,
+        answer: { ...action.payload },
+      };
+
+    case SELECT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+
     default:
       return state;
-  
-};}
+  }
+};
 
 export default productsReducer;

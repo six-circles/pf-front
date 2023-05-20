@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // import axios from "axios"
 import { urlAxios } from "../../utils";
 import validation from "./validate";
+import Swal from "sweetalert2";
 
 export default function () {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function () {
   const [error, setError] = useState({
     password: "",
     email: "",
+    birthday: "",
   });
 
   const newUser: object = {
@@ -32,44 +34,62 @@ export default function () {
   };
 
 
-  
 
 
-    const handleChange=(e:any)=>{
-        e.preventDefault()
-        const property:string= e.target.name
-        const value:string= e.target.value
-        setForm({...form,[property]:value})
-        setError({...validation({...form,[property]:value})}) 
+
+  const handleChange = (e: any) => {
+    e.preventDefault()
+    const property: string = e.target.name
+    const value: string = e.target.value
+    setForm({ ...form, [property]: value })
+    setError({ ...validation({ ...form, [property]: value }) })
+  }
+
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      await urlAxios.post("/user", newUser)
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Usuario creado con exito",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        birthday: "",
+        password: "",
+        repeatPassword: ""
+      })
+      navigate("/login")
     }
-    
-    const submit= async(event:React.FormEvent)=>{
-        event.preventDefault();
-         try {
-                await urlAxios.post("/user",newUser)
-                alert("Usuario creado con exito")
-                setForm({
-                    name:"",
-                    email:"",
-                    phone:"",
-                    birthday:"",
-                    password:"",
-                    repeatPassword:""
-                })
-                navigate("/login")
-            } 
-            catch (error:any) {
-                if (error.response.data.error.includes("duplicate key")){
-                    alert("Email ya registrado")
-                }else{
+    catch (error: any) {
+      if (error.response.data.error.includes("duplicate key")) {
+        Swal.fire({
+          position: 'center',
+          icon: 'info',
+          title: "Email ya registrado",
+          showConfirmButton: false,
+          timer: 2000
+        });
 
-                    alert(error.response.data.error)
-                }
-             
-            }
-        
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: error.response.data.error,
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+
     }
-    return( 
+
+  }
+  return (
     <div className={styles.contenedor}>
       <div className={styles.contenedor}>
         <button className={styles.buttonAtras} onClick={handleNavigate}>
@@ -136,9 +156,10 @@ export default function () {
                 value={form.birthday}
                 onChange={handleChange}
               />
+              <p className={styles.errorBirth}>{error.birthday}</p>
             </div>
           </div>
-          {error.password.length === 0 && error.email.length === 0 ? (
+          {error.password.length === 0 && error.email.length === 0 && error.birthday.length === 0 ? (
             <button className={styles.buttonRes}>Registrar</button>
           ) : (
             <button className={styles.buttonResDisabl} disabled>

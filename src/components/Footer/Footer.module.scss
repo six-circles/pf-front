@@ -20,6 +20,12 @@
     cursor: pointer;
     margin-bottom: 2.5rem;
   }
+  a{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    color: v.$color-white;
+  }
 }
 
 .letras {

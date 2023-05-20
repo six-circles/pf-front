@@ -1,22 +1,45 @@
-import { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Products, Slider, Filter } from "../../components";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Products, Slider, Filter, Paginator } from "../../components";
 import { useSearchParams } from "react-router-dom";
 
-import { getProducts } from "../../redux/actions/productActions.";
+import {
+  clearProducts,
+  getProducts,
+} from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
 
+interface Product {
+  products: object[];
+  totalPages: number;
+  currentPage: number;
+}
+
+interface State {
+  products: Product;
+}
+
 function Home() {
+  const [index, setIndex] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
+  const { products, totalPages, currentPage } = useSelector(
+    (state: State) => state.products
+  );
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const queryParamsString = queryParams.toString();
 
   let paramSearch = params.get("search");
 
+  console.log(totalPages);
+
   useEffect(() => {
-    if (!paramSearch) {
-      dispatch(getProducts());
-    }
-  }, []);
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("index", index.toString());
+    dispatch(clearProducts());
+    dispatch(getProducts(queryParams.toString()));
+  }, [queryParamsString, index]);
 
   return (
     <Fragment>
@@ -24,9 +47,10 @@ function Home() {
         <Filter />
         <div>
           {paramSearch ? "" : <Slider />}
-          <Products />
+          <Products products={products} />
         </div>
       </div>
+      <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
     </Fragment>
   );
 }

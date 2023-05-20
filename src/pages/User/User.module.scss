@@ -1,4 +1,70 @@
-.user {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+@use "../../styles/variables.scss" as v;
+
+// .user {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+// }
+
+.crearProd {
+  padding: 2rem;
+  background-color: v.$color-blue;
+  width: fit-content;
+  height: fit-content;
+  color: v.$color-white;
+
+  &:hover {
+    background-color: darken(v.$color-blue, 10%);
+  }
+}
+
+.icon {
+  // display: flex;
+  // position:relative;
+  // left: 1.5rem;
+  margin: 0 auto;
+  font-size: 10rem;
+  cursor: pointer;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // color: v.$color-dark;
+  // position: absolute;
+  // top: 10rem;
+  // left: 1rem;
+  border: 0.15rem solid #000;
+  border-color: v.$color-dark;
+  gap: 3rem;
+  background-color: v.$color-gray;
+  height: auto;
+  width: auto;
+}
+.contenedorPerfil {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+  // position: relative;
+  // right: 15rem;
+  // bottom: 5rem;
+  gap: 1rem;
+  a {
+    display: flex;
+    color: v.$color-dark;
+    justify-content: center;
+    width: 100%;
+    font-weight: 500;
+  }
+  a:hover {
+    color: v.$color-blue;
+  }
+}
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  
 }

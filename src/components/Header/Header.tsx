@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
-// import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/Carrito";
+import Carrito from "./carrito/MenuDespleg/Carrito";
 import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
-import { getProducts } from "../../redux/actions/productActions.";
+import { getProducts, selectPage } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 // import Favs from "./PopUps/Favs/Favs";
 
@@ -19,6 +19,9 @@ function Header() {
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+
+  const queryParams = new URLSearchParams(window.location.search);
+  // queryParams.toString();
 
   const username: any = window.localStorage.getItem("user");
   let user;
@@ -39,11 +42,10 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate({
-      pathname: "/",
-      search: `?search=${title}`,
-    });
-    dispatch(getProducts(title));
+    dispatch(selectPage(0));
+    queryParams.set("index", "0");
+    queryParams.set("search", title);
+    navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {
@@ -65,7 +67,7 @@ function Header() {
             onChange={handleChange}
           />
           <button className={styles.contButton}>
-            <BsSearch className={styles.icon} />
+            <BsSearch />
           </button>
         </form>
         <nav className={styles.nav}>

@@ -1,9 +1,16 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { Footer, Header } from "../components";
 import styles from "./Layout.module.scss";
+import { getCartProducts } from "../redux/actions/carritoActions";
 
 function Layout() {
+  const dispatch: Function = useDispatch();
+  useEffect(() => {
+    dispatch(getCartProducts());
+  }, [dispatch]);
+
   return (
     <Fragment>
       <Header />
