@@ -44,7 +44,6 @@ function Header() {
     event.preventDefault();
     queryParams.set("search", title)
     navigate({ search: queryParams.toString() });
-    setTitle("");
   };
 
   const handleLogin = () => {
