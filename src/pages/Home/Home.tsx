@@ -8,7 +8,6 @@ import {
   getProducts,
 } from "../../redux/actions/productActions.";
 import styles from "./Home.module.scss";
-import { urlAxios } from "../../utils";
 
 interface Product {
   products: object[];
@@ -22,7 +21,6 @@ interface State {
 
 function Home() {
   const [index, setIndex] = useState(0);
-  const [pages, setPages] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const { products, totalPages, currentPage } = useSelector(
@@ -33,6 +31,8 @@ function Home() {
   const queryParamsString = queryParams.toString();
 
   let paramSearch = params.get("search");
+
+  console.log(totalPages);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);

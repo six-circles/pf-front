@@ -41,10 +41,17 @@ export default function (props: any) {
                 className={styles.input}
                 type="number"
                 name="cantidad"
+<<<<<<< HEAD
                 placeholder={cant}
                 // value={cant}
                 min={1}
                 max={""}  
+=======
+                placeholder={`1`}
+                value="1"
+                min={1}
+                max={1}  
+>>>>>>> develop
             />
           </div>
           <button onClick={()=>details(id)} className={styles.buttonDetails}>Detalles</button>

@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { getToken, urlAxios } from "../../../utils";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { CardVentas } from "../../../components";
 
 import styles from "./Ventas.module.scss";
+import { clearProducts } from "../../../redux/actions/productActions.";
 
 export default function () {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { token } = getToken();
+  const dispatch: Function = useDispatch();
 
   const getProducts = async () => {
     try {
@@ -21,6 +24,7 @@ export default function () {
 
   useEffect(() => {
     // checkAuth("product", navigate);
+    dispatch(clearProducts());
     getProducts();
   }, []);
 
