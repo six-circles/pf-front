@@ -3,7 +3,7 @@ import {CarritoPage} from "../../components/index"
 import { useSelector } from "react-redux"
 import styles from "./Carrito.module.scss"
 export default function (){
-    
+    //se esta renderizando solo 1 producto para pruebas
     const {cartProducts} = useSelector((state:any)=>state.carrito)
     
    const product=cartProducts[0]

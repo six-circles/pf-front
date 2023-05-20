@@ -17,7 +17,7 @@ export default function (props:any){
                 <p>{prod.price}</p>
                 <p className={styles.title}>{prod.title}</p>
                 <p>{prod.puntuaction}</p>
-                <button className={styles.buttonEliminar} onClick={}>X</button>
+                <button className={styles.buttonEliminar} >X</button>
             </div>
             : <h3>No hay productos aún...</h3>}
         </div>
