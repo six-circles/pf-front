@@ -9,7 +9,7 @@ function Layout() {
   const dispatch: Function = useDispatch();
   useEffect(() => {
     dispatch(getCartProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Fragment>
