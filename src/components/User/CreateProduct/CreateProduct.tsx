@@ -37,41 +37,30 @@ function CreateProduct() {
   const [form, setForm] = useState<any>(initState);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
-  const [product, setProduct] = useState("");
   const { detail } = useSelector((state: State) => state.products);
+  const productParam = new URLSearchParams(window.location.search);
+  const product = productParam.toString().split("=")[1];
 
-  // const getDetails = async () => {
-  //   const tempForm = { ...initState }; // Estado local temporal para mantener los valores
+  const getDetails = async () => {
+    const tempForm = { ...initState }; // Estado local temporal para mantener los valores
 
-  //   console.log(product);
+    await dispatch(clearProducts());
+    await dispatch(getProductDetail(product)).then(() => {
+      if (product && detail) {
+        tempForm.title = detail.title;
+        tempForm.stock = detail.stock;
+        tempForm.price = detail.price;
+        tempForm.description = detail.description;
+      }
 
-  //   await dispatch(clearProducts());
-  //   await dispatch(getProductDetail(product));
-
-  //   if (product && detail) {
-  //     tempForm.title = detail.title;
-  //     tempForm.stock = detail.stock;
-  //     tempForm.price = detail.price;
-  //     tempForm.description = detail.description;
-  //   }
-
-  //   setForm(tempForm); // Asigna el estado actualizado
-  // };
+      setForm({ ...form, ...tempForm });
+      console.log(form);
+    });
+  };
 
   useEffect(() => {
     checkAuth("product", navigate);
-    useDetailProduct()
-      .then((data: any) => {
-        console.log(data);
-        setProduct(data.product);
-        setForm((prevForm: any) => ({
-          ...prevForm,
-          ...data.info,
-        }));
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
+    getDetails();
   }, []);
 
   const handleChange = (
