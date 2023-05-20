@@ -20,6 +20,9 @@ function Header() {
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
 
+  const queryParams = new URLSearchParams(window.location.search);
+  // queryParams.toString();
+
   const username: any = window.localStorage.getItem("user");
   let user;
   if (username) {
@@ -39,11 +42,9 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate({
-      pathname: "/",
-      search: `?search=${title}`,
-    });
-    // dispatch(getProducts(title));
+    queryParams.set("search", title)
+    navigate({ search: queryParams.toString() });
+    setTitle("");
   };
 
   const handleLogin = () => {
