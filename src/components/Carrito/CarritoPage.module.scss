@@ -1,9 +1,9 @@
 @use "../../styles/variables.scss" as v;
 .card{
     display: flex;
-    height: fit-content;
+    height:10rem;
     background-color:v.$color-gray ;
-    width: fit-content;
+    // width:auto;
 }
 .precio{
     display: flex;
@@ -13,26 +13,22 @@
 .title{
     margin-left: 2rem;
     margin-right: 2rem;
+    white-space: nowrap;
 }
 .img{
-    width: 5rem;
+    width: fit-content;
 }
 .buttonEliminar{
-    display: flex;
+    // display: flex;
     height: fit-content;
     width: fit-content;
-    margin-left: 12rem;
     background-color: red;
     font-size:x-small;
 }
 .input{
-    width: fit-content;
-    height: fit-content;
-}
-button{
+    // display: flex;
     width: 3rem;
-    height: auto;
-    padding: 0.5rem
+    height: fit-content;
 }
 .cantidad{
     display: flex;
@@ -40,4 +36,12 @@ button{
     margin-left: 5rem;
     width:fit-content;
     height: 3rem;
+}
+.buttonDetails{
+    display: flex;
+    position: relative;
+    margin-left: 15rem;
+    font-size: xx-small;
+    width: fit-content;
+    height: fit-content;
 }

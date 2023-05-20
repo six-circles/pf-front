@@ -34,12 +34,19 @@ export default function (props: any) {
           <p className={styles.precio}>${prod.price}</p>
           {/* <p>{prod.puntuaction}</p> */}
           <div className={styles.cantidad}>
-            <button>+</button>
-            <input type="number" className={styles.input}/>
-            <button>-</button>
+            <label>Cantidad</label>
+            <input
+                className={styles.input}
+                type="number"
+                name="cantidad"
+                placeholder={`1`}
+                value="1"
+                min={1}
+                max={1}  
+            />
           </div>
+          <button onClick={()=>details(id)} className={styles.buttonDetails}>Detalles</button>
           <button className={styles.buttonEliminar} onClick={deleteProduct}>X</button>
-          <button onClick={()=>details(id)}>Detalles</button>
         </div>
       ) : (
         <h3>No hay productos aún...</h3>
