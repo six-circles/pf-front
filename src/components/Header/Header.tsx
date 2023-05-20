@@ -8,7 +8,7 @@ import Carrito from "./carrito/MenuDespleg/Carrito";
 import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
-import { getProducts } from "../../redux/actions/productActions.";
+import { getProducts, selectPage } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 // import Favs from "./PopUps/Favs/Favs";
 
@@ -42,7 +42,9 @@ function Header() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    queryParams.set("search", title)
+    dispatch(selectPage(0));
+    queryParams.set("index", "0");
+    queryParams.set("search", title);
     navigate({ search: queryParams.toString() });
   };
 

@@ -37,6 +37,7 @@ function CreateProduct() {
   const [form, setForm] = useState<any>(initState);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+  const [product, setProduct] = useState("");
   const { detail } = useSelector((state: State) => state.products);
 
   // const getDetails = async () => {
@@ -59,9 +60,19 @@ function CreateProduct() {
 
   useEffect(() => {
     checkAuth("product", navigate);
+    useDetailProduct()
+      .then((data: any) => {
+        console.log(data);
+        setProduct(data.product);
+        setForm((prevForm: any) => ({
+          ...prevForm,
+          ...data.info,
+        }));
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
   }, []);
-
-  const product = "hola";
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>

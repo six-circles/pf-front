@@ -7,12 +7,12 @@ export const useDetailProduct = async () => {
   const product = searchParams.get("product");
   const { data } = await urlAxios(`/product/${product}`);
 
-  const prod = {
+  const info = {
     title: data.title,
     stock: data.stock,
     price: data.price,
     description: data.description,
   };
 
-  return { product, prod };
+  return { product, info };
 };

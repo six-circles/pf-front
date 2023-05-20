@@ -12,6 +12,8 @@ import { urlAxios } from "../../utils";
 
 interface Product {
   products: object[];
+  totalPages: number;
+  currentPage: number;
 }
 
 interface State {
@@ -23,23 +25,18 @@ function Home() {
   const [pages, setPages] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
-  const productsList = useSelector((state: State) => state.products);
-  const { products } = productsList;
+  const { products, totalPages, currentPage } = useSelector(
+    (state: State) => state.products
+  );
 
   const queryParams = new URLSearchParams(window.location.search);
   const queryParamsString = queryParams.toString();
 
   let paramSearch = params.get("search");
 
-
-  // const getPages = async () => {
-  //   const { data }: any = await urlAxios("/product");
-  //   console.log(data);
-  // };
-
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set("index", index.toString())
+    queryParams.set("index", index.toString());
     dispatch(clearProducts());
     dispatch(getProducts(queryParams.toString()));
   }, [queryParamsString, index]);
@@ -53,7 +50,7 @@ function Home() {
           <Products products={products} />
         </div>
       </div>
-      <Paginator setIndex={setIndex} pages={pages} />
+      <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
     </Fragment>
   );
 }
