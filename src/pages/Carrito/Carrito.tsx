@@ -1,17 +1,19 @@
-// import { CardCarritoMenuDespl } from "../../components/index"
+import { CardCarritoMenuDespl } from "../../components"
 
 import { useSelector } from "react-redux"
 
 export default function (){
     
-    const {products} = useSelector((state:any)=>state.carrito)
+    const {cartProducts} = useSelector((state:any)=>state.carrito)
     
-    console.log("micarrito",products)
+    console.log("micarrito", cartProducts)
 
     return (
     <div>
         hola
-        {/* <CardCarritoMenuDespl/> */}
+        {
+             cartProducts?.map((e:any)=><CardCarritoMenuDespl key={e._id}prueba={e}/>)
+        }
 
     </div>
     )
