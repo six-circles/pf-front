@@ -1,10 +1,14 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Paginator.module.scss";
+import { useDispatch } from "react-redux";
+import { selectPage } from "../../../redux/actions/productActions.";
 
-function Paginator({ setIndex, pages }: any) {
+function Paginator({ setIndex, pages, page }: any) {
+  const dispatch: Function = useDispatch();
+
   const handlePageClick = (event: any) => {
-    // console.log(event.event.target.closest('li'));
     const newIndex = event.selected * 12;
+    dispatch(selectPage(event.selected));
     setIndex(newIndex);
   };
 
@@ -15,7 +19,7 @@ function Paginator({ setIndex, pages }: any) {
       onPageChange={handlePageClick}
       pageRangeDisplayed={3}
       marginPagesDisplayed={3}
-      pageCount={pages || 3}
+      pageCount={pages}
       previousLabel="Prev"
       renderOnZeroPageCount={null}
       containerClassName={styles.paginator}
@@ -23,6 +27,7 @@ function Paginator({ setIndex, pages }: any) {
       pageClassName={styles.page}
       previousClassName={styles.prev}
       nextClassName={styles.next}
+      forcePage={page}
     />
   );
 }

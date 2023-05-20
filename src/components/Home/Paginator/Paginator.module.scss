@@ -5,6 +5,8 @@
   display: flex;
   margin: 0 auto;
   margin-top: 5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .active {
@@ -12,20 +14,23 @@
 }
 
 .page {
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
+  width: 3rem;
+  cursor: pointer;
 }
 
 .prev,
 .next {
   background-color: v.$color-blue;
   color: v.$color-white;
-  width: 6rem;
+  width: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   &:hover {
     background-color: darken(v.$color-blue, 10%);
