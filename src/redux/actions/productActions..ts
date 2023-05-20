@@ -19,8 +19,8 @@ export const clearProducts = () => {
 export const getProducts = (
   title: string | undefined = "",
   order: string | undefined = "",
-  type: string | undefined = ""
-  // index1: number | undefined = 1,
+  type: string | undefined = "",
+  index: number | undefined = 1
   // index2: number | undefined = 12
 ) => {
   return async (dispatch: Function) => {
@@ -29,9 +29,11 @@ export const getProducts = (
 
     try {
       if (!title) {
-        data = await urlAxios(`/product?${order}=${type}`);
+        data = await urlAxios(`/product?${order}=${type}&index=${index}`);
       } else {
-        data = await urlAxios(`/product?title=${title}&${order}=${type}`);
+        data = await urlAxios(
+          `/product?title=${title}&${order}=${type}&index=${index}`
+        );
       }
       dispatch({
         type: GET_PRODUCTS,
