@@ -11,7 +11,7 @@ export default function (){
     <div>
        
         <div className={styles.card}>
-        {cartProducts?.map((p:any)=> <CarritoPage key={p._id}producto={p}/>)}
+        {cartProducts.length? cartProducts.map((p:any)=> <CarritoPage key={p._id}producto={p}/>):<h3>No hay nada por aquí...</h3>}
         </div>
     </div>
     )
