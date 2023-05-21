@@ -30,12 +30,17 @@ export default function (props: any) {
   }
   const details = (id: string) => {
     navigate(`/detail/${id}`)
-  }
-  const name = prod.title.slice(0, 13)
+    }
+  const name = prod.title.slice(0,8)
+  const cant = prod.cantidadCarrito
+
+
   return (
     <div>
       {
         prod ? (
+       {/* <button className={styles.buttonAñadir}>añadir</button> */}
+
           <div className={styles.card}>
             <img src={prod.image[0]} alt={prod.title} className={styles.img} />
             <p className={styles.title}>{name}...</p>
@@ -55,6 +60,7 @@ export default function (props: any) {
             </div>
             <button onClick={() => details(id)} className={styles.buttonDetails}>Detalles</button>
             <button className={styles.buttonEliminar} onClick={deleteProduct}>X</button>
+
           </div>
         ) : (
           <h3>No hay productos aún...</h3>
