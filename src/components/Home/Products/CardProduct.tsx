@@ -46,6 +46,7 @@ function CardProduct(props: Product) {
     const prod = {
       productsId: props.id,
       token,
+      cantidad: 1,
     };
     try {
       await urlAxios.post("/user/shoppingCart", prod);
@@ -69,7 +70,9 @@ function CardProduct(props: Product) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.card_image}>
-        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+        {props?.image && (
+          <img src={props?.image[0]} alt={props.name.slice(0, 10)} />
+        )}
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillHeart className={styles.icon_heart} />
