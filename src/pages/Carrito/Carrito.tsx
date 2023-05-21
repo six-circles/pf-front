@@ -14,5 +14,5 @@ export default function (){
         {cartProducts.length? cartProducts.map((p:any)=> <CarritoPage key={p._id}producto={p}/>):<h3>No hay nada por aquí...</h3>}
         </div>
     </div>
-    )
+    )   
 }
