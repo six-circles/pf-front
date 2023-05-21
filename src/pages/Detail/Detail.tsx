@@ -46,14 +46,14 @@ function Detail() {
       </div>
       {detail?.user && <MoreProduct />}
       <div>
-        <a onClick={() => handleClick("comentarios")}>Comentario | </a>
+        <a onClick={() => handleClick("comentarios")}>Puntuacion | </a>
         <a onClick={() => handleClick("question")}>Pregunta</a>
       </div>
       <br />
 
       <br />
       {tipo === "question"
-        ? detail.questions && <QuestionList questions={detail?.questions} />
+        ? detail.questions && <QuestionList question={detail?.questions} />
         : detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );
