@@ -34,6 +34,7 @@ export const getProducts = (query?: any) => {
       // } else {
       // data = await urlAxios(`/product`);
       // }
+      console.log(data.data);
       dispatch({
         type: GET_PRODUCTS,
         payload: data.data,

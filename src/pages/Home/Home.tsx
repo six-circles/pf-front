@@ -32,13 +32,11 @@ function Home() {
 
   let paramSearch = params.get("search");
 
-  console.log(totalPages);
+  console.log(queryParamsString);
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set("index", index.toString());
     dispatch(clearProducts());
-    dispatch(getProducts(queryParams.toString()));
+    dispatch(getProducts(queryParamsString.toString()));
   }, [queryParamsString, index]);
 
   return (
