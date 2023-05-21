@@ -11,13 +11,13 @@ interface DetailsProps {
 
 function Details({ detail }: DetailsProps) {
   const { token } = getToken();
-  const config = { token, productsId: detail._id };
   const productInit = {
     cantidad: 0,
     characteristics: {},
   };
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
+  const config = { token, productsId: detail._id, cantidad: cart.cantidad };
 
   const prodChars =
     detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
@@ -25,8 +25,6 @@ function Details({ detail }: DetailsProps) {
   const handleSetCart = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCart({ ...cart, [name]: value });
-
-    console.log(detail, config);
   };
 
   const submitAddCart = async (event: any) => {
@@ -35,9 +33,7 @@ function Details({ detail }: DetailsProps) {
 
     if (cart.cantidad > 0) {
       try {
-        for (let i = 0; i < cart.cantidad; i++) {
-          await urlAxios.post("user/shoppingCart", config);
-        }
+        await urlAxios.post("user/shoppingCart", config);
 
         dispatch(getCartProducts());
         setCart(productInit);

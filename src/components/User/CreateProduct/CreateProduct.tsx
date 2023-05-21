@@ -38,30 +38,31 @@ function CreateProduct() {
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
+  const productParam = new URLSearchParams(window.location.search);
+  const product = productParam.toString().split("=")[1];
 
-  // const getDetails = async () => {
-  //   const tempForm = { ...initState }; // Estado local temporal para mantener los valores
+  const getDetails = async () => {
+    const tempForm = { ...initState }; // Estado local temporal para mantener los valores
 
-  //   console.log(product);
+    await dispatch(clearProducts());
+    await dispatch(getProductDetail(product)).then(() => {
+      if (product && detail) {
+        tempForm.title = detail.title;
+        tempForm.stock = detail.stock;
+        tempForm.price = detail.price;
+        tempForm.description = detail.description;
 
-  //   await dispatch(clearProducts());
-  //   await dispatch(getProductDetail(product));
+        setForm({ ...form, ...tempForm });
+      }
 
-  //   if (product && detail) {
-  //     tempForm.title = detail.title;
-  //     tempForm.stock = detail.stock;
-  //     tempForm.price = detail.price;
-  //     tempForm.description = detail.description;
-  //   }
-
-  //   setForm(tempForm); // Asigna el estado actualizado
-  // };
+      console.log(form);
+    });
+  };
 
   useEffect(() => {
     checkAuth("product", navigate);
+    getDetails();
   }, []);
-
-  const product = "hola";
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
