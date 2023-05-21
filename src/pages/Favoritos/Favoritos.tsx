@@ -1,3 +1,12 @@
+
+
 export default function (){
-    return <div>favoritos</div>
+
+   
+
+    return (
+        <div>favoritos</div>
+
+    )
+
 }

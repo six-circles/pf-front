@@ -42,7 +42,7 @@ import './comments.scss'
       return (
         <div >
           <div className='view'>
-            <h1>Comentarios</h1>
+            <h1>Puntuacion</h1>
            {props?.comments&& props?.comments.map((item:any,index:any)=>(
             <div key={index}>
               <p>{item.userName}</p>

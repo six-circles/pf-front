@@ -36,7 +36,7 @@ handleQuestion();
   return (
     <Fragment> 
     <div className="card">  
-      <center><h1>Preguntas</h1></center>
+      <center><h1>Preguntas Realizadas</h1></center>
       <br />
       
       
