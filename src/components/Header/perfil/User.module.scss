@@ -16,9 +16,12 @@
   z-index: 1;
 }
 .links {
+  display: flex;
+  white-space: nowrap;
   margin-top: 1rem;
   color: v.$color-white;
   font-size: larger;
+ justify-content: center;
 }
 
 .links:hover {

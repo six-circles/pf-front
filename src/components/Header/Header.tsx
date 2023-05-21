@@ -78,7 +78,7 @@ function Header() {
             {/* {showFavs && <Favs />} */}
           </div>
           <div style={{ position: "relative" }}>
-            <a
+            {/* <a
               href="#"
               className={styles.letras}
               onClick={() => {
@@ -87,6 +87,13 @@ function Header() {
                 } else {
                   setShowCarrito(false);
                 }
+              }}
+            > */}
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={() => {
+                navigate("/carrito")
               }}
             >
               <AiOutlineShoppingCart className={styles.icons2} />

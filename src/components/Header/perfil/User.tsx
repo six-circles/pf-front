@@ -25,7 +25,7 @@ export default function User() {
     <div>
       <div className={styles.contenedor}>
         <a href="/user" className={styles.links}>
-          {" "}
+          {/* {" "} */}
           Mi Perfil
         </a>
         <a className={styles.links} onClick={handleClick}>
