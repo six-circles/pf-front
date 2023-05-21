@@ -7,48 +7,48 @@ interface Question {
   text: string;
 }
 
-export function QuestionUser(props: any) {
+export function QuestionUser() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [getQuestion, setGetQuestion] = useState("");
 
   const {id}=useParams()
 const {token, config}=getToken()
 
-useEffect(() => {
-handleQuestion();
-},[]);
+
 
 const handleQuestion = async () => {
 
 try{
   const get = await urlAxios.get( `/questions/${token}`);
-  console.log(get);}
+  console.log(get.data);
+setQuestions([...get.data])
+console.log(questions);
+
+}   
+
 catch(error:any){
   console.log(error.response.data);
 }}
+
+useEffect(() => {
+handleQuestion();
+},[]);
   return (
     <Fragment> 
     <div className="card">  
       <center><h1>Preguntas</h1></center>
       <br />
-      <div onSubmit={handleQuestion}>
-        {props?.questions &&
-          props?.questions.map((item: any, index: any) => (
-            <div key={index}>
-              <p>{item.userName}</p>
-              <p>{item.body}</p>
-              
-              
-            </div>
-          ))}
-      </div>
+      
+      
       <br />
     
      
 
       <ul>
-        {questions.map((questions) => (
-          <li key={questions.id}>{questions.text}</li>
+      {questions &&
+      questions?.map((questions:any) => (
+          <li key={questions._id}>{questions.body}</li>
+          //<p>hola</p>
         ))}
       </ul>
       </div>
