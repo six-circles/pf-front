@@ -45,10 +45,12 @@ handleQuestion();
      
 
       <ul>
+      <br />
       {questions &&
       questions?.map((questions:any) => (
           <li key={questions._id}>{questions.body}</li>
-          //<p>hola</p>
+          
+          
         ))}
       </ul>
       </div>
