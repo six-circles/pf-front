@@ -51,9 +51,10 @@ function CreateProduct() {
         tempForm.stock = detail.stock;
         tempForm.price = detail.price;
         tempForm.description = detail.description;
+
+        setForm({ ...form, ...tempForm });
       }
 
-      setForm({ ...form, ...tempForm });
       console.log(form);
     });
   };
