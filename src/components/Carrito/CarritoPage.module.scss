@@ -7,15 +7,15 @@
 .precio {
   display: flex;
   cursor: default;
-  width: fit-content;
+  width: 10rem;
   font-size:larger;
   margin-left: 2rem;
 }
 .title {
-  width: fit-content;
+  width:17rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  white-space: nowrap;
+  // white-space: nowrap;
   cursor: default;
 }
 .img {
@@ -27,29 +27,28 @@
   width: fit-content;
   background-color: red;
   font-size: x-small;
+  margin-left: 2rem;
 }
 .input {
   width: 3rem;
   height: fit-content;
   color: #000;
 }
-// .cantidad {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-left: 8rem;
-//   width: fit-content;
-//   height: 3rem;
-//   gap: 1rem;
-// }
-// .buttonDetails {
-//   display: flex;
-//   position: relative;
-//   margin-left: 15rem;
-//   font-size: xx-small;
-//   width: fit-content;
-//   height: fit-content;
-// }
-// .cant {
-//   width: fit-content;
-// }
+.cantidad {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 8rem;
+  width: fit-content;
+  height: 3rem;
+  gap: 1rem;
+}
+.buttonDetails {
+  display: flex;
+  position: relative;
+  margin-left: 36rem;
+  font-size: xx-small;
+  width: fit-content;
+  height: fit-content;
+}
+
