@@ -10,7 +10,7 @@ const Filter: React.FC = () => {
   const dispatch: Function = useDispatch();
   const searchParams = new URLSearchParams(location.search);
   let minP = "0",
-    maxP = "10000",
+    maxP = "5000",
     minR = "0",
     maxR = "5";
 
@@ -52,8 +52,8 @@ const Filter: React.FC = () => {
       searchParams.set("maxRating", maxRating.toString());
     }
 
-    dispatch(getProducts(searchParams.toString()));
-    // ! navigate({ search: searchParams.toString() });
+    // dispatch(getProducts(searchParams.toString()));
+    navigate({ search: searchParams.toString() });
   }, [orderBy, category]);
 
   const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -117,12 +117,13 @@ const Filter: React.FC = () => {
         </select>
       </form>
       <br />
-      <form onSubmit={handleSubmit} className={styles.contForm}>
+      <form onSubmit={handleSubmit} className={styles.contForm2}>
         <label>Precio mínimo ({minPrice})</label>
         <input
           type="range"
           min={0}
           max={maxP}
+          step={500}
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
         />
@@ -131,6 +132,7 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxP}
+          step={500}
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
         />
@@ -141,6 +143,7 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxR}
+          step={500}
           value={minRating}
           onChange={(e) => setMinRating(e.target.value)}
         />
@@ -149,11 +152,12 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxR}
+          step={500}
           value={maxRating}
           onChange={(e) => setMaxRating(e.target.value)}
         />
         <br />
-        <button type="submit">Filtros max y min</button>
+        <button type="submit">Filtrar</button>
       </form>
     </div>
   );
