@@ -1,5 +1,4 @@
 import Home from "./Home/Home";
-import CartPage from "./CartPage/CartPage";
 import Detail from "./Detail/Detail";
 import Login from "./Login/Login";
 import AboutUs from "./AboutUs/AboutUS"
@@ -11,5 +10,5 @@ import Favoritos from "./Favoritos/Favoritos";
 import Carrito from "./Carrito/Carrito"
 import User from "./User/User";
 import CreateUser from "./CreateUser/CreateUser"
-export { Home, CartPage, Detail, Login,User, CreateUser,AboutUs,Compras,Datos,Preguntas,Ventas,Favoritos,Carrito };
+export { Home, Detail, Login,User, CreateUser,AboutUs,Compras,Datos,Preguntas,Ventas,Favoritos,Carrito };
 
