@@ -64,7 +64,6 @@ function CardProduct(props: Product) {
     const prod = {
       productsId: props.id,
       token,
-      cantidad: 1,
     };
 
     try {
