@@ -33,7 +33,7 @@ export default function (props: any) {
   };
   const name = prod.title;
   const cant = prod.cantidadCarrito;
-
+  
 
   return (
     <div>
