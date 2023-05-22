@@ -6,10 +6,10 @@
 }
 .precio {
   display: flex;
-  position: relative;
-  left: 4rem;
   cursor: default;
   width: fit-content;
+  font-size:larger;
+  margin-left: 2rem;
 }
 .title {
   width: fit-content;
@@ -19,39 +19,37 @@
   cursor: default;
 }
 .img {
-  width: fit-content;
+  width: 10rem;
+  height: auto;
 }
 .buttonEliminar {
-  display: flex;
-  position: relative;
   height: fit-content;
   width: fit-content;
   background-color: red;
   font-size: x-small;
 }
 .input {
-  // display: flex;
   width: 3rem;
   height: fit-content;
   color: #000;
 }
-.cantidad {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: 8rem;
-  width: fit-content;
-  height: 3rem;
-  gap: 1rem;
-}
-.buttonDetails {
-  display: flex;
-  position: relative;
-  margin-left: 15rem;
-  font-size: xx-small;
-  width: fit-content;
-  height: fit-content;
-}
-.cant {
-  width: fit-content;
-}
+// .cantidad {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   margin-left: 8rem;
+//   width: fit-content;
+//   height: 3rem;
+//   gap: 1rem;
+// }
+// .buttonDetails {
+//   display: flex;
+//   position: relative;
+//   margin-left: 15rem;
+//   font-size: xx-small;
+//   width: fit-content;
+//   height: fit-content;
+// }
+// .cant {
+//   width: fit-content;
+// }

@@ -31,7 +31,7 @@ export default function (props: any) {
   const details = (id: string) => {
     navigate(`/detail/${id}`);
   };
-  const name = prod.title.slice(0, 8);
+  const name = prod.title;
   const cant = prod.cantidadCarrito;
 
   console.log("car", cant);
@@ -39,8 +39,8 @@ export default function (props: any) {
     <div>
       {prod ? (
         <div className={styles.card}>
-          <img src={prod.image[0]} alt={prod.title} className={styles.img} />
-          <p className={styles.title}>{name}...</p>
+         {prod.image?  <img src={prod.image[0]} alt={prod.title} className={styles.img} />:null}
+          <p className={styles.title}>{name}</p>
           <p className={styles.precio}>${prod.price}</p>
           {/* <p>{prod.puntuaction}</p> */}
 
