@@ -48,8 +48,26 @@ function CardProduct(props: Product) {
       token,
       cantidad: 1,
     };
+
     try {
       await urlAxios.post("/user/shoppingCart", prod);
+      dispatch(getCartProducts());
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
+  };
+
+  const addToFavs = async (event: any) => {
+    event.stopPropagation();
+
+    const prod = {
+      productsId: props.id,
+      token,
+      cantidad: 1,
+    };
+
+    try {
+      await urlAxios.post("/user/favorites", prod);
       dispatch(getCartProducts());
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -75,7 +93,7 @@ function CardProduct(props: Product) {
         )}
         {showIcons && (
           <div className={styles.card_icons}>
-            <AiFillHeart className={styles.icon_heart} />
+            <AiFillHeart className={styles.icon_heart} onclick={addToFavs} />
             <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           </div>
         )}
