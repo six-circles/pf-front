@@ -1,4 +1,5 @@
 export interface DetailProd {
+  answers: any;
   questions: object[];
   _id: string;
   title: string;

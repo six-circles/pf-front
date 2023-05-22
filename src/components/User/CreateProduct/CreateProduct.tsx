@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./CreateProduct.module.scss";
 import { checkAuth, getToken, urlAxios } from "../../../utils";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
-import { useDetailProduct } from "../../../hooks/products";
 
 interface Products {
   detail: DetailProd;
@@ -41,28 +40,24 @@ function CreateProduct() {
   const productParam = new URLSearchParams(window.location.search);
   const product = productParam.toString().split("=")[1];
 
-  const getDetails = async () => {
-    const tempForm = { ...initState }; // Estado local temporal para mantener los valores
-
-    await dispatch(clearProducts());
-    await dispatch(getProductDetail(product)).then(() => {
-      if (product && detail) {
-        tempForm.title = detail.title;
-        tempForm.stock = detail.stock;
-        tempForm.price = detail.price;
-        tempForm.description = detail.description;
-
-        setForm({ ...form, ...tempForm });
-      }
-
-      console.log(form);
-    });
-  };
+  useEffect(() => {
+    dispatch(clearProducts());
+    checkAuth("product", navigate);
+    dispatch(getProductDetail(product));
+  }, [dispatch, product, navigate]);
 
   useEffect(() => {
-    checkAuth("product", navigate);
-    getDetails();
-  }, []);
+    const tempForm = { ...initState };
+
+    if (detail && detail.title) {
+      tempForm.title = detail.title;
+      tempForm.stock = detail.stock;
+      tempForm.price = detail.price;
+      tempForm.description = detail.description;
+
+      setForm({ ...form, ...tempForm });
+    }
+  }, [detail]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>

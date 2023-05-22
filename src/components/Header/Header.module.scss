@@ -82,8 +82,9 @@
   }
 
   .icons2 {
+    cursor: pointer;
     font-size: 2.5rem;
     transition: 100ms;
-    color: inherit;
+    color:v.$color-white;
   }
 }
