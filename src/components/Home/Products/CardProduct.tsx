@@ -8,6 +8,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
 import { getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
+import { getFavorites } from "../../../redux/actions/favoritosActions";
 
 interface Product {
   id: string;
@@ -63,12 +64,12 @@ function CardProduct(props: Product) {
     const prod = {
       productsId: props.id,
       token,
-      cantidad: 1,
     };
 
     try {
-      await urlAxios.post("/user/favorites", prod);
-      dispatch(getCartProducts());
+      const { data } = await urlAxios.post("/user/favorites", prod);
+      console.log(data);
+      dispatch(getFavorites());
     } catch (error: any) {
       console.log(error.response.data.error);
     }
@@ -93,7 +94,7 @@ function CardProduct(props: Product) {
         )}
         {showIcons && (
           <div className={styles.card_icons}>
-            <AiFillHeart className={styles.icon_heart} onclick={addToFavs} />
+            <AiFillHeart className={styles.icon_heart} onClick={addToFavs} />
             <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           </div>
         )}
