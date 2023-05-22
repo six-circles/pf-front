@@ -29,6 +29,7 @@ import './comments.scss'
           try{
             const response = await urlAxios.post( "/product/comments", newCommentObj,config);
             console.log(response);
+            setComments([...comments, { id: comments.length + 1, text: newComment }]);
             setNewComment('');
           }catch(error:any){
             console.log(error.response.data);
