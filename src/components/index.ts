@@ -18,6 +18,7 @@ import Paginator from "./Home/Paginator/Paginator";
 import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
 import FavoritoPage from "./Favoritos/FavoritoPage";
+
 export {
   Paginator,
   CardVentas,
