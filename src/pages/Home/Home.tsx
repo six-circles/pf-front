@@ -1,6 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, Slider, Filter, Paginator } from "../../components";
+import {
+  Products,
+  Slider,
+  Filter,
+  Paginator,
+  Calificar,
+} from "../../components";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import {
@@ -51,6 +57,7 @@ function Home() {
         </div>
       </div>
       <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
+      <Calificar />
     </Fragment>
   );
 }

@@ -17,8 +17,10 @@ import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
 import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
+import Calificar from "./Rating/Calificar";
 
 export {
+  Calificar,
   Paginator,
   CardVentas,
   CardCompras,
