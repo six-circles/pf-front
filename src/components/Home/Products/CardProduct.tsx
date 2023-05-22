@@ -98,7 +98,7 @@ function CardProduct(props: Product) {
     >
       <div className={styles.card_image}>
         {props?.image && (
-          <img src={props?.image[0].url} alt={props.name.slice(0, 10)} />
+          <img src={props?.image[0]} alt={props.name.slice(0, 10)} />
         )}
         {showIcons && (
           <div className={styles.card_icons}>

@@ -8,7 +8,7 @@ export default function(props:any){
         <div>
 
           {props?  <div className={styles.card}>
-                <img src={p.image[0].url} alt={p.image} className={styles.img}/>
+                <img src={p.image[0]} alt={p.image} className={styles.img}/>
                 <p className={styles.title}>{title}...</p>
                 <p> ${p.price}</p>
                 {/* <button className={styles.button}>+</button>
