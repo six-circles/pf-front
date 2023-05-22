@@ -53,11 +53,7 @@ if (newQuestion.length > 0) {
           />
         </div>
         <br />
-        <div className="send">
-          <button className="send" type="submit">
-            Publicar pregunta
-          </button>
-        </div>
+       
       </form>
 
       <ul>

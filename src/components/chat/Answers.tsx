@@ -1,58 +1,58 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState, useEffect, ReactNode } from "react";
 import "./QA.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
-interface Answer {
- id: number;
+
+interface Question {
+  id: number;
   text: string;
 }
 
-export function Answers(props: any) {
-  const [answer, setAnswers] = useState<Answer[]>([]);
-  const [getComment, setGetComment] = useState("");
-  const {questionId}=useParams()
-const {token, config}=getToken()
+interface Answer {
+  body: ReactNode;
+  question: any;
+  id: number;
 
-useEffect(() => {
-  handleComment();
-  },[]);
+}
 
-  const handleComment = async () => {
-    
-if (getComment.length > 0) {
-  const body ={token, id:questionId, body:getComment}
-  console.log(body);
-   
-  try{
-    const get = await urlAxios.get( `/product/comments/${token}`);
-    console.log(get);}
-  catch(error:any){
-    console.log(error.response.data);
-  }}}
-  
+export function Answers() {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+
+  const { id } = useParams();
+  //const { token, config } = getToken();
+
+ 
+
+  const handleAnswers = async () => {
+    try {
+      const get = await urlAxios.get(`/product/questions/answers/${id}`);
+     console.log(get.data);
+      setAnswers([...get.data]);
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    //handleQuestion();
+    handleAnswers();
+  }, []);
+
   return (
     <Fragment>
-    <div className="card">
-      <center><h1>Comentarios</h1></center>
-      <br />
-      <div onSubmit={handleComment}>
-        {props?.answer &&
-          props?.answer.map((item: any, index: any) => (
-            <div key={index}>
-              <p>{item.userName}</p>
-              <p>{item.body}</p>
-            </div>
-          ))}
+      <div className="card">
+        <center>
+          <h1>Respuestas</h1>
+        </center>
+        <br />
+              <ul>
+                {answers &&
+                  answers?.map((answer:any) => (
+                    <li key={answer._id}>{answer.body}</li>
+                  ))}
+              </ul>
       </div>
-      <br />
-      
-
-      <ul>
-        {answer.map((answer) => (
-          <li key={answer.id}>{answer.text}</li>
-        ))}
-      </ul>
-      </div>
-      </Fragment>
-);
+    </Fragment>
+  );
 }

@@ -36,26 +36,19 @@ handleQuestion();
   return (
     <Fragment> 
     <div className="card">  
-      <center><h1>Preguntas Realizadas</h1></center>
+      <center>
+        <h1>Preguntas Realizadas</h1>
+        </center>
+      <br /> 
       <br />
-      
-      
-      <br />
-    
-     
-
       <ul>
       <br />
       {questions &&
       questions?.map((questions:any) => (
-          <li key={questions._id}>{questions.body}</li>
-          
-          
+          <li key={questions._id}>{questions.body}</li>  
         ))}
       </ul>
       </div>
-      </Fragment>
-     
-      
+      </Fragment>   
 );
 }
