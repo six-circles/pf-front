@@ -45,7 +45,8 @@ function Header() {
     await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    navigate({ search: queryParams.toString() });
+    dispatch(getProducts(queryParams.toString()));
+    // ! navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {
@@ -93,7 +94,7 @@ function Header() {
               href="#"
               className={styles.letras}
               onClick={() => {
-                navigate("/carrito")
+                navigate("/carrito");
               }}
             >
               <AiOutlineShoppingCart className={styles.icons2} />

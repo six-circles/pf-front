@@ -42,26 +42,31 @@ function CreateProduct() {
   const product = productParam.toString().split("=")[1];
 
   const getDetails = async () => {
-    const tempForm = { ...initState }; // Estado local temporal para mantener los valores
+    const tempForm = { ...initState };
 
-    await dispatch(clearProducts());
-    await dispatch(getProductDetail(product)).then(() => {
-      if (product && detail) {
-        tempForm.title = detail.title;
-        tempForm.stock = detail.stock;
-        tempForm.price = detail.price;
-        tempForm.description = detail.description;
-
-        setForm({ ...form, ...tempForm });
-      }
-
-      console.log(form);
-    });
+    await dispatch(getProductDetail(product));
   };
 
   useEffect(() => {
+    dispatch(clearProducts());
     checkAuth("product", navigate);
     getDetails();
+    if (detail && detail.title) {
+      // tempForm.title = detail.title;
+      // tempForm.stock = detail.stock;
+      // tempForm.price = detail.price;
+      // tempForm.description = detail.description;
+
+      setForm({
+        ...form,
+        ...{
+          title: detail.title,
+          stock: detail.stock,
+          price: detail.price,
+          description: detail.description,
+        },
+      });
+    }
   }, []);
 
   const handleChange = (

@@ -32,7 +32,9 @@ export default function (props: any) {
     navigate(`/detail/${id}`);
   };
   const name = prod.title.slice(0, 8);
-  const cant = prod.cantidadCarrito
+  const cant = prod.cantidadCarrito;
+
+  console.log("car", cant);
   return (
     <div>
       {prod ? (
@@ -41,15 +43,17 @@ export default function (props: any) {
           <p className={styles.title}>{name}...</p>
           <p className={styles.precio}>${prod.price}</p>
           {/* <p>{prod.puntuaction}</p> */}
+
           <div className={styles.cantidad}>
             <label>Cantidad</label>
             <input
               className={styles.input}
-              type="number"
-              name="cantidad"
+              // type="number"
+              // name="cantidad"
               placeholder={cant}
-              min={cant}
-              max={cant}
+              // value="1"
+              // min={cant}
+              // max={cant}
             />
           </div>
           <button onClick={() => details(id)} className={styles.buttonDetails}>
