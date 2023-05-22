@@ -39,7 +39,7 @@ const Slider = () => {
       <div className={styles.slider}>
         <div className={styles.contImage} onClick={handleClick}>
           {products[slide]?.image[0] && (
-            <img className={styles.image} src={products[slide].image} alt="" />
+            <img className={styles.image} src={products[slide].image.url} alt="" />
           )}
         </div>
         <div className={styles.contDesc}>

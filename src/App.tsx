@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  CartPage,
+  // CartPage,
   Detail,
   Home,
   Login,
@@ -23,7 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="cart" element={<CartPage />} />
+        {/* <Route path="cart" element={<CartPage />} /> */}
         <Route path="detail/:id" element={<Detail />} />
         <Route path="carrito" element={<Carrito/>} />
         <Route path="user/" element={<LayoutUser />}>
