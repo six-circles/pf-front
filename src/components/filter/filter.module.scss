@@ -6,6 +6,14 @@
   flex-direction: column;
 }
 
+.contForm2 {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid v.$color-gray;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 
 // .seccion {
 //   display: flex;

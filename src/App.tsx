@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import {
+<<<<<<< HEAD
  // CartPage,
+=======
+  // CartPage,
+>>>>>>> 0321fc8291855a52df14e8c0dad6db1fe1254f60
   Detail,
   Home,
   Login,

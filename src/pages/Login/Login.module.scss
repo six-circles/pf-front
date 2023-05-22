@@ -40,6 +40,25 @@
   }
 
   button {
+    // background-color: transparent;
+    border-radius: 50%;
+    background-color: v.$color-blue;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+
+  button:hover {
+    border: 1px solid v.$color-gray;
+    background-color: transparent;
+  }
+
+
+  .buttonLocal {
     border-radius: 5px;
     background-color: v.$color-blue;
     color: #ffffff;
