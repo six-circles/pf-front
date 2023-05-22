@@ -4,7 +4,7 @@ import Products from "./Home/Products/Products";
 import Slider from "./Home/Slider/Slider";
 import MoreProduct from "./Details/MoreProd/MoreProduct";
 import Details from "./Details/Details/Details";
-import Rating from "./Rating/Rating";
+import Rating from "./Rating";
 import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
 import Comments from "./Details/coments/comments";
@@ -17,14 +17,8 @@ import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
 import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
-<<<<<<< HEAD
 import FavoritoPage from "./Favoritos/FavoritoPage";
-import Calificar from "./Rating/Calificar";
-
-=======
->>>>>>> 5a6966d0ced1e0148e93418ced5e04ceb75153ca
 export {
-  Calificar,
   Paginator,
   CardVentas,
   CardCompras,
@@ -44,8 +38,5 @@ export {
   Answers,
   CardCarritoMenuDespl,
   CarritoPage,
-<<<<<<< HEAD
   FavoritoPage,
-=======
->>>>>>> 5a6966d0ced1e0148e93418ced5e04ceb75153ca
 };
