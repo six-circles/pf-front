@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: any;
   punctuation: number;
   price: number;
   condition?: string;
