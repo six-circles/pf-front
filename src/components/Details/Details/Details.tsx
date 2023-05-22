@@ -4,6 +4,7 @@ import { Rating } from "../..";
 import styles from "./Details.module.scss";
 import { DetailProd, getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
+import Swal from "sweetalert2";
 
 interface DetailsProps {
   detail: DetailProd;
@@ -37,6 +38,13 @@ function Details({ detail }: DetailsProps) {
 
         dispatch(getCartProducts());
         setCart(productInit);
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Añadido a Carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       } catch (err: any) {
         console.log(err.response);
       }
