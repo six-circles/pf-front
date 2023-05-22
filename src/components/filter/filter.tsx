@@ -34,8 +34,9 @@ const Filter: React.FC = () => {
   );
 
   useEffect(() => {
-    searchParams.set("index", "0");
+    // searchParams.set("index", "0");
     dispatch(selectPage(0));
+    const searchParams = new URLSearchParams(location.search);
 
     if (orderBy === "") searchParams.delete("order");
     else searchParams.set("order", orderBy);
@@ -72,7 +73,7 @@ const Filter: React.FC = () => {
     e.preventDefault();
     const searchParams = new URLSearchParams(location.search);
 
-    searchParams.set("index", "0");
+    // searchParams.set("index", "0");
     dispatch(selectPage(0));
 
     // if (orderBy !== '') searchParams.set('order', orderBy);
@@ -143,7 +144,6 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxR}
-          step={500}
           value={minRating}
           onChange={(e) => setMinRating(e.target.value)}
         />
@@ -152,7 +152,6 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxR}
-          step={500}
           value={maxRating}
           onChange={(e) => setMaxRating(e.target.value)}
         />

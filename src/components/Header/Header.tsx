@@ -30,9 +30,13 @@ function Header() {
   }
 
   const handleNavigate = () => {
-    navigate("/?index=0");
+    const cleanSearch = new URLSearchParams();
+    cleanSearch.set("index", "0")
+
+    navigate({ search: cleanSearch.toString() });
     dispatch(getProducts());
     setTitle("");
+    window.location.reload();
   };
 
   const handleChange = (event: any) => {
