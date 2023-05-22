@@ -48,7 +48,6 @@ export default function (props: any) {
               type="number"
               name="cantidad"
               placeholder={cant}
-              // value="1"
               min={cant}
               max={cant}
             />
