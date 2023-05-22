@@ -31,6 +31,7 @@ import './comments.scss'
             console.log(response);
             setComments([...comments, { id: comments.length + 1, text: newComment }]);
             setNewComment('');
+           
           }catch(error:any){
             console.log(error.response.data);
           }}
