@@ -1,4 +1,4 @@
-
+import styles from "./Favoritos.module.scss"
 
 export default function (){
 
