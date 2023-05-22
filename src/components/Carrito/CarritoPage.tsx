@@ -33,13 +33,13 @@ export default function (props: any) {
   };
   const name = prod.title;
   const cant = prod.cantidadCarrito;
-
-
+  const image = prod.image[0].url
+  
   return (
     <div>
       {prod ? (
         <div className={styles.card}>
-         {prod.image?  <img src={prod.image[0]} alt={prod.title} className={styles.img} />:null}
+         { <img src={image} alt={prod.title} className={styles.img} />}
           <p className={styles.title}>{name}</p>
           <p className={styles.precio}>${prod.price}</p>
           {/* <p>{prod.puntuaction}</p> */}

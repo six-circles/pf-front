@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: any;
   price: number;
   punctuation: number;
 }
@@ -24,7 +24,7 @@ export default function (props: Product) {
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
-        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+        <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{props.name}</h3>
