@@ -44,30 +44,23 @@ function CreateProduct() {
   const getDetails = async () => {
     const tempForm = { ...initState };
 
-    await dispatch(getProductDetail(product));
+    if (detail && detail.title) {
+      tempForm.title = detail.title;
+      tempForm.stock = detail.stock;
+      tempForm.price = detail.price;
+      tempForm.description = detail.description;
+
+      setForm({ ...form, ...tempForm });
+    }
   };
 
   useEffect(() => {
     dispatch(clearProducts());
+    dispatch(getProductDetail(product));
     checkAuth("product", navigate);
     getDetails();
-    if (detail && detail.title) {
-      // tempForm.title = detail.title;
-      // tempForm.stock = detail.stock;
-      // tempForm.price = detail.price;
-      // tempForm.description = detail.description;
-
-      setForm({
-        ...form,
-        ...{
-          title: detail.title,
-          stock: detail.stock,
-          price: detail.price,
-          description: detail.description,
-        },
-      });
-    }
-  }, []);
+    console.log(detail);
+  }, [form, dispatch]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
