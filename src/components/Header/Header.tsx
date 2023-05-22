@@ -30,7 +30,7 @@ function Header() {
   }
 
   const handleNavigate = () => {
-    navigate("/");
+    navigate("/?index=0");
     dispatch(getProducts());
     setTitle("");
   };
@@ -45,8 +45,8 @@ function Header() {
     await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    dispatch(getProducts(queryParams.toString()));
-    // ! navigate({ search: queryParams.toString() });
+    // dispatch(getProducts(queryParams.toString()));
+    navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {
