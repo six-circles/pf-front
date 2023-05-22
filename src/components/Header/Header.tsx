@@ -30,9 +30,13 @@ function Header() {
   }
 
   const handleNavigate = () => {
-    navigate("/");
+    const cleanSearch = new URLSearchParams();
+    cleanSearch.set("index", "0")
+
+    navigate({ search: cleanSearch.toString() });
     dispatch(getProducts());
     setTitle("");
+    window.location.reload();
   };
 
   const handleChange = (event: any) => {
@@ -45,8 +49,8 @@ function Header() {
     await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    dispatch(getProducts(queryParams.toString()));
-    // ! navigate({ search: queryParams.toString() });
+    // dispatch(getProducts(queryParams.toString()));
+    navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {
