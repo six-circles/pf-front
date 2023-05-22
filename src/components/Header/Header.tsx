@@ -81,7 +81,7 @@ function Header() {
         </form>
         <nav className={styles.nav}>
           <div style={{ position: "relative" }}>
-            <a href="#" className={styles.letras}>
+            <a href="/user/favoritos" className={styles.letras}>
               <AiOutlineHeart className={styles.icons2} />
             </a>
             {/* {showFavs && <Favs />} */}
