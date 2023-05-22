@@ -17,9 +17,12 @@ import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
 import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
+<<<<<<< HEAD
 import FavoritoPage from "./Favoritos/FavoritoPage";
 import Calificar from "./Rating/Calificar";
 
+=======
+>>>>>>> 5a6966d0ced1e0148e93418ced5e04ceb75153ca
 export {
   Calificar,
   Paginator,
@@ -41,5 +44,8 @@ export {
   Answers,
   CardCarritoMenuDespl,
   CarritoPage,
+<<<<<<< HEAD
   FavoritoPage,
+=======
+>>>>>>> 5a6966d0ced1e0148e93418ced5e04ceb75153ca
 };

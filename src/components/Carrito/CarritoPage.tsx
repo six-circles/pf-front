@@ -34,7 +34,7 @@ export default function (props: any) {
   const name = prod.title;
   const cant = prod.cantidadCarrito;
 
-  console.log("car", cant);
+
   return (
     <div>
       {prod ? (
