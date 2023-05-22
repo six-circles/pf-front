@@ -8,6 +8,8 @@ import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
 import { getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
+import { getFavorites } from "../../../redux/actions/favoritosActions";
+import Swal from "sweetalert2";
 
 interface Product {
   id: string;
@@ -48,9 +50,34 @@ function CardProduct(props: Product) {
       token,
       cantidad: 1,
     };
+
     try {
       await urlAxios.post("/user/shoppingCart", prod);
       dispatch(getCartProducts());
+      Swal.fire({
+        position: "top-right",
+        icon: "success",
+        title: "Añadido a Carrito",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
+  };
+
+  const addToFavs = async (event: any) => {
+    event.stopPropagation();
+
+    const prod = {
+      productsId: props.id,
+      token,
+    };
+
+    try {
+      const { data } = await urlAxios.post("/user/favorites", prod);
+      console.log(data);
+      dispatch(getFavorites());
     } catch (error: any) {
       console.log(error.response.data.error);
     }
@@ -75,7 +102,7 @@ function CardProduct(props: Product) {
         )}
         {showIcons && (
           <div className={styles.card_icons}>
-            <AiFillHeart className={styles.icon_heart} />
+            <AiFillHeart className={styles.icon_heart} onClick={addToFavs} />
             <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           </div>
         )}

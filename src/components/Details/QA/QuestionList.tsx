@@ -15,16 +15,17 @@ const {token, config}=getToken()
 
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-if (newQuestion.length > 0) {
-  const body ={token,productId:id,body:newQuestion}
-  console.log(body);
-  
-  try{
-    const response = await urlAxios.post( "/product/questions", body,config);
-    console.log(response);}
-  catch(error:any){
-    console.log(error.response.data);
-  }}}   
+    if (newQuestion.length > 0) {
+      const body = { token, productId: id, body: newQuestion };
+      try {
+        await urlAxios.post("/product/questions", body, config);
+        setQuestions([...questions, { id: questions.length + 1, text: newQuestion }]);
+        setNewQuestion("");
+      } catch (error: any) {
+        console.log(error.response.data);
+      }
+    }
+  };
   
   return (
     <Fragment>
@@ -53,11 +54,7 @@ if (newQuestion.length > 0) {
           />
         </div>
         <br />
-        <div className="send">
-          <button className="send" type="submit">
-            Publicar pregunta
-          </button>
-        </div>
+       
       </form>
 
       <ul>

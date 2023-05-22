@@ -15,9 +15,10 @@ interface State {
 export default function (){
     // const dispatch=useDispatch()
     const{favoritos}=useSelector((state:State)=>state.favoritos) 
-
+  console.log(favoritos)
     return (
         <div>
+          <h1>Mis favoritos</h1>
             <Products products={favoritos}/>
         </div>
 
