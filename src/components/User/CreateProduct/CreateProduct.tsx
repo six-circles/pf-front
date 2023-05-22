@@ -56,11 +56,22 @@ function CreateProduct() {
 
   useEffect(() => {
     dispatch(clearProducts());
-    dispatch(getProductDetail(product));
     checkAuth("product", navigate);
-    getDetails();
-    console.log(detail);
-  }, [form, dispatch]);
+    dispatch(getProductDetail(product));
+  }, [dispatch, product, navigate]);
+
+  useEffect(() => {
+    const tempForm = { ...initState };
+
+    if (detail && detail.title) {
+      tempForm.title = detail.title;
+      tempForm.stock = detail.stock;
+      tempForm.price = detail.price;
+      tempForm.description = detail.description;
+
+      setForm({ ...form, ...tempForm });
+    }
+  }, [detail]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>
