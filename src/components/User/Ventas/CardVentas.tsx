@@ -12,7 +12,7 @@ import { getToken, urlAxios } from "../../../utils";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: any;
   punctuation: number;
   price: number;
   condition?: string;
@@ -82,7 +82,7 @@ function CardVentas(props: Product) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.card_image}>
-        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+        <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillEdit className={styles.icon_edit} onClick={handleEdit} />
