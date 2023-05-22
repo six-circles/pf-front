@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -31,9 +31,13 @@ function Header() {
 
   const handleNavigate = () => {
     const cleanSearch = new URLSearchParams();
-    cleanSearch.set("index", "0")
+    cleanSearch.set('index', '0');
 
-    navigate({ search: cleanSearch.toString() });
+    navigate({
+      pathname: '/',
+      search: cleanSearch.toString(),
+    });
+
     dispatch(getProducts());
     setTitle("");
     window.location.reload();
