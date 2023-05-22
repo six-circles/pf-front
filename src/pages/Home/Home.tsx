@@ -22,7 +22,6 @@ interface State {
 function Home() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
-  const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const { products, totalPages, currentPage } = useSelector(
     (state: State) => state.products
@@ -31,7 +30,7 @@ function Home() {
   const queryParams = new URLSearchParams(window.location.search);
   let queryParamsString = queryParams.toString();
 
-  let paramSearch = params.get("search");
+  let paramSearch = queryParams.get("search");
 
   useEffect(() => {
     dispatch(clearProducts());
