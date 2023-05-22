@@ -1,56 +1,57 @@
 @use "../../styles/variables.scss" as v;
-.card{
-    display: flex;
-    height:10rem;
-    background-color:v.$color-gray ;
+.card {
+  display: flex;
+  height: 10rem;
+  background-color: v.$color-gray;
 }
-.precio{
-    display: flex;
-    position: relative;
-    left: 4rem;
-    cursor:default;
-    width: fit-content;
+.precio {
+  display: flex;
+  position: relative;
+  left: 4rem;
+  cursor: default;
+  width: fit-content;
 }
-.title{
-    width: fit-content;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    white-space: nowrap;
-    cursor:default;
+.title {
+  width: fit-content;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  white-space: nowrap;
+  cursor: default;
 }
-.img{
-    width: fit-content;
+.img {
+  width: fit-content;
 }
-.buttonEliminar{
-    display: flex;
-    position: relative;
-    height: fit-content;
-    width: fit-content;
-    background-color: red;
-    font-size:x-small;
+.buttonEliminar {
+  display: flex;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  background-color: red;
+  font-size: x-small;
 }
-.input{
-    // display: flex;
-    width: 3rem;
-    height: fit-content;
+.input {
+  // display: flex;
+  width: 3rem;
+  height: fit-content;
+  color: #000;
 }
-.cantidad{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 8rem;
-    width:fit-content;
-    height: 3rem;
-    gap: 1rem;
+.cantidad {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 8rem;
+  width: fit-content;
+  height: 3rem;
+  gap: 1rem;
 }
-.buttonDetails{
-    display: flex;
-    position: relative;
-    margin-left: 15rem;
-    font-size: xx-small;
-    width: fit-content;
-    height: fit-content;
+.buttonDetails {
+  display: flex;
+  position: relative;
+  margin-left: 15rem;
+  font-size: xx-small;
+  width: fit-content;
+  height: fit-content;
 }
-.cant{
-    width: fit-content;
+.cant {
+  width: fit-content;
 }
