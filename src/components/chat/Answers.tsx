@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./QA.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
@@ -9,19 +9,23 @@ interface Answer {
 
 export function Answers(props: any) {
   const [answer, setAnswers] = useState<Answer[]>([]);
-  const [newAnswer, setNewAnswer] = useState("");
+  const [getComment, setGetComment] = useState("");
   const {questionId}=useParams()
 const {token, config}=getToken()
 
-  const handleQuestionSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-if (newAnswer.length > 0) {
-  const body ={token, id:questionId, body:newAnswer}
+useEffect(() => {
+  handleComment();
+  },[]);
+
+  const handleComment = async () => {
+    
+if (getComment.length > 0) {
+  const body ={token, id:questionId, body:getComment}
   console.log(body);
    
   try{
-    const response = await urlAxios.post( "/product/questions/answers", body,config);
-    console.log(response);}
+    const get = await urlAxios.get( `/product/comments/${token}`);
+    console.log(get);}
   catch(error:any){
     console.log(error.response.data);
   }}}
@@ -29,9 +33,9 @@ if (newAnswer.length > 0) {
   return (
     <Fragment>
     <div className="card">
-      <center><h1>Respuestas</h1></center>
+      <center><h1>Comentarios</h1></center>
       <br />
-      <div>
+      <div onSubmit={handleComment}>
         {props?.answer &&
           props?.answer.map((item: any, index: any) => (
             <div key={index}>
@@ -41,22 +45,7 @@ if (newAnswer.length > 0) {
           ))}
       </div>
       <br />
-      <form onSubmit={handleQuestionSubmit}>
-        <div className="new">
-          <input
-            className="new"
-            type="text"
-            value={newAnswer}
-            onChange={(event) => setNewAnswer(event.target.value)}
-            placeholder="Escribe tu respuesta"
-          />
-        </div>
-        <br />
-        <center><div className="send">
-          <button className="send" type="submit">
-            Publicar respuesta</button>
-        </div></center>
-      </form>
+      
 
       <ul>
         {answer.map((answer) => (

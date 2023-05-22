@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Products, Slider, Filter, Paginator } from "../../components";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import {
   clearProducts,
@@ -20,6 +20,7 @@ interface State {
 }
 
 function Home() {
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [params] = useSearchParams();
   const dispatch: any = useDispatch();
@@ -28,17 +29,17 @@ function Home() {
   );
 
   const queryParams = new URLSearchParams(window.location.search);
-  const queryParamsString = queryParams.toString();
+  let queryParamsString = queryParams.toString();
 
   let paramSearch = params.get("search");
 
-  console.log(totalPages);
-
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set("index", index.toString());
     dispatch(clearProducts());
-    dispatch(getProducts(queryParams.toString()));
+    queryParams.set("index", `${index}`);
+    queryParamsString = queryParams.toString();
+    console.log(queryParamsString);
+    dispatch(getProducts(queryParamsString));
+    // ! navigate({ search: queryParamsString });
   }, [queryParamsString, index]);
 
   return (

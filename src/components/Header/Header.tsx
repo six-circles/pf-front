@@ -40,12 +40,13 @@ function Header() {
     setTitle(value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(selectPage(0));
+    await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    navigate({ search: queryParams.toString() });
+    dispatch(getProducts(queryParams.toString()));
+    // ! navigate({ search: queryParams.toString() });
   };
 
   const handleLogin = () => {
@@ -78,7 +79,7 @@ function Header() {
             {/* {showFavs && <Favs />} */}
           </div>
           <div style={{ position: "relative" }}>
-            <a
+            {/* <a
               href="#"
               className={styles.letras}
               onClick={() => {
@@ -87,6 +88,13 @@ function Header() {
                 } else {
                   setShowCarrito(false);
                 }
+              }}
+            > */}
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={() => {
+                navigate("/carrito");
               }}
             >
               <AiOutlineShoppingCart className={styles.icons2} />
