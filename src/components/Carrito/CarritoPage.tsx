@@ -33,13 +33,8 @@ export default function (props: any) {
   };
   const name = prod.title;
   const cant = prod.cantidadCarrito;
-<<<<<<< HEAD
-  
-
-=======
   const image = prod.image[0].url
   
->>>>>>> develop
   return (
     <div>
       {prod ? (
