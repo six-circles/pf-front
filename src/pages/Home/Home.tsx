@@ -57,7 +57,6 @@ function Home() {
         </div>
       </div>
       <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
-      <Calificar />
     </Fragment>
   );
 }

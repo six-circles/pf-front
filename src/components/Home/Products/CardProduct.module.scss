@@ -29,7 +29,6 @@
     }
 
     .card_icons {
-      color: v.$color-white;
       position: absolute;
       top: 0;
       right: 0;
@@ -43,13 +42,23 @@
       border-radius: 0.5rem;
 
       .icon_heart {
+        color: v.$color-white;
         transition: 150ms;
         &:hover {
           color: #ee3737;
         }
       }
 
+      .icon_heart_fav {
+        transition: 150ms;
+        color: #ee3737;
+        &:hover {
+          color: #ec5454;
+        }
+      }
+
       .icon_cart {
+        color: v.$color-white;
         transition: 150ms;
         &:hover {
           color: lighten(v.$color-blue, 0%);

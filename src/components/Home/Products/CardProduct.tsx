@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./CardProduct.module.scss";
 import { Rating } from "../..";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { AiFillHeart } from "react-icons/ai";
 import { IoCartSharp } from "react-icons/io5";
@@ -21,10 +21,19 @@ interface Product {
   user?: string;
 }
 
+interface Favorites {
+  favoritos: object[];
+}
+
+interface State {
+  favoritos: Favorites;
+}
+
 function CardProduct(props: Product) {
-  const [showIcons, setShowIcons] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
+  const { favoritos } = useSelector((state: State) => state.favoritos);
 
   const { token } = getToken();
 
@@ -32,14 +41,6 @@ function CardProduct(props: Product) {
     dispatch(clearProducts());
     navigate(`/detail/${props.id}`);
     window.scrollTo(0, 0);
-  };
-
-  const handleMouseEnter = () => {
-    setShowIcons(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowIcons(false);
   };
 
   const addToCarrito = async (event: any) => {
@@ -74,12 +75,37 @@ function CardProduct(props: Product) {
       token,
     };
 
-    try {
-      const { data } = await urlAxios.post("/user/favorites", prod);
-      console.log(data);
-      dispatch(getFavorites());
-    } catch (error: any) {
-      console.log(error.response.data.error);
+    if (isFav) {
+      try {
+        await urlAxios.delete(`/${token}/favorites/${props.id}`);
+        setIsFav(false);
+        await urlAxios(`/${token}/favorites`);
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Eliminado de Favoritos",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } catch (error: any) {
+        console.log(error.response.data.error);
+      }
+    } else {
+      try {
+        await urlAxios.post("/user/favorites", prod);
+        setIsFav(true);
+        await urlAxios(`/${token}/favorites`);
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Añadido a Favorito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        dispatch(getFavorites());
+      } catch (error: any) {
+        console.log(error.response.data.error);
+      }
     }
   };
 
@@ -89,23 +115,31 @@ function CardProduct(props: Product) {
     shortName = props.name.slice(0, 40) + "...";
   }
 
+  useEffect(() => {
+    favoritos.forEach((fav: any) => {
+      if (fav._id === props.id) {
+        setIsFav(true);
+      }
+    });
+  }, [favoritos, props.id]);
+
   return (
-    <div
-      className={styles.card}
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
         {props?.image && (
           <img src={props?.image[0]} alt={props.name.slice(0, 10)} />
         )}
-        {showIcons && (
-          <div className={styles.card_icons}>
+        <div className={styles.card_icons}>
+          {isFav ? (
+            <AiFillHeart
+              className={styles.icon_heart_fav}
+              onClick={addToFavs}
+            />
+          ) : (
             <AiFillHeart className={styles.icon_heart} onClick={addToFavs} />
-            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
-          </div>
-        )}
+          )}
+          <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
+        </div>
       </div>
       <div className={styles.card_info}>
         <div className={styles.info}>
