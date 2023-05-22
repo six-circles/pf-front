@@ -42,27 +42,36 @@ function CreateProduct() {
   const product = productParam.toString().split("=")[1];
 
   const getDetails = async () => {
-    const tempForm = { ...initState }; // Estado local temporal para mantener los valores
+    const tempForm = { ...initState };
 
-    await dispatch(clearProducts());
-    await dispatch(getProductDetail(product)).then(() => {
-      if (product && detail) {
-        tempForm.title = detail.title;
-        tempForm.stock = detail.stock;
-        tempForm.price = detail.price;
-        tempForm.description = detail.description;
+    if (detail && detail.title) {
+      tempForm.title = detail.title;
+      tempForm.stock = detail.stock;
+      tempForm.price = detail.price;
+      tempForm.description = detail.description;
 
-        setForm({ ...form, ...tempForm });
-      }
-
-      console.log(form);
-    });
+      setForm({ ...form, ...tempForm });
+    }
   };
 
   useEffect(() => {
+    dispatch(clearProducts());
     checkAuth("product", navigate);
-    getDetails();
-  }, []);
+    dispatch(getProductDetail(product));
+  }, [dispatch, product, navigate]);
+
+  useEffect(() => {
+    const tempForm = { ...initState };
+
+    if (detail && detail.title) {
+      tempForm.title = detail.title;
+      tempForm.stock = detail.stock;
+      tempForm.price = detail.price;
+      tempForm.description = detail.description;
+
+      setForm({ ...form, ...tempForm });
+    }
+  }, [detail]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | any>

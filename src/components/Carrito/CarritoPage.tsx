@@ -31,26 +31,29 @@ export default function (props: any) {
   const details = (id: string) => {
     navigate(`/detail/${id}`);
   };
-  const name = prod.title.slice(0, 8);
-  const cant = prod.cantidadCarrito
+  const name = prod.title;
+  const cant = prod.cantidadCarrito;
+
+
   return (
     <div>
       {prod ? (
         <div className={styles.card}>
-          <img src={prod.image[0]} alt={prod.title} className={styles.img} />
-          <p className={styles.title}>{name}...</p>
+         {prod.image?  <img src={prod.image[0]} alt={prod.title} className={styles.img} />:null}
+          <p className={styles.title}>{name}</p>
           <p className={styles.precio}>${prod.price}</p>
           {/* <p>{prod.puntuaction}</p> */}
+
           <div className={styles.cantidad}>
             <label>Cantidad</label>
             <input
               className={styles.input}
-              type="number"
-              name="cantidad"
+              // type="number"
+              // name="cantidad"
               placeholder={cant}
               // value="1"
-              min={cant}
-              max={cant}
+              // min={cant}
+              // max={cant}
             />
           </div>
           <button onClick={() => details(id)} className={styles.buttonDetails}>

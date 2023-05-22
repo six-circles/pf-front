@@ -2,7 +2,7 @@ import styles from "./filter.module.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { selectPage } from "../../redux/actions/productActions.";
+import { getProducts, selectPage } from "../../redux/actions/productActions.";
 
 const Filter: React.FC = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const Filter: React.FC = () => {
   const dispatch: Function = useDispatch();
   const searchParams = new URLSearchParams(location.search);
   let minP = "0",
-    maxP = "5000",
+    maxP = "10000",
     minR = "0",
     maxR = "5";
 
@@ -52,7 +52,8 @@ const Filter: React.FC = () => {
       searchParams.set("maxRating", maxRating.toString());
     }
 
-    navigate({ search: searchParams.toString() });
+    dispatch(getProducts(searchParams.toString()));
+    // ! navigate({ search: searchParams.toString() });
   }, [orderBy, category]);
 
   const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -71,6 +72,9 @@ const Filter: React.FC = () => {
     e.preventDefault();
     const searchParams = new URLSearchParams(location.search);
 
+    searchParams.set("index", "0");
+    dispatch(selectPage(0));
+
     // if (orderBy !== '') searchParams.set('order', orderBy);
     // if (category !== '') searchParams.set('category', category);
 
@@ -84,6 +88,7 @@ const Filter: React.FC = () => {
       searchParams.set("maxRating", maxRating.toString());
     }
 
+    // dispatch(getProducts(searchParams.toString()));
     navigate({ search: searchParams.toString() });
   };
 

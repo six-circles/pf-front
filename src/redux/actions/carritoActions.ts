@@ -9,8 +9,6 @@ export const getCartProducts = () => {
     try {
       const { data } = await urlAxios(`/${token}/shoppingCart`);
 
-      console.log(data);
-
       dispatch({
         type: GET_CART_PRODUCTS,
         payload: data,
