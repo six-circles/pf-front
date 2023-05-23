@@ -20,6 +20,24 @@ const GalleryDetail = (props: any) => {
 
   return (
     <div className={styles.contGallery}>
+      <div className={styles.carousel}>
+        <div className={styles.thumbnails}>
+          {props.detail.image &&
+            props.detail.image.map((elem: string, index: number) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => setSlide(index)}
+                  className={
+                    index === slide ? styles.thumbnailAct : styles.thumbnail
+                  }
+                >
+                  <img src={elem} alt="" />
+                </div>
+              );
+            })}
+        </div>
+      </div>
       <div className={styles.slideMax}>
         <div className={styles.slide}>
           {props.detail.image && <img
@@ -40,24 +58,7 @@ const GalleryDetail = (props: any) => {
           )}
         </div>
       </div>
-      <div className={styles.carousel}>
-        <div className={styles.thumbnails}>
-          {props.detail.image &&
-            props.detail.image.map((elem: string, index: number) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => setSlide(index)}
-                  className={
-                    index === slide ? styles.thumbnailAct : styles.thumbnail
-                  }
-                >
-                  <img src={elem} alt="" />
-                </div>
-              );
-            })}
-        </div>
-      </div>
+
     </div>
   );
 };
