@@ -10,7 +10,6 @@ export const POST_COMMENTS = "POST_COMMENTS";
 export const POST_QUESTIONS = "QUESTIONS";
 export const POST_ANSWERS = "POST_ANSWERS";
 export const SELECT_PAGE = "SELECT_PAGE";
-export const GET_ANSWERS= "GET_ANSWERS"
 
 export const clearProducts = () => {
   return (dispatch: Function) => {
@@ -109,16 +108,6 @@ export const postAnswers = (answer: any) => {
     });
   };
 };
-
-export const getAnswers = (answers: any) => {
-  return (dispatch: any) => {
-    dispatch({
-      type: GET_ANSWERS,
-      payload: answers,
-    });
-  };
-};
-
 
 export const selectPage = (page: number = 0) => {
   return (dispatch: Function) => {

@@ -12,67 +12,47 @@ interface Answer {
   body: ReactNode;
   question: any;
   id: number;
+
 }
 
-export function Answers(props:any) {
+export function Answers() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
-  const [newAnswer, setNewAnswer] = useState("");
-  const {token, config}=getToken()
+
   const { id } = useParams();
-  const newAnswerObj = {
-    body: newAnswer,
-    question: id,
-    token
-  };
+  //const { token, config } = getToken();
 
+ 
 
-
-
-  const handleAnswerSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (newAnswer.trim() === "") {
-      return;
-    }
-
-   
+  const handleAnswers = async () => {
     try {
-      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
-      console.log(response);
-      setAnswers([...answers, response.data]);
-      setNewAnswer(" ");
-      
+      const get = await urlAxios.get(`/product/questions/answers/${id}`);
+     console.log(get.data);
+      setAnswers([...get.data]);
     } catch (error: any) {
       console.log(error.response.data);
     }
   };
 
- 
+  useEffect(() => {
+    //handleQuestion();
+    handleAnswers();
+  }, []);
+
   return (
     <Fragment>
-     
-        
+      <div className="card">
+        <center>
+          <h1>Respuestas</h1>
+        </center>
         <br />
-        <ul>
-          {answers &&
-            answers?.map((answer: any) => (
-              <li key={answer._id}>{answer.body}</li>
-            ))}
-        </ul>
-        <form onSubmit={handleAnswerSubmit}>
-        <div className="new">
-          <input
-            type="text"
-            value={newAnswer}
-            onChange={(event) => setNewAnswer(event.target.value)}
-            placeholder="Escribe tu respuesta"
-          /></div>
-          <button type="submit">Enviar respuesta</button>
-          
-        </form>
-      
+              <ul>
+                {answers &&
+                  answers?.map((answer:any) => (
+                    <li key={answer._id}>{answer.body}</li>
+                  ))}
+              </ul>
+      </div>
     </Fragment>
   );
 }
-
