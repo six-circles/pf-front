@@ -45,14 +45,19 @@ handleQuestion();
       <br />
       <ul>
       <br />
+      
       {questions &&
       questions?.map((questions:any) => (
-       
+       <div>
+        <br />
           <li key={questions._id}>{questions.body}</li> 
+          
+           <Answers id={questions._id}/> </div>
            
         ))}
-        <br />
-        <Answers/>
+       
+        
+        
       </ul>
       </div>
       </Fragment>   

@@ -14,7 +14,7 @@ interface Answer {
   id: number;
 }
 
-export function Answers() {
+export function Answers(props:any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
