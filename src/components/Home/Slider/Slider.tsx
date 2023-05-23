@@ -9,7 +9,8 @@ const Slider = () => {
   const navigate = useNavigate();
 
   const [slide, setSlide] = useState(0);
-  const cant = 3;
+  let cant: number;
+  products.length > 2 ? cant = 3 : cant = 1;
 
   const handleClick = () => {
     navigate(`/detail/${products[slide]._id}`);
@@ -38,8 +39,8 @@ const Slider = () => {
     <div className={styles.carousel}>
       <div className={styles.slider}>
         <div className={styles.contImage} onClick={handleClick}>
-          {products[slide]?.image[0] && (
-            <img className={styles.image} src={products[slide].image.url} alt="" />
+          {products[slide]?.image[slide] && (
+            <img className={styles.image} src={products[slide].image[0]} alt="" />
           )}
         </div>
         <div className={styles.contDesc}>
