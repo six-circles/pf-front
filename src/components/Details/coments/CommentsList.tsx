@@ -3,6 +3,7 @@ import { getToken, urlAxios } from '../../../utils';
 import { useParams } from 'react-router-dom';
 import './comments.scss'
 import User from '../../Header/perfil/User';
+import { Answers } from '../..';
     interface Comment {
         id: number;
         text: string;
@@ -70,9 +71,13 @@ import User from '../../Header/perfil/User';
             </div>
             <br />
             <div className='send'>
-            <button  className='send' type="submit">Publicar comentario</button>
+            <button  className='send' type="submit">Publicar comentario</button> 
+           
           </div>
+         
           </form>
+    
+
     
           <ul>
             

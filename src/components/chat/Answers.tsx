@@ -12,47 +12,67 @@ interface Answer {
   body: ReactNode;
   question: any;
   id: number;
-
 }
 
 export function Answers() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
-
+  const [newAnswer, setNewAnswer] = useState("");
+  const {token, config}=getToken()
   const { id } = useParams();
-  //const { token, config } = getToken();
+  const newAnswerObj = {
+    body: newAnswer,
+    question: id,
+    token
+  };
 
- 
 
-  const handleAnswers = async () => {
+
+
+  const handleAnswerSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (newAnswer.trim() === "") {
+      return;
+    }
+
+   
     try {
-      const get = await urlAxios.get(`/product/questions/answers/${id}`);
-     console.log(get.data);
-      setAnswers([...get.data]);
+      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
+      console.log(response);
+      setAnswers([...answers, response.data]);
+      setNewAnswer(" ");
+      
     } catch (error: any) {
       console.log(error.response.data);
     }
   };
 
-  useEffect(() => {
-    //handleQuestion();
-    handleAnswers();
-  }, []);
-
+ 
   return (
     <Fragment>
-      <div className="card">
-        <center>
-          <h1>Respuestas</h1>
-        </center>
+     
+        
         <br />
-              <ul>
-                {answers &&
-                  answers?.map((answer:any) => (
-                    <li key={answer._id}>{answer.body}</li>
-                  ))}
-              </ul>
-      </div>
+        <ul>
+          {answers &&
+            answers?.map((answer: any) => (
+              <li key={answer._id}>{answer.body}</li>
+            ))}
+        </ul>
+        <form onSubmit={handleAnswerSubmit}>
+        <div className="new">
+          <input
+            type="text"
+            value={newAnswer}
+            onChange={(event) => setNewAnswer(event.target.value)}
+            placeholder="Escribe tu respuesta"
+          /></div>
+          <button type="submit">Enviar respuesta</button>
+          
+        </form>
+      
     </Fragment>
   );
 }
+
