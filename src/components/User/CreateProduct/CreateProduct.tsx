@@ -103,10 +103,10 @@ function CreateProduct() {
     event.preventDefault();
 
     const { token, config } = getToken();
+    formData.append("image", image);
 
     const obj_post = {
       condition: form.condition,
-      image: [image],
       title: form.title,
       stock: Number(form.stock),
       price: Number(form.price),
@@ -125,10 +125,11 @@ function CreateProduct() {
 
     console.log(obj_post);
 
-    formData.append("image", image);
+    formData.append("data", JSON.stringify(obj_post));
 
     try {
       const { data } = await urlAxios.post("/pruebacloudinary", formData);
+
       // if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
       // else await urlAxios.post("/product", obj_post, config);
       Swal.fire({
