@@ -14,9 +14,19 @@ const GalleryDetail = (props: any) => {
     setIsOpened(false);
   };
 
-  useEffect(() => {
-    setSlide(0);
-  }, []);
+
+  let cant: number = props.detail?.image?.length
+  // props.detail.image.length > 2 ? cant = 3 : cant = 1;
+
+  const goToPrevSlide = () => {
+    slide > 0 ? setSlide(slide - 1) : setSlide(cant - 1);
+    setIsOpened(true);
+  };
+
+  const goToNextSlide = () => {
+    slide < cant - 1 ? setSlide(slide + 1) : setSlide(0);
+    setIsOpened(true);
+  };
 
   return (
     <div className={styles.contGallery}>
@@ -32,7 +42,7 @@ const GalleryDetail = (props: any) => {
                     index === slide ? styles.thumbnailAct : styles.thumbnail
                   }
                 >
-                  <img src={elem} alt="" />
+                  <img className={styles.imgThumb} src={elem} alt="" />
                 </div>
               );
             })}
@@ -47,12 +57,15 @@ const GalleryDetail = (props: any) => {
           />}
 
           {isOpened && (
-            <div className={styles.overlay} onClick={closeImageSlide}>
+            <div className={styles.overlay}>
               <div className={styles.slide2}>
                 <img className={styles.enlarged} src={props.detail?.image[slide]} />
                 <button className={styles.closeButton} onClick={closeImageSlide}>
-                  <AiFillCloseCircle clasName={styles.icon} />
+                  <AiFillCloseCircle size={35} />
                 </button>
+
+                <button onClick={goToPrevSlide} className={styles.prevButton}></button>
+                <button onClick={goToNextSlide} className={styles.nextButton}></button>
               </div>
             </div>
           )}
