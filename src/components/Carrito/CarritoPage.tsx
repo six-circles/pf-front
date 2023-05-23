@@ -49,33 +49,34 @@ export default function (props: any) {
   const name = prod.title;
   const cant = prod.cantidadCarrito;
   const image = prod.image[0]
-
-  const[newCarrito,setNewCarrito]=useState(0)
-  const addCarrito=()=>{
-   setNewCarrito(newCarrito+1)
-  }
-  const deleteCarrito=()=>{
-    setNewCarrito(newCarrito - 1)
-  }
+ 
+  let cantidad=1
   const product={
     productsId:id,
     token,
-    cantidad: newCarrito,
+    cantidad:cantidad,
+  }
+  const addCarrito=async()=>{
+   product.cantidad= 1
+    await SendCarrito()
+   }
+  const deleteCarrito=async()=>{
+    product.cantidad= -1
+    await SendCarrito()
   }
   
   const SendCarrito=async()=>{
     try {
-      console.log("delete",product.cantidad)
-      await urlAxios.post("/user/shoppingCart",product)
-      dispatch(getCartProducts())
-      setNewCarrito(0)
-      Swal.fire({
-        position: "center",
-        icon:"success",
-        title: "actualizado con éxito",
-        showConfirmButton: false,
-        timer: 1000,
-      })
+        await urlAxios.post("/user/shoppingCart",product)
+        dispatch(getCartProducts())
+      
+        Swal.fire({
+          position: "center",
+          icon:"success",
+          title: "actualizado con éxito",
+          showConfirmButton: false,
+          timer: 1000,
+        })
       
     } catch (error:any) {
       console.log(error)
@@ -100,15 +101,9 @@ export default function (props: any) {
 
           <div className={styles.cantidad}>
             <label>Cantidad</label>
-            <input
-              className={styles.input}
-              // type="number"
-              // name="cantidad"
-              placeholder={cant}
-              // value="1"
-              // min={cant}
-              // max={cant}
-            />
+            <button className={styles.buttonMenos} onClick={deleteCarrito}> - </button>
+            <p>{cant}</p>
+            <button onClick={addCarrito} className={styles.buttonMenos}> + </button>
           </div>
           <button onClick={() => details(id)} className={styles.buttonDetails}>
             Detalles
@@ -120,12 +115,7 @@ export default function (props: any) {
       ) : (
         <h3>No hay productos aún...</h3>
       )}
-      <div className={styles.contador}>
-        <button className={styles.buttonMenos} onClick={deleteCarrito}> - </button>
-        <p>{newCarrito}</p>
-        <button onClick={addCarrito} className={styles.buttonMenos}> + </button>
-        <button onClick={SendCarrito} className={styles.buttonActu}> actualizar </button>
-      </div>
+      
     </div>
   );
 }
