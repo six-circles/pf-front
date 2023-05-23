@@ -64,6 +64,14 @@
           color: lighten(v.$color-blue, 0%);
         }
       }
+
+      .icon_cart_act {
+        color: lighten(v.$color-blue, 0%);
+        transition: 150ms;
+        &:hover {
+          color: lighten(v.$color-blue, 10%);
+        }
+      }
     }
   }
 

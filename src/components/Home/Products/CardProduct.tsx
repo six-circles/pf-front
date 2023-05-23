@@ -25,15 +25,22 @@ interface Favorites {
   favoritos: object[];
 }
 
+interface Carrito {
+  cartProducts: object[];
+}
+
 interface State {
   favoritos: Favorites;
+  carrito: Carrito;
 }
 
 function CardProduct(props: Product) {
   const [isFav, setIsFav] = useState(false);
+  const [inCart, setInCart] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
   const { favoritos } = useSelector((state: State) => state.favoritos);
+  const { cartProducts } = useSelector((state: State) => state.carrito);
 
   const { token } = getToken();
 
@@ -54,6 +61,7 @@ function CardProduct(props: Product) {
 
     try {
       await urlAxios.post("/user/shoppingCart", prod);
+      setInCart(true);
       dispatch(getCartProducts());
       Swal.fire({
         position: "top-right",
@@ -79,7 +87,7 @@ function CardProduct(props: Product) {
       try {
         await urlAxios.delete(`/${token}/favorites/${props.id}`);
         setIsFav(false);
-        await urlAxios(`/${token}/favorites`);
+        dispatch(getFavorites());
         Swal.fire({
           position: "top-right",
           icon: "success",
@@ -94,7 +102,7 @@ function CardProduct(props: Product) {
       try {
         await urlAxios.post("/user/favorites", prod);
         setIsFav(true);
-        await urlAxios(`/${token}/favorites`);
+        dispatch(getFavorites());
         Swal.fire({
           position: "top-right",
           icon: "success",
@@ -102,7 +110,6 @@ function CardProduct(props: Product) {
           showConfirmButton: false,
           timer: 1000,
         });
-        dispatch(getFavorites());
       } catch (error: any) {
         console.log(error.response.data.error);
       }
@@ -123,6 +130,14 @@ function CardProduct(props: Product) {
     });
   }, [favoritos, props.id]);
 
+  useEffect(() => {
+    cartProducts.forEach((cart: any) => {
+      if (cart._id === props.id) {
+        setInCart(true);
+      }
+    });
+  }, [cartProducts, props.id]);
+
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
@@ -138,7 +153,14 @@ function CardProduct(props: Product) {
           ) : (
             <AiFillHeart className={styles.icon_heart} onClick={addToFavs} />
           )}
-          <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
+          {inCart ? (
+            <IoCartSharp
+              className={styles.icon_cart_act}
+              onClick={addToCarrito}
+            />
+          ) : (
+            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
+          )}
         </div>
       </div>
       <div className={styles.card_info}>
