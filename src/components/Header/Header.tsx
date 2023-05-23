@@ -53,8 +53,11 @@ function Header() {
     await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    // dispatch(getProducts(queryParams.toString()));
-    navigate({ search: queryParams.toString() });
+
+    navigate({
+      pathname: "/",
+      search: queryParams.toString(),
+    });
   };
 
   const handleLogin = () => {
@@ -81,7 +84,7 @@ function Header() {
         </form>
         <nav className={styles.nav}>
           <div style={{ position: "relative" }}>
-            <a href="#" className={styles.letras}>
+            <a href="/user/favoritos" className={styles.letras}>
               <AiOutlineHeart className={styles.icons2} />
             </a>
             {/* {showFavs && <Favs />} */}

@@ -11,13 +11,13 @@ interface Products {
 interface State {
   favoritos: Products;
 }
-
 export default function (){
-    // const dispatch=useDispatch()
-    const{favoritos}=useSelector((state:State)=>state.favoritos) 
-
+  // const dispatch=useDispatch()
+  const{favoritos}=useSelector((state:State)=>state.favoritos) 
+ 
     return (
         <div>
+          <h1>Mis favoritos</h1>
             <Products products={favoritos}/>
         </div>
 
