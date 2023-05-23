@@ -63,8 +63,9 @@ function Login() {
     }
   };
 
-  const GoogleCallback = () => {
-    // {`${urlBack}/auth/google`}
+  const GoogleCallback = (event: React.FormEvent) => {
+    event.preventDefault();
+    window.location.href = `${urlBack}/auth/google`;
   }
 
   return (
@@ -77,7 +78,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
           <div className={styles.socialContainer}>
-            <button><GrGoogle /></button>
+            <button onClick={GoogleCallback}><GrGoogle /></button>
             {/* <Link to="#"><GrApple /></Link>
             <Link to="#"><GrFacebookOption /></Link> */}
           </div>

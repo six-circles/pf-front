@@ -8,6 +8,7 @@ import {
   Calificar,
 } from "../../components";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import {
   clearProducts,
@@ -41,11 +42,29 @@ function Home() {
   useEffect(() => {
     dispatch(clearProducts());
     queryParams.set("index", `${index}`);
+    const tok = queryParams.get("token");
+    const us = queryParams.get("user");
+
+    if (tok && us) {
+      let vari = { token: tok, user: us };
+      localStorage.setItem("user", JSON.stringify(vari));
+      queryParams.delete("token");
+      queryParams.delete("user");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Bienvenido a Six Circles",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
     queryParamsString = queryParams.toString();
-    console.log(queryParamsString);
     dispatch(getProducts(queryParamsString));
-    // ! navigate({ search: queryParamsString });
-  }, [queryParamsString, index]);
+    navigate({
+      pathname: "/",
+      search: queryParamsString,
+    });
+  }, [queryParamsString, index, navigate]);
 
   return (
     <Fragment>

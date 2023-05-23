@@ -31,8 +31,7 @@ function Detail() {
     clearProducts();
     dispatch(getProductDetail(id));
     dispatch(getProducts());
-    
-  }, [dispatch, id, detail.comments,detail.questions]);
+  }, [dispatch, id]);
 
   const [tipo, setTipo] = useState("comentarios");
   const handleClick = (tipo: any) => {
