@@ -8,6 +8,7 @@ import {
   Calificar,
 } from "../../components";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import {
   clearProducts,
@@ -49,6 +50,13 @@ function Home() {
       localStorage.setItem("user", JSON.stringify(vari));
       queryParams.delete("token");
       queryParams.delete("user");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Bienvenido a Six Circles",
+        showConfirmButton: false,
+        timer: 2000
+      });
     }
     queryParamsString = queryParams.toString();
     dispatch(getProducts(queryParamsString));
