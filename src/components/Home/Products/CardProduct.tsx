@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: any;
   punctuation: number;
   price: number;
   condition?: string;
@@ -141,8 +141,8 @@ function CardProduct(props: Product) {
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
-        {props?.image && (
-          <img src={props?.image[0]} alt={props.name.slice(0, 10)} />
+        {props?.image.url && (
+          <img src={props?.image[0].url} alt={props.name.slice(0, 10)} />
         )}
         <div className={styles.card_icons}>
           {isFav ? (

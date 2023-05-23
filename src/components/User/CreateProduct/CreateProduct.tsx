@@ -23,9 +23,9 @@ function CreateProduct() {
   const initState = {
     condition: "",
     title: "",
-    image1: "",
-    image2: "",
-    image3: "",
+    // image: {},
+    // image2: "",
+    // image3: "",
     stock: 0,
     price: 0,
     moreCharacteristics: {},
@@ -34,11 +34,17 @@ function CreateProduct() {
   };
 
   const [form, setForm] = useState<any>(initState);
+  const [image, setImage] = useState<File | null | any>(null);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
   const productParam = new URLSearchParams(window.location.search);
   const product = productParam.toString().split("=")[1];
+  const formData = new FormData();
+
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
 
   useEffect(() => {
     dispatch(clearProducts());
@@ -65,6 +71,12 @@ function CreateProduct() {
     const { name, value } = event.target;
 
     setForm({ ...form, [name]: value });
+  };
+
+  const handleAddImage = (event: React.ChangeEvent<HTMLInputElement | any>) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setImage(file);
   };
 
   const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,8 +106,8 @@ function CreateProduct() {
 
     const obj_post = {
       condition: form.condition,
+      image: [image],
       title: form.title,
-      image: [form.image1, form.image2, form.image3],
       stock: Number(form.stock),
       price: Number(form.price),
       description: form.description,
@@ -111,9 +123,14 @@ function CreateProduct() {
       description: form.description,
     };
 
+    console.log(obj_post);
+
+    formData.append("image", image);
+
     try {
-      if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
-      else await urlAxios.post("/product", obj_post, config);
+      const { data } = await urlAxios.post("/pruebacloudinary", formData);
+      // if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
+      // else await urlAxios.post("/product", obj_post, config);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -121,6 +138,7 @@ function CreateProduct() {
         showConfirmButton: false,
         timer: 1500,
       });
+      console.log(data);
       setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
@@ -183,14 +201,15 @@ function CreateProduct() {
               <div className={styles.form_camp}>
                 <label>Imagen 1</label>
                 <input
+                  type="file"
                   placeholder="Ingrese al menos una imagen"
                   required
-                  value={form.image1}
-                  name="image1"
-                  onChange={handleChange}
+                  // value={form.image1}
+                  name="image"
+                  onChange={handleAddImage}
                 />
               </div>
-              <div className={styles.form_camp}>
+              {/* <div className={styles.form_camp}>
                 <label>Imagen 2</label>
                 <input
                   placeholder="Ingrese al menos una imagen"
@@ -207,7 +226,7 @@ function CreateProduct() {
                   name="image3"
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
 
               <div className={styles.form_camp}>
                 <p>Categoria</p>
