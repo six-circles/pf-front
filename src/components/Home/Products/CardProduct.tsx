@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 interface Product {
   id: string;
   name: string;
-  image: string;
+  image: any;
   punctuation: number;
   price: number;
   condition?: string;
@@ -63,6 +63,12 @@ function CardProduct(props: Product) {
       });
     } catch (error: any) {
       console.log(error.response.data.error);
+      Swal.fire({
+        position:"center",
+        icon:"error",
+        title:"Debes estar logeado",
+        showConfirmButton:true,
+      })
     }
   };
 
@@ -80,6 +86,12 @@ function CardProduct(props: Product) {
       dispatch(getFavorites());
     } catch (error: any) {
       console.log(error.response.data.error);
+      Swal.fire({
+        position:"center",
+        icon:"error",
+        title:"Debes estar logeado",
+        showConfirmButton:true,
+      })
     }
   };
 
