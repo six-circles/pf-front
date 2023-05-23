@@ -47,8 +47,8 @@ function Detail() {
       </div>
       {detail?.user && <MoreProduct />}
       <div>
-        <a onClick={() => handleClick("comentarios")}>Puntuacion | </a>
-        <a onClick={() => handleClick("question")}>Pregunta</a>
+        <a className="optiondetail"  onClick={() => handleClick("comentarios")}>Puntuacion | </a>
+        <a className="optiondetail" onClick={() => handleClick("question")}>Pregunta</a>
       </div>
       <br />
 

@@ -36,13 +36,15 @@ export function Answers(props:any) {
       return;
     }
 
-   
+    
     try {
+      
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
-      console.log(response);
+      
       setAnswers([...answers, response.data]);
       setNewAnswer(" ");
-      
+    console.log(newAnswer);
+           
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -59,6 +61,7 @@ export function Answers(props:any) {
             answers?.map((answer: any) => (
               <li className="lianswer"  key={answer._id}>{answer.body}</li>
             ))}
+          
         </ul>
           <input className="inputanswer"
             type="text"
