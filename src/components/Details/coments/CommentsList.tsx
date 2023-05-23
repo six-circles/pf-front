@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getToken, urlAxios } from '../../../utils';
 import { useParams } from 'react-router-dom';
 import './comments.scss'
+import User from '../../Header/perfil/User';
     interface Comment {
         id: number;
         text: string;
@@ -24,10 +25,14 @@ import './comments.scss'
             productsId: id,
             body: newComment,
             punctuation:rating,
+
             token
           };
           try{
             const response = await urlAxios.post( "/product/comments", newCommentObj,config);
+            const getComment =await urlAxios.get(`/product/${id}/comments`);
+            console.log(getComment);
+            
             console.log(response);
             setComments([...comments, { id: comments.length + 1, text: newComment }]);
             setNewComment('');
@@ -39,7 +44,7 @@ import './comments.scss'
           //setComments([...comments, newCommentObj]);
           
        
-      console.log(props.comments);
+      //console.log(props.comments);
       
       return (
         <div >
@@ -70,9 +75,7 @@ import './comments.scss'
           </form>
     
           <ul>
-            {comments.map(comments => (
-              <li key={comments.id}>{comments.text}</li>
-            ))}
+            
           </ul>
         </div>
       );

@@ -6,6 +6,7 @@ import {
   CLEAR_PRODUCTS,
   POST_ANSWERS,
   SELECT_PAGE,
+  GET_ANSWERS
 } from "../actions/productActions.";
 
 const initialState = {
@@ -68,6 +69,12 @@ const productsReducer = (state = initialState, action: Action) => {
         ...state,
         answer: { ...action.payload },
       };
+
+      case GET_ANSWERS:
+        return {
+          ...state,
+          answers: { ...action.payload },
+        };
 
     case SELECT_PAGE:
       return {

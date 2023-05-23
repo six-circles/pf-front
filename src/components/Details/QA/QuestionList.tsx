@@ -33,12 +33,13 @@ const {token, config}=getToken()
       <div className="view">
       <h1>Preguntas</h1>
       <br />
-      <div></div>
+
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
               <p>{item.userName}</p>
               <p>{item.body}</p>
+              <br />
             </div>
           ))}
       </div>
@@ -58,9 +59,7 @@ const {token, config}=getToken()
       </form>
 
       <ul>
-        {questions.map((question) => (
-          <li key={question.id}>{question.text}</li>
-        ))}
+        
       </ul>
       </div>
       </Fragment>
