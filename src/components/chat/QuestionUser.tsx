@@ -8,7 +8,7 @@ interface Question {
   text: string;
 }
 
-export function QuestionUser() {
+export function QuestionUser(props:any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [getQuestion, setGetQuestion] = useState("");
 
@@ -21,6 +21,7 @@ const handleQuestion = async () => {
 
 try{
   const get = await urlAxios.get( `/questions/${token}`);
+  
   console.log(get.data);
 setQuestions([...get.data])
 console.log(questions);
@@ -37,9 +38,7 @@ handleQuestion();
   return (
     <Fragment> 
     <div className="card">  
-      <center>
-        <h1>Preguntas Realizadas</h1>
-        </center>
+      
       <br /> 
       
       <br />

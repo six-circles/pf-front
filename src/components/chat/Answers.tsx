@@ -51,24 +51,22 @@ export function Answers(props:any) {
  
   return (
     <Fragment>
-     
         
-        <br />
-        <ul>
-          {answers &&
-            answers?.map((answer: any) => (
-              <li key={answer._id}>{answer.body}</li>
-            ))}
-        </ul>
         <form onSubmit={handleAnswerSubmit}>
         <div className="new">
-          <input
+        <ul className="ulanswer">
+          {answers &&
+            answers?.map((answer: any) => (
+              <li className="lianswer"  key={answer._id}>{answer.body}</li>
+            ))}
+        </ul>
+          <input className="inputanswer"
             type="text"
             value={newAnswer}
             onChange={(event) => setNewAnswer(event.target.value)}
             placeholder="Escribe tu respuesta"
           /></div>
-          <button type="submit">Enviar respuesta</button>
+          <button className="answersubmit" type="submit">Enviar respuesta</button>
           
         </form>
       

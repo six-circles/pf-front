@@ -96,8 +96,26 @@
     opacity: 0;
   }
 }
+.inputanswer {
+  width: 80%;
+  height: 80%;
+  margin: 5%;
+  
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 16px;
+  
+  font-weight: bold;
+  
+}
+.answersubmit{
+  width: 20%;
+  height: 80%;
+  margin-left:50px ;
+  background-color:rgb(221, 221, 221);
+  color:black;
+}
 
-// li{
-//   list-style: none;
-//   padding: 15px;
-// }
+.answersubmit:hover{
+  background-color:rgb(228, 228, 228);
+}
