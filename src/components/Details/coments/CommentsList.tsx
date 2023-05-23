@@ -48,7 +48,7 @@ function CommentList(props: any) {
   return (
     <div>
       <div className="view">
-        <h1>Puntuacion</h1>
+        
         {props?.comments &&
           props?.comments.map((item: any, index: any) => (
             <div key={index}>

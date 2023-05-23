@@ -31,14 +31,14 @@ const {token, config}=getToken()
     <Fragment>
     <div className="card">
       <div className="view">
-      <h1>Preguntas</h1>
+      
       <br />
 
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
-              <p>{item.userName}</p>
-              <p>{item.body}</p>
+              <strong><p className="username">{item.userName}</p></strong>
+              <p className="bodyuser">{item.body}</p>
               <br />
             </div>
           ))}
@@ -47,7 +47,7 @@ const {token, config}=getToken()
       <form onSubmit={handleQuestionSubmit}>
         <div className="new">
           <input
-            className="new"
+            className="newinput"
             type="text"
             value={newQuestion}
             onChange={(event) => setNewQuestion(event.target.value)}
