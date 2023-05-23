@@ -5,6 +5,7 @@ import { getCartProducts } from "../../redux/actions/carritoActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import {useState} from "react"
 
 export default function (props: any) {
   const dispatch: Function = useDispatch();
@@ -34,7 +35,43 @@ export default function (props: any) {
   const name = prod.title;
   const cant = prod.cantidadCarrito;
   const image = prod.image[0]
+
+  const[newCarrito,setNewCarrito]=useState(0)
+  const addCarrito=()=>{
+   setNewCarrito(newCarrito+1)
+  }
+  const product={
+    productsId:id,
+    token,
+    cantidad: newCarrito,
+  }
   
+  const SendCarrito=async()=>{
+    try {
+      
+      await urlAxios.post("/user/shoppingCart",product)
+      dispatch(getCartProducts())
+      setNewCarrito(0)
+      Swal.fire({
+        position: "center",
+        icon:"success",
+        title: "agregado con éxito",
+        showConfirmButton: false,
+        timer: 1000,
+      })
+      
+    } catch (error:any) {
+      console.log(error)
+      Swal.fire({
+        position: "center",
+        icon:"error",
+        title: "No se pudo añadir",
+        showConfirmButton: false,
+        timer: 2000,
+      })
+    }
+    
+  }
   return (
     <div>
       {prod ? (
@@ -66,6 +103,9 @@ export default function (props: any) {
       ) : (
         <h3>No hay productos aún...</h3>
       )}
+      <button> - </button>
+      <button onClick={addCarrito}> + </button>
+      <button onClick={SendCarrito}> actualizar </button>
     </div>
   );
 }
