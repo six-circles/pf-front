@@ -79,9 +79,7 @@ function CommentList(props: any) {
       </form>
 
       <ul>
-        {comments.map((comments) => (
-          <li key={comments.id}>{comments.text}</li>
-        ))}
+        
       </ul>
     </div>
   );
