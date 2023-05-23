@@ -41,11 +41,22 @@ function Home() {
   useEffect(() => {
     dispatch(clearProducts());
     queryParams.set("index", `${index}`);
+    const tok = queryParams.get("token");
+    const us = queryParams.get("user");
+
+    if (tok && us) {
+      let vari = { token: tok, user: us };
+      localStorage.setItem("user", JSON.stringify(vari));
+      queryParams.delete("token");
+      queryParams.delete("user");
+    }
     queryParamsString = queryParams.toString();
-    console.log(queryParamsString);
     dispatch(getProducts(queryParamsString));
-    // ! navigate({ search: queryParamsString });
-  }, [queryParamsString, index]);
+    navigate({
+      pathname: "/",
+      search: queryParamsString,
+    });
+  }, [queryParamsString, index, navigate]);
 
   return (
     <Fragment>
