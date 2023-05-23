@@ -26,7 +26,7 @@ export default function () {
     // checkAuth("product", navigate);
     dispatch(clearProducts());
     getProducts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.ventas}>
