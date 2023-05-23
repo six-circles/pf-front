@@ -16,15 +16,29 @@ export default function (props: any) {
   const navigate = useNavigate();
   const deleteProduct = async () => {
     try {
-      await urlAxios.delete(`${token}/shoppingCart/${id}`);
       Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Producto eliminado",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-      dispatch(getCartProducts());
+        title: '¿Desea borrar este producto?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, borrar!'
+      }).then(async(result) => {
+        if (result.isConfirmed) {
+          await urlAxios.delete(`${token}/shoppingCart/${id}`);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Producto eliminado",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          dispatch(getCartProducts());
+        }
+      })
+    
+
+      
     } catch (error: any) {
       console.log(error.message);
     }
@@ -40,6 +54,9 @@ export default function (props: any) {
   const addCarrito=()=>{
    setNewCarrito(newCarrito+1)
   }
+  const deleteCarrito=()=>{
+    setNewCarrito(newCarrito - 1)
+  }
   const product={
     productsId:id,
     token,
@@ -48,14 +65,14 @@ export default function (props: any) {
   
   const SendCarrito=async()=>{
     try {
-      
+      console.log("delete",product.cantidad)
       await urlAxios.post("/user/shoppingCart",product)
       dispatch(getCartProducts())
       setNewCarrito(0)
       Swal.fire({
         position: "center",
         icon:"success",
-        title: "agregado con éxito",
+        title: "actualizado con éxito",
         showConfirmButton: false,
         timer: 1000,
       })
@@ -103,9 +120,12 @@ export default function (props: any) {
       ) : (
         <h3>No hay productos aún...</h3>
       )}
-      <button> - </button>
-      <button onClick={addCarrito}> + </button>
-      <button onClick={SendCarrito}> actualizar </button>
+      <div className={styles.contador}>
+        <button className={styles.buttonMenos} onClick={deleteCarrito}> - </button>
+        <p>{newCarrito}</p>
+        <button onClick={addCarrito} className={styles.buttonMenos}> + </button>
+        <button onClick={SendCarrito} className={styles.buttonActu}> actualizar </button>
+      </div>
     </div>
   );
 }
