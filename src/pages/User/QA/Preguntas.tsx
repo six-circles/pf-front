@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Answers, QuestionUser } from "../../../components";
+import { Answers, QuestionUser, Questionmyuser } from "../../../components";
 
 
 
@@ -8,9 +8,9 @@ import { Answers, QuestionUser } from "../../../components";
 export default function (){
     return(
     <><div>Preguntas y respuestas</div>
-    
+    <Questionmyuser/>
     <QuestionUser/>
-    <Answers/>
+  
     </>
     )
 }

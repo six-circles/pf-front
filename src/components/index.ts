@@ -18,6 +18,7 @@ import Paginator from "./Home/Paginator/Paginator";
 import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
 import Calificar from "./Rating/Calificar";
+import { Questionmyuser } from "./chat/Questionmyuser";
 
 export {
   Calificar,
@@ -40,4 +41,5 @@ export {
   Answers,
   CardCarritoMenuDespl,
   CarritoPage,
+  Questionmyuser
 };

@@ -19,11 +19,11 @@ export function Answers(props:any) {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
   const {token, config}=getToken()
-  const { id } = useParams();
+  const {id } = useParams();
   const newAnswerObj = {
     body: newAnswer,
-    question: id,
-    token
+    questionid: id,
+   
   };
 
 
@@ -36,14 +36,14 @@ export function Answers(props:any) {
       return;
     }
 
-    
+    console.log(newAnswerObj);
     try {
       
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
       
       setAnswers([...answers, response.data]);
       setNewAnswer(" ");
-    console.log(newAnswer);
+    
            
     } catch (error: any) {
       console.log(error.response.data);
@@ -56,10 +56,11 @@ export function Answers(props:any) {
         
         <form onSubmit={handleAnswerSubmit}>
         <div className={Style.new}>
-        <ul className="ulanswer">
+        <ul className={Style.ulanswer}>
           {answers &&
             answers?.map((answer: any) => (
-              <li className="lianswer"  key={answer._id}>{answer.body}</li>
+              <li className={Style.lianswer}  key={answer._id}>{answer.body}</li>
+              
             ))}
           
         </ul>
