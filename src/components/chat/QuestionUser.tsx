@@ -21,7 +21,7 @@ const handleQuestion = async () => {
 
 try{
   const get = await urlAxios.get( `/${token}/product`);
-  //questions/${token}
+  //questions/${token} /product/:productID  /${token}/product
   console.log(get.data);
 setQuestions([...get.data])
 console.log(questions);

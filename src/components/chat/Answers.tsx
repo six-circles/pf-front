@@ -40,7 +40,7 @@ console.log(props.id);
     console.log(newAnswerObj);
     try {
       
-      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
+      const response = await urlAxios.post("/product/:productID", newAnswerObj, config);
       
       setAnswers([...answers, response.data]);
       setNewAnswer(" ");
