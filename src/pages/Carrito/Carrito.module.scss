@@ -1,6 +1,17 @@
-.card{
-display: flex;
-flex-direction: column;
-gap: 1rem;
-width:fit-content;
+.contCarrito {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: fit-content;
+  background-color: aqua;
+}
+
+.contButton {
+  background-color: aquamarine;
 }
