@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import "./comments.scss";
+// import "./comments.scss";
 import { Rating } from "../..";
-import CommentList from "./CommentsList";
+// import CommentList from "./CommentsList";
 
 function Comments({ comments }: { comments: object[] }) {
   return (
@@ -22,7 +22,7 @@ function Comments({ comments }: { comments: object[] }) {
             </div>
           ))} 
           <div>
-         <CommentList/>
+         {/* <CommentList/> */}
          
          </div>
         </div>
