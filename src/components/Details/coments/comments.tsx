@@ -1,6 +1,7 @@
-import "./comments.scss";
+import React, { Fragment } from "react";
+// import "./comments.scss";
 import { Rating } from "../..";
-import CommentList from "./CommentsList";
+// import CommentList from "./CommentsList";
 
 function Comments({ comments }: { comments: object[] }) {
   return (
@@ -17,9 +18,7 @@ function Comments({ comments }: { comments: object[] }) {
               <br />
             </div>
           ))}
-          <div>
-            <CommentList />
-          </div>
+          <div>{/* <CommentList/> */}</div>
         </div>
       </div>
     </div>
