@@ -45,7 +45,6 @@ console.log(props.id);
       setAnswers([...answers, response.data]);
       setNewAnswer(" ");
     
-           
     } catch (error: any) {
       console.log(error.response.data);
     }
