@@ -22,7 +22,7 @@ export function Answers(props:any) {
   const {id } = useParams();
   const newAnswerObj = {
     body: newAnswer,
-    questionid: props.id,
+    questionId: props.id,
    
   };
 
@@ -35,16 +35,16 @@ export function Answers(props:any) {
     if (newAnswer.trim() === "") {
       return;
     }
-console.log(props.id);
+console.log(props);
 
-    console.log(newAnswerObj);
+    
     try {
-      
-      const response = await urlAxios.post("/product/:productID", newAnswerObj, config);
+      console.log(newAnswerObj);
+      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
       
       setAnswers([...answers, response.data]);
       setNewAnswer(" ");
-    
+      
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -77,4 +77,3 @@ console.log(props.id);
     </Fragment>
   );
 }
-

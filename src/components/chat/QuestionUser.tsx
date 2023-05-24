@@ -50,15 +50,13 @@ console.log(questions);
     
     
     <div key={nestedQuestion._id}>
+    {console.log(nestedQuestion._id)}
     
     <li >{nestedQuestion.body}</li>
     <Answers id={nestedQuestion._id}/>
     </div>
   ))
 ))}
-
-       
-
       
         <br />
       </ul><br />
