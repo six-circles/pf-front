@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 // import "./comments.scss";
 import { Rating } from "../..";
 // import CommentList from "./CommentsList";
