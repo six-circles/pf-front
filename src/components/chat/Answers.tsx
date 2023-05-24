@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, ReactNode } from "react";
-import "./QAS.scss";
+import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
 
@@ -55,7 +55,7 @@ export function Answers(props:any) {
     <Fragment>
         
         <form onSubmit={handleAnswerSubmit}>
-        <div className="new">
+        <div className={Style.new}>
         <ul className="ulanswer">
           {answers &&
             answers?.map((answer: any) => (
@@ -63,13 +63,13 @@ export function Answers(props:any) {
             ))}
           
         </ul>
-          <input className="inputanswer"
+          <input className={Style.inputanswer}
             type="text"
             value={newAnswer}
             onChange={(event) => setNewAnswer(event.target.value)}
             placeholder="Escribe tu respuesta"
           /></div>
-          <button className="answersubmit" type="submit">Enviar respuesta</button>
+          <button className={Style.answersubmit} type="submit">Enviar respuesta</button>
           
         </form>
       

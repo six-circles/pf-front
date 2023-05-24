@@ -62,31 +62,6 @@ function CommentList(props:State) {
     setEnviado(true)
   }
   return (
-<<<<<<< HEAD
-    <div>
-      <div className="view">
-        
-        {props?.comments &&
-          props?.comments.map((item: any, index: any) => (
-            <div key={index}>
-              <p>{item.userName}</p>
-              <p>{item.body}</p>
-            </div>
-          ))}
-      </div>
-      <br />
-      <form onSubmit={handleCommentSubmit}>
-        <div className="new">
-          {/* <input type="number" value={rating} onChange={(event:any) => setRating(event.target.value)} min={0} max={5}/> */}
-          <Calificar setState={setRating} />
-          <input
-            className="new"
-            type="text"
-            value={newComment}
-            onChange={(event) => setNewComment(event.target.value)}
-            placeholder="Escribe tu comentario"
-          />
-=======
     <div >
       
      
@@ -109,18 +84,11 @@ function CommentList(props:State) {
             <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
           </div>
           
->>>>>>> develop
         </div>
       )
         
         }
 
-<<<<<<< HEAD
-      <ul>
-        
-      </ul>
-=======
->>>>>>> develop
     </div>
   );
 }

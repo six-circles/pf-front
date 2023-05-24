@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./QAS.scss";
+import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
 interface Question {
@@ -36,7 +36,7 @@ handleQuestion();
 },[]);
   return (
     <Fragment> 
-    <div className="card">  
+    <div className={Style.card}>  
       
       <br /> 
       <br />
