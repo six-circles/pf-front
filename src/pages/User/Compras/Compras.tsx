@@ -1,17 +1,17 @@
-// import { urlAxios } from "../../../utils";
+
 import { useEffect, useState } from "react";
 // import {getToken} from "../../../utils";
 import CardCompras from "../../../components/User/Compras/CardCompras";
 import styles from "./Compras.module.scss"
-import { useSelector } from "react-redux";
+
 import { urlAxios } from "../../../utils";
 //cambiar la ruta por la de get comprabyuser --> reutilizar este comp para more products
-interface State {
-  products: Product;
-}
-interface Product {
-  products: object[];
-}
+// interface State {
+//   products: Product;
+// }
+// interface Product {
+//   products: object[];
+// }
 export default function (){
   const [compras,setcompras]=useState([])
 

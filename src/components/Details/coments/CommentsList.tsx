@@ -3,10 +3,6 @@ import { getToken, urlAxios } from "../../../utils";
 import styles from "./comments.module.scss"
 import { Calificar } from "../..";
 import Swal from "sweetalert2";
-interface Comment {
-  id: any;
-  text:string;
-}
 interface State{
   id:string,
   setPuntuacion:Function,
