@@ -1,78 +1,99 @@
-import React, { useState } from 'react'
-import { getToken, urlAxios } from '../../../utils';
-import { useParams } from 'react-router-dom';
-import './comments.scss'
-    interface Comment {
-        id: number;
-        text: string;
-      }
+import { useState } from "react";
+import { getToken, urlAxios } from "../../../utils";
+import styles from "./comments.module.scss"
+import { Calificar } from "../..";
+import Swal from "sweetalert2";
+interface State{
+  id:string,
+  setPuntuacion:Function,
+  name:string
+}
+
+function CommentList(props:State) {
+  const {id}=props
+  const {setPuntuacion}=props
+  const{name}=props
+  
+  const [newComment, setNewComment] = useState("");
+  const [rating, setRating] = useState(0);
+  const { token, config } = getToken();
+  
+  
+
+  const handleCommentSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const newCommentObj = {
+      productsId: id,
+      body: newComment,
+      punctuation: rating,
+      token,
+    };
+    try {
+      console.log(newCommentObj)
+      const response = await urlAxios.post("/product/comments",newCommentObj,config);
+      console.log(response);
+      Swal.fire({
+        position: "center",
+        icon:"success",
+        title: "Puntuación enviada",
+        showConfirmButton: false,
+        timer:1000,
+      })
+      setNewComment(" ");
+      puntuationDone()
+      setPuntuacion(false)
+    } catch (error: any) {
+      console.log("mensajes",error.response.data);
+      console.log(newCommentObj)
+      Swal.fire({
+        position: "center",
+        icon:"error",
+        title: "Puntuación ya realizada",
+        showConfirmButton: true,
+      })
+      setPuntuacion(false)
+
+    }
+
+  };
+  const [enviado,setEnviado]=useState(false)
+
+  const puntuationDone=()=>{
+    setEnviado(true)
+  }
+
+  return (
+    <div >
       
-      function CommentList(props:any) {
-        const [comments, setComments] = useState<Comment[]>([]);
-        const [newComment, setNewComment] = useState('');
-        const [rating, setRating]= useState(0);
-        const {token, config}=getToken()
-        const {id}=useParams()
-        const handleCommentSubmit = async(event: React.FormEvent) => {
-          event.preventDefault();
-      
-          if (newComment.trim() === '') {
-            return;
-          }
-      
-          const newCommentObj= {
-            productsId: id,
-            body: newComment,
-            punctuation:rating,
-            token
-          };
-          try{
-            const response = await urlAxios.post( "/product/comments", newCommentObj,config);
-            console.log(response);
-            setNewComment('');
-          }catch(error:any){
-            console.log(error.response.data);
-          }}
-      
-          //setComments([...comments, newCommentObj]);
-          
-       
-      console.log(props.comments);
-      
-      return (
-        <div >
-          <div className='view'>
-            <h1>Comentarios</h1>
-           {props?.comments&& props?.comments.map((item:any,index:any)=>(
-            <div key={index}>
-              <p>{item.userName}</p>
-            <p >{item.body}</p>
+     
+        {enviado? (<div><h1>Comentario enviado!</h1></div>  ) : (
+        <div className={styles.contenedor}>
+          <div>
+            <p className={styles.title}>Deja tu puntuación al producto: {name}</p>
+            <div className={styles.raiting}>
+              <Calificar setState={setRating} />
             </div>
-           ))}
-          </div>
-           <br />
-          <form onSubmit={handleCommentSubmit}>
-            <div className='new'>
-              <input type="number" value={rating} onChange={(event:any) => setRating(event.target.value)} min={0} max={5}/>
-            <input className='new' 
+            <input
+              className={styles.input}
               type="text"
               value={newComment}
-              onChange={event => setNewComment(event.target.value)}
+              onChange={(event) => setNewComment(event.target.value)}
               placeholder="Escribe tu comentario"
             />
+            <button className={styles.buttonSend} onClick={handleCommentSubmit} >
+              Publicar comentario
+            </button>
+            <div>
+            <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
             </div>
-            <br />
-            <div className='send'>
-            <button  className='send' type="submit">Publicar comentario</button>
           </div>
-          </form>
-    
-          <ul>
-            {comments.map(comments => (
-              <li key={comments.id}>{comments.text}</li>
-            ))}
-          </ul>
+          
         </div>
-      );
-    }
+      )
+        
+        }
+
+    </div>
+  );
+}
 export default CommentList;

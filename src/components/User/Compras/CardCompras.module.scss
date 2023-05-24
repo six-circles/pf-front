@@ -11,9 +11,9 @@
   gap: 1rem;
   width: fit-content;
 
-  &:hover {
-    scale: 1.025;
-  }
+  // &:hover {
+  //   scale: 1.025;
+  // }
 }
 
 .card_image {
@@ -61,4 +61,13 @@
     font-size: xx-small;
     color: v.$color-dark;
     
+}
+.puntuacion{
+  z-index: 1;
+  // display: flex;
+  position: fixed;
+  background-color: antiquewhite;
+  // top:50%;
+  width: fit-content;
+  
 }

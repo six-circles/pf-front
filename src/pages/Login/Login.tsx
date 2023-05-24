@@ -63,6 +63,11 @@ function Login() {
     }
   };
 
+  const GoogleCallback = (event: React.FormEvent) => {
+    event.preventDefault();
+    window.location.href = `${urlBack}/auth/google`;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.overlayContainer}>
@@ -73,7 +78,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
           <div className={styles.socialContainer}>
-            <Link to={`${urlBack}/auth/google`}><GrGoogle /></Link>
+            <button onClick={GoogleCallback}><GrGoogle /></button>
             {/* <Link to="#"><GrApple /></Link>
             <Link to="#"><GrFacebookOption /></Link> */}
           </div>
@@ -108,7 +113,7 @@ function Login() {
           </div>
           {message && <p className={styles.message}>{message}</p>}
           <br />
-          <button type="submit">Iniciar sesión</button><br />
+          <button className={styles.buttonLocal} type="submit">Iniciar sesión</button><br />
           <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
         </form>
       </div>

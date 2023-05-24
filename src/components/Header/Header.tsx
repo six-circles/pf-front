@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -30,9 +30,17 @@ function Header() {
   }
 
   const handleNavigate = () => {
-    navigate("/");
+    const cleanSearch = new URLSearchParams();
+    cleanSearch.set('index', '0');
+
+    navigate({
+      pathname: '/',
+      search: cleanSearch.toString(),
+    });
+
     dispatch(getProducts());
     setTitle("");
+    window.location.reload();
   };
 
   const handleChange = (event: any) => {
@@ -40,12 +48,16 @@ function Header() {
     setTitle(value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(selectPage(0));
+    await dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
-    navigate({ search: queryParams.toString() });
+
+    navigate({
+      pathname: "/",
+      search: queryParams.toString(),
+    });
   };
 
   const handleLogin = () => {
@@ -72,13 +84,13 @@ function Header() {
         </form>
         <nav className={styles.nav}>
           <div style={{ position: "relative" }}>
-            <a href="#" className={styles.letras}>
+            <a href="/user/favoritos" className={styles.letras}>
               <AiOutlineHeart className={styles.icons2} />
             </a>
             {/* {showFavs && <Favs />} */}
           </div>
           <div style={{ position: "relative" }}>
-            <a
+            {/* <a
               href="#"
               className={styles.letras}
               onClick={() => {
@@ -87,6 +99,13 @@ function Header() {
                 } else {
                   setShowCarrito(false);
                 }
+              }}
+            > */}
+            <a
+              href="#"
+              className={styles.letras}
+              onClick={() => {
+                navigate("/carrito");
               }}
             >
               <AiOutlineShoppingCart className={styles.icons2} />

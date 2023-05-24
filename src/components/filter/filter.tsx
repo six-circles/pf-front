@@ -2,7 +2,7 @@ import styles from "./filter.module.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { selectPage } from "../../redux/actions/productActions.";
+import { getProducts, selectPage } from "../../redux/actions/productActions.";
 
 const Filter: React.FC = () => {
   const location = useLocation();
@@ -34,8 +34,9 @@ const Filter: React.FC = () => {
   );
 
   useEffect(() => {
-    searchParams.set("index", "0");
+    // searchParams.set("index", "0");
     dispatch(selectPage(0));
+    const searchParams = new URLSearchParams(location.search);
 
     if (orderBy === "") searchParams.delete("order");
     else searchParams.set("order", orderBy);
@@ -52,6 +53,7 @@ const Filter: React.FC = () => {
       searchParams.set("maxRating", maxRating.toString());
     }
 
+    // dispatch(getProducts(searchParams.toString()));
     navigate({ search: searchParams.toString() });
   }, [orderBy, category]);
 
@@ -71,6 +73,9 @@ const Filter: React.FC = () => {
     e.preventDefault();
     const searchParams = new URLSearchParams(location.search);
 
+    // searchParams.set("index", "0");
+    dispatch(selectPage(0));
+
     // if (orderBy !== '') searchParams.set('order', orderBy);
     // if (category !== '') searchParams.set('category', category);
 
@@ -84,6 +89,7 @@ const Filter: React.FC = () => {
       searchParams.set("maxRating", maxRating.toString());
     }
 
+    // dispatch(getProducts(searchParams.toString()));
     navigate({ search: searchParams.toString() });
   };
 
@@ -112,12 +118,13 @@ const Filter: React.FC = () => {
         </select>
       </form>
       <br />
-      <form onSubmit={handleSubmit} className={styles.contForm}>
+      <form onSubmit={handleSubmit} className={styles.contForm2}>
         <label>Precio mínimo ({minPrice})</label>
         <input
           type="range"
           min={0}
           max={maxP}
+          step={100}
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
         />
@@ -126,6 +133,7 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxP}
+          step={100}
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
         />
@@ -148,7 +156,7 @@ const Filter: React.FC = () => {
           onChange={(e) => setMaxRating(e.target.value)}
         />
         <br />
-        <button type="submit">Filtros max y min</button>
+        <button type="submit">Filtrar</button>
       </form>
     </div>
   );

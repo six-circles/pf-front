@@ -1,47 +1,66 @@
 @use "../../styles/variables.scss" as v;
-.card{
-    display: flex;
-    height:10rem;
-    background-color:v.$color-gray ;
-    // width:auto;
+.card {
+  display: flex;
+  height: 10rem;
+  background-color: v.$color-gray;
 }
-.precio{
-    display: flex;
-    position: relative;
-    left: 4rem;
+.precio {
+  display: flex;
+  cursor: default;
+  width: 10rem;
+  font-size:larger;
+  margin-left: 2rem;
 }
-.title{
-    margin-left: 2rem;
-    margin-right: 2rem;
-    white-space: nowrap;
+.title {
+  width:17rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  // white-space: nowrap;
+  cursor: default;
 }
-.img{
-    width: fit-content;
+.img {
+  width: 10rem;
+  height: auto;
 }
-.buttonEliminar{
-    // display: flex;
-    height: fit-content;
-    width: fit-content;
-    background-color: red;
-    font-size:x-small;
+.buttonEliminar {
+  height: fit-content;
+  width: fit-content;
+  background-color: red;
+  font-size: x-small;
+  margin-left: 5rem;
 }
-.input{
-    // display: flex;
-    width: 3rem;
-    height: fit-content;
+.input {
+  width: 3rem;
+  height: fit-content;
+  color: #000;
 }
-.cantidad{
-    display: flex;
-    flex-direction: row;
-    margin-left: 5rem;
-    width:fit-content;
-    height: 3rem;
+.cantidad {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 8rem;
+  width: fit-content;
+  height: 3rem;
+  gap: 1rem;
 }
-.buttonDetails{
-    display: flex;
-    position: relative;
-    margin-left: 15rem;
-    font-size: xx-small;
-    width: fit-content;
-    height: fit-content;
+.buttonDetails {
+  display: flex;
+  position: relative;
+  margin-left:5rem;
+  font-size: xx-small;
+  width: fit-content;
+  height: fit-content;
 }
+.contador{
+  display: flex;
+  margin-left: 49rem;
+  height: fit-content;
+  gap: 0.7rem;
+  position: relative;
+  bottom: 5rem;
+}
+.buttonMenos{
+  display: flex;
+  
+}
+

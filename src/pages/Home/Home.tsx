@@ -1,7 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Products, Slider, Filter, Paginator } from "../../components";
-import { useSearchParams } from "react-router-dom";
+import {
+  Products,
+  Slider,
+  Filter,
+  Paginator,
+  Calificar,
+} from "../../components";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import {
   clearProducts,
@@ -20,26 +27,44 @@ interface State {
 }
 
 function Home() {
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
-  const [params] = useSearchParams();
   const dispatch: any = useDispatch();
   const { products, totalPages, currentPage } = useSelector(
     (state: State) => state.products
   );
 
   const queryParams = new URLSearchParams(window.location.search);
-  const queryParamsString = queryParams.toString();
+  let queryParamsString = queryParams.toString();
 
-  let paramSearch = params.get("search");
-
-  console.log(totalPages);
+  let paramSearch = queryParams.get("search");
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set("index", index.toString());
     dispatch(clearProducts());
-    dispatch(getProducts(queryParams.toString()));
-  }, [queryParamsString, index]);
+    queryParams.set("index", `${index}`);
+    const tok = queryParams.get("token");
+    const us = queryParams.get("user");
+
+    if (tok && us) {
+      let vari = { token: tok, user: us };
+      localStorage.setItem("user", JSON.stringify(vari));
+      queryParams.delete("token");
+      queryParams.delete("user");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: "Bienvenido a Six Circles",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
+    queryParamsString = queryParams.toString();
+    dispatch(getProducts(queryParamsString));
+    navigate({
+      pathname: "/",
+      search: queryParamsString,
+    });
+  }, [queryParamsString, index, navigate]);
 
   return (
     <Fragment>
