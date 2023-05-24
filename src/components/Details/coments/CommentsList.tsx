@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getToken, urlAxios } from "../../../utils";
-import { useParams } from "react-router-dom";
-import "./comments.scss";
+import styles from "./comments.module.scss"
 import { Calificar } from "../..";
+import Swal from "sweetalert2";
 interface Comment {
-  id: number;
-  text: string;
+  id: any;
+  text:string;
+}
+interface State{
+  id:string,
+  setPuntuacion:Function,
+  name:string
 }
 
-function CommentList(props: any) {
+function CommentList(props:State) {
+  const {id}=props
+  const {setPuntuacion}=props
+  const{name}=props
+  
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(0);
   const { token, config } = getToken();
-  const { id } = useParams();
+  
+  
+
   const handleCommentSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (newComment.trim() === "") {
-      return;
-    }
-
     const newCommentObj = {
       productsId: id,
       body: newComment,
@@ -35,17 +41,28 @@ function CommentList(props: any) {
       );
       console.log(response);
       setComments([...comments, { id: comments.length + 1, text: newComment }]);
-      setNewComment("");
+      setNewComment(" ");
+      puntuationDone()
+      setPuntuacion(false)
     } catch (error: any) {
       console.log(error.response.data);
+      Swal.fire({
+        position: "center",
+        icon:"error",
+        title: "Producto ya calificado/faltan datos",
+        showConfirmButton: true,
+      })
+      setPuntuacion(false)
+
     }
+
   };
-
-  //setComments([...comments, newCommentObj]);
-
-  console.log(rating);
-
+  const [enviado,setEnviado]=useState(false)
+  const puntuationDone=()=>{
+    setEnviado(true)
+  }
   return (
+<<<<<<< HEAD
     <div>
       <div className="view">
         
@@ -69,18 +86,41 @@ function CommentList(props: any) {
             onChange={(event) => setNewComment(event.target.value)}
             placeholder="Escribe tu comentario"
           />
+=======
+    <div >
+      
+     
+        {enviado? (<div><h1>Comentario enviado!</h1></div>  ) : (
+        <div className={styles.contenedor}>
+          <div>
+            <p className={styles.title}>Deja tu puntuación al producto: {name}</p>
+           
+            <Calificar setState={setRating} />
+            <input
+              className={styles.input}
+              type="text"
+              value={newComment}
+              onChange={(event) => setNewComment(event.target.value)}
+              placeholder="Escribe tu comentario"
+            />
+            <button className={styles.buttonSend} onClick={handleCommentSubmit} id="submit">
+              Publicar comentario
+            </button>
+            <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
+          </div>
+          
+>>>>>>> develop
         </div>
-        <br />
-        <div className="send">
-          <button className="send" type="submit">
-            Publicar comentario
-          </button>
-        </div>
-      </form>
+      )
+        
+        }
 
+<<<<<<< HEAD
       <ul>
         
       </ul>
+=======
+>>>>>>> develop
     </div>
   );
 }
