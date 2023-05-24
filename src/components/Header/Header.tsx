@@ -10,6 +10,8 @@ import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts, selectPage } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
+import MyUser from "./perfil/MyUser";
+import ShopingCart from "./perfil/ShopingCart";
 // import Favs from "./PopUps/Favs/Favs";
 
 function Header() {
@@ -23,11 +25,7 @@ function Header() {
   const queryParams = new URLSearchParams(window.location.search);
   // queryParams.toString();
 
-  const username: any = window.localStorage.getItem("user");
-  let user;
-  if (username) {
-    user = JSON.parse(username);
-  }
+
 
   const handleNavigate = () => {
     const cleanSearch = new URLSearchParams();
@@ -60,11 +58,7 @@ function Header() {
     });
   };
 
-  const handleLogin = () => {
-    if (!username) {
-      navigate("/login");
-    }
-  };
+
 
   return (
     <header className={styles.header}>
@@ -89,46 +83,12 @@ function Header() {
             </a>
             {/* {showFavs && <Favs />} */}
           </div>
-          <div style={{ position: "relative" }}>
-            {/* <a
-              href="#"
-              className={styles.letras}
-              onClick={() => {
-                if (showCarrito === false) {
-                  setShowCarrito(true);
-                } else {
-                  setShowCarrito(false);
-                }
-              }}
-            > */}
-            <a
-              href="#"
-              className={styles.letras}
-              onClick={() => {
-                navigate("/carrito");
-              }}
-            >
-              <AiOutlineShoppingCart className={styles.icons2} />
-            </a>
-            {showCarrito && <Carrito />}
-          </div>
-          <div style={{ position: "relative" }} onClick={handleLogin}>
-            <a
-              href="#"
-              className={styles.letras}
-              onClick={() => {
-                if (showUser === false) {
-                  setShowUser(true);
-                } else {
-                  setShowUser(false);
-                }
-              }}
-            >
-              <MdOutlineAccountCircle className={styles.icons2} />
-              {!user?.user ? "Ingresar" : user?.user}
-            </a>
-            {showUser && !!username ? <User /> : null}
-          </div>
+
+          <ShopingCart />
+
+          <MyUser />
+
+
         </nav>
       </div>
     </header>
