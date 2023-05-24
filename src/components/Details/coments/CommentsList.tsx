@@ -48,7 +48,7 @@ function CommentList(props:State) {
       setPuntuacion(false)
     } catch (error: any) {
       console.log("mensajes",error.response.data);
-  
+      console.log(newCommentObj)
       Swal.fire({
         position: "center",
         icon:"error",
