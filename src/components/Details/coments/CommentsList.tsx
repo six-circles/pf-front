@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { getToken, urlAxios } from "../../../utils";
-import styles from "./comments.module.scss"
+import styles from "./comments.module.scss";
 import { Calificar } from "../..";
 import Swal from "sweetalert2";
 interface Comment {
   id: any;
-  text:string;
+  text: string;
 }
-interface State{
-  id:string,
-  setPuntuacion:Function,
-  name:string
+interface State {
+  id: string;
+  setPuntuacion: Function;
+  name: string;
 }
 
-function CommentList(props:State) {
-  const {id}=props
-  const {setPuntuacion}=props
-  const{name}=props
-  
+function CommentList(props: State) {
+  const { id } = props;
+  const { setPuntuacion } = props;
+  const { name } = props;
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(0);
   const { token, config } = getToken();
-  
-  
 
   const handleCommentSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,42 +32,45 @@ function CommentList(props:State) {
       token,
     };
     try {
+      console.log(newCommentObj);
       const response = await urlAxios.post(
         "/product/comments",
         newCommentObj,
         config
       );
       console.log(response);
-      setComments([...comments, { id: comments.length + 1, text: newComment }]);
+      // setComments([...comments, { id: comments.length + 1, text: newComment }]);
       setNewComment(" ");
-      puntuationDone()
-      setPuntuacion(false)
+      puntuationDone();
+      setPuntuacion(false);
     } catch (error: any) {
       console.log(error.response.data);
       Swal.fire({
         position: "center",
-        icon:"error",
-        title: "Producto ya calificado/faltan datos",
+        icon: "error",
+        title: error.response.data,
         showConfirmButton: true,
-      })
-      setPuntuacion(false)
-
+      });
+      setPuntuacion(false);
     }
-
   };
-  const [enviado,setEnviado]=useState(false)
-  const puntuationDone=()=>{
-    setEnviado(true)
-  }
+  const [enviado, setEnviado] = useState(false);
+  const puntuationDone = () => {
+    setEnviado(true);
+  };
   return (
-    <div >
-      
-     
-        {enviado? (<div><h1>Comentario enviado!</h1></div>  ) : (
+    <div>
+      {enviado ? (
+        <div>
+          <h1>Comentario enviado!</h1>
+        </div>
+      ) : (
         <div className={styles.contenedor}>
           <div>
-            <p className={styles.title}>Deja tu puntuación al producto: {name}</p>
-           
+            <p className={styles.title}>
+              Deja tu puntuación al producto: {name}
+            </p>
+
             <Calificar setState={setRating} />
             <input
               className={styles.input}
@@ -78,17 +79,23 @@ function CommentList(props:State) {
               onChange={(event) => setNewComment(event.target.value)}
               placeholder="Escribe tu comentario"
             />
-            <button className={styles.buttonSend} onClick={handleCommentSubmit} id="submit">
+
+            <button
+              className={styles.buttonSend}
+              onClick={handleCommentSubmit}
+              id="submit"
+            >
               Publicar comentario
             </button>
-            <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
+            <button
+              onClick={() => setPuntuacion(false)}
+              className={styles.buttonX}
+            >
+              X
+            </button>
           </div>
-          
         </div>
-      )
-        
-        }
-
+      )}
     </div>
   );
 }
