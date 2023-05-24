@@ -10,15 +10,14 @@ export default function () {
     const user = getToken();
     const token = user.token;
 
-    //    const product=cartProducts[0]
-
     const handleCheckout = async () => {
         console.log("PRODUCTOS: ", cartProducts);
+
         const urlBack = import.meta.env.VITE_BACK_URL || '';
         try {
             const { data } = await urlAxios.post(`${urlBack}/mercadopago/${token}`, { shoppingCart: cartProducts });
-            console.log("ID mercadoPago: ", data);
-
+            console.log("ID mercadoPago: ", data.url);
+            window.location.href = data.url;
         } catch (error) {
             console.log("ERROR: ", error);
         }
