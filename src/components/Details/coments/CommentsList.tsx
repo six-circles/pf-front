@@ -36,9 +36,16 @@ function CommentList(props:State) {
       console.log(newCommentObj)
       const response = await urlAxios.post("/product/comments",newCommentObj,config);
       console.log(response);
-      // setNewComment(" ");
-      // puntuationDone()
-      // setPuntuacion(false)
+      Swal.fire({
+        position: "center",
+        icon:"success",
+        title: "Puntuación enviada",
+        showConfirmButton: false,
+        timer:1000,
+      })
+      setNewComment(" ");
+      puntuationDone()
+      setPuntuacion(false)
     } catch (error: any) {
       console.log("mensajes",error.response.data);
   
@@ -48,7 +55,7 @@ function CommentList(props:State) {
         title: "Puntuación ya realizada",
         showConfirmButton: true,
       })
-      // setPuntuacion(false)
+      setPuntuacion(false)
 
     }
 
@@ -77,7 +84,7 @@ function CommentList(props:State) {
               onChange={(event) => setNewComment(event.target.value)}
               placeholder="Escribe tu comentario"
             />
-            <button className={styles.buttonSend} onClick={handleCommentSubmit} id="submit">
+            <button className={styles.buttonSend} onClick={handleCommentSubmit} >
               Publicar comentario
             </button>
             <div>
