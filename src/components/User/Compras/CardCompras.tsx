@@ -21,6 +21,7 @@ export default function (props: Product) {
     navigate(`/detail/${id}`);
     window.scrollTo(0, 0);
   };
+  console.log(props)
   
   const[puntuacion,setPuntuacion]=useState(false)
   const showpuntuacion=()=>{

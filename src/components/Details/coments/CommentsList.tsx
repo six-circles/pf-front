@@ -83,10 +83,10 @@ function CommentList(props:State) {
             <button className={styles.buttonSend} onClick={handleCommentSubmit} >
               Publicar comentario
             </button>
-            <div>
+          </div>
+            <div className={styles.contX}>
             <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
             </div>
-          </div>
           
         </div>
       )
