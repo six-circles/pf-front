@@ -35,6 +35,8 @@ catch(error:any){
 useEffect(() => {
 handleQuestion();
 },[]);
+console.log(questions);
+
   return (
     <Fragment> 
     <div className={Style.card}>  
@@ -45,7 +47,13 @@ handleQuestion();
       <br />
       {questions && questions.map((question: any) => (
   question.questions.map((nestedQuestion: any) => (
-    <li key={nestedQuestion.id}>{nestedQuestion.body}</li>
+    
+    
+    <div key={nestedQuestion._id}>
+    
+    <li >{nestedQuestion.body}</li>
+    <Answers id={nestedQuestion._id}/>
+    </div>
   ))
 ))}
 
@@ -54,7 +62,7 @@ handleQuestion();
       
         <br />
       </ul><br />
-      <Answers/>
+      
       <br />
       </div>
       </Fragment>   

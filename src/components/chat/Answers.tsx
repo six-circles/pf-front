@@ -22,7 +22,7 @@ export function Answers(props:any) {
   const {id } = useParams();
   const newAnswerObj = {
     body: newAnswer,
-    questionid: id,
+    questionid: props.id,
    
   };
 
@@ -35,6 +35,7 @@ export function Answers(props:any) {
     if (newAnswer.trim() === "") {
       return;
     }
+console.log(props.id);
 
     console.log(newAnswerObj);
     try {
