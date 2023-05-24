@@ -55,14 +55,21 @@ function Details({ detail }: DetailsProps) {
     <div className={styles.details}>
       <div className={styles.details_title}>
         <h2>{detail.title}</h2>
-        <p className={detail.condition === "Nuevo" ? styles.new : styles.used}>
-          {detail.condition}
-        </p>
+        <div className={styles.details_state}>
+          <p
+            className={detail.condition === "Nuevo" ? styles.new : styles.used}
+          >
+            {detail.condition}
+          </p>
+          <p className={styles.lighten}>{detail.stock} en Stock</p>
+        </div>
         <div className={styles.details_rating}>
           {(detail.punctuations || detail.punctuations === 0) && (
             <Rating punctuation={detail.punctuations} />
           )}
-          <p>({detail.comments?.length})</p>
+          <a className={styles.lighten} href="#reviews">
+            ({detail.comments?.length})
+          </a>
         </div>
       </div>
       <div className={styles.price}>

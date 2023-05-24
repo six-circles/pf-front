@@ -10,6 +10,7 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
+import Tech from "./Categories/Tech";
 
 interface Products {
   detail: DetailProd;
@@ -222,54 +223,7 @@ function CreateProduct() {
 
               <div className={styles.form_camp}>
                 <p>Caracteristicas</p>
-                <label htmlFor="colors">Color</label>
-                <div className={styles.form_camp_chars}>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="red"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Rojo</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="blue"
-                      onChange={handleChars}
-                      name="color"
-                    />
-                    <label>Azul</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="black"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Negro</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="white"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Blanco</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="green"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Verde</label>
-                  </div>
-                </div>
+                <Tech handleChars={handleChars} />
               </div>
             </>
           )}
