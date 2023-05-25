@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import Colors from "./Colors";
 import styles from "../CreateProduct.module.scss";

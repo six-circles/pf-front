@@ -11,6 +11,8 @@ import {
 
 import { DetailProd } from "../../../utils";
 import Tech from "./Categories/Tech";
+import Clothe from "./Categories/Clothe";
+import Muebles from "./Categories/Muebles";
 
 interface Products {
   detail: DetailProd;
@@ -223,7 +225,13 @@ function CreateProduct() {
 
               <div className={styles.form_camp}>
                 <p>Caracteristicas</p>
-                <Tech handleChars={handleChars} />
+                {form.category === "Technology" ? (
+                  <Tech handleChars={handleChars} />
+                ) : form.category === "Indumentary" ? (
+                  <Clothe handleChars={handleChars} />
+                ) : form.category === "Furniture" ? (
+                  <Muebles handleChars={handleChars} />
+                ) : null}
               </div>
             </>
           )}
