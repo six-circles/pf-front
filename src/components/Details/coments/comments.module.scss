@@ -33,12 +33,14 @@
 }
 .buttonX{
   display:flex;
-  
-  
-  
+  height: fit-content; 
   font-size: x-small;
   background-color: red;
 }
 .raiting{
   margin-left: 1rem
+}
+.contX{
+  display: flex;
+  text-align: lefts;
 }

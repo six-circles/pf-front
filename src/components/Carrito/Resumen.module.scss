@@ -1,0 +1,38 @@
+.contenedor{
+    background-color: aqua;
+    display: flex;
+    flex-direction:row;
+    gap: 3.7rem;
+}
+.columnas{
+    font-size: medium;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    gap: 5rem;
+    text-align: center;
+}
+.titleMisPedidos{
+    width: fit-content;
+    // white-space: nowrap;
+    margin-right: 1rem;
+}
+.namePedidos{
+    display: flex;
+    background-color: rgb(11, 74, 130);
+    width: 8rem;
+    height: fit-content;
+}
+.name{
+    margin-bottom: 5rem;
+    display: flex;
+   
+}
+.total{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    gap: 35rem;
+}
