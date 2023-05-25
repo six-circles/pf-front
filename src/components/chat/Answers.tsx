@@ -90,7 +90,7 @@ export function Answers(props:any) {
             onChange={(event) => setNewAnswer(event.target.value)}
             placeholder="Escribe tu respuesta"
           /></div>
-          <button className={Style.answersubmit} type="submit">Enviar respuesta</button>
+          <button className={Style.answersubmit} type="submit">Enviar</button>
           
         </form>
       
