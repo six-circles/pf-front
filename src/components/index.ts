@@ -21,6 +21,7 @@ import Calificar from "./Rating/Calificar";
 import { Questionmyuser } from "./chat/Questionmyuser";
 import { Getanswers } from "./chat/Getanswer";
 
+import Resumen from "./Carrito/Resumen";
 export {
   Calificar,
   Paginator,
@@ -43,5 +44,6 @@ export {
   CardCarritoMenuDespl,
   CarritoPage,
   Questionmyuser,
-  Getanswers
+  Getanswers,
+  Resumen
 };
