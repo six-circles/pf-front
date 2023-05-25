@@ -1,6 +1,30 @@
-.card{
-display: flex;
-flex-direction: column;
-gap: 1rem;
-width:fit-content;
+@use "../../styles/variables.scss" as v;
+.contCarrito {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: fit-content;
+}
+.buttonComprar{
+  display: flex;
+  position: absolute;
+  margin-top: 40rem;
+  height: fit-content;
+  width: fit-content;
+}
+.resumen{
+  display: flex;
+  flex-direction: row;
+  width:fit-content;
+  height: auto;
+  background-color: v.$color-gray;
+  margin-left: 2rem;
+  border-radius: 10px;
+ 
 }

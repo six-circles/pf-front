@@ -53,7 +53,7 @@ const Slider = () => {
                 : products[slide]?.description}
             </p>
             <br />
-            <button>Añadir al carrito</button>
+            <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>Ver detalles</button>
           </div>
         </div>
       </div>
