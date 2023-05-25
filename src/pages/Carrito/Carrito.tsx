@@ -1,5 +1,5 @@
 // import { CardCarritoMenuDespl } from "../../components"
-import { CarritoPage } from "../../components/index"
+import { CarritoPage,Resumen } from "../../components/index"
 import { useSelector } from "react-redux"
 import styles from "./Carrito.module.scss"
 import { urlAxios } from "../../utils"
@@ -23,6 +23,7 @@ export default function () {
         }
 
     }
+    
 
     return (
         <div className={styles.contCarrito}>
@@ -30,9 +31,9 @@ export default function () {
             <div className={styles.card}>
                 {cartProducts.length ? cartProducts.map((p: any) => <CarritoPage key={p._id} producto={p} />) : <h3>No hay nada por aquí...</h3>}
             </div>
-            <div>PRECIO</div>
-            <div className={styles.contButton}>
-                <button className={styles.button} onClick={handleCheckout}>Comprar ahora</button>
+            <div className={styles.resumen}>
+                <Resumen productos={cartProducts} key={cartProducts._id}/>
+                <button className={styles.buttonComprar} onClick={handleCheckout}>Comprar ahora</button>
             </div>
         </div>
     )

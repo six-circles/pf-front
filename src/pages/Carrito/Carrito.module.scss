@@ -1,3 +1,4 @@
+@use "../../styles/variables.scss" as v;
 .contCarrito {
   display: flex;
   justify-content: space-between;
@@ -11,7 +12,19 @@
   width: fit-content;
   background-color: aqua;
 }
-
-.contButton {
-  background-color: aquamarine;
+.buttonComprar{
+  display: flex;
+  position: absolute;
+  margin-top: 35rem;
+  height: fit-content;
+  width: fit-content;
+}
+.resumen{
+  display: flex;
+  flex-direction: row;
+  width:fit-content;
+  height: auto;
+  background-color: v.$color-gray;
+  margin-left: 2rem;
+ 
 }

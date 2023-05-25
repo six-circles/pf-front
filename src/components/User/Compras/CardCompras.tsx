@@ -2,7 +2,6 @@ import styles from "./CardCompras.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-// import  {Rating } from "../../index"
 import { useState } from "react";
 import CommentList from "../../Details/coments/CommentsList";
 interface Product {
