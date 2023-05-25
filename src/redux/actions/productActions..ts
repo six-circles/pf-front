@@ -30,7 +30,7 @@ export const getProducts = (query?: any) => {
       // }
 
       // if (query) {
-      data = await urlAxios(`/pruebacloudinary`);
+      data = await urlAxios(`/product`);
       // } else {
       // data = await urlAxios(`/product`);
       // }

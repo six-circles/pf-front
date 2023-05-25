@@ -23,9 +23,6 @@ function CreateProduct() {
   const initState = {
     condition: "",
     title: "",
-    // image: {},
-    // image2: "",
-    // image3: "",
     stock: 0,
     price: 0,
     moreCharacteristics: {},
@@ -72,7 +69,7 @@ function CreateProduct() {
   };
 
   const handleAddImage = (event: React.ChangeEvent<HTMLInputElement | any>) => {
-    const files = event.target.files;
+    const files = Array.from(event.target.files);
 
     if (files.length > 3) {
       alert("Se ha alcanzado el número máximo de imágenes permitido (3)");
@@ -80,7 +77,7 @@ function CreateProduct() {
     }
 
     // const selectedImages = Array.from(files);
-
+    console.log(files);
     setImage(files);
   };
 
@@ -110,7 +107,7 @@ function CreateProduct() {
     const { token, config } = getToken();
 
     for (let i = 0; i < image.length; i++) {
-      formData.append(`image1`, image[i]);
+      formData.append("image1", image[i]);
     }
 
     const obj_post = {
@@ -136,7 +133,12 @@ function CreateProduct() {
     formData.append("data", JSON.stringify(obj_post));
 
     try {
-      const { data } = await urlAxios.post("/pruebacloudinary", formData);
+      console.log(formData);
+      const { data } = await urlAxios.post(
+        "/pruebacloudinary",
+        formData,
+        config
+      );
 
       // if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
       // else await urlAxios.post("/product", obj_post, config);
@@ -151,6 +153,7 @@ function CreateProduct() {
       setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
+      console.log(error.response.data);
       if (!error.response.data.error) {
         Swal.fire({
           icon: "error",
@@ -215,7 +218,7 @@ function CreateProduct() {
                   required
                   accept="image/jpg, image/jpeg, image/png"
                   multiple={true}
-                  name="image"
+                  name="image1"
                   onChange={handleAddImage}
                 />
               </div>
