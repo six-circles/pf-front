@@ -34,7 +34,7 @@ function CreateProduct() {
   };
 
   const [form, setForm] = useState<any>(initState);
-  const [image, setImage] = useState<File | null | any>(null);
+  const [image, setImage] = useState<File[] | any>([]);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
@@ -74,7 +74,13 @@ function CreateProduct() {
   };
 
   const handleAddImage = (event: React.ChangeEvent<HTMLInputElement | any>) => {
-    const file = event.target.files[0];
+    const file = event.target.files;
+
+    if (file.length > 3) {
+      alert("Se ha alcanzado el numero maximo de imagenes permitido (3)");
+      return;
+    }
+
     console.log(file);
     setImage(file);
   };
@@ -103,7 +109,10 @@ function CreateProduct() {
     event.preventDefault();
 
     const { token, config } = getToken();
-    formData.append("image", image);
+
+    for (let i = 0; i < image.length; i++) {
+      formData.append(`image${i + 1}`, image[i]);
+    }
 
     const obj_post = {
       condition: form.condition,
@@ -205,7 +214,8 @@ function CreateProduct() {
                   type="file"
                   placeholder="Ingrese al menos una imagen"
                   required
-                  // value={form.image1}
+                  accept="image/jpg, image/jpeg, image/png"
+                  multiple={true}
                   name="image"
                   onChange={handleAddImage}
                 />
