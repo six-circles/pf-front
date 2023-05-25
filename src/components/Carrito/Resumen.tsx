@@ -36,7 +36,7 @@ export default function({productos}:any){
                     <p className={styles.name}>{p.cantidadCarrito}</p>
                 </div>
                 <div className={styles.namePedidos} >
-                    <p className={styles.name}>{p.price*p.cantidadCarrito}</p>
+                    <p className={styles.name}>   $  {p.price*p.cantidadCarrito}</p>
                 </div>
             </div>)
          }
