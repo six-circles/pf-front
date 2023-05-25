@@ -42,9 +42,7 @@ function CreateProduct() {
   const product = productParam.toString().split("=")[1];
   const formData = new FormData();
 
-  useEffect(() => {
-    console.log(image);
-  }, [image]);
+  useEffect(() => {}, [image]);
 
   useEffect(() => {
     dispatch(clearProducts());
@@ -74,15 +72,16 @@ function CreateProduct() {
   };
 
   const handleAddImage = (event: React.ChangeEvent<HTMLInputElement | any>) => {
-    const file = event.target.files;
+    const files = event.target.files;
 
-    if (file.length > 3) {
-      alert("Se ha alcanzado el numero maximo de imagenes permitido (3)");
+    if (files.length > 3) {
+      alert("Se ha alcanzado el número máximo de imágenes permitido (3)");
       return;
     }
 
-    console.log(file);
-    setImage(file);
+    // const selectedImages = Array.from(files);
+
+    setImage(files);
   };
 
   const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +110,7 @@ function CreateProduct() {
     const { token, config } = getToken();
 
     for (let i = 0; i < image.length; i++) {
-      formData.append(`image${i + 1}`, image[i]);
+      formData.append(`image1`, image[i]);
     }
 
     const obj_post = {
