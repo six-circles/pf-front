@@ -155,18 +155,16 @@ function CreateProduct() {
       setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
-      console.log(error.response.data);
-      if (!error.response.data.error) {
-        Swal.fire({
-          icon: "error",
-          title: error.response.data,
-        });
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: error.response.data.error,
-        });
-      }
+      // if (!error.response) {
+      //   Swal.fire({
+      //     icon: "error",
+      //     title: "Faltan datos",
+      //   });
+      // } else {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.error,
+      });
     }
   };
 
