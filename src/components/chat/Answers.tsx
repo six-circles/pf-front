@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, ReactNode } from "react";
 import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
+import { Getanswers } from "..";
 
 interface Question {
   id: number;
@@ -13,20 +14,38 @@ interface Answer {
   question: any;
   id: number;
 }
-   
+  
 export function Answers(props:any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
   const {token, config}=getToken()
   const {id } = useParams();
+  const [getAnswer, setGetAnswer] = useState("");
+  
   const newAnswerObj = {
     body: newAnswer,
     questionId: props.id,
    
   };
-
-
+  useEffect(() => {
+    handleAnswer();
+    },[]);
+  const handleAnswer = async () => {
+  
+    
+    try {
+      const responses = await urlAxios.get(`/product/questions/answers/${id}`);
+      setAnswers(responses.data);
+      setGetAnswer("");
+      
+      console.log(responses);
+      
+      
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+}
 
 
   const handleAnswerSubmit = async (event: React.FormEvent) => {
@@ -35,7 +54,8 @@ export function Answers(props:any) {
     if (newAnswer.trim() === "") {
       return;
     }
-console.log(props);
+//console.log(props);
+
 
     
     try {
@@ -53,7 +73,7 @@ console.log(props);
  
   return (
     <Fragment>
-        
+        <Getanswers/>
         <form onSubmit={handleAnswerSubmit}>
         <div className={Style.new}>
         <ul className={Style.ulanswer}>

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { Answers, QuestionUser, Questionmyuser } from "../../../components";
+import { Questions } from "../../../redux/actions/productActions.";
+import { useSelector } from "react-redux";
 
-
-
-
-
-export default function (){
+export default function preguntas (){
+    
+   
     return(
-    <><div>Preguntas y respuestas</div>
-    <Questionmyuser/>
+    <>
     <QuestionUser/>
-  
+    <Questionmyuser/>
     </>
-    )
+    );
 }

@@ -19,6 +19,7 @@ import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDe
 import CarritoPage from "./Carrito/CarritoPage";
 import Calificar from "./Rating/Calificar";
 import { Questionmyuser } from "./chat/Questionmyuser";
+import { Getanswers } from "./chat/Getanswer";
 
 export {
   Calificar,
@@ -41,5 +42,6 @@ export {
   Answers,
   CardCarritoMenuDespl,
   CarritoPage,
-  Questionmyuser
+  Questionmyuser,
+  Getanswers
 };

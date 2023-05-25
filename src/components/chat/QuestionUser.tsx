@@ -47,11 +47,11 @@ console.log(questions);
       <br />
       {questions && questions.map((question: any) => (
   question.questions.map((nestedQuestion: any) => (
-    
+   
     
     <div key={nestedQuestion._id}>
-    {console.log(nestedQuestion._id)}
-    
+     <br/>
+    <br />
     <li >{nestedQuestion.body}</li>
     <Answers id={nestedQuestion._id}/>
     </div>
