@@ -9,79 +9,70 @@ function Clothe({ handleChars }: any) {
       <label htmlFor="colors">Color</label>
       <Colors handleChars={handleChars} />
 
-      <label htmlFor="capacidad">Capacidad</label>
+      <label htmlFor="talla">Talla</label>
       <div className={styles.form_camp_chars}>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="16GB"
-            name="capacidad"
+            value="XS"
+            name="talla"
             onChange={handleChars}
           />
-          <label>16GB</label>
+          <label>XS</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="32GB"
-            name="capacidad"
+            value="S"
+            name="talla"
             onChange={handleChars}
           />
-          <label>32GB</label>
+          <label>S</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="64GB"
-            name="capacidad"
+            value="M"
+            name="talla"
             onChange={handleChars}
           />
-          <label>64GB</label>
+          <label>M</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="128GB"
-            name="capacidad"
+            value="L"
+            name="talla"
             onChange={handleChars}
           />
-          <label>128GB</label>
+          <label>L</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="256GB"
-            name="capacidad"
+            value="XL"
+            name="talla"
             onChange={handleChars}
           />
-          <label>256GB</label>
+          <label>XL</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="500GB"
-            name="capacidad"
+            value="XXL"
+            name="talla"
             onChange={handleChars}
           />
-          <label>500GB</label>
+          <label>XXL</label>
         </div>
         <div className="camp_chars">
           <input
             type="checkbox"
-            value="1TB"
-            name="capacidad"
+            value="XXXL"
+            name="talla"
             onChange={handleChars}
           />
-          <label>1TB</label>
-        </div>
-        <div className="camp_chars">
-          <input
-            type="checkbox"
-            value="2TB"
-            name="capacidad"
-            onChange={handleChars}
-          />
-          <label>2TB</label>
+          <label>XXXL</label>
         </div>
       </div>
     </Fragment>
