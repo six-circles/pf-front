@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 // import {getToken} from "../../../utils";
 import CardCompras from "../../../components/User/Compras/CardCompras";
 import styles from "./Compras.module.scss"
-
 import { urlAxios } from "../../../utils";
 //cambiar la ruta por la de get comprabyuser --> reutilizar este comp para more products
 // interface State {
@@ -30,6 +29,7 @@ export default function (){
    
     return(
     <div>
+      
         <h1 className={styles.title}>MIS COMPRAS</h1>
         <div className={styles.cards}>
           {
@@ -45,6 +45,8 @@ export default function (){
             ))
           }
         </div>
+        
+     
     </div>
     )
 }

@@ -2,7 +2,6 @@ import styles from "./CardCompras.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-// import  {Rating } from "../../index"
 import { useState } from "react";
 import CommentList from "../../Details/coments/CommentsList";
 interface Product {
@@ -21,14 +20,12 @@ export default function (props: Product) {
     navigate(`/detail/${id}`);
     window.scrollTo(0, 0);
   };
-
-  const [puntuacion, setPuntuacion] = useState(false);
-  const showpuntuacion = () => {
-    setPuntuacion(true);
-  };
-
-  console.log(props);
-
+  console.log(props)
+  
+  const[puntuacion,setPuntuacion]=useState(false)
+  const showpuntuacion=()=>{
+    setPuntuacion(true)
+  }
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
