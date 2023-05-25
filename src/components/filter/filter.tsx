@@ -124,7 +124,7 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxP}
-          step={500}
+          step={100}
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
         />
@@ -133,7 +133,7 @@ const Filter: React.FC = () => {
           type="range"
           min={0}
           max={maxP}
-          step={500}
+          step={100}
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
         />

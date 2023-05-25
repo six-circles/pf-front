@@ -72,6 +72,12 @@ function CardProduct(props: Product) {
       });
     } catch (error: any) {
       console.log(error.response.data.error);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Debes estar logeado",
+        showConfirmButton: true,
+      });
     }
   };
 
@@ -112,6 +118,12 @@ function CardProduct(props: Product) {
         });
       } catch (error: any) {
         console.log(error.response.data.error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Debes estar logeado",
+          showConfirmButton: true,
+        });
       }
     }
   };

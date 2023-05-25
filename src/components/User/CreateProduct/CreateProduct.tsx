@@ -10,6 +10,9 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
+import Tech from "./Categories/Tech";
+import Clothe from "./Categories/Clothe";
+import Muebles from "./Categories/Muebles";
 
 interface Products {
   detail: DetailProd;
@@ -133,15 +136,15 @@ function CreateProduct() {
     formData.append("data", JSON.stringify(obj_post));
 
     try {
-      console.log(formData);
-      const { data } = await urlAxios.post(
-        "/pruebacloudinary",
-        formData,
-        config
-      );
+      // console.log(formData);
+      // const { data } = await urlAxios.post(
+      //   "/pruebacloudinary",
+      //   formData,
+      //   config
+      // );
 
-      // if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
-      // else await urlAxios.post("/product", obj_post, config);
+      if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
+      else await urlAxios.post("/product", formData, config);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -149,7 +152,6 @@ function CreateProduct() {
         showConfirmButton: false,
         timer: 1500,
       });
-      console.log(data);
       setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
@@ -254,54 +256,13 @@ function CreateProduct() {
 
               <div className={styles.form_camp}>
                 <p>Caracteristicas</p>
-                <label htmlFor="colors">Color</label>
-                <div className={styles.form_camp_chars}>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="red"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Rojo</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="blue"
-                      onChange={handleChars}
-                      name="color"
-                    />
-                    <label>Azul</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="black"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Negro</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="white"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Blanco</label>
-                  </div>
-                  <div className="camp_chars">
-                    <input
-                      type="checkbox"
-                      value="green"
-                      name="color"
-                      onChange={handleChars}
-                    />
-                    <label>Verde</label>
-                  </div>
-                </div>
+                {form.category === "Technology" ? (
+                  <Tech handleChars={handleChars} />
+                ) : form.category === "Indumentary" ? (
+                  <Clothe handleChars={handleChars} />
+                ) : form.category === "Furniture" ? (
+                  <Muebles handleChars={handleChars} />
+                ) : null}
               </div>
             </>
           )}

@@ -82,9 +82,13 @@ function CardVentas(props: Product) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.card_image}>
+<<<<<<< HEAD
         {props.image.url && (
           <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
         )}
+=======
+        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+>>>>>>> develop
         {showIcons && (
           <div className={styles.card_icons}>
             <AiFillEdit className={styles.icon_edit} onClick={handleEdit} />

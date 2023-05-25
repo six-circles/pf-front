@@ -1,12 +1,11 @@
 // import React from "react";
 import styles from "./Login.module.scss";
-import { GrGoogle } from "react-icons/gr" //GrApple, GrFacebookOption
+import { BsGoogle, BsFacebook, BsApple } from "react-icons/bs"
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlAxios } from "../../utils";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 interface Credentials {
@@ -33,6 +32,7 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     setMessage("");
 
     if (errors.email === "" && errors.password === "") {
@@ -51,20 +51,16 @@ function Login() {
           navigate("/");
         }
       } catch (error: any) {
-        // console.log(error.message);
-        // console.log(error.response.data)
-        // console.log(error.response.status)
         setMessage("Usuario o contraseña incorrecta");
-        // if (error.response.status === 401) alert("Contraseña incorrecta");
-        // if (error.response.status === 404) alert("Usuario no encontrado");
       }
     } else {
       setErrors(firstValidateField({ ...credentials }, errors));
     }
   };
 
-  const GoogleCallback = () => {
-    // {`${urlBack}/auth/google`}
+  const GoogleCallback = (event: React.FormEvent) => {
+    event.preventDefault();
+    window.location.href = `${urlBack}/auth/google`;
   }
 
   return (
@@ -74,13 +70,9 @@ function Login() {
       </div>
 
       <div className={styles.formContainer}>
+
         <form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
-          <div className={styles.socialContainer}>
-            <button><GrGoogle /></button>
-            {/* <Link to="#"><GrApple /></Link>
-            <Link to="#"><GrFacebookOption /></Link> */}
-          </div>
           <div className={styles.inputs}>
             <label htmlFor="">Correo</label>
             <input
@@ -93,8 +85,6 @@ function Login() {
 
             {errors.email && <p>{errors.email}</p>}
 
-            <br />
-            <br />
             <label htmlFor="">Contraseña</label>
             <input
               type="password"
@@ -105,16 +95,20 @@ function Login() {
             />
             {errors.password && <p>{errors.password}</p>}
           </div>
-          <br />
           <div className={styles.links}>
             <a href="/register">Crear cuenta</a>
             <a href="#">Olvidé mi contraseña</a>
           </div>
           {message && <p className={styles.message}>{message}</p>}
-          <br />
           <button className={styles.buttonLocal} type="submit">Iniciar sesión</button><br />
           <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
         </form>
+
+        <div className={styles.socialContainer}>
+          <button onClick={GoogleCallback}><BsGoogle />  Iniciar sesión con Google</button>
+          {/* <button onClick={GoogleCallback}><BsFacebook />  Iniciar sesión con Facebook</button>
+          <button onClick={GoogleCallback}><BsApple />  Iniciar sesión con Apple</button> */}
+        </div>
       </div>
     </div>
   );
