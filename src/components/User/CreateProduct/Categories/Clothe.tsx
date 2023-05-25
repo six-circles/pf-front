@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-
 import Colors from "./Colors";
+
 import styles from "../CreateProduct.module.scss";
 
-function Tech({ handleChars }: any) {
+function Clothe({ handleChars }: any) {
   return (
     <Fragment>
       <label htmlFor="colors">Color</label>
@@ -88,4 +88,4 @@ function Tech({ handleChars }: any) {
   );
 }
 
-export default Tech;
+export default Clothe;
