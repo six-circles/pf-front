@@ -25,7 +25,7 @@ export function Answers(props: any) {
 
   const newAnswerObj = {
     body: newAnswer,
-    questionId: props.id, 
+    questionId: props.id,
   };
 
   useEffect(() => {
@@ -42,7 +42,6 @@ export function Answers(props: any) {
       console.log(error.response.data);
     }
   };
-  
 
   const handleAnswerSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -54,10 +53,11 @@ export function Answers(props: any) {
     try {
       console.log(newAnswerObj);
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
-      
-      setAnswers([...answers, response.data]);
-      setNewAnswer(" ");
-      
+
+      setNewAnswer("");
+
+      // Actualizar las respuestas llamando nuevamente a la API
+      handleAnswer();
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -65,7 +65,6 @@ export function Answers(props: any) {
 
   return (
     <Fragment>
-      
       <form onSubmit={handleAnswerSubmit}>
         <div className={Style.new}>
           <ul className={Style.ulanswer}>
