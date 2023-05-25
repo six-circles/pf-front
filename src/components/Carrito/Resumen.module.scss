@@ -1,5 +1,4 @@
 .contenedor{
-    background-color: aqua;
     display: flex;
     flex-direction:row;
     gap: 3.7rem;
@@ -21,9 +20,10 @@
 }
 .namePedidos{
     display: flex;
-    background-color: rgb(11, 74, 130);
     width: 8rem;
     height: fit-content;
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
 .name{
     margin-bottom: 5rem;
