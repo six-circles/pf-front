@@ -76,7 +76,7 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-          <FavoritesCart/>
+          <FavoritesCart />
 
           <ShopingCart />
 
