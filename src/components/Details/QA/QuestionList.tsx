@@ -58,11 +58,6 @@ const {token, config}=getToken()
        
       </form>
 
-      <ul>
-        {questions.map((question) => (
-          <li key={question.id}>{question.text}</li>
-        ))}
-      </ul>
       </div>
       </Fragment>
 );
