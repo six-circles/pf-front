@@ -140,7 +140,7 @@ function CardProduct(props: Product) {
         setIsFav(true);
       }
     });
-  }, [favoritos, props.id]);
+  }, [favoritos, props.id, dispatch]);
 
   useEffect(() => {
     cartProducts.forEach((cart: any) => {
@@ -148,13 +148,13 @@ function CardProduct(props: Product) {
         setInCart(true);
       }
     });
-  }, [cartProducts, props.id]);
+  }, [cartProducts, props.id, dispatch]);
 
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
-        {props?.image && (
-          <img src={props?.image[0]} alt={props.name.slice(0, 10)} />
+        {props?.image[0] && (
+          <img src={props?.image[0]?.url} alt={props.name.slice(0, 10)} />
         )}
         <div className={styles.card_icons}>
           {isFav ? (
