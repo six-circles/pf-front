@@ -28,13 +28,13 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  // background-color: rgba(255, 255, 255, 0.9);
+  // border-radius: 10px;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 2px;
   z-index: 1;
-  text-align: right;
-  width: 30rem;
+  width: 35rem;
+  background-color: transparent;
 }
 
 .option {
@@ -57,7 +57,7 @@
 
 .option2 {
   display: block;
-  background-color: transparent;
+  // background-color: transparent;
   border: none;
   padding: 8px;
   width: 100%;
@@ -65,6 +65,9 @@
   cursor: pointer;
   color: #256cfa;
   // transition: background-color 0.8s ease;
+  border-radius: 0 0 10px 10px;
+
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .option2:hover {
