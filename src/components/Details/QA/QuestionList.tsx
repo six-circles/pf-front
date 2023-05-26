@@ -37,8 +37,8 @@ const {token, config}=getToken()
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
-              <strong><p className="username">{item.userName}</p></strong>
-              <p className="bodyuser">{item.body}</p>
+              <strong><p className={Style.username}>{item.userName}</p></strong>
+              <p className={Style.bodyuser}>{item.body}</p>
               <br />
             </div>
           ))}

@@ -46,7 +46,7 @@
   padding: 20px;
 }
 
-.comment-react {
+.commentreact {
   width: 35px;
   height: fit-content;
   display: grid;
@@ -56,7 +56,7 @@
   border-radius: 5px;
 }
 
-.comment-react button {
+.commentreact button {
   width: 35px;
   height: 35px;
   position: relative;
@@ -68,7 +68,7 @@
   outline: none;
 }
 
-.comment-react button:after {
+.commentreact button:after {
   content: "";
   width: 40px;
   height: 40px;
@@ -81,25 +81,25 @@
   transform: scale(0);
 }
 
-.comment-react button svg {
+.commentreact button svg {
   position: relative;
   z-index: 9;
 }
 
-.comment-react button:hover:after {
+.commentreact button:hover:after {
   animation: ripple 0.6s ease-in-out forwards;
 }
 
-.comment-react button:hover svg {
+.commentreact button:hover svg {
   fill: #3568f5;
 }
 
-.comment-react button:hover svg path {
+.commentreact button:hover svg path {
   stroke: #3568f5;
   fill: #3568f5;
 }
 
-.comment-react hr {
+.commentreact hr {
   width: 80%;
   height: 1px;
   background-color: #dfe1e6;
@@ -107,7 +107,7 @@
   border: 0;
 }
 
-.comment-react span {
+.commentreact span {
   height: 35px;
   display: flex;
   align-items: center;
