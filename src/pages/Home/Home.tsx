@@ -51,11 +51,11 @@ function Home() {
       queryParams.delete("token");
       queryParams.delete("user");
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: "Bienvenido a Six Circles",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
     queryParamsString = queryParams.toString();

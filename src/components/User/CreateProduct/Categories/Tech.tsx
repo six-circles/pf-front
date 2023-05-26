@@ -84,6 +84,59 @@ function Tech({ handleChars }: any) {
           <label>2TB</label>
         </div>
       </div>
+
+      <label htmlFor="capacidad">Ram</label>
+      <div className={styles.form_camp_chars}>
+        <div className="camp_chars">
+          <input
+            type="checkbox"
+            value="2GB"
+            name="ram"
+            onChange={handleChars}
+          />
+          <label>2GB</label>
+        </div>
+
+        <div className="camp_chars">
+          <input
+            type="checkbox"
+            value="4GB"
+            name="ram"
+            onChange={handleChars}
+          />
+          <label>4GB</label>
+        </div>
+
+        <div className="camp_chars">
+          <input
+            type="checkbox"
+            value="8GB"
+            name="ram"
+            onChange={handleChars}
+          />
+          <label>8GB</label>
+        </div>
+
+        <div className="camp_chars">
+          <input
+            type="checkbox"
+            value="16GB"
+            name="ram"
+            onChange={handleChars}
+          />
+          <label>16GB</label>
+        </div>
+
+        <div className="camp_chars">
+          <input
+            type="checkbox"
+            value="32GB"
+            name="ram"
+            onChange={handleChars}
+          />
+          <label>32GB</label>
+        </div>
+      </div>
     </Fragment>
   );
 }
