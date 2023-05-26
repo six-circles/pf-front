@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import "./QA.scss";
+import Style from"./QA.module.scss";
 import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
 interface Question {
@@ -29,24 +29,25 @@ const {token, config}=getToken()
   
   return (
     <Fragment>
-    <div className="card">
-      <div className="view">
-      <h1>Preguntas</h1>
+    <div className={Style.card}>
+      <div className={Style.view}>
+      
       <br />
       <div></div>
         {props?.questions &&
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
-              <p>{item.userName}</p>
-              <p>{item.body}</p>
+              <strong><p className={Style.username}>{item.userName}</p></strong>
+              <p className={Style.bodyuser}>{item.body}</p>
+              <br />
             </div>
           ))}
       </div>
       <br />
       <form onSubmit={handleQuestionSubmit}>
-        <div className="new">
+        <div className={Style.new}>
           <input
-            className="new"
+            className={Style.newinput}
             type="text"
             value={newQuestion}
             onChange={(event) => setNewQuestion(event.target.value)}
