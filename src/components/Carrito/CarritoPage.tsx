@@ -5,7 +5,6 @@ import { getCartProducts } from "../../redux/actions/carritoActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import {useState} from "react"
 
 export default function (props: any) {
   const dispatch: Function = useDispatch();
@@ -70,13 +69,13 @@ export default function (props: any) {
         await urlAxios.post("/user/shoppingCart",product)
         dispatch(getCartProducts())
       
-        Swal.fire({
-          position: "center",
-          icon:"success",
-          title: "actualizado con éxito",
-          showConfirmButton: false,
-          timer: 1000,
-        })
+        // Swal.fire({
+        //   position: "center",
+        //   icon:"success",
+        //   title: "actualizado con éxito",
+        //   showConfirmButton: false,
+        //   timer: 1000,
+        // })
       
     } catch (error:any) {
       console.log(error)
