@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import CardProduct from "../../Home/Products/CardProduct";
 import styles from "./MoreProducts.module.scss";
 import { useSelector } from "react-redux";
-// import { useParams } from "react-router";
 import { DetailProd } from "../../../utils";
 
 interface Products {
