@@ -42,7 +42,7 @@ export default function({productos}:any){
          }
          <div className={styles.total}>
             <p>Total</p>
-            <p> $ {total}</p>
+            <p>{total}</p>
          </div>
         </div>
     )
