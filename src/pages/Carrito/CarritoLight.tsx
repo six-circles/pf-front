@@ -70,7 +70,7 @@ function OneProduct({ product }: any) {
             <div className={styles.info}>
               <p className={styles.title}>{product.title}</p>
               <p className={styles.precio}>${product.price}</p>
-              <p>Cantidad {product.stock}</p>
+              <p>Cantidad: {product.cantidadCarrito}</p>
               <p className={styles.buttonEliminar} onClick={deleteProduct}>Eliminar</p>
             </div>
           </div>
