@@ -8,7 +8,7 @@ export interface DetailProd {
   description: string;
   stock: number;
   comments: object[];
-  user:User;
+  user: User;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -18,8 +18,8 @@ export interface DetailProd {
   moreCharacteristics: object;
 }
 
-interface User{
-  user: string,
-  email:string,
-  _id:number;
+interface User {
+  name: string;
+  email: string;
+  _id: number;
 }

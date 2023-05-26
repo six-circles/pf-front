@@ -45,7 +45,7 @@ export default function (props: any) {
   };
   const name = prod.title;
   const cant = prod.cantidadCarrito;
-  const image = prod.image[0];
+  const image = prod?.image[0]?.url;
 
   let cantidad = 1;
   const product = {
@@ -89,7 +89,7 @@ export default function (props: any) {
     <div>
       {prod ? (
         <div className={styles.card}>
-          {<img src={image} alt={prod.title} className={styles.img} />}
+          <img src={image} alt={prod.title} className={styles.img} />
           <p className={styles.title}>{name}</p>
           <p className={styles.precio}>${prod.price}</p>
 

@@ -158,11 +158,6 @@ function CardProduct(props: Product) {
     } else {
       setIsFav(false);
     }
-    // favoritos.forEach((fav: any) => {
-    //   if (fav._id === props.id) {
-    //     setIsFav(true);
-    //   }
-    // });
   }, [favoritos, props.id, dispatch]);
 
   useEffect(() => {
