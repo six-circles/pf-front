@@ -1,0 +1,11 @@
+@use "../../styles/variables.scss" as v;
+.links {
+  display: flex;
+  flex-direction: column;
+  border: 0.2rem solid #000;
+  border-color: v.$color-dark;
+  gap: 3rem;
+  background-color: v.$color-gray;
+  height: auto;
+  width: fit-content;
+}
