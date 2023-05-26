@@ -50,7 +50,7 @@ function ShopingCart() {
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          <CarritoLight cartProducts={cartProducts} />
+          <CarritoLight cartProducts={cartProducts} setIsOpen={setIsOpen}/>
         </div>
       )}
     </div>
