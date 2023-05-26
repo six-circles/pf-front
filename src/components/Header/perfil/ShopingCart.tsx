@@ -35,7 +35,7 @@ function ShopingCart() {
     return () => {
       document.removeEventListener('click', handleClose);
     };
-  }, []);
+  }, [cartProducts]);
 
   const handleLogin = () => {
     if (!username) {
@@ -50,7 +50,7 @@ function ShopingCart() {
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          <CarritoLight cartProducts={cartProducts} setIsOpen={setIsOpen}/>
+          <CarritoLight datos={cartProducts} setIsOpen={setIsOpen} />
         </div>
       )}
     </div>

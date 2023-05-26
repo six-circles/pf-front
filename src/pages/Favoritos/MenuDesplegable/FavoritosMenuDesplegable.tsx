@@ -1,53 +1,80 @@
-
-import { useSelector } from "react-redux"
-import styles from "./FavoritosMenuDesplegable.module.scss"
-import { getToken } from "../../../utils/index";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { urlAxios } from "../../../utils";
+import { getToken } from "../../../utils/index";
 import { getFavorites } from "../../../redux/actions/favoritosActions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import styles from "./FavoritosMenuDesplegable.module.scss";
 
-import Swal from "sweetalert2";
-import { useEffect } from "react";
+export default function ({ datos, setIsOpen }: any) {
+  const dispatch: Function = useDispatch();
+  const user = getToken();
+  const token = user.token;
+  const navigate = useNavigate();
 
-export default function ({ cartProducts }: any) {
+  const deleteProduct = async (id: string) => {
+    try {
+      Swal.fire({
+        title: "¿Desea borrar este producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, borrar!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await urlAxios.delete(`${token}/favorites/${id}`);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Producto eliminado",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          dispatch(getFavorites());
+        }
+      });
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
+  const handleFavoritos = () => {
+    navigate("/user/favoritos");
+    setIsOpen(false);
+  };
 
   return (
     <div className={styles.container}>
-        <div className={styles.contCard}>
-        {console.log(cartProducts)}
-        {cartProducts.slice(0,3).map((p: any) =><OneProduct key={p._id} product={p} />)}
-        {cartProducts.length>3?<div style={{textAlign:"center",background:"#fff",lineHeight: "9px",paddingBottom:"10px"}}><p>.<br/>.<br/>.</p></div>:""}
-        <Link to="/carrito"><div className={styles.option2}>Ver todo mi carrito</div></Link>
-        </div>
-    </div>
-  )
-}
-
-
-function OneProduct({ product }: any) {
-
-  const dispatch: Function = useDispatch();
-//   const user = getToken();
-//   const token = user.token;
-
-  useEffect(()=>{
-      dispatch(getFavorites());
-
-  },[])
-
-
-
-  return (
-      <div className={styles.contCard2}>
-          <div className={styles.card}>
-          <Link to={`/detail/${product._id}`} className={styles.img}><img src={product.image} alt={product.title.slice(0,20)} className={styles.img} /></Link> 
-            <div className={styles.info}>
-              <p className={styles.title}>{product.title}</p>
-              <p className={styles.precio}>${product.price}</p>
+      <div className={styles.contCard}>
+        {datos.length > 0 ? datos.slice(0, 3).map((product: any) => (
+          <div key={product._id}>
+            <div className={styles.card}>
+              <Link to={`/detail/${product._id}`} className={styles.img}>
+                <img
+                  src={product.image[0].url}
+                  alt={product.title.slice(0, 20)}
+                />
+              </Link>
+              <div className={styles.info}>
+                <p className={styles.title}>{product.title}</p>
+                <p className={styles.precio}>${product.price}</p>
+                <p className={styles.buttonEliminar} onClick={() => deleteProduct(product._id)}>Eliminar</p>
+              </div>
             </div>
+            <hr />
           </div>
-          <hr />
+        )) : <div className={styles.contCard1}> <p className={styles.aviso}>Nada por aquí. <br />Agrega productos a tus favoritos ...</p></div>}
+        {datos.length > 3 && (
+          <div className={styles.dots}>
+            <p>.<br />.<br />.</p>
+          </div>
+        )}
+        <div onClick={handleFavoritos} className={styles.option2}>
+          Ver todos mis favoritos
+        </div>
       </div>
-  )
+    </div >
+  );
 }
