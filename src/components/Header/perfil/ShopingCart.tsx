@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
 // import { CarritoPage } from '../..';
-import CarritoLight from '../../../pages/Carrito/CarritoLight';
+import CarritoLight from '../../../pages/Carrito/MenuDesplegable/CarritoLight';
 
 function ShopingCart() {
   const [isOpen, setIsOpen] = useState(false);

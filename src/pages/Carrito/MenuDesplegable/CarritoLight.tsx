@@ -1,12 +1,12 @@
 // import { CardCarritoMenuDespl } from "../../components"
-import { Resumen } from "../../components/index"
+import { Resumen } from "../../../components/index"
 import { useSelector } from "react-redux"
 import styles from "./CarritoLight.module.scss"
-import { urlAxios } from "../../utils"
-import { getToken } from "../../utils/index";
+import { urlAxios } from "../../../utils"
+import { getToken } from "../../../utils/index";
 import { Link } from "react-router-dom";
 
-import { getCartProducts } from "../../redux/actions/carritoActions";
+import { getCartProducts } from "../../../redux/actions/carritoActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
