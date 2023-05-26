@@ -153,7 +153,7 @@ function CardProduct(props: Product) {
   return (
     <div className={styles.card} onClick={handleClick}>
       <div className={styles.card_image}>
-        {props?.image[0]?.url && (
+        {props?.image[0] && (
           <img src={props?.image[0]?.url} alt={props.name.slice(0, 10)} />
         )}
         <div className={styles.card_icons}>

@@ -82,7 +82,7 @@ function CardVentas(props: Product) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.card_image}>
-        {props.image.url && (
+        {props.image[0] && (
           <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
         )}
         {showIcons && (
