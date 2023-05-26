@@ -62,7 +62,7 @@ const GalleryDetail = (props: any) => {
               <div className={styles.slide2}>
                 <img
                   className={styles.enlarged}
-                  src={props.detail?.image[slide]}
+                  src={props.detail?.image[slide].url}
                 />
                 <button
                   className={styles.closeButton}
