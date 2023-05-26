@@ -31,10 +31,10 @@ export default function () {
             <div className={styles.card}>
                 {cartProducts.length ? cartProducts.map((p: any) => <CarritoPage key={p._id} producto={p} />) : <h3>No hay nada por aquí...</h3>}
             </div>
-            <div className={styles.resumen}>
+           {cartProducts.length? <div className={styles.resumen}>
                 <Resumen productos={cartProducts} key={cartProducts._id}/>
                 <button className={styles.buttonComprar} onClick={handleCheckout}>Comprar ahora</button>
-            </div>
+            </div> : null}
         </div>
     )
 }
