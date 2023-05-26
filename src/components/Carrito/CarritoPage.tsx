@@ -43,6 +43,7 @@ export default function (props: any) {
   const details = (id: string) => {
     navigate(`/detail/${id}`);
   };
+
   const name = prod.title;
   const cant = prod.cantidadCarrito;
   const image = prod?.image[0]?.url;
@@ -54,8 +55,18 @@ export default function (props: any) {
     cantidad: cantidad,
   };
   const addCarrito = async () => {
-    product.cantidad = 1;
-    await SendCarrito();
+    if (cant < prod.stock) {
+      product.cantidad = 1;
+      await SendCarrito();
+    } else {
+      Swal.fire({
+        position: "top-right",
+        icon: "warning",
+        title: "No hay mas stock",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
   };
   const deleteCarrito = async () => {
     product.cantidad = -1;
