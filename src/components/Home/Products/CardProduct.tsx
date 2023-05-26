@@ -59,25 +59,42 @@ function CardProduct(props: Product) {
       cantidad: 1,
     };
 
-    try {
-      await urlAxios.post("/user/shoppingCart", prod);
-      setInCart(true);
-      dispatch(getCartProducts());
-      Swal.fire({
-        position: "top-right",
-        icon: "success",
-        title: "Añadido a Carrito",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    } catch (error: any) {
-      console.log(error.response.data.error);
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debes estar logeado",
-        showConfirmButton: true,
-      });
+    if (inCart) {
+      try {
+        await urlAxios.delete(`/${token}/shoppingCart/${props.id}`);
+        setInCart(false);
+        dispatch(getCartProducts());
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Eliminado de Carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } catch (error: any) {
+        console.log(error.response.data.error);
+      }
+    } else {
+      try {
+        await urlAxios.post("/user/shoppingCart", prod);
+        setInCart(true);
+        dispatch(getCartProducts());
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Añadido a Carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } catch (error: any) {
+        console.log(error.response.data.error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Debes estar logeado",
+          showConfirmButton: true,
+        });
+      }
     }
   };
 
@@ -135,19 +152,21 @@ function CardProduct(props: Product) {
   }
 
   useEffect(() => {
-    favoritos.forEach((fav: any) => {
-      if (fav._id === props.id) {
-        setIsFav(true);
-      }
-    });
+    const finded = favoritos.find((fav: any) => fav._id === props.id);
+    if (finded) {
+      setIsFav(true);
+    } else {
+      setIsFav(false);
+    }
   }, [favoritos, props.id, dispatch]);
 
   useEffect(() => {
-    cartProducts.forEach((cart: any) => {
-      if (cart._id === props.id) {
-        setInCart(true);
-      }
-    });
+    const finded = cartProducts.find((cart: any) => cart._id === props.id);
+    if (finded) {
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
   }, [cartProducts, props.id, dispatch]);
 
   return (

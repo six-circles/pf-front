@@ -49,8 +49,8 @@ export default function CarritoLight({ cartProducts, setIsOpen }: any) {
     <div className={styles.container}>
       <div className={styles.contCard}>
         {console.log(cartProducts)}
-        {cartProducts.slice(0, 3).map((product: any) => (
-          <div className={styles.contCard2} key={product._id}>
+        {cartProducts.length > 0 ? cartProducts.slice(0, 3).map((product: any) => (
+          <div key={product._id}>
             <div className={styles.card}>
               <Link to={`/detail/${product._id}`} className={styles.img}>
                 <img
@@ -68,7 +68,7 @@ export default function CarritoLight({ cartProducts, setIsOpen }: any) {
             </div>
             <hr />
           </div>
-        ))}
+        )) : <div className={styles.contCard1}> <p className={styles.aviso}>Nada por aquí. <br />Agrega productos a tu carrito ...</p></div>}
         {cartProducts.length > 3 && (
           <div className={styles.dots}>
             <p>.<br />.<br />.</p>
@@ -78,6 +78,6 @@ export default function CarritoLight({ cartProducts, setIsOpen }: any) {
           Ver todo mi carrito
         </div>
       </div>
-    </div>
+    </div >
   );
 }
