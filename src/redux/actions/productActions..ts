@@ -30,7 +30,7 @@ export const getProducts = (query?: any) => {
       // }
 
       // if (query) {
-      data = await urlAxios(`/product`);
+      data = await urlAxios(`/product?${query}`);
       // } else {
       // data = await urlAxios(`/product`);
       // }
