@@ -85,10 +85,37 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background-color: v.$color-gray;
+    border: 0.15rem solid v.$color-dark;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 100ms;
+
+    &:hover {
+      background-color: v.$color-blue;
+      border: 0.15rem solid darken(v.$color-blue, 10%);
+      color: v.$color-white;
+    }
 
     label {
       margin: 0;
+      padding: 0;
+      height: fit-content;
+      cursor: pointer;
     }
+
+    input {
+      padding: 0;
+      height: fit-content;
+      display: none;
+    }
+  }
+
+  .active {
+    background-color: v.$color-blue;
+    border: 0.15rem solid darken(v.$color-blue, 10%);
+    color: v.$color-white;
   }
 }
 

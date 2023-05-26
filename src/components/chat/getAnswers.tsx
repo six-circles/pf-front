@@ -15,11 +15,11 @@ interface Answer {
   id: number;
 }
 
-export function Answers(props: any) {
+export function Answer(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
-  const { token, config } = getToken();
+ // const { token, config } = getToken();
   const { id } = useParams();
   const [getAnswer, setGetAnswer] = useState("");
 
@@ -43,51 +43,24 @@ export function Answers(props: any) {
     }
   };
 
-  const handleAnswerSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (newAnswer.trim() === "") {
-      return;
-    }
-
-    try {
-      console.log(newAnswerObj);
-      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
-
-      setNewAnswer("");
-
-      // Actualizar las respuestas llamando nuevamente a la API
-      handleAnswer();
-    } catch (error: any) {
-      console.log(error.response.data);
-    }
-  };
+  
 
   return (
     <Fragment>
-      <form onSubmit={handleAnswerSubmit}>
+   
         <div className={Style.new}>
           <ul className={Style.ulanswer}>
-            <br />
             {answers &&
               answers?.map((answer: any) => (
                 <li className={Style.lianswer} key={answer._id}>
                   {answer.body}
                 </li>
-              ))}<br/>
+              ))}
           </ul>
-          <input
-            className={Style.inputanswer}
-            type="text"
-            value={newAnswer}
-            onChange={(event) => setNewAnswer(event.target.value)}
-            placeholder="Escribe tu respuesta"
-          />
+          
         </div>
-        <button className={Style.answersubmit} type="submit">
-          Enviar
-        </button>
-      </form>
+      
+    
     </Fragment>
   );
 }

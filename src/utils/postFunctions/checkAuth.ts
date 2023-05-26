@@ -8,7 +8,9 @@ const checkAuth = async (route: string, navigate: Function) => {
   try {
     await urlAxios.post(`/${route}`, null, config);
   } catch (err: any) {
+    console.log(err);
     const { error }: any = err.response.data;
+    console.log(error);
     if (error === "You need to be logged in") {
       Swal.fire({
         title: "Debes estar registrado",

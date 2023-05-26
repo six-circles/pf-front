@@ -16,6 +16,9 @@ import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
 import CarritoPage from "./Carrito/CarritoPage";
 import Calificar from "./Rating/Calificar";
+import { Questionmyuser } from "./chat/Questionmyuser";
+import { Answer } from "./chat/getAnswers";
+
 import Resumen from "./Carrito/Resumen";
 export {
   Calificar,
@@ -36,5 +39,7 @@ export {
   QuestionUser,
   Answers,
   CarritoPage,
-  Resumen,
+  Questionmyuser,
+  Answer,
+  Resumen
 };
