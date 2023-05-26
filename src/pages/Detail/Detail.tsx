@@ -53,7 +53,7 @@ function Detail() {
 
       <br />
       {tipo === "question"
-        ? detail.questions && <QuestionList questions={detail?.questions} />
+        ? detail.questions && <QuestionList questions={detail?.questions}   />
         : detail.comments && <Comments comments={detail?.comments} />}
     </Fragment>
   );

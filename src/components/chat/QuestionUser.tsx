@@ -42,19 +42,19 @@ console.log(questions);
     <div className={Style.card}>  
       <center><h1>Preguntas recibidas</h1></center>
       <br /> 
-      <br />
-      <ul className={Style.ulquestion}>
+    
+    <ul className={Style.ulquestion}>
       <br />
       {questions && questions.map((question: any) => (
   question.questions.map((nestedQuestion: any) => (
    
     
-    <div key={nestedQuestion._id}>
+    <strong><div  className={Style.nestedQuestion} key={nestedQuestion._id}>
      <br/>
     <br />
     <li >{nestedQuestion.body}</li>
     <Answers id={nestedQuestion._id}/>
-    </div>
+    </div></strong>
   ))
 ))}
       
