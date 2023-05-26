@@ -11,7 +11,7 @@ function Paginator({ setIndex, pages, page }: any) {
   const handlePageClick = (event: any) => {
     const newIndex = event.selected * 12;
     const searchParams = new URLSearchParams(location.search);
-    searchParams.set("index", newIndex.toString())
+    searchParams.set("index", newIndex.toString());
 
     dispatch(selectPage(event.selected));
     setIndex(newIndex);
