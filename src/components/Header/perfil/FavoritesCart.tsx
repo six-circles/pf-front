@@ -1,22 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './ShopingCart.module.scss';
 import { useNavigate } from 'react-router';
-import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import Swal from "sweetalert2";
+// import { Link } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+// import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
-// import { CarritoPage } from '../..';
-import CarritoLight from '../../../pages/Carrito/MenuDesplegable/CarritoLight';
+import FavoritosMenuDesplegable from '../../../pages/Favoritos/MenuDesplegable/FavoritosMenuDesplegable';
 
-function ShopingCart() {
+function FavoritesCart() {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  const { cartProducts } = useSelector((state: any) => state.carrito);
+  const { favoritos } = useSelector((state: any) => state.favoritos);
 
   const navigate = useNavigate();
   const username: any = window.localStorage.getItem("user");
   let user;
+  
   if (username) {
     user = JSON.parse(username);
   }
@@ -46,20 +46,15 @@ function ShopingCart() {
   return (
     <div className={styles.buttonContainer} ref={buttonRef} onClick={handleLogin}>
       <div className={`${styles.button} ${isOpen ? styles.expanded : ''}`} onClick={handleClick}>
-        <AiOutlineShoppingCart className={styles.icons2} />
+        <AiOutlineHeart className={styles.icons2} />
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          <CarritoLight cartProducts={cartProducts} />
+          <FavoritosMenuDesplegable  />
         </div>
       )}
     </div>
   );
 };
 
-export default ShopingCart;
-
-
-
-
-
+export default FavoritesCart;

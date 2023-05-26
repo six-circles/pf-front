@@ -1,17 +1,16 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import { MdOutlineAccountCircle } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+// import { MdOutlineAccountCircle } from "react-icons/md";
+// import { AiOutlineHeart } from "react-icons/ai";
+// import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
-import Carrito from "./carrito/MenuDespleg/Carrito";
-import User from "./perfil/User";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { getProducts, selectPage } from "../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import MyUser from "./perfil/MyUser";
 import ShopingCart from "./perfil/ShopingCart";
+import FavoritesCart from "./perfil/FavoritesCart";
 // import Favs from "./PopUps/Favs/Favs";
 
 function Header() {
@@ -77,12 +76,7 @@ function Header() {
           </button>
         </form>
         <nav className={styles.nav}>
-          <div style={{ position: "relative" }}>
-            <a href="/user/favoritos" className={styles.letras}>
-              <AiOutlineHeart className={styles.icons2} />
-            </a>
-            {/* {showFavs && <Favs />} */}
-          </div>
+          <FavoritesCart/>
 
           <ShopingCart />
 

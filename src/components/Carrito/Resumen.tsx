@@ -14,7 +14,7 @@ export default function({productos}:any){
                     <div className={styles.titleMisPedidos}>
                         <h3 className={styles.columnas}>Precio unitario</h3>
                     </div>
-                    <div className={styles.titleMisPedidos}>
+                    <div className={styles.titleCantidad}>
                         <h3 className={styles.columnas}>Cantidad</h3>
                     </div>
                     <div className={styles.titleMisPedidos}>

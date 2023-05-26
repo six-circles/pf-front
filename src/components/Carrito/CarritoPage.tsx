@@ -96,7 +96,6 @@ export default function (props: any) {
          { <img src={image} alt={prod.title} className={styles.img} />}
           <p className={styles.title}>{name}</p>
           <p className={styles.precio}>${prod.price}</p>
-          {/* <p>{prod.puntuaction}</p> */}
 
           <div className={styles.cantidad}>
             <label>Cantidad</label>
