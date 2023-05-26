@@ -21,7 +21,7 @@ export function Answers(props: any) {
   const { token, config } = getToken();
   const { id } = useParams();
   const [getAnswer, setGetAnswer] = useState("");
-  const [answered, setAnswered] = useState(false); // Estado para realizar un seguimiento de si la pregunta fue respondida
+  const [answered, setAnswered] = useState(false);
 
   const newAnswerObj = {
     body: newAnswer,
@@ -30,6 +30,7 @@ export function Answers(props: any) {
 
   useEffect(() => {
     handleAnswer();
+    checkAnswered(); // Verificar si la pregunta ha sido respondida al cargar la página
   }, []);
 
   const handleAnswer = async () => {
@@ -57,16 +58,27 @@ export function Answers(props: any) {
       setNewAnswer("");
       setAnswered(true); // Marcar la pregunta como respondida
 
-      // Actualizar las respuestas llamando nuevamente a la API
+      // Guardar la pregunta respondida en el almacenamiento local
+      localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
+
       handleAnswer();
     } catch (error: any) {
       console.log(error.response.data);
     }
   };
 
+  const checkAnswered = () => {
+    // Verificar si la pregunta ha sido respondida anteriormente
+    const answeredQuestion = localStorage.getItem(`answered_${props.id}`);
+
+    if (answeredQuestion) {
+      setAnswered(true);
+    }
+  };
+
   return (
     <Fragment>
-      {!answered && ( // Mostrar el formulario de respuesta solo si la pregunta no ha sido respondida
+      {!answered && (
         <form onSubmit={handleAnswerSubmit}>
           <div className={Style.new}>
             <ul className={Style.ulanswer}>
@@ -95,3 +107,4 @@ export function Answers(props: any) {
     </Fragment>
   );
 }
+
