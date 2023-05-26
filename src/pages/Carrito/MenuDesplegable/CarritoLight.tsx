@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import styles from "./CarritoLight.module.scss";
 
-export default function CarritoLight({ cartProducts, setIsOpen }: any) {
+export default function CarritoLight({ datos, setIsOpen }: any) {
   const dispatch: Function = useDispatch();
   const user = getToken();
   const token = user.token;
@@ -48,20 +48,18 @@ export default function CarritoLight({ cartProducts, setIsOpen }: any) {
   return (
     <div className={styles.container}>
       <div className={styles.contCard}>
-        {console.log(cartProducts)}
-        {cartProducts.length > 0 ? cartProducts.slice(0, 3).map((product: any) => (
+        {datos.length > 0 ? datos.slice(0, 3).map((product: any) => (
           <div key={product._id}>
             <div className={styles.card}>
               <Link to={`/detail/${product._id}`} className={styles.img}>
                 <img
-                  src={product.image}
+                  src={product.image[0].url}
                   alt={product.title.slice(0, 20)}
-                  className={styles.img}
                 />
               </Link>
               <div className={styles.info}>
                 <p className={styles.title}>{product.title}</p>
-                <p className={styles.precio}>${product.price}</p>
+                <p className={styles.precio}>${product.price * product.cantidadCarrito}</p>
                 <p>Cantidad: {product.cantidadCarrito}</p>
                 <p className={styles.buttonEliminar} onClick={() => deleteProduct(product._id)}>Eliminar</p>
               </div>
@@ -69,7 +67,7 @@ export default function CarritoLight({ cartProducts, setIsOpen }: any) {
             <hr />
           </div>
         )) : <div className={styles.contCard1}> <p className={styles.aviso}>Nada por aquí. <br />Agrega productos a tu carrito ...</p></div>}
-        {cartProducts.length > 3 && (
+        {datos.length > 3 && (
           <div className={styles.dots}>
             <p>.<br />.<br />.</p>
           </div>
