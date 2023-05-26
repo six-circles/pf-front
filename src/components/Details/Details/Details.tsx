@@ -61,7 +61,7 @@ function Details({ detail }: DetailsProps) {
           >
             {detail.condition}
           </p>
-          <p className={styles.lighten}>{detail.stock} en Stock</p>
+          <p>{detail.stock} en Stock</p>
         </div>
         <div className={styles.details_rating}>
           {(detail.punctuations || detail.punctuations === 0) && (
@@ -71,6 +71,9 @@ function Details({ detail }: DetailsProps) {
             ({detail.comments?.length})
           </a>
         </div>
+        {detail.user?.name && (
+          <p className={styles.lighten}>{detail.user.name}</p>
+        )}
       </div>
       <div className={styles.price}>
         <h3>${detail.price}</h3>

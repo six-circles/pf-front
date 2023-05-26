@@ -24,14 +24,12 @@ function Header() {
   const queryParams = new URLSearchParams(window.location.search);
   // queryParams.toString();
 
-
-
   const handleNavigate = () => {
     const cleanSearch = new URLSearchParams();
-    cleanSearch.set('index', '0');
+    cleanSearch.set("index", "0");
 
     navigate({
-      pathname: '/',
+      pathname: "/",
       search: cleanSearch.toString(),
     });
 
@@ -57,8 +55,6 @@ function Header() {
     });
   };
 
-
-
   return (
     <header className={styles.header}>
       <div className={styles.contHeader}>
@@ -81,8 +77,6 @@ function Header() {
           <ShopingCart />
 
           <MyUser />
-
-
         </nav>
       </div>
     </header>
