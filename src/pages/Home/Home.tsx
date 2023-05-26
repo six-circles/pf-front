@@ -64,7 +64,7 @@ function Home() {
       pathname: "/",
       search: queryParamsString,
     });
-  }, [queryParamsString, index, navigate]);
+  }, [queryParamsString, index, navigate, dispatch]);
 
   return (
     <Fragment>

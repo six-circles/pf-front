@@ -140,7 +140,7 @@ function CardProduct(props: Product) {
         setIsFav(true);
       }
     });
-  }, [favoritos, props.id]);
+  }, [favoritos, props.id, dispatch]);
 
   useEffect(() => {
     cartProducts.forEach((cart: any) => {
@@ -148,7 +148,7 @@ function CardProduct(props: Product) {
         setInCart(true);
       }
     });
-  }, [cartProducts, props.id]);
+  }, [cartProducts, props.id, dispatch]);
 
   return (
     <div className={styles.card} onClick={handleClick}>
