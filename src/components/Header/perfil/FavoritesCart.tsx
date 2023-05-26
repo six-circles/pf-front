@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import styles from './ShopingCart.module.scss';
-import { useNavigate } from 'react-router';
+import { useState, useEffect, useRef } from "react";
+import styles from "./ShopingCart.module.scss";
+import { useNavigate } from "react-router";
 // import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 // import Swal from "sweetalert2";
-import { useSelector } from 'react-redux';
-import FavoritosMenuDesplegable from '../../../pages/Favoritos/MenuDesplegable/FavoritosMenuDesplegable';
+import { useSelector } from "react-redux";
+import FavoritosMenuDesplegable from "../../../pages/Favoritos/MenuDesplegable/FavoritosMenuDesplegable";
 
 function FavoritesCart() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ function FavoritesCart() {
   const navigate = useNavigate();
   const username: any = window.localStorage.getItem("user");
   let user;
-  
+
   if (username) {
     user = JSON.parse(username);
   }
@@ -27,13 +27,16 @@ function FavoritesCart() {
 
   useEffect(() => {
     const handleClose = (event: MouseEvent) => {
-      if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('click', handleClose);
+    document.addEventListener("click", handleClose);
     return () => {
-      document.removeEventListener('click', handleClose);
+      document.removeEventListener("click", handleClose);
     };
   }, []);
 
@@ -44,17 +47,24 @@ function FavoritesCart() {
   };
 
   return (
-    <div className={styles.buttonContainer} ref={buttonRef} onClick={handleLogin}>
-      <div className={`${styles.button} ${isOpen ? styles.expanded : ''}`} onClick={handleClick}>
+    <div
+      className={styles.buttonContainer}
+      ref={buttonRef}
+      onClick={handleLogin}
+    >
+      <div
+        className={`${styles.button} ${isOpen ? styles.expanded : ""}`}
+        onClick={handleClick}
+      >
         <AiOutlineHeart className={styles.icons2} />
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          <FavoritosMenuDesplegable  />
+          <FavoritosMenuDesplegable />
         </div>
       )}
     </div>
   );
-};
+}
 
 export default FavoritesCart;
