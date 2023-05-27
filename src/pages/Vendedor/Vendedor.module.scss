@@ -1,11 +1,17 @@
 @use "../../styles/variables.scss" as v;
-.links {
+.puntuacion {
   display: flex;
-  flex-direction: column;
-  border: 0.2rem solid #000;
-  border-color: v.$color-dark;
-  gap: 3rem;
-  background-color: v.$color-gray;
-  height: auto;
+  background-color: aquamarine;
+}
+
+.title {
+  background-color: bisque;
   width: fit-content;
+}
+.ventas {
+  display: flex;
+  color: aliceblue;
+  background-color: blue;
+  width: fit-content;
+  margin-top: 3rem;
 }

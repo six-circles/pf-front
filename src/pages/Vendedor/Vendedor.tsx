@@ -38,11 +38,11 @@ export default function () {
   }, []);
   return (
     <div>
-      <h1>{name}</h1>
-      <p>Cantidad de ventas: 100</p>
-      <p>
+      <div className={styles.puntuacion}>
+        <h1 className={styles.title}>{name}</h1>
+        <p className={styles.ventas}>Cantidad de ventas: 100</p>
         <Rating punctuation={puntuaction} />
-      </p>
+      </div>
       <div>
         {allProducts ? (
           <Products products={allProducts} />
