@@ -41,7 +41,7 @@ console.log(questions);
     <Fragment> 
     <div className={Style.card}>  
      
-      <br /> 
+     
     
     <ul className={Style.ulquestion}>
       <br />
@@ -53,7 +53,8 @@ console.log(questions);
      <br/>
     <br />
     <li >{nestedQuestion.body}</li>
-    
+    <br />
+    <a className={Style.aproduct}>Producto</a>
     <Answers id={nestedQuestion._id}/>
     </div></strong>
   ))
