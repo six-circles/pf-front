@@ -11,7 +11,7 @@ export default function Preguntas() {
   return (
     <div>
       <a className={style.optiondetail} onClick={handleToggleComponent}>
-         {showQuestionUser ? "Mis Preguntas" : "Preguntas recibidas"}
+         {showQuestionUser ? "Preguntas Recibidas" : "Mis Preguntas"}
       </a>
       {showQuestionUser ? <QuestionUser /> : <Questionmyuser />}
     </div>
