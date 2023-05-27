@@ -28,6 +28,10 @@ export default function ({ productos }: any) {
 
   useEffect(() => {
     getPreferenceId();
+
+    return () => {
+      setPreferenceId(undefined);
+    };
   }, [productos]);
 
   console.log(preferenceId);
@@ -52,9 +56,11 @@ export default function ({ productos }: any) {
         <p>${total}</p>
       </div>
 
-      <div id="wallet_container" style={{ padding: "2rem" }}>
-        <Wallet initialization={{ preferenceId }} />
-      </div>
+      {preferenceId && (
+        <div id="wallet_container" style={{ padding: "2rem" }}>
+          <Wallet initialization={{ preferenceId }} />
+        </div>
+      )}
     </div>
   );
 }
