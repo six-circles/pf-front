@@ -1,5 +1,8 @@
 import { getToken, urlAxios } from "../../utils";
+import { useEffect, useState } from "react";
 import styles from "./Resumen.module.scss";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MERCADOPAGO);
 
 export default function ({ productos }: any) {
   let totalPerProduct = productos.map((p: any) => p.price * p.cantidadCarrito);
@@ -9,12 +12,25 @@ export default function ({ productos }: any) {
   }, 0);
 
   const products = { shoppingCart: productos };
+  const [preferenceId, setPreferenceId] = useState<string | undefined | any>(
+    undefined
+  );
 
-  const handlePay = async () => {
-    const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
+  const getPreferenceId = async () => {
+    try {
+      const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
 
-    window.open(data.url, "_blank");
+      setPreferenceId(data.id);
+    } catch (err: any) {
+      console.log(err.response.data);
+    }
   };
+
+  useEffect(() => {
+    getPreferenceId();
+  }, [productos]);
+
+  console.log(preferenceId);
 
   return (
     <div className={styles.resume}>
@@ -23,7 +39,7 @@ export default function ({ productos }: any) {
       </div>
       <div className={styles.resume_cont}>
         {productos?.map((p: any) => (
-          <div className={styles.resume_product}>
+          <div className={styles.resume_product} key={p._id}>
             <p className={styles.name}>
               {p.title.slice(0, 15)} ({p.cantidadCarrito})
             </p>
@@ -36,8 +52,8 @@ export default function ({ productos }: any) {
         <p>${total}</p>
       </div>
 
-      <div className={styles.buy}>
-        <button onClick={handlePay}>Comprar</button>
+      <div id="wallet_container" style={{ padding: "2rem" }}>
+        <Wallet initialization={{ preferenceId }} />
       </div>
     </div>
   );
