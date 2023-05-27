@@ -1,11 +1,11 @@
 import styles from "./CarritoPage.module.scss";
+import { Fragment } from "react";
 import { urlAxios } from "../../utils";
 import { getToken } from "../../utils/index";
 import { getCartProducts } from "../../redux/actions/carritoActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import { getProducts } from "../../redux/actions/productActions.";
 
 export default function (props: any) {
   const dispatch: Function = useDispatch();
@@ -97,35 +97,41 @@ export default function (props: any) {
     }
   };
   return (
-    <div>
+    <Fragment>
       {prod ? (
         <div className={styles.card}>
-          <img src={image} alt={prod.title} className={styles.img} />
-          <p className={styles.title}>{name}</p>
-          <p className={styles.precio}>${prod.price}</p>
-
-          <div className={styles.cantidad}>
-            <label>Cantidad</label>
-            <button className={styles.buttonMenos} onClick={deleteCarrito}>
-              {" "}
-              -{" "}
-            </button>
-            <p>{cant}</p>
-            <button onClick={addCarrito} className={styles.buttonMenos}>
-              {" "}
-              +{" "}
-            </button>
+          <div className={styles.card_image}>
+            <img src={image} alt={prod.title} className={styles.img} />
           </div>
-          <button onClick={() => details(id)} className={styles.buttonDetails}>
-            Detalles
-          </button>
-          <button className={styles.buttonEliminar} onClick={deleteProduct}>
-            X
-          </button>
+          <div className={styles.card_info}>
+            <h4 className={styles.title}>{name}</h4>
+
+            <div className={styles.card_info_btn}>
+              <p className={styles.info_eliminar} onClick={deleteProduct}>
+                Eliminar
+              </p>
+              <p onClick={() => details(id)} className={styles.info_detail}>
+                Detalles
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.cont_cantidad}>
+            <div className={styles.card_cantidad}>
+              <button onClick={deleteCarrito}>-</button>
+              <p>{cant}</p>
+              <button onClick={addCarrito}>+</button>
+            </div>
+            <p>{prod.stock} en Stock</p>
+          </div>
+
+          <div className={styles.precio}>
+            <p>${prod.price * cant}</p>
+          </div>
         </div>
       ) : (
         <h3>No hay productos aún...</h3>
       )}
-    </div>
+    </Fragment>
   );
 }
