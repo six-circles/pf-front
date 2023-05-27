@@ -16,13 +16,13 @@ export default function ({ productos }: any) {
             <p className={styles.name}>
               {p.title.slice(0, 15)} ({p.cantidadCarrito})
             </p>
-            <p> ${p.price * p.cantidadCarrito}</p>
+            <p>${p.price * p.cantidadCarrito}</p>
           </div>
         ))}
       </div>
       <div className={styles.total}>
         <p>Total</p>
-        <p> ${total}</p>
+        <p>${total}</p>
       </div>
 
       <div className={styles.buy}>
