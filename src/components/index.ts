@@ -18,9 +18,11 @@ import CarritoPage from "./Carrito/CarritoPage";
 import Calificar from "./Rating/Calificar";
 import { Questionmyuser } from "./chat/Questionmyuser";
 import { Answer } from "./chat/getAnswers";
+import Loading from "./Loading/Loading";
 
 import Resumen from "./Carrito/Resumen";
 export {
+  Loading,
   Calificar,
   Paginator,
   CardVentas,
@@ -41,5 +43,5 @@ export {
   CarritoPage,
   Questionmyuser,
   Answer,
-  Resumen
+  Resumen,
 };

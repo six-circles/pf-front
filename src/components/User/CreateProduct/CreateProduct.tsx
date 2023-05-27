@@ -79,13 +79,13 @@ function CreateProduct() {
       return;
     }
 
-    // const selectedImages = Array.from(files);
-    console.log(files);
     setImage(files);
   };
 
   const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = event.target;
+
+    console.log("object");
 
     setForm((prevForm: any) => {
       const { moreCharacteristics } = prevForm;
@@ -136,13 +136,6 @@ function CreateProduct() {
     formData.append("data", JSON.stringify(obj_post));
 
     try {
-      // console.log(formData);
-      // const { data } = await urlAxios.post(
-      //   "/pruebacloudinary",
-      //   formData,
-      //   config
-      // );
-
       if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
       else await urlAxios.post("/product", formData, config);
       Swal.fire({
@@ -155,12 +148,6 @@ function CreateProduct() {
       setForm(initState);
       navigate("/user/products");
     } catch (error: any) {
-      // if (!error.response) {
-      //   Swal.fire({
-      //     icon: "error",
-      //     title: "Faltan datos",
-      //   });
-      // } else {
       Swal.fire({
         icon: "error",
         title: error.response.data.error,
@@ -191,27 +178,31 @@ function CreateProduct() {
                 <div className={styles.form_camp_cond}>
                   <div>
                     <input
+                      id="product-nuevo"
                       type="radio"
                       value="Nuevo"
                       name="condition"
+                      checked={form.condition === "Nuevo"}
                       onChange={handleChange}
                     />
-                    <label htmlFor="nuevo">Nuevo</label>
+                    <label htmlFor="product-nuevo">Nuevo</label>
                   </div>
                   <div>
                     <input
+                      id="product-usado"
                       type="radio"
                       value="Usado"
                       name="condition"
+                      checked={form.condition === "Usado"}
                       onChange={handleChange}
                     />
-                    <label htmlFor="usado">Usado</label>
+                    <label htmlFor="product-usado">Usado</label>
                   </div>
                 </div>
               </div>
 
               <div className={styles.form_camp}>
-                <label>Imagen 1</label>
+                <label>Imagenes</label>
                 <input
                   type="file"
                   placeholder="Ingrese al menos una imagen"
