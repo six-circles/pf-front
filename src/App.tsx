@@ -30,8 +30,8 @@ function App() {
         {/* <Route path="cart" element={<CartPage />} /> */}
         <Route path="detail/:id" element={<Detail />} />
         <Route path="carrito" element={<Carrito />} />
-        <Route path="carrito" element={<Carrito />} />
-        <Route path="detail/:name/:id" element={<Vendedor />}>
+        <Route path="detail/:name/:id" element={<Vendedor />} />
+        <Route path="user/" element={<LayoutUser />}>
           <Route index element={<Datos />} />
           <Route path="products" element={<Ventas />} />
           <Route path="products/create_product" element={<CreateProduct />} />
