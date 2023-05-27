@@ -1,13 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Products,
-  Slider,
-  Filter,
-  Paginator,
-  Calificar,
-} from "../../components";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { Products, Slider, Filter, Paginator, Loading } from "../../components";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import {
@@ -27,6 +21,7 @@ interface State {
 }
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const dispatch: any = useDispatch();
@@ -40,6 +35,7 @@ function Home() {
   let paramSearch = queryParams.get("search");
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(clearProducts());
     queryParams.set("index", `${index}`);
     const tok = queryParams.get("token");
@@ -59,7 +55,7 @@ function Home() {
       });
     }
     queryParamsString = queryParams.toString();
-    dispatch(getProducts(queryParamsString));
+    dispatch(getProducts(queryParamsString)).then(() => setIsLoading(false));
     navigate({
       pathname: "/",
       search: queryParamsString,
@@ -68,14 +64,24 @@ function Home() {
 
   return (
     <Fragment>
-      <div className={styles.home}>
-        <Filter />
-        <div>
-          {paramSearch ? "" : <Slider />}
-          <Products products={products} />
-        </div>
-      </div>
-      <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.home}>
+            <Filter />
+            <div>
+              {paramSearch ? "" : <Slider />}
+              <Products products={products} />
+            </div>
+          </div>
+          <Paginator
+            setIndex={setIndex}
+            pages={totalPages}
+            page={currentPage}
+          />{" "}
+        </>
+      )}
     </Fragment>
   );
 }

@@ -45,13 +45,13 @@
         color: v.$color-white;
         transition: 150ms;
         &:hover {
-          color: #ee3737;
+          color: v.$color-red;
         }
       }
 
       .icon_heart_fav {
         transition: 150ms;
-        color: #ee3737;
+        color: v.$color-red;
         &:hover {
           color: #ec5454;
         }
