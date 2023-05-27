@@ -37,7 +37,7 @@ handleQuestion();
   return (
     <Fragment> 
     <div className={Style.card}>  
-      <center><h1>Mis preguntas</h1></center>
+      
       <br /> 
       <br />
       <ul className={Style.ulquestion}>

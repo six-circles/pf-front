@@ -40,7 +40,7 @@ console.log(questions);
   return (
     <Fragment> 
     <div className={Style.card}>  
-      <center><h1>Preguntas recibidas</h1></center>
+     
       <br /> 
     
     <ul className={Style.ulquestion}>

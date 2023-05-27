@@ -6,6 +6,7 @@ import { getToken, urlAxios } from "../../utils";
 interface Question {
   id: number;
   text: string;
+  productId: number; // Agrega la propiedad productId al tipo de datos Question
 }
 
 interface Answer {
@@ -22,6 +23,7 @@ export function Answers(props: any) {
   const { id } = useParams();
   const [getAnswer, setGetAnswer] = useState("");
   const [answered, setAnswered] = useState(false);
+  const [product, setProduct] = useState<any>(null); // Agrega el estado product
 
   const newAnswerObj = {
     body: newAnswer,
@@ -30,7 +32,8 @@ export function Answers(props: any) {
 
   useEffect(() => {
     handleAnswer();
-    checkAnswered(); // Verificar si la pregunta ha sido respondida al cargar la página
+    checkAnswered();
+    fetchProduct(); // Obtener los detalles del producto al cargar la página
   }, []);
 
   const handleAnswer = async () => {
@@ -56,9 +59,7 @@ export function Answers(props: any) {
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
 
       setNewAnswer("");
-      setAnswered(true); // Marcar la pregunta como respondida
-
-      // Guardar la pregunta respondida en el almacenamiento local
+      setAnswered(true);
       localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
 
       handleAnswer();
@@ -68,7 +69,6 @@ export function Answers(props: any) {
   };
 
   const checkAnswered = () => {
-    // Verificar si la pregunta ha sido respondida anteriormente
     const answeredQuestion = localStorage.getItem(`answered_${props.id}`);
 
     if (answeredQuestion) {
@@ -76,8 +76,24 @@ export function Answers(props: any) {
     }
   };
 
+  const fetchProduct = async () => {
+    try {
+      const response = await urlAxios.get(`/product/${props.productId}`);
+      setProduct(response.data);
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+  };
+
   return (
     <Fragment>
+      {product && (
+        <div className={Style.productInfo}>
+          <h3>Producto: {product.name}</h3>
+          <p>Descripción: {product.description}</p>
+        </div>
+      )}
+
       {!answered && (
         <form onSubmit={handleAnswerSubmit}>
           <div className={Style.new}>
@@ -107,4 +123,3 @@ export function Answers(props: any) {
     </Fragment>
   );
 }
-
