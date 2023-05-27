@@ -56,6 +56,11 @@ function MyUser() {
     })
   };
 
+  const handlePerfil = () => {
+    navigate("/user");
+    setIsOpen(false);
+  }
+
   return (
     <div className={styles.buttonContainer} ref={buttonRef} onClick={handleLogin}>
       <div className={`${styles.button} ${isOpen ? styles.expanded : ''}`} onClick={handleClick}>
@@ -64,7 +69,8 @@ function MyUser() {
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          <Link to="/user"><div className={styles.option}>Mi Perfil</div></Link>
+          {/* < to="/user"> */}
+          <div onClick={handlePerfil} className={styles.option}>Mi Perfil</div>
           <div className={styles.option} onClick={handleLogout}>Cerrar sesión</div>
         </div>
       )}
