@@ -1,9 +1,20 @@
+import { getToken, urlAxios } from "../../utils";
 import styles from "./Resumen.module.scss";
+
 export default function ({ productos }: any) {
   let totalPerProduct = productos.map((p: any) => p.price * p.cantidadCarrito);
+  const { token } = getToken();
   const total = totalPerProduct.reduce((acc: any, val: any) => {
     return acc + val;
   }, 0);
+
+  const products = { shoppingCart: productos };
+
+  const handlePay = async () => {
+    const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
+
+    window.open(data.url, "_blank");
+  };
 
   return (
     <div className={styles.resume}>
@@ -26,7 +37,7 @@ export default function ({ productos }: any) {
       </div>
 
       <div className={styles.buy}>
-        <button>Comprar</button>
+        <button onClick={handlePay}>Comprar</button>
       </div>
     </div>
   );

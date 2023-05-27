@@ -34,13 +34,13 @@ export default function () {
           <h3>No hay nada por aquí...</h3>
         )}
       </div>
-      {cartProducts.length && (
+      {cartProducts.length ? (
         <Resumen
           productos={cartProducts}
           key={cartProducts._id}
           onClick={handleCheckout}
         />
-      )}
+      ) : null}
     </div>
   );
 }
