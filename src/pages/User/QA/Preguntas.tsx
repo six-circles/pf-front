@@ -16,4 +16,4 @@ export default function Preguntas() {
       {showQuestionUser ? <QuestionUser /> : <Questionmyuser />}
     </div>
   );
-}  
+}   
