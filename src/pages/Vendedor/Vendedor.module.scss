@@ -1,7 +1,8 @@
 @use "../../styles/variables.scss" as v;
-.puntuacion {
+.contenedor {
   display: flex;
   background-color: aquamarine;
+  gap: 5rem;
 }
 
 .title {
@@ -14,4 +15,8 @@
   background-color: blue;
   width: fit-content;
   margin-top: 3rem;
+}
+.puntuacion {
+  font-size: xx-large;
+  background-color: lightblue;
 }
