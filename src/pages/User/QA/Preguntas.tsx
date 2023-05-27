@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { QuestionUser, Questionmyuser } from "../../../components";
 import style from './Preguntas.module.scss'
 export default function Preguntas() {
