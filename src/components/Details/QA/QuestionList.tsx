@@ -2,10 +2,13 @@ import React, { Fragment, useState } from "react";
 import Style from"./QA.module.scss";
 import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
+
 interface Question {
   id: number;
   text: string;
 }
+
+
 
 export function QuestionList(props: any) {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -39,6 +42,7 @@ const {token, config}=getToken()
             <div key={index}>
               <strong><p className={Style.username}>{item.userName}</p></strong>
               <p className={Style.bodyuser}>{item.body}</p>
+             
               <br />
             </div>
           ))}
