@@ -6,6 +6,7 @@ import { Products } from "../../components";
 import styles from "./Vendedor.module.scss";
 import { Rating } from "../../components";
 import { useParams } from "react-router-dom";
+import { getToken } from "../../utils";
 
 interface Products {
   detail: DetailProd;
@@ -24,12 +25,21 @@ export default function () {
     const user = data.find((e: any) => id === e._id);
     return user;
   };
-
   const [allProducts, setAllProducts] = useState([]);
   const [puntuaction, setPunctuation] = useState(0);
   const [name, setName] = useState("");
+  const [admin, setAdmin] = useState(false);
+  const getAdmin = async () => {
+    const { token } = getToken();
+    const { data } = await urlAxios(`/user/${token}`);
+    const admin = data.admin;
+    if (admin) setAdmin(true);
+  };
+
+  const deleteSeller = () => {};
   useEffect(() => {
     getAllProd();
+    getAdmin();
   }, []);
 
   const getAllProd = async () => {
@@ -46,6 +56,7 @@ export default function () {
 
   return (
     <div>
+      {admin ? <button onClick={deleteSeller}>X</button> : null}
       <div className={styles.contenedor}>
         <h1 className={styles.title}>{name}</h1>
         <p className={styles.ventas}>Cantidad de ventas: 100</p>
