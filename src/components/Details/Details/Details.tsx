@@ -28,8 +28,9 @@ function Details({ detail }: DetailsProps) {
     setCart({ ...cart, [name]: value });
   };
   const user = detail.user;
-  const id = user?._id;
+  const email = user?.email;
   const name = user?.name;
+  const encriptadoEmail = window.btoa(email);
 
   const submitAddCart = async (event: any) => {
     event.preventDefault();
@@ -77,7 +78,7 @@ function Details({ detail }: DetailsProps) {
         {detail.user?.name && (
           <p
             className={styles.lighten}
-            onClick={() => navigate(`/detail/${name}/${id}`)}
+            onClick={() => navigate(`/detail/${name}/${encriptadoEmail}`)}
           >
             {detail.user.name}
           </p>

@@ -19,29 +19,27 @@ interface Products {
 
 export default function () {
   const params = useParams();
-  const id = params.id;
-  const users = async () => {
-    const { data } = await urlAxios("/users");
-    const user = data.find((e: any) => id === e._id);
-    return user;
-  };
+  const encriptado: any = params?.email;
+  const emailOriginal: any = window.atob(encriptado);
+
   const [allProducts, setAllProducts] = useState([]);
   const [puntuaction, setPunctuation] = useState(0);
   const [name, setName] = useState("");
   const [admin, setAdmin] = useState(false);
+
   const getAdmin = async () => {
     const { token } = getToken();
     const { data } = await urlAxios(`/user/${token}`);
 
-    const admin = data.admin;
-    if (admin && data._id !== id) {
+    const admin = data?.admin;
+    if (admin && data.email !== emailOriginal) {
       setAdmin(true);
     }
   };
 
   const bannerSeller = async () => {
     try {
-      await urlAxios.patch(`/user/${id}`);
+      await urlAxios.patch(`/user?email=${emailOriginal}`);
       Swal.fire({
         position: "center",
         icon: "success",
@@ -65,9 +63,7 @@ export default function () {
   }, []);
 
   const getAllProd = async () => {
-    const user = await users();
-    const email = user.email;
-    const { data } = await urlAxios(`/user?email=${email}`);
+    const { data } = await urlAxios(`/user?email=${emailOriginal}`);
     const products = data?.products;
     setAllProducts(products);
     const puntuation = data?.punctuation;
