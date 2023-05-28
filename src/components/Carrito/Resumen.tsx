@@ -57,7 +57,7 @@ export default function ({ productos }: any) {
       </div>
 
       {preferenceId && (
-        <div id="wallet_container" style={{ padding: "2rem" }}>
+        <div id="wallet_container" style={{ padding: "0rem 2rem" }}>
           <Wallet initialization={{ preferenceId }} />
         </div>
       )}

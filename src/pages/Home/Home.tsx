@@ -23,11 +23,11 @@ interface State {
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
-  const dispatch: any = useDispatch();
   const { products, totalPages, currentPage } = useSelector(
     (state: State) => state.products
   );
+  const [index, setIndex] = useState(currentPage);
+  const dispatch: any = useDispatch();
 
   const queryParams = new URLSearchParams(window.location.search);
   let queryParamsString = queryParams.toString();
