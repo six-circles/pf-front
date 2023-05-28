@@ -7,15 +7,15 @@ import styles from "./Vendedor.module.scss";
 import { Rating } from "../../components";
 import { useParams } from "react-router-dom";
 import { getToken } from "../../utils";
-
+import Swal from "sweetalert2";
 interface Products {
   detail: DetailProd;
   products: any;
 }
 
-interface State {
-  products: Products;
-}
+// interface State {
+//   products: Products;
+// }
 
 export default function () {
   const params = useParams();
@@ -32,11 +32,33 @@ export default function () {
   const getAdmin = async () => {
     const { token } = getToken();
     const { data } = await urlAxios(`/user/${token}`);
+
     const admin = data.admin;
-    if (admin) setAdmin(true);
+    if (admin && data._id !== id) {
+      setAdmin(true);
+    }
   };
 
-  const deleteSeller = () => {};
+  const bannerSeller = async () => {
+    try {
+      await urlAxios.patch(`/user/${id}`);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "User Blocked",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  };
   useEffect(() => {
     getAllProd();
     getAdmin();
@@ -56,7 +78,7 @@ export default function () {
 
   return (
     <div>
-      {admin ? <button onClick={deleteSeller}>X</button> : null}
+      {admin ? <button onClick={bannerSeller}>X</button> : null}
       <div className={styles.contenedor}>
         <h1 className={styles.title}>{name}</h1>
         <p className={styles.ventas}>Cantidad de ventas: 100</p>

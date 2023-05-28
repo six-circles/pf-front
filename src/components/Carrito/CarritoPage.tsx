@@ -126,7 +126,7 @@ export default function (props: any) {
           </div>
 
           <div className={styles.precio}>
-            <p>${prod.price * cant}</p>
+            <p>${prod.price}</p>
           </div>
         </div>
       ) : (
