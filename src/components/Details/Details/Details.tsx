@@ -5,7 +5,7 @@ import styles from "./Details.module.scss";
 import { DetailProd, getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
 interface DetailsProps {
   detail: DetailProd;
 }
@@ -19,7 +19,7 @@ function Details({ detail }: DetailsProps) {
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
   const config = { token, productsId: detail._id, cantidad: cart.cantidad };
-
+  const navigate = useNavigate();
   const prodChars =
     detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
 
@@ -27,6 +27,10 @@ function Details({ detail }: DetailsProps) {
     const { value, name } = event.target;
     setCart({ ...cart, [name]: value });
   };
+  const user = detail.user;
+  const email = user?.email;
+  const name = user?.name;
+  const encriptadoEmail = window.btoa(email);
 
   const submitAddCart = async (event: any) => {
     event.preventDefault();
@@ -72,7 +76,12 @@ function Details({ detail }: DetailsProps) {
           </a>
         </div>
         {detail.user?.name && (
-          <p className={styles.lighten}>{detail.user.name}</p>
+          <p
+            className={styles.lighten}
+            onClick={() => navigate(`/detail/${name}/${encriptadoEmail}`)}
+          >
+            {detail.user.name}
+          </p>
         )}
       </div>
       <div className={styles.price}>
