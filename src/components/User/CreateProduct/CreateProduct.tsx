@@ -30,7 +30,7 @@ function CreateProduct() {
     price: 0,
     moreCharacteristics: {},
     description: "",
-    category: "",
+    category: "Others",
   };
 
   const [form, setForm] = useState<any>(initState);
@@ -235,24 +235,26 @@ function CreateProduct() {
               <div className={styles.form_camp}>
                 <p>Categoria</p>
                 <select name="category" onChange={handleChange}>
-                  <option value="">--- Seleccione una categoria ---</option>
+                  <option value="Others" defaultChecked>
+                    Otros
+                  </option>
                   <option value="Technology">Tecnologia</option>
                   <option value="Indumentary">Ropa</option>
                   <option value="Furniture">Muebles</option>
-                  <option value="Others">Otros</option>
                 </select>
               </div>
 
-              <div className={styles.form_camp}>
-                <p>Caracteristicas</p>
-                {form.category === "Technology" ? (
-                  <Tech handleChars={handleChars} />
-                ) : form.category === "Indumentary" ? (
-                  <Clothe handleChars={handleChars} />
-                ) : form.category === "Furniture" ? (
-                  <Muebles handleChars={handleChars} />
-                ) : null}
-              </div>
+              {form.category !== "Other" && (
+                <div className={styles.form_camp}>
+                  {form.category === "Technology" ? (
+                    <Tech handleChars={handleChars} />
+                  ) : form.category === "Indumentary" ? (
+                    <Clothe handleChars={handleChars} />
+                  ) : form.category === "Furniture" ? (
+                    <Muebles handleChars={handleChars} />
+                  ) : null}
+                </div>
+              )}
             </>
           )}
           <div className={styles.form_camp}>

@@ -50,7 +50,7 @@
     padding-left: 1rem;
     background-color: v.$color-white;
     max-width: 30rem;
-    border: 0.1rem solid v.$color-gray;
+    border: 0.1rem solid v.$color-blue-l;
     transition: 150ms;
 
     &:focus {
@@ -63,7 +63,7 @@
     padding: 1rem;
     height: 10rem;
     background-color: v.$color-white;
-    border: 0.1rem solid v.$color-gray;
+    border: 0.1rem solid v.$color-blue-l;
     transition: 150ms;
 
     &:focus {
@@ -73,6 +73,8 @@
 
   select {
     width: 30rem;
+    border: 0.1rem solid v.$color-blue-l;
+    font-size: 1.6rem;
   }
 }
 
@@ -85,7 +87,7 @@
     align-items: center;
     gap: 0.5rem;
     background-color: v.$color-white;
-    border: 0.1rem solid v.$color-blue;
+    border: 0.1rem solid v.$color-blue-l;
     color: v.$color-blue;
     border-radius: 0.5rem;
     cursor: pointer;
