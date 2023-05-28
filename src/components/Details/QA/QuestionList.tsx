@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 interface Question {
   id: number;
   text: string;
+  
 }
 
 
@@ -42,7 +43,7 @@ const {token, config}=getToken()
             <div key={index}>
               <strong><p className={Style.username}>{item.userName}</p></strong>
               <p className={Style.bodyuser}>{item.body}</p>
-             <p>{item.answer[0]}</p>
+             <p>{item.answer}</p>
               <br />
             </div>
           ))}
