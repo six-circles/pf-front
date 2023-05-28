@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Style from"./QAS.module.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
 import { Answers } from "..";
 interface Question {
@@ -51,10 +51,11 @@ console.log(questions);
     
     <strong><div  className={Style.nestedQuestion} key={nestedQuestion._id}>
      <br/>
-    <br />
+    <br /> 
+    <Link to={`/detail/${question._id}`} className={Style.aproduct}>{question.title}</Link>
     <li >{nestedQuestion.body}</li>
     <br />
-    <a className={Style.aproduct}>Producto</a>
+   
     <Answers id={nestedQuestion._id}/>
     </div></strong>
   ))

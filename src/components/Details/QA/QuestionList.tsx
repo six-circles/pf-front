@@ -42,7 +42,7 @@ const {token, config}=getToken()
             <div key={index}>
               <strong><p className={Style.username}>{item.userName}</p></strong>
               <p className={Style.bodyuser}>{item.body}</p>
-             
+             <p>{item.answer[0]}</p>
               <br />
             </div>
           ))}
