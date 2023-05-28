@@ -43,9 +43,9 @@ function Header() {
     setTitle(value);
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    await dispatch(selectPage(0));
+    dispatch(selectPage(0));
     queryParams.set("index", "0");
     queryParams.set("search", title);
 

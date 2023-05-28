@@ -1,54 +1,70 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { checkAuth } from "../../utils";
 import styles from "./User.module.scss";
-import { CgProfile } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 function User() {
   const navigate: Function = useNavigate();
+  const { pathname } = useLocation();
 
   // useEffect(() => {
   //   checkAuth("product", navigate);
   // }, []);
 
   const handleClick = () => {
-
     Swal.fire({
-      title: '¿Desea cerrar sesión?',
-      icon: 'warning',
+      title: "¿Desea cerrar sesión?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, salir!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, salir!",
     }).then((result) => {
       if (result.isConfirmed) {
         window.localStorage.setItem("user", "");
         navigate("/login");
-      }else{
-        navigate("/")
+      } else {
+        navigate("/");
       }
-    })
+    });
   };
 
+  // const navLinkStyles = ({ isActive }: any) => {
+  //   return {
+  //     color: isActive ? "blue" : "",
+  //   };
+  // };
 
   return (
-    <div className={styles.user}>
-      <div className={styles.contenedorPerfil}>
-        <h1 onClick={() => navigate("/user")} className={styles.icon}>
-          <CgProfile />
-        </h1>
-        <div className={styles.perfil}>
-          <h3 className={styles.title} onClick={() => navigate("/user")}>
-            Mis Datos
-          </h3>
-          <Link to="/user/shopping">Compras</Link>
-          <Link to="/user/products">Ventas</Link>
-          <Link to="/user/qa">Preguntas</Link>
-          <Link to="/user/favoritos">Favoritos</Link>
-          <Link to="login" onClick={handleClick} >Salir</Link>
-        </div>
-      </div>
+    <div className={styles.perfil}>
+      <Link className={pathname === "/user" ? styles.active : ""} to="/user">
+        Mis Datos
+      </Link>
+      <NavLink
+        to="/user/shopping"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
+        Compras
+      </NavLink>
+      <NavLink
+        to="/user/products"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
+        Ventas
+      </NavLink>
+      <NavLink
+        to="/user/qa"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
+        Preguntas
+      </NavLink>
+      <NavLink
+        to="/user/favoritos"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
+        Favoritos
+      </NavLink>
+      <Link to="/login" onClick={handleClick}>
+        Salir
+      </Link>
     </div>
   );
 }
