@@ -13,6 +13,7 @@ function Paginator({ setIndex, pages, page }: any) {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("index", newIndex.toString());
 
+    console.log(event.seleced);
     dispatch(selectPage(event.selected));
     setIndex(newIndex);
     navigate({ search: searchParams.toString() });

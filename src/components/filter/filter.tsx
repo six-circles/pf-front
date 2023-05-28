@@ -35,7 +35,7 @@ const Filter: React.FC = () => {
 
   useEffect(() => {
     // searchParams.set("index", "0");
-    dispatch(selectPage(0));
+    // dispatch(selectPage(0));
     const searchParams = new URLSearchParams(location.search);
 
     if (orderBy === "") searchParams.delete("order");
