@@ -22,7 +22,7 @@ function Pending() {
           <button onClick={() => navigate("/")}>Volver a Inicio</button>
         </div>
 
-        <Resumen productos={cartProducts} />
+        <Resumen productos={cartProducts} button={false} />
       </div>
     </div>
   );

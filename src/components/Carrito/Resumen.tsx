@@ -4,7 +4,7 @@ import styles from "./Resumen.module.scss";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MERCADOPAGO);
 
-export default function ({ productos }: any) {
+export default function ({ productos, button = true }: any) {
   let totalPerProduct = productos.map((p: any) => p.price * p.cantidadCarrito);
   const { token } = getToken();
   const total = totalPerProduct.reduce((acc: any, val: any) => {
@@ -56,7 +56,7 @@ export default function ({ productos }: any) {
         <p>${total}</p>
       </div>
 
-      {preferenceId && (
+      {preferenceId && button && (
         <div id="wallet_container" style={{ padding: "0rem 2rem" }}>
           <Wallet initialization={{ preferenceId }} />
         </div>
