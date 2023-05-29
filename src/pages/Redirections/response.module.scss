@@ -17,8 +17,13 @@
   box-shadow: 0 0 2.5rem 0.5rem v.$color-green-l;
 }
 
+.response_failure {
+  box-shadow: 0 0 2.5rem 0.5rem lighten(v.$color-red, 15%);
+}
+
 .response_success,
-.response_pending {
+.response_pending,
+.response_failure {
   display: grid;
   grid-template-columns: 4fr 3fr;
   background-color: v.$color-white;
