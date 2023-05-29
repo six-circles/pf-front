@@ -70,19 +70,20 @@ export default function () {
 
   return (
     <div>
-      {admin ? (
-        <button onClick={bannerSeller} className={styles.button}>
-          Suspender vendedor
-        </button>
-      ) : null}
-      <div className={styles.contenedor}>
+      <div className={styles.title}>
+        {admin ? (
+          <button onClick={bannerSeller} className={styles.button}>
+            Suspender vendedor
+          </button>
+        ) : null}
+
         <h1 className={styles.title}>{name}</h1>
-        <div className={styles.puntuacion}>
-          <Rating punctuation={puntuaction} />
-          {/* <p className={styles.puntuacionNum}>{puntuaction.Math.round()}</p> */}
-        </div>
-        <p className={styles.ventas}>Cantidad de ventas: 100</p>
       </div>
+      <div className={styles.contenedor}>
+        <Rating punctuation={puntuaction} />
+        <p>(5)</p>
+      </div>
+
       <div>
         {allProducts ? (
           <Products products={allProducts} />

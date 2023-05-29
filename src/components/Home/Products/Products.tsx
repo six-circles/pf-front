@@ -15,6 +15,8 @@ function Products({ products }: any) {
           price={item.price}
           condition={item.condition}
           user={item.user}
+          enable={item.enable}
+          stock={item.stock}
         />
       ))}
     </div>
