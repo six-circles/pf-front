@@ -56,7 +56,7 @@ console.log(questions);
     <li >{nestedQuestion.body}</li>
     <br />
    
-    <Answers id={nestedQuestion._id}/>
+    <Answers  id={nestedQuestion._id}/>
     </div></strong>
   ))
 ))}
