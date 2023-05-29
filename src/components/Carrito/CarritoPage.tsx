@@ -129,7 +129,7 @@ export default function (props: any) {
                   -
                 </button>
               )}
-              <p>{cant}</p>
+              {enable === false || stock === 0 ? <p>0</p> : <p>{cant}</p>}
               {enable === false || stock === 0 ? (
                 <button disabled className={styles.buttonDisabled}>
                   +
