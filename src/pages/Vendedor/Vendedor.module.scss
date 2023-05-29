@@ -1,22 +1,27 @@
 @use "../../styles/variables.scss" as v;
 .contenedor {
   display: flex;
-  background-color: aquamarine;
   gap: 5rem;
 }
 
 .title {
-  background-color: bisque;
   width: fit-content;
 }
 .ventas {
   display: flex;
-  color: aliceblue;
-  background-color: blue;
   width: fit-content;
   margin-top: 3rem;
+  align-items: end;
 }
 .puntuacion {
+  display: flex;
   font-size: xx-large;
-  background-color: lightblue;
+}
+// .puntuacionNum {
+//   display: flex;
+//   font-size: x-small;
+// }
+.button {
+  display: flex;
+  background-color: red;
 }
