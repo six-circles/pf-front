@@ -150,7 +150,7 @@ function CreateProduct() {
     } catch (error: any) {
       Swal.fire({
         icon: "error",
-        title: error.response.data.error,
+        title: error.response.data,
       });
     }
   };
