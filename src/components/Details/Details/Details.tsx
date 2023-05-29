@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
@@ -11,14 +11,16 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
-  const { token } = getToken();
+  const [admin, setAdmin] = useState(false);
+  const [enable, setEnable] = useState(detail.enable);
+  const { token, config } = getToken();
   const productInit = {
     cantidad: 0,
     characteristics: {},
   };
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
-  const config = { token, productsId: detail._id, cantidad: cart.cantidad };
+  const obj = { token, productsId: detail._id, cantidad: cart.cantidad };
   const navigate = useNavigate();
   const prodChars =
     detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
@@ -27,6 +29,41 @@ function Details({ detail }: DetailsProps) {
     const { value, name } = event.target;
     setCart({ ...cart, [name]: value });
   };
+
+  const isAdmin = async () => {
+    const { data } = await urlAxios(`/user/${token}`);
+
+    setAdmin(data.admin);
+  };
+
+  const handleDisabled = async (event: any) => {
+    event.stopPropagation();
+
+    if (enable) {
+      setEnable(false);
+      try {
+        await urlAxios.patch(
+          `/product/${detail._id}`,
+          { enable: false },
+          config
+        );
+      } catch (error: any) {
+        console.error(error.response.data);
+      }
+    } else {
+      setEnable(true);
+      try {
+        await urlAxios.patch(
+          `/product/${detail._id}`,
+          { enable: true },
+          config
+        );
+      } catch (error: any) {
+        console.error(error.response.data);
+      }
+    }
+  };
+
   const user = detail.user;
   const email = user?.email;
   const name = user?.name;
@@ -34,11 +71,10 @@ function Details({ detail }: DetailsProps) {
 
   const submitAddCart = async (event: any) => {
     event.preventDefault();
-    console.log(cart);
 
     if (cart.cantidad > 0) {
       try {
-        await urlAxios.post("user/shoppingCart", config);
+        await urlAxios.post("user/shoppingCart", obj);
 
         dispatch(getCartProducts());
         setCart(productInit);
@@ -54,6 +90,10 @@ function Details({ detail }: DetailsProps) {
       }
     }
   };
+
+  useEffect(() => {
+    isAdmin();
+  }, [detail]);
 
   return (
     <div className={styles.details}>
@@ -87,7 +127,7 @@ function Details({ detail }: DetailsProps) {
       <div className={styles.price}>
         <h3>${detail.price}</h3>
       </div>
-      <div className={styles.caracteristics}>
+      {/* <div className={styles.caracteristics}>
         <h3>Caracteristicas</h3>
         {prodChars &&
           prodChars.map((prop: any) => (
@@ -110,7 +150,7 @@ function Details({ detail }: DetailsProps) {
               </div>
             </div>
           ))}
-      </div>
+      </div> */}
       <div className={styles.description}>
         <h3>Descripcion</h3>
         <p>{detail.description}</p>
@@ -129,6 +169,25 @@ function Details({ detail }: DetailsProps) {
           <button onClick={submitAddCart}>Agregar al carrito</button>
         </div>
         <button className={styles.button_buy}>Comprar</button>
+        {admin && (
+          <>
+            {enable ? (
+              <button
+                className={styles.button_disable}
+                onClick={handleDisabled}
+              >
+                Deshabilitar producto
+              </button>
+            ) : (
+              <button
+                className={styles.button_disable}
+                onClick={handleDisabled}
+              >
+                Habilitar producto
+              </button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ export interface DetailProd {
   condition: string;
   category: string;
   moreCharacteristics: object;
+  enable: boolean;
 }
 
 interface User {

@@ -244,7 +244,7 @@ function CreateProduct() {
                 </select>
               </div>
 
-              {form.category !== "Other" && (
+              {/* {form.category !== "Other" && (
                 <div className={styles.form_camp}>
                   {form.category === "Technology" ? (
                     <Tech handleChars={handleChars} />
@@ -254,7 +254,7 @@ function CreateProduct() {
                     <Muebles handleChars={handleChars} />
                   ) : null}
                 </div>
-              )}
+              )} */}
             </>
           )}
           <div className={styles.form_camp}>
