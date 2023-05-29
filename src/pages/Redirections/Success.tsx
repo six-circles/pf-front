@@ -1,5 +1,5 @@
 import styles from "./response.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Resumen } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import { getCartProducts } from "../../redux/actions/carritoActions";
 import { getToken, urlAxios } from "../../utils";
 
 function Success() {
-  const [order, setOrder] = useState({});
   const { cartProducts } = useSelector((state: any) => state.carrito);
   const { token } = getToken();
   const navigate = useNavigate();
@@ -20,9 +19,7 @@ function Success() {
     };
 
     try {
-      const { data } = await urlAxios.post("/order", newOrder);
-
-      setOrder(data.order);
+      await urlAxios.post("/order", newOrder);
     } catch (err: any) {
       console.log(err.reponse.data);
     }
