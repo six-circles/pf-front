@@ -15,8 +15,16 @@
   background-color: blue;
   width: fit-content;
   margin-top: 3rem;
+  align-items: end;
 }
 .puntuacion {
   font-size: xx-large;
   background-color: lightblue;
+}
+.puntuacionNum {
+  font-size: x-small;
+}
+.button {
+  display: flex;
+  background-color: red;
 }

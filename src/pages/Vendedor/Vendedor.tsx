@@ -70,12 +70,17 @@ export default function () {
 
   return (
     <div>
-      {admin ? <button onClick={bannerSeller}>X</button> : null}
+      {admin ? (
+        <button onClick={bannerSeller} className={styles.button}>
+          Suspender vendedor
+        </button>
+      ) : null}
       <div className={styles.contenedor}>
         <h1 className={styles.title}>{name}</h1>
         <p className={styles.ventas}>Cantidad de ventas: 100</p>
         <div className={styles.puntuacion}>
           <Rating punctuation={puntuaction} />
+          {/* <p className={styles.puntuacionNum}>{puntuaction.Math.round()}</p> */}
         </div>
       </div>
       <div>
