@@ -64,7 +64,18 @@
   justify-content: center;
   align-items: center;
 }
-
+// .noDisponible {
+//   .card_cantidad {
+//     background-color: v.$color-gray;
+//   }
+// }
+.buttonDisabled {
+  background-color: v.$color-gray;
+  cursor: default;
+  &:hover {
+    background-color: v.$color-gray;
+  }
+}
 .card_cantidad {
   width: 10rem;
   height: 3rem;
@@ -81,7 +92,7 @@
     width: 100%;
   }
 
-  button {
+  .buttonEnabled {
     display: flex;
     align-items: center;
     justify-content: center;

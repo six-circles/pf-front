@@ -195,7 +195,6 @@ function CardProduct(props: Product) {
             <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
           )}
         </div>
-        {console.log("enable", props.enable)}
       </div>
       <div className={styles.card_info}>
         <div className={styles.info}>

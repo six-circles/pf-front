@@ -11,8 +11,6 @@ export default function () {
   const token = user.token;
 
   const handleCheckout = async () => {
-    console.log("PRODUCTOS: ", cartProducts);
-
     const urlBack = import.meta.env.VITE_BACK_URL || "";
     try {
       const { data } = await urlAxios.post(`${urlBack}/mercadopago/${token}`, {
