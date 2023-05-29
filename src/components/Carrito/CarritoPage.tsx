@@ -105,19 +105,17 @@ export default function (props: any) {
               <p className={styles.info_eliminar} onClick={deleteProduct}>
                 Eliminar
               </p>
-              <p onClick={() => details(id)} className={styles.info_detail}>
-                Detalles
-              </p>
+              {enable === false || stock === 0 ? (
+                <p className={styles.info_detailDesabled}>Detalles</p>
+              ) : (
+                <p onClick={() => details(id)} className={styles.info_detail}>
+                  Detalles
+                </p>
+              )}
             </div>
           </div>
 
-          <div
-          // className={
-          //   enable === false || stock === 0
-          //     ? styles.noDisponible
-          //     : styles.cont_cantidad
-          // }
-          >
+          <div>
             <div className={styles.card_cantidad}>
               {enable === false || stock === 0 ? (
                 <button disabled className={styles.buttonDisabled}>
@@ -142,12 +140,22 @@ export default function (props: any) {
                 </button>
               )}
             </div>
-            <p>{prod.stock} en Stock</p>
+            {enable === false || stock === 0 ? (
+              <p className={styles.stock}>0 en Stock</p>
+            ) : (
+              <p>{prod.stock} en Stock</p>
+            )}
           </div>
 
-          <div className={styles.precio}>
-            <p>${prod.price}</p>
-          </div>
+          {enable === false || stock === 0 ? (
+            <div className={styles.precio}>
+              <p>$--</p>
+            </div>
+          ) : (
+            <div className={styles.precio}>
+              <p>${prod.price}</p>
+            </div>
+          )}
           <div>
             {enable === false || stock === 0 ? (
               <p>Producto no disponible</p>

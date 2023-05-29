@@ -64,11 +64,7 @@
   justify-content: center;
   align-items: center;
 }
-// .noDisponible {
-//   .card_cantidad {
-//     background-color: v.$color-gray;
-//   }
-// }
+
 .buttonDisabled {
   background-color: v.$color-gray;
   cursor: default;
@@ -124,47 +120,10 @@
   }
 }
 
-// .img {
-//   width: 10rem;
-//   height: auto;
-// }
-// .buttonEliminar {
-//   height: fit-content;
-//   width: fit-content;
-//   background-color: red;
-//   font-size: x-small;
-//   margin-left: 5rem;
-// }
-// .input {
-//   width: 3rem;
-//   height: fit-content;
-//   color: #000;
-// }
-// .cantidad {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-left: 8rem;
-//   width: fit-content;
-//   height: 3rem;
-//   gap: 1rem;
-// }
-// .buttonDetails {
-//   display: flex;
-//   position: relative;
-//   margin-left: 5rem;
-//   font-size: xx-small;
-//   width: fit-content;
-//   height: fit-content;
-// }
-// .contador {
-//   display: flex;
-//   margin-left: 49rem;
-//   height: fit-content;
-//   gap: 0.7rem;
-//   position: relative;
-//   bottom: 5rem;
-// }
-// .buttonMenos {
-//   display: flex;
-// }
+.info_detailDesabled {
+  color: v.$color-gray;
+  cursor: default;
+}
+.stock {
+  cursor: default;
+}
