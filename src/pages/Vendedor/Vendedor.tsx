@@ -13,10 +13,6 @@ interface Products {
   products: any;
 }
 
-// interface State {
-//   products: Products;
-// }
-
 export default function () {
   const params = useParams();
   const encriptado: any = params?.email;
