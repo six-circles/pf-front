@@ -100,7 +100,11 @@ export default function (props: any) {
           </div>
           <div className={styles.card_info}>
             <h4 className={styles.title}>{name}</h4>
-
+            <div className={styles.noDisponible}>
+              {enable === false || stock === 0 ? (
+                <p>Producto no disponible</p>
+              ) : null}
+            </div>
             <div className={styles.card_info_btn}>
               <p className={styles.info_eliminar} onClick={deleteProduct}>
                 Eliminar
@@ -148,19 +152,14 @@ export default function (props: any) {
           </div>
 
           {enable === false || stock === 0 ? (
-            <div className={styles.precio}>
-              <p>$--</p>
+            <div className={styles.priceDisabled}>
+              <p>${prod.price}</p>
             </div>
           ) : (
             <div className={styles.precio}>
               <p>${prod.price}</p>
             </div>
           )}
-          <div>
-            {enable === false || stock === 0 ? (
-              <p>Producto no disponible</p>
-            ) : null}
-          </div>
         </div>
       ) : (
         <h3>No hay productos aún...</h3>
