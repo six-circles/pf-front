@@ -7,13 +7,22 @@
     margin-bottom: 0.5rem;
   }
 
+  p {
+    display: inline-block;
+  }
+
   h3 {
     font-weight: 400;
     margin-bottom: 1rem;
   }
 
   .lighten {
-    color: lighten(v.$color-dark, 10%);
+    color: lighten(v.$color-dark, 25%);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .details_title {
@@ -45,7 +54,6 @@
       font-size: 1.4rem;
       font-weight: 500;
       width: fit-content;
-      margin-bottom: 1rem;
     }
 
     .new {
@@ -69,9 +77,14 @@
   }
 
   .details_state {
-    margin-top: 0.5rem;
+    margin-block: 0.5rem 1rem;
     display: flex;
+    align-items: center;
     gap: 1rem;
+
+    p {
+      color: lighten(v.$color-dark, 25%);
+    }
   }
 
   .caracteristics {

@@ -1,38 +1,44 @@
-.contenedor{
+@use "../../styles/variables.scss" as v;
+
+.resume {
+  background-color: v.$color-white;
+  width: 100%;
+  border-radius: 0.5rem;
+  height: fit-content;
+
+  .title {
+    padding: 2rem;
+    border-bottom: 0.1rem solid v.$color-gray;
+  }
+}
+
+.resume_cont {
+  padding: 2rem;
+  border-bottom: 0.1rem solid v.$color-gray;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .resume_product {
     display: flex;
-    flex-direction:row;
-    gap: 3.7rem;
+    justify-content: space-between;
+  }
 }
-.columnas{
-    font-size: medium;
+
+.total {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  font-weight: bold;
 }
-.title{
-    display: flex;
-    flex-direction: row;
-    margin: 0.5rem;
-    gap: 5rem;
-    text-align: center;
-}
-.titleMisPedidos{
-    width: fit-content;
-    // white-space: nowrap;
-    margin-right: 1rem;
-}
-.namePedidos{
-    display: flex;
-    width: 8rem;
-    height: fit-content;
-    margin-left: 1rem;
-    margin-top: 1rem;
-}
-.name{
-    margin-bottom: 5rem;
-    display: flex;
-   
-}
-.total{
-    background-color: red;
-    display: flex;
-    flex-direction: row;
-    gap: 35rem;
+
+.buy {
+  padding: 2rem;
+  padding-top: 1rem;
+
+  button {
+    font-size: 2rem;
+    width: 100%;
+  }
 }

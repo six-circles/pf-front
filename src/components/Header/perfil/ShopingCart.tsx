@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
-import { CarritoPage } from '../..';
+// import { CarritoPage } from '../..';
+import CarritoLight from '../../../pages/Carrito/MenuDesplegable/CarritoLight';
 
 function ShopingCart() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ function ShopingCart() {
     return () => {
       document.removeEventListener('click', handleClose);
     };
-  }, []);
+  }, [cartProducts]);
 
   const handleLogin = () => {
     if (!username) {
@@ -49,8 +50,7 @@ function ShopingCart() {
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>
-          {cartProducts.length ? cartProducts.map((p: any) => <CarritoPage key={p._id} producto={p} />) : <h3>No hay nada por aquí...</h3>}
-          <Link to="/carrito"><div className={styles.option2}>Ver mi carrito</div></Link>
+          <CarritoLight datos={cartProducts} setIsOpen={setIsOpen} />
         </div>
       )}
     </div>
@@ -63,19 +63,3 @@ export default ShopingCart;
 
 
 
-
-
-
-
-{/* <div style={{ position: "relative" }}>
-  <a
-    href="#"
-    className={styles.letras}
-    onClick={() => {
-      navigate("/carrito");
-    }}
-  >
-    <AiOutlineShoppingCart className={styles.icons2} />
-  </a>
-  {showCarrito && <Carrito />}
-</div> */}

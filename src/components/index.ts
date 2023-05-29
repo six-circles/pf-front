@@ -9,17 +9,20 @@ import CreateProduct from "./User/CreateProduct/CreateProduct";
 import Filter from "./filter/filter";
 import Comments from "./Details/coments/comments";
 import { QuestionList } from "./Details/QA/QuestionList";
-import Carrito from "./Header/carrito/MenuDespleg/Carrito";
 import CardCompras from "./User/Compras/CardCompras";
 import CardVentas from "./User/Ventas/CardVentas";
 import { QuestionUser } from "./chat/QuestionUser";
 import { Answers } from "./chat/Answers";
 import Paginator from "./Home/Paginator/Paginator";
-import CardCarritoMenuDespl from "./Header/carrito/MenuDespleg/CardCarritoMenuDespl";
 import CarritoPage from "./Carrito/CarritoPage";
 import Calificar from "./Rating/Calificar";
+import { Questionmyuser } from "./chat/Questionmyuser";
+import { Answer } from "./chat/getAnswers";
+import Loading from "./Loading/Loading";
+
 import Resumen from "./Carrito/Resumen";
 export {
+  Loading,
   Calificar,
   Paginator,
   CardVentas,
@@ -35,10 +38,10 @@ export {
   Filter,
   QuestionList,
   Comments,
-  Carrito,
   QuestionUser,
   Answers,
-  CardCarritoMenuDespl,
   CarritoPage,
+  Questionmyuser,
+  Answer,
   Resumen,
 };

@@ -2,7 +2,13 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { MoreProduct, Details, Comments, QuestionList } from "../../components";
+import {
+  MoreProduct,
+  Details,
+  Comments,
+  QuestionList,
+  Loading,
+} from "../../components";
 import GalleryDetail from "../../components/Details/GalleryDetail/GalleryDetail";
 
 import { DetailProd, heroSliderData } from "../../utils";
@@ -23,14 +29,16 @@ interface State {
 }
 
 function Detail() {
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
   const dispatch: Function = useDispatch();
   const { detail } = useSelector((state: State) => state.products);
 
   useEffect(() => {
+    setIsLoading(true);
     clearProducts();
-    dispatch(getProductDetail(id));
     dispatch(getProducts());
+    dispatch(getProductDetail(id)).then(() => setIsLoading(false));
   }, [dispatch, id]);
 
   const [tipo, setTipo] = useState("comentarios");
@@ -39,23 +47,39 @@ function Detail() {
   };
 
   return (
-    <Fragment>
-      <div className={styles.product_cont}>
-        <GalleryDetail detail={detail} data={heroSliderData} />
-        <Details detail={detail} />
-      </div>
-      {detail?.user && <MoreProduct />}
-      <div>
-        <a onClick={() => handleClick("comentarios")}>Puntuacion | </a>
-        <a onClick={() => handleClick("question")}>Pregunta</a>
-      </div>
-      <br />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Fragment>
+          <div className={styles.product_cont}>
+            <GalleryDetail detail={detail} data={heroSliderData} />
+            <Details detail={detail} />
+          </div>
+          {detail?.user && <MoreProduct />}
+          <div>
+            <a
+              className={styles.optiondetail}
+              onClick={() => handleClick("comentarios")}
+            >
+              Puntuacion |{" "}
+            </a>
+            <a
+              className={styles.optiondetail}
+              onClick={() => handleClick("question")}
+            >
+              Pregunta
+            </a>
+          </div>
+          <br />
 
-      <br />
-      {tipo === "question"
-        ? detail.questions && <QuestionList questions={detail?.questions} />
-        : detail.comments && <Comments comments={detail?.comments} />}
-    </Fragment>
+          <br />
+          {tipo === "question"
+            ? detail.questions && <QuestionList questions={detail?.questions} />
+            : detail.comments && <Comments comments={detail?.comments} />}
+        </Fragment>
+      )}
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import ReactPaginate from "react-paginate";
 import styles from "./Paginator.module.scss";
 import { useDispatch } from "react-redux";
 import { selectPage } from "../../../redux/actions/productActions.";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Paginator({ setIndex, pages, page }: any) {
   const dispatch: Function = useDispatch();
@@ -11,8 +11,9 @@ function Paginator({ setIndex, pages, page }: any) {
   const handlePageClick = (event: any) => {
     const newIndex = event.selected * 12;
     const searchParams = new URLSearchParams(location.search);
-    searchParams.set("index", newIndex.toString())
+    searchParams.set("index", newIndex.toString());
 
+    console.log(event.seleced);
     dispatch(selectPage(event.selected));
     setIndex(newIndex);
     navigate({ search: searchParams.toString() });

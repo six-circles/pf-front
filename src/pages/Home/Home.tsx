@@ -1,13 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Products,
-  Slider,
-  Filter,
-  Paginator,
-  Calificar,
-} from "../../components";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { Products, Slider, Filter, Paginator, Loading } from "../../components";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import {
@@ -27,12 +21,13 @@ interface State {
 }
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
-  const dispatch: any = useDispatch();
   const { products, totalPages, currentPage } = useSelector(
     (state: State) => state.products
   );
+  const [index, setIndex] = useState(currentPage);
+  const dispatch: any = useDispatch();
 
   const queryParams = new URLSearchParams(window.location.search);
   let queryParamsString = queryParams.toString();
@@ -40,6 +35,7 @@ function Home() {
   let paramSearch = queryParams.get("search");
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(clearProducts());
     queryParams.set("index", `${index}`);
     const tok = queryParams.get("token");
@@ -51,31 +47,41 @@ function Home() {
       queryParams.delete("token");
       queryParams.delete("user");
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: "Bienvenido a Six Circles",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
     queryParamsString = queryParams.toString();
-    dispatch(getProducts(queryParamsString));
+    dispatch(getProducts(queryParamsString)).then(() => setIsLoading(false));
     navigate({
       pathname: "/",
       search: queryParamsString,
     });
-  }, [queryParamsString, index, navigate]);
+  }, [queryParamsString, index, navigate, dispatch]);
 
   return (
     <Fragment>
-      <div className={styles.home}>
-        <Filter />
-        <div>
-          {paramSearch ? "" : <Slider />}
-          <Products products={products} />
-        </div>
-      </div>
-      <Paginator setIndex={setIndex} pages={totalPages} page={currentPage} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={styles.home}>
+            <Filter />
+            <div>
+              {paramSearch ? "" : <Slider />}
+              <Products products={products} />
+            </div>
+          </div>
+          <Paginator
+            setIndex={setIndex}
+            pages={totalPages}
+            page={currentPage}
+          />{" "}
+        </>
+      )}
     </Fragment>
   );
 }

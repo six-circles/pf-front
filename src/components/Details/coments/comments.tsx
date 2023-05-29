@@ -1,4 +1,4 @@
-// import "./comments.scss";
+ import Style from "./comment.module.scss";
 import { Rating } from "../..";
 // import CommentList from "./CommentsList";
 
@@ -6,7 +6,7 @@ function Comments({ comments }: { comments: object[] }) {
   return (
     <div className="card" id="reviews">
       <div className="comments">
-        <div className="comment-react"></div>
+        <div className={Style.commentreact}></div>
         <div>
           {comments?.map((item: any, i) => (
             <div key={i}>

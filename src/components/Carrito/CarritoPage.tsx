@@ -1,4 +1,5 @@
 import styles from "./CarritoPage.module.scss";
+import { Fragment } from "react";
 import { urlAxios } from "../../utils";
 import { getToken } from "../../utils/index";
 import { getCartProducts } from "../../redux/actions/carritoActions";
@@ -16,13 +17,13 @@ export default function (props: any) {
   const deleteProduct = async () => {
     try {
       Swal.fire({
-        title: '¿Desea borrar este producto?',
-        icon: 'warning',
+        title: "¿Desea borrar este producto?",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, borrar!'
-      }).then(async(result) => {
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, borrar!",
+      }).then(async (result) => {
         if (result.isConfirmed) {
           await urlAxios.delete(`${token}/shoppingCart/${id}`);
           Swal.fire({
@@ -34,10 +35,7 @@ export default function (props: any) {
           });
           dispatch(getCartProducts());
         }
-      })
-    
-
-      
+      });
     } catch (error: any) {
       console.log(error.message);
     }
@@ -45,76 +43,95 @@ export default function (props: any) {
   const details = (id: string) => {
     navigate(`/detail/${id}`);
   };
+
   const name = prod.title;
   const cant = prod.cantidadCarrito;
-  const image = prod.image[0]
- 
-  let cantidad=1
-  const product={
-    productsId:id,
+  const image = prod?.image[0]?.url;
+
+  let cantidad = 1;
+  const product = {
+    productsId: id,
     token,
-    cantidad:cantidad,
-  }
-  const addCarrito=async()=>{
-   product.cantidad= 1
-    await SendCarrito()
-   }
-  const deleteCarrito=async()=>{
-    product.cantidad= -1
-    await SendCarrito()
-  }
-  
-  const SendCarrito=async()=>{
+    cantidad: cantidad,
+  };
+  const addCarrito = async () => {
+    if (cant < prod.stock) {
+      product.cantidad = 1;
+      await SendCarrito();
+    } else {
+      Swal.fire({
+        position: "top-right",
+        icon: "warning",
+        title: "No hay mas stock",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  };
+  const deleteCarrito = async () => {
+    product.cantidad = -1;
+    await SendCarrito();
+  };
+
+  const SendCarrito = async () => {
     try {
-        await urlAxios.post("/user/shoppingCart",product)
-        dispatch(getCartProducts())
-      
-        // Swal.fire({
-        //   position: "center",
-        //   icon:"success",
-        //   title: "actualizado con éxito",
-        //   showConfirmButton: false,
-        //   timer: 1000,
-        // })
-      
-    } catch (error:any) {
-      console.log(error)
+      await urlAxios.post("/user/shoppingCart", product);
+      dispatch(getCartProducts());
+
+      // Swal.fire({
+      //   position: "center",
+      //   icon:"success",
+      //   title: "actualizado con éxito",
+      //   showConfirmButton: false,
+      //   timer: 1000,
+      // })
+    } catch (error: any) {
+      console.log(error);
       Swal.fire({
         position: "center",
-        icon:"error",
+        icon: "error",
         title: "No se pudo añadir",
         showConfirmButton: false,
         timer: 2000,
-      })
+      });
     }
-    
-  }
+  };
   return (
-    <div>
+    <Fragment>
       {prod ? (
         <div className={styles.card}>
-         { <img src={image} alt={prod.title} className={styles.img} />}
-          <p className={styles.title}>{name}</p>
-          <p className={styles.precio}>${prod.price}</p>
-          {/* <p>{prod.puntuaction}</p> */}
-
-          <div className={styles.cantidad}>
-            <label>Cantidad</label>
-            <button className={styles.buttonMenos} onClick={deleteCarrito}> - </button>
-            <p>{cant}</p>
-            <button onClick={addCarrito} className={styles.buttonMenos}> + </button>
+          <div className={styles.card_image}>
+            <img src={image} alt={prod.title} className={styles.img} />
           </div>
-          <button onClick={() => details(id)} className={styles.buttonDetails}>
-            Detalles
-          </button>
-          <button className={styles.buttonEliminar} onClick={deleteProduct}>
-            X
-          </button>
+          <div className={styles.card_info}>
+            <h4 className={styles.title}>{name}</h4>
+
+            <div className={styles.card_info_btn}>
+              <p className={styles.info_eliminar} onClick={deleteProduct}>
+                Eliminar
+              </p>
+              <p onClick={() => details(id)} className={styles.info_detail}>
+                Detalles
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.cont_cantidad}>
+            <div className={styles.card_cantidad}>
+              <button onClick={deleteCarrito}>-</button>
+              <p>{cant}</p>
+              <button onClick={addCarrito}>+</button>
+            </div>
+            <p>{prod.stock} en Stock</p>
+          </div>
+
+          <div className={styles.precio}>
+            <p>${prod.price}</p>
+          </div>
         </div>
       ) : (
         <h3>No hay productos aún...</h3>
       )}
-      
-    </div>
+    </Fragment>
   );
 }

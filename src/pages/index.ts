@@ -13,7 +13,7 @@ import CreateUser from "./CreateUser/CreateUser";
 import Failure from "./Redirections/Failure";
 import Success from "./Redirections/Success";
 import Pending from "./Redirections/Pending";
-
+import Vendedor from "./Vendedor/Vendedor";
 export {
   Success,
   Pending,
@@ -30,4 +30,5 @@ export {
   Ventas,
   Favoritos,
   Carrito,
+  Vendedor,
 };
