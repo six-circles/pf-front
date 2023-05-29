@@ -42,8 +42,10 @@ const {token, config}=getToken()
           props?.questions.map((item: any, index: any) => (
             <div key={index}>
               <strong><p className={Style.username}>{item.userName}</p></strong>
+              <br />
               <p className={Style.bodyuser}>{item.body}</p>
-             <p>{item.answer}</p>
+              <br />
+             <strong><p className={Style.bodyanswer}>{item.answer}</p></strong>
             
               <br />
             </div>
