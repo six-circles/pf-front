@@ -34,8 +34,8 @@ export default function ({ productos, button = true }: any) {
     };
   }, [productos]);
 
-  console.log(preferenceId);
-
+  const prod = productos.filter((p: any) => p.enable);
+  console.log(prod);
   return (
     <div className={styles.resume}>
       <div className={styles.title}>
