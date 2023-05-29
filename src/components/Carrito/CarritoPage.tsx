@@ -119,7 +119,7 @@ export default function (props: any) {
             </div>
           </div>
 
-          <div>
+          <div className={styles.cont_cantidad}>
             <div className={styles.card_cantidad}>
               {enable === false || stock === 0 ? (
                 <button disabled className={styles.buttonDisabled}>
