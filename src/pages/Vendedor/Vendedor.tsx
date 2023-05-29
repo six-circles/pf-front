@@ -77,11 +77,11 @@ export default function () {
       ) : null}
       <div className={styles.contenedor}>
         <h1 className={styles.title}>{name}</h1>
-        <p className={styles.ventas}>Cantidad de ventas: 100</p>
         <div className={styles.puntuacion}>
           <Rating punctuation={puntuaction} />
           {/* <p className={styles.puntuacionNum}>{puntuaction.Math.round()}</p> */}
         </div>
+        <p className={styles.ventas}>Cantidad de ventas: 100</p>
       </div>
       <div>
         {allProducts ? (
