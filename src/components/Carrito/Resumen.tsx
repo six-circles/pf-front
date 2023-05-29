@@ -5,7 +5,8 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MERCADOPAGO);
 
 export default function ({ productos, button = true }: any) {
-  let totalPerProduct = productos.map((p: any) => p.price * p.cantidadCarrito);
+  const prod = productos.filter((p: any) => p.enable);
+  let totalPerProduct = prod.map((p: any) => p.price * p.cantidadCarrito);
   const { token } = getToken();
   const total = totalPerProduct.reduce((acc: any, val: any) => {
     return acc + val;
@@ -34,15 +35,13 @@ export default function ({ productos, button = true }: any) {
     };
   }, [productos]);
 
-  const prod = productos.filter((p: any) => p.enable);
-  console.log(prod);
   return (
     <div className={styles.resume}>
       <div className={styles.title}>
         <h3>Resumen</h3>
       </div>
       <div className={styles.resume_cont}>
-        {productos?.map((p: any) => (
+        {prod?.map((p: any) => (
           <div className={styles.resume_product} key={p._id}>
             <p className={styles.name}>
               {p.title.slice(0, 15)} ({p.cantidadCarrito})
