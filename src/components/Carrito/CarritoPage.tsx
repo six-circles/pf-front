@@ -100,7 +100,7 @@ export default function (props: any) {
           </div>
           <div className={styles.card_info}>
             <h4 className={styles.title}>{name}</h4>
-            <div className={styles.noDisponible}>
+            <div>
               {enable === false || stock === 0 ? (
                 <p>Producto no disponible</p>
               ) : null}
