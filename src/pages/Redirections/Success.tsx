@@ -1,4 +1,4 @@
-import styles from "./Success.module.scss";
+import styles from "./response.module.scss";
 import { useEffect } from "react";
 import { Resumen } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,9 +15,9 @@ function Success() {
   }, [dispatch]);
 
   return (
-    <div className={styles.success}>
-      <div className={styles.success_cont}>
-        <div className={styles.success_info}>
+    <div className={styles.response}>
+      <div className={styles.response_success}>
+        <div className={styles.response_info}>
           <h3>¡Compra realizada con exito!</h3>
           <button onClick={() => navigate("/")}>Volver a Inicio</button>
         </div>

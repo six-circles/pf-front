@@ -173,4 +173,34 @@
       background-color: darken(v.$color-blue, 10%);
     }
   }
+
+  .button_disable {
+    background-color: v.$color-red;
+    color: v.$color-white;
+    padding-block: 1rem;
+    font-size: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-red, 10%);
+    }
+  }
+
+  .button_enable {
+    background-color: v.$color-gray;
+    color: v.$color-white;
+    padding-block: 1rem;
+    font-size: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-gray, 10%);
+    }
+  }
 }
