@@ -2,15 +2,11 @@ import styles from "./User.module.scss";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { getUserRemote } from "../../utils";
+import { useEffect, useState } from "react";
 function User() {
   const navigate: Function = useNavigate();
   const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   checkAuth("product", navigate);
-  // }, []);
-
-  const { enable }: any = getUserRemote();
+  const [admin, setAdmin] = useState(false);
 
   const handleClick = () => {
     Swal.fire({
@@ -35,6 +31,10 @@ function User() {
   //     color: isActive ? "blue" : "",
   //   };
   // };
+
+  useEffect(() => {
+    getUserRemote().then((elem) => setAdmin(elem.admin));
+  }, [])
 
   return (
     <div className={styles.perfil}>
@@ -65,7 +65,7 @@ function User() {
       >
         Favoritos
       </NavLink>
-      {enable ? <NavLink
+      {admin ? <NavLink
         to="/user/admin"
         className={({ isActive }) => (isActive ? styles.active : "")}
       >

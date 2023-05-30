@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect, ReactNode } from "react";
-import Style from"./QAS.module.scss";
+import Style from "./QAS.module.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
-
 
 interface Question {
   id: number;
@@ -22,6 +21,7 @@ export function Answers(props: any) {
   const { token, config } = getToken();
   const { id } = useParams();
   const [getAnswer, setGetAnswer] = useState("");
+  const [answered, setAnswered] = useState(false);
 
   const newAnswerObj = {
     body: newAnswer,
@@ -30,6 +30,7 @@ export function Answers(props: any) {
 
   useEffect(() => {
     handleAnswer();
+    checkAnswered(); // Verificar si la pregunta ha sido respondida al cargar la página
   }, []);
 
   const handleAnswer = async () => {
@@ -55,39 +56,55 @@ export function Answers(props: any) {
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
 
       setNewAnswer("");
+      setAnswered(true); // Marcar la pregunta como respondida
 
-      // Actualizar las respuestas llamando nuevamente a la API
+      // Guardar la pregunta respondida en el almacenamiento local
+      localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
+
       handleAnswer();
     } catch (error: any) {
       console.log(error.response.data);
     }
   };
 
+  const checkAnswered = () => {
+    // Verificar si la pregunta ha sido respondida anteriormente
+    const answeredQuestion = localStorage.getItem(`answered_${props.id}`);
+
+    if (answeredQuestion) {
+      setAnswered(true);
+    }
+  };
+
   return (
     <Fragment>
-      <form onSubmit={handleAnswerSubmit}>
-        <div className={Style.new}>
-          <ul className={Style.ulanswer}>
-            <br />
-            {answers &&
-              answers?.map((answer: any) => (
-                <li className={Style.lianswer} key={answer._id}>
-                  {answer.body}
-                </li>
-              ))}<br/>
-          </ul>
-          <input
-            className={Style.inputanswer}
-            type="text"
-            value={newAnswer}
-            onChange={(event) => setNewAnswer(event.target.value)}
-            placeholder="Escribe tu respuesta"
-          />
-        </div>
-        <button className={Style.answersubmit} type="submit">
-          Enviar
-        </button>
-      </form>
+      {!answered && (
+        <form onSubmit={handleAnswerSubmit}>
+          <div className={Style.new}>
+            <ul className={Style.ulanswer}>
+              <br />
+              {answers &&
+                answers?.map((answer: any) => (
+                  <li className={Style.lianswer} key={answer._id}>
+                    {answer.body}
+                  </li>
+                ))}
+              <br />
+            </ul>
+            <input
+              className={Style.inputanswer}
+              type="text"
+              value={newAnswer}
+              onChange={(event) => setNewAnswer(event.target.value)}
+              placeholder="Escribe tu respuesta"
+            />
+          </div>
+          <button className={Style.answersubmit} type="submit">
+            Enviar
+          </button>
+        </form>
+      )}
     </Fragment>
   );
 }
+
