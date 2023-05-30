@@ -49,7 +49,7 @@ function ForgotPass() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Recuperar</button>
+        <button type="submit">Enviar Email</button>
         <div className={styles.form_links}>
           <Link to="/login">Ya tengo cuenta</Link>
           <Link to="/register">Crear cuenta</Link>
