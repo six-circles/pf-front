@@ -20,20 +20,18 @@ export default function (props: Product) {
     navigate(`/detail/${id}`);
     window.scrollTo(0, 0);
   };
-  console.log(props)
-  
-  const[puntuacion,setPuntuacion]=useState(false)
-  const showpuntuacion=()=>{
-    setPuntuacion(true)
-  }
+
+  const [puntuacion, setPuntuacion] = useState(false);
+  const showpuntuacion = () => {
+    setPuntuacion(true);
+  };
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
-        <img src={props.image[0]} alt={props.name.slice(0, 10)} />
+        <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{props.name}</h3>
-        {/* <Rating punctuation={props.punctuation} /> */}
         <button className={styles.rating} onClick={showpuntuacion}>
           Dejale tu comentario al vendedor!
         </button>
