@@ -20,7 +20,7 @@ const handleQuestion = async () => {
 
 try{
   const get = await urlAxios.get( `/questions/${token}`);
-  //questions/${token}
+
   console.log(get.data);
 setQuestions([...get.data])
 console.log(questions);

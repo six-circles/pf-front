@@ -16,13 +16,13 @@ interface Answer {
 }
 
 export function Answer(props: any) {
-  const [questions, setQuestions] = useState<Question[]>([]);
+  //const [questions, setQuestions] = useState<Question[]>([]);
+  // const { token, config } = getToken();
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
- // const { token, config } = getToken();
   const { id } = useParams();
   const [getAnswer, setGetAnswer] = useState("");
-
+  
   const newAnswerObj = {
     body: newAnswer,
     questionId: props.id,
