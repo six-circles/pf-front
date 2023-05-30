@@ -59,7 +59,8 @@ export default function ({ datos, setIsOpen }: any) {
               </Link>
               <div className={styles.info}>
                 <p className={styles.title}>{product.title}</p>
-                <p className={styles.precio}>${product.price}</p>
+                {!(product.enable && product.stock > 0) ? (<p style={{ color: "red" }}>Producto no disponible</p>) : (<p className={styles.precio}>${product.price}</p>)}
+                {/* <p className={styles.precio}>${product.price}</p> */}
                 <p className={styles.buttonEliminar} onClick={() => deleteProduct(product._id)}>Eliminar</p>
               </div>
             </div>

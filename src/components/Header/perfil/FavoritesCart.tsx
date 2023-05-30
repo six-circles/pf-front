@@ -1,11 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./ShopingCart.module.scss";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
-import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-// import { CarritoPage } from '../..';
 import FavoritosMenuDesplegable from "../../../pages/Favoritos/MenuDesplegable/FavoritosMenuDesplegable";
 import { getFavorites } from "../../../redux/actions/favoritosActions";
 
