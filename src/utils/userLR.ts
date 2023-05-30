@@ -28,6 +28,7 @@ export const getTokenAsHeaders = () => {
 
 export const getUserRemote = async () => {
   let { data } = await urlAxios.get(`/user/${getUserLocal().token}`);
+
   let myData = {
     name: data.name,
     email: data.email,
@@ -39,6 +40,7 @@ export const getUserRemote = async () => {
     address2: data.address2,
     card: data.card,
     admin: data.admin,
+    enable: data.enable,
   };
   return myData;
 };

@@ -10,11 +10,11 @@ export default function () {
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const user = getToken();
+    const { admin } = await getUserRemote();
+    const user = await getToken();
     const token = user.token;
-    const { admin }: any = getUserRemote();
 
-    if (token && admin) {
+    if (!!token && admin) {
       try {
         const { data } = await urlAxios.get(`${import.meta.env.VITE_BACK_URL}/users`);
 
