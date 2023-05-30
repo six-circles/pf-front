@@ -38,7 +38,7 @@ export const getUserRemote = async () => {
     address1: data.address1,
     address2: data.address2,
     card: data.card,
-    enable: data.enable,
+    admin: data.admin,
   };
   return myData;
 };

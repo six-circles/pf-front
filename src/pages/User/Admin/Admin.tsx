@@ -12,9 +12,9 @@ export default function () {
   const getUsers = async () => {
     const user = getToken();
     const token = user.token;
-    const { enable }: any = getUserRemote();
+    const { admin }: any = getUserRemote();
 
-    if (token && enable) {
+    if (token && admin) {
       try {
         const { data } = await urlAxios.get(`${import.meta.env.VITE_BACK_URL}/users`);
 
