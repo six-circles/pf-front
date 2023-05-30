@@ -54,13 +54,15 @@ export default function CarritoLight({ datos, setIsOpen }: any) {
     setIsOpen(false);
   };
 
+  { console.log(datos) }
   return (
     <div className={styles.container}>
-      <div className={styles.contCard}>
+      <div className={`${styles.contCard}`}>
         {datos.length > 0 ? (
           datos.slice(0, 3).map((product: any) => (
             <div key={product._id}>
-              <div className={styles.card}>
+
+              <div className={`${styles.card} ${!(product.enable && product.stock > 0) && styles.disabled}`}>
                 <Link to={`/detail/${product._id}`} className={styles.img}>
                   <img
                     src={product.image[0].url}
@@ -69,10 +71,11 @@ export default function CarritoLight({ datos, setIsOpen }: any) {
                 </Link>
                 <div className={styles.info}>
                   <p className={styles.title}>{product.title}</p>
-                  <p className={styles.precio}>
+                  {!(product.enable && product.stock > 0) ? (<p></p>) : (<p className={styles.precio}>
                     ${product.price * product.cantidadCarrito}
-                  </p>
-                  <p>Cantidad: {product.cantidadCarrito}</p>
+                  </p>)}
+
+                  {!(product.enable && product.stock > 0) ? (<p style={{ color: "red" }}>Producto no disponible</p>) : (<p>Cantidad: {product.cantidadCarrito}</p>)}
                   <p
                     className={styles.buttonEliminar}
                     onClick={() => deleteProduct(product._id)}

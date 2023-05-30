@@ -1,6 +1,7 @@
 import styles from "./User.module.scss";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getUserRemote } from "../../utils";
 function User() {
   const navigate: Function = useNavigate();
   const { pathname } = useLocation();
@@ -8,6 +9,8 @@ function User() {
   // useEffect(() => {
   //   checkAuth("product", navigate);
   // }, []);
+
+  const { enable }: any = getUserRemote();
 
   const handleClick = () => {
     Swal.fire({
@@ -62,6 +65,12 @@ function User() {
       >
         Favoritos
       </NavLink>
+      {enable ? <NavLink
+        to="/user/admin"
+        className={({ isActive }) => (isActive ? styles.active : "")}
+      >
+        Administrador
+      </NavLink> : null}
       <Link to="/login" onClick={handleClick}>
         Salir
       </Link>

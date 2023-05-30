@@ -1,0 +1,49 @@
+@use "../../../styles/variables.scss" as v;
+.card1 {
+  width: 100%;
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+
+    th {
+      text-align: left;
+      padding: 10px 0;
+      border-bottom: 1px solid rgb(202, 202, 202);
+    }
+    td {
+      border-bottom: 1px solid rgb(202, 202, 202);
+      padding: 1.5rem 0;
+
+      button {
+        padding: 8px;
+        border-radius: 5px;
+        color: v.$color-white;
+        width: 10rem;
+        display: block;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      .enabled {
+        background-color: rgba(0, 128, 0, 0.7);
+      }
+      .disabled {
+        background-color: rgba(255, 0, 0, 0.7);
+      }
+    }
+  }
+
+  a {
+    color: v.$color-blue;
+  }
+
+  .buttonEn {
+    width: 80%;
+    padding: 7px;
+  }
+}
+
+form select {
+  padding: 5px;
+}

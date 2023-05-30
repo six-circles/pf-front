@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./GalleryDetail.module.scss";
 import { AiFillCloseCircle } from "react-icons/ai";
 
