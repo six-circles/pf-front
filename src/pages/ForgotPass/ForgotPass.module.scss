@@ -14,7 +14,7 @@
   padding: 2rem;
   border: 0.1rem solid v.$color-white;
   border-radius: 0.5rem;
-  width: 40rem;
+  width: 35rem;
 
   .form_camp {
     display: flex;
@@ -33,9 +33,11 @@
   .form_links {
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
+
     a {
       color: v.$color-white;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 300;
 
       &:hover {
@@ -46,6 +48,6 @@
 
   button {
     margin-top: 2.5rem;
-    padding-inline: 2rem;
+    width: 100%;
   }
 }
