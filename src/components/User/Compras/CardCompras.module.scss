@@ -10,7 +10,7 @@
   margin-bottom: 1rem;
   gap: 1rem;
   width: fit-content;
-
+  border-bottom: 0.1rem solid v.$color-gray;
   // &:hover {
   //   scale: 1.025;
   // }
@@ -48,7 +48,7 @@
   font-size: medium;
 }
 .buttonComent {
-  margin-top: 7rem;
+  margin-top: 6rem;
   display: flex;
   position: absolute;
   background-color: v.$color-white;

@@ -38,7 +38,7 @@ export default function (props: Product) {
       </div>
       <div className={styles.contTitle}>
         <h3 className={styles.title} onClick={() => handleClick()}>
-          {props.name}
+          {props.name.slice(0, 15)}...
         </h3>
         <p>({props.cantidadCarrito})</p>
         <button className={styles.buttonComent} onClick={showpuntuacion}>
