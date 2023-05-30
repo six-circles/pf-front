@@ -3,8 +3,6 @@ import { getToken } from "../../../utils";
 import CardCompras from "../../../components/User/Compras/CardCompras";
 import styles from "./Compras.module.scss";
 import { urlAxios } from "../../../utils";
-import { useSelector } from "react-redux";
-//cambiar la ruta por la de get comprabyuser --> reutilizar este comp para more products
 interface State {
   compras: Product;
 }
@@ -16,38 +14,31 @@ export default function () {
   const { token } = getToken();
   const getProducts = async () => {
     const { data } = await urlAxios(`/order/${token}`);
-    const ordenes = data?.order;
-    // let comprasPrueba: Object[] = [];
-    // ordenes.map((order: any) =>
-    //   order.shoppingCart.map((product: any) => comprasPrueba.push(product))
-    // );
 
-    // console.log(comprasPrueba);
-    // setCompras(comprasPrueba);
+    const ordenes = data?.orders;
     setCompras(ordenes);
   };
-
   useEffect(() => {
     getProducts();
   }, []);
-  console.log(compras);
 
   return (
     <div>
       <h1 className={styles.title}>MIS COMPRAS</h1>
-      {compras.length ? (
+      {compras?.length ? (
         <div className={styles.cards}>
           {compras.map((order: any) => (
-            <div className={styles.ordenes}>
-              <h1>compra 1</h1>
+            <div className={styles.ordenes} key={Math.random()}>
+              <p>{order.created.slice(0, 10)}</p>
               {order.shoppingCart.map((product: any) => (
                 <CardCompras
-                  key={product._id}
+                  key={Math.random()}
                   id={product._id}
                   name={product.title}
                   image={product.image}
                   price={product.price}
                   punctuation={product.punctuation}
+                  cantidadCarrito={product.cantidadCarrito}
                 />
               ))}
             </div>
