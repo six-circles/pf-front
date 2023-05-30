@@ -10,7 +10,7 @@ function User() {
   //   checkAuth("product", navigate);
   // }, []);
 
-  const { enable }: any = getUserRemote();
+  const { admin }: any = getUserRemote();
 
   const handleClick = () => {
     Swal.fire({
@@ -65,7 +65,7 @@ function User() {
       >
         Favoritos
       </NavLink>
-      {enable ? <NavLink
+      {admin ? <NavLink
         to="/user/admin"
         className={({ isActive }) => (isActive ? styles.active : "")}
       >
