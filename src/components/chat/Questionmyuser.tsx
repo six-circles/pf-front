@@ -49,7 +49,7 @@ handleQuestion();
           <li key={questions.id}>{questions.body}</li>  
         ))}<br />
       </ul><br />
-      </div>
+      </div>  
       </Fragment>   
 );
 }
