@@ -22,8 +22,8 @@ function Details({ detail }: DetailsProps) {
   const dispatch: Function = useDispatch();
   const obj = { token, productsId: detail._id, cantidad: cart.cantidad };
   const navigate = useNavigate();
-  const prodChars =
-    detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
+  // const prodChars =
+  //   detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
 
   const handleSetCart = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -36,31 +36,18 @@ function Details({ detail }: DetailsProps) {
     setAdmin(data.admin);
   };
 
-  const handleDisabled = async (event: any) => {
-    event.stopPropagation();
-
-    if (enable) {
-      setEnable(false);
-      try {
-        await urlAxios.patch(
-          `/product/${detail._id}`,
-          { enable: false },
-          config
-        );
-      } catch (error: any) {
-        console.error(error.response.data);
-      }
-    } else {
-      setEnable(true);
-      try {
-        await urlAxios.patch(
-          `/product/${detail._id}`,
-          { enable: true },
-          config
-        );
-      } catch (error: any) {
-        console.error(error.response.data);
-      }
+  const handleDelete = async () => {
+    try {
+      await urlAxios.delete(`/product/${detail._id}`);
+      navigate("/");
+      Swal.fire({
+        icon: "success",
+        title: "Producto Eliminado",
+        timer: 1500,
+        position: "center",
+      });
+    } catch (error: any) {
+      console.error(error.response.data);
     }
   };
 
@@ -170,23 +157,9 @@ function Details({ detail }: DetailsProps) {
         </div>
         <button className={styles.button_buy}>Comprar</button>
         {admin && (
-          <>
-            {enable ? (
-              <button
-                className={styles.button_disable}
-                onClick={handleDisabled}
-              >
-                Deshabilitar producto
-              </button>
-            ) : (
-              <button
-                className={styles.button_disable}
-                onClick={handleDisabled}
-              >
-                Habilitar producto
-              </button>
-            )}
-          </>
+          <button className={styles.button_disable} onClick={handleDelete}>
+            Eliminar producto
+          </button>
         )}
       </div>
     </div>
