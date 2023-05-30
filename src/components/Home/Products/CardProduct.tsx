@@ -19,6 +19,8 @@ interface Product {
   price: number;
   condition?: string;
   user?: string;
+  enable: boolean;
+  stock: number;
 }
 
 interface Favorites {
@@ -190,16 +192,28 @@ function CardProduct(props: Product) {
               onClick={addToCarrito}
             />
           ) : (
-            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
+            props.enable &&
+            props.stock && (
+              <IoCartSharp
+                className={styles.icon_cart}
+                onClick={addToCarrito}
+              />
+            )
           )}
         </div>
       </div>
       <div className={styles.card_info}>
         <div className={styles.info}>
           <p className={styles.card_price}>${props.price}</p>
-          <p className={props.condition === "Nuevo" ? styles.new : styles.used}>
-            {props.condition}
-          </p>
+          {props.enable === false || props.stock === 0 ? (
+            <p className={styles.noDisponible}>No disponible</p>
+          ) : (
+            <p
+              className={props.condition === "Nuevo" ? styles.new : styles.used}
+            >
+              {props.condition}
+            </p>
+          )}
         </div>
         <p>{shortName}</p>
         <Rating punctuation={props.punctuation} />

@@ -91,7 +91,7 @@
       font-weight: 500;
       font-size: 1.8rem;
     }
-
+    .noDisponible,
     .new,
     .used {
       padding: 0.25rem 0.5rem;
@@ -108,6 +108,9 @@
     .used {
       background-color: v.$color-orange-l;
       color: v.$color-orange-s;
+    }
+    .noDisponible {
+      background-color: v.$color-gray;
     }
   }
 }
