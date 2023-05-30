@@ -34,7 +34,7 @@ function User() {
 
   useEffect(() => {
     getUserRemote().then((elem) => setAdmin(elem.admin));
-  }, [])
+  }, []);
 
   return (
     <div className={styles.perfil}>
@@ -51,7 +51,7 @@ function User() {
         to="/user/products"
         className={({ isActive }) => (isActive ? styles.active : "")}
       >
-        Ventas
+        Mis productos
       </NavLink>
       <NavLink
         to="/user/qa"
@@ -65,12 +65,14 @@ function User() {
       >
         Favoritos
       </NavLink>
-      {admin ? <NavLink
-        to="/user/admin"
-        className={({ isActive }) => (isActive ? styles.active : "")}
-      >
-        Administrador
-      </NavLink> : null}
+      {admin ? (
+        <NavLink
+          to="/user/admin"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          Administrador
+        </NavLink>
+      ) : null}
       <Link to="/login" onClick={handleClick}>
         Salir
       </Link>

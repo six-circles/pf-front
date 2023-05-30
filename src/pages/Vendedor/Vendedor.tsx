@@ -22,11 +22,11 @@ export default function () {
   const [puntuaction, setPunctuation] = useState(0);
   const [name, setName] = useState("");
   const [admin, setAdmin] = useState(false);
+  const [enable, setEnable] = useState();
 
   const getAdmin = async () => {
     const { token } = getToken();
     const { data } = await urlAxios(`/user/${token}`);
-
     const admin = data?.admin;
     if (admin && data.email !== emailOriginal) {
       setAdmin(true);
@@ -36,13 +36,24 @@ export default function () {
   const bannerSeller = async () => {
     try {
       await urlAxios.patch(`/user?email=${emailOriginal}`);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "User Blocked",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      if (enable) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usuario desabilitado",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usuario habilitado",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+      getAllProd();
     } catch (error) {
       Swal.fire({
         position: "center",
@@ -66,6 +77,7 @@ export default function () {
     setPunctuation(puntuation);
     const name = data?.name;
     setName(name);
+    setEnable(data.enable);
   };
 
   return (
@@ -73,10 +85,14 @@ export default function () {
       <div className={styles.title}>
         {admin ? (
           <button onClick={bannerSeller} className={styles.button}>
-            Suspender vendedor
+            {enable ? <p>Suspender vendedor</p> : <p>Habilitar vendedor</p>}
           </button>
         ) : null}
-
+        {/* {admin && enable === false ? (
+          <button onClick={bannerSeller} className={styles.button}>
+            Habilitar vendedor
+          </button>
+        ) : null} */}
         <h1 className={styles.title}>{name}</h1>
       </div>
       <div className={styles.contenedor}>
