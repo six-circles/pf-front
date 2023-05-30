@@ -1,3 +1,4 @@
+
 import React, { Fragment, useState, useEffect } from "react";
 import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
@@ -20,7 +21,7 @@ const handleQuestion = async () => {
 
 try{
   const get = await urlAxios.get( `/questions/${token}`);
-  //questions/${token}
+ 
   console.log(get.data);
 setQuestions([...get.data])
 console.log(questions);
@@ -37,7 +38,7 @@ handleQuestion();
   return (
     <Fragment> 
     <div className={Style.card}>  
-      <center><h1>Mis preguntas</h1></center>
+      
       <br /> 
       <br />
       <ul className={Style.ulquestion}>
@@ -48,7 +49,7 @@ handleQuestion();
           <li key={questions.id}>{questions.body}</li>  
         ))}<br />
       </ul><br />
-      </div>
+      </div>  
       </Fragment>   
 );
 }

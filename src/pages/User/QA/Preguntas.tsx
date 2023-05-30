@@ -1,16 +1,33 @@
 import { useState } from "react";
-import { Answers, QuestionUser, Questionmyuser } from "../../../components";
-import { Questions } from "../../../redux/actions/productActions.";
-import { useSelector } from "react-redux";
+import { QuestionUser, Questionmyuser } from "../../../components";
+import style from './Preguntas.module.scss';
 
+export default function Preguntas() {
+  const [showQuestionUser, setShowQuestionUser] = useState(true);
 
-export default function preguntas (){
-    
-   
-    return(
-    <>
-    <QuestionUser/>
-    <Questionmyuser/>
-    </>
-    );
-}   
+  const handleToggleComponent = (value:any) => {
+    setShowQuestionUser(value === "questionUser");
+  };
+
+  return (
+    <div>
+      <button
+        className={style.optiondetail}
+        onClick={() => handleToggleComponent("questionUser")}
+        style={{ fontWeight: showQuestionUser ? "bold" : "normal" }}
+      >
+        Preguntas Recibidas
+      </button>
+      
+      <button
+        className={style.optiondetail}
+        onClick={() => handleToggleComponent("questionMyUser")}
+        style={{ fontWeight: !showQuestionUser ? "bold" : "normal" }}
+      >
+        Mis Preguntas
+      </button>
+      {showQuestionUser ? <QuestionUser /> : <Questionmyuser />}
+    </div>
+  );
+}
+ 
