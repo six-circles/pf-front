@@ -17,9 +17,9 @@ interface Credentials {
   birthday: string;
   password: string;
   repeatPassword: string;
-  address1: string;
-  address2: string;
-  card: string;
+  address: string;
+  // address2: string;
+  // card: string;
 }
 
 export default function () {
@@ -32,9 +32,9 @@ export default function () {
     birthday: "",
     password: "",
     repeatPassword: "",
-    address1: "",
-    address2: "",
-    card: "",
+    address: "",
+    // address2: "",
+    // card: "",
   };
   const [credentials, setCredentials] = useState<Credentials>(dataDefault);
   const [currentUser, setCurrentUser] = useState<Credentials>(dataDefault);
@@ -50,6 +50,8 @@ export default function () {
   };
 
   function compareObjects<T>(obj1: T, obj2: T): Partial<T> {
+    console.log("N1: ", obj1, " N2:", obj2);
+
     const result: Partial<T> = {};
     for (const key in obj1) {
       if (obj1[key] !== obj2[key]) {
@@ -230,13 +232,14 @@ export default function () {
               autoComplete="address-line1"
               className={styles.campo}
               type="text"
-              name="address1"
+              name="address"
               readOnly={!isEditing}
-              value={credentials.address1}
+              value={credentials.address}
               onChange={handleInputChange}
             />
+            <p>{errors.address}</p>
           </div>
-          <div className={styles.dato}>
+          {/* <div className={styles.dato}>
             <label htmlFor="" className={styles.campo}>
               Dirección 2
             </label>
@@ -249,9 +252,9 @@ export default function () {
               value={credentials.address2}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
         </div>
-        <div className={styles.group}>
+        {/* <div className={styles.group}>
           <p>
             <b>Tarjetas</b>
           </p>
@@ -269,7 +272,7 @@ export default function () {
               onChange={handleInputChange}
             />
           </div>
-        </div>
+        </div> */}
         {isEditing ? (
           <>
             <button className={styles.link} type="submit">

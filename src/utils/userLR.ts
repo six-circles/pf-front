@@ -36,9 +36,9 @@ export const getUserRemote = async () => {
     birthday: data.birthday,
     password: "",
     repeatPassword: "",
-    address1: data.address1,
-    address2: data.address2,
-    card: data.card,
+    address: data.address,
+    // address2: data.address2,
+    // card: data.card,
     admin: data.admin,
     enable: data.enable,
   };
