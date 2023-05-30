@@ -21,6 +21,7 @@ import { CreateProduct } from "./components";
 
 import Layout from "./layout/Layout";
 import LayoutUser from "./layout/LayoutUser";
+import Admin from "./pages/User/Admin/Admin";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
           <Route path="shopping" element={<Compras />} />
           <Route path="qa" element={<Preguntas />} />
           <Route path="favoritos" element={<Favoritos />} />
+          <Route path="admin" element={<Admin />} />
+
         </Route>
       </Route>
       <Route path="/login" element={<Login />} />
