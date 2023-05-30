@@ -35,33 +35,27 @@ export default function () {
   return (
     <div>
       <h1 className={styles.title}>MIS COMPRAS</h1>
-      <div className={styles.cards}>
-        {compras.map((order: any) => (
-          <div className={styles.ordenes}>
-            <h1>compra 1</h1>
-            {order.shoppingCart.map((product: any) => (
-              <CardCompras
-                key={product._id}
-                id={product._id}
-                name={product.title}
-                image={product.image}
-                price={product.price}
-                punctuation={product.punctuation}
-              />
-            ))}
-          </div>
-        ))}
-        {/* {compras?.map((item: any) => (
-          <CardCompras
-            key={item._id}
-            id={item._id}
-            name={item.title}
-            image={item.image}
-            price={item.price}
-            punctuation={item.punctuation}
-          />
-        ))} */}
-      </div>
+      {compras.length ? (
+        <div className={styles.cards}>
+          {compras.map((order: any) => (
+            <div className={styles.ordenes}>
+              <h1>compra 1</h1>
+              {order.shoppingCart.map((product: any) => (
+                <CardCompras
+                  key={product._id}
+                  id={product._id}
+                  name={product.title}
+                  image={product.image}
+                  price={product.price}
+                  punctuation={product.punctuation}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <h3>no realizaste compras aún...</h3>
+      )}
     </div>
   );
 }
