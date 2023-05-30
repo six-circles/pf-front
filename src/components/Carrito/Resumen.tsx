@@ -40,35 +40,31 @@ export default function ({ productos, button = true }: any) {
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className={styles.resume}>
-          <div className={styles.title}>
-            <h3>Resumen</h3>
-          </div>
-          <div className={styles.resume_cont}>
-            {prod?.map((p: any) => (
-              <div className={styles.resume_product} key={p._id}>
-                <p className={styles.name}>
-                  {p.title.slice(0, 15)} ({p.cantidadCarrito})
-                </p>
-                <p>${p.price * p.cantidadCarrito}</p>
-              </div>
-            ))}
-          </div>
-          <div className={styles.total}>
-            <p>Total</p>
-            <p>${total}</p>
-          </div>
-
-          {preferenceId && button && (
-            <div id="wallet_container" style={{ padding: "0rem 2rem" }}>
-              <Wallet initialization={{ preferenceId }} />
-            </div>
-          )}
+      <div className={styles.resume}>
+        <div className={styles.title}>
+          <h3>Resumen</h3>
         </div>
-      )}
+        <div className={styles.resume_cont}>
+          {prod?.map((p: any) => (
+            <div className={styles.resume_product} key={p._id}>
+              <p className={styles.name}>
+                {p.title.slice(0, 15)} ({p.cantidadCarrito})
+              </p>
+              <p>${p.price * p.cantidadCarrito}</p>
+            </div>
+          ))}
+        </div>
+        <div className={styles.total}>
+          <p>Total</p>
+          <p>${total}</p>
+        </div>
+
+        {preferenceId && button && (
+          <div id="wallet_container" style={{ padding: "0rem 2rem" }}>
+            <Wallet initialization={{ preferenceId }} />
+          </div>
+        )}
+      </div>
     </>
   );
 }
