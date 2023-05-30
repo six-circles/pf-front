@@ -8,9 +8,20 @@ const Slider = () => {
   // const { products } = productsList;
   const navigate = useNavigate();
 
+  const getRandomProducts = (products: any, count: number) => {
+    if (count >= products.length) {
+      return products;
+    }
+    const shuffled = products.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  const randomProducts = getRandomProducts(products, 3);
+
   const [slide, setSlide] = useState(0);
   let cant: number;
-  products.length > 2 ? cant = 3 : cant = 1;
+  // products.length > 2 ? cant = 3 : cant = 1;
+  cant = randomProducts.length;
 
   const handleClick = () => {
     navigate(`/detail/${products[slide]._id}`);
@@ -39,8 +50,8 @@ const Slider = () => {
     <div className={styles.carousel}>
       <div className={styles.slider}>
         <div className={styles.contImage} onClick={handleClick}>
-          {products[slide]?.image[slide] && (
-            <img className={styles.image} src={products[slide].image[0]} alt="" />
+          {randomProducts[slide]?.image[slide] && (
+            <img className={styles.image} src={products[slide].image[0].url} alt="" />
           )}
         </div>
         <div className={styles.contDesc}>
