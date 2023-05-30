@@ -17,6 +17,7 @@ export default function () {
 
     const ordenes = data?.order;
 
+    console.log(data);
     setCompras(ordenes);
   };
 
@@ -40,6 +41,8 @@ export default function () {
                   image={product.image}
                   price={product.price}
                   punctuation={product.punctuation}
+                  cantidad={product.cantidadCarrito}
+                  fecha={product.createdAt.slice(0, 11)}
                 />
               ))}
             </div>

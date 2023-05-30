@@ -10,6 +10,8 @@ interface Product {
   image: any;
   price: number;
   punctuation: number;
+  cantidad: number;
+  fecha: number;
 }
 export default function (props: Product) {
   const navigate = useNavigate();
@@ -41,10 +43,11 @@ export default function (props: Product) {
         <p className={styles.precio}>Total ${props.price}</p>
       </div>
       <div className={styles.entregado}>
-        <p className={styles.entrega}>Entregado el 08/02/2023</p>
+        <p className={styles.entrega}>Entregado el {props.fecha}</p>
         <button onClick={() => handleClick()} className={styles.buttonDetails}>
           Detalles
         </button>
+        <p>cantidad ${props.cantidad}</p>
       </div>
       {puntuacion ? (
         <div className={styles.puntuacion}>
