@@ -1,9 +1,11 @@
+@use "../../../styles/variables.scss" as v;
 .cards {
   display: flex;
-  //   flex-direction: row;
-  //   justify-content: space-between;
+  background-color: v.$color-white;
+  width: fit-content;
   flex-wrap: wrap;
   //   margin-left: 1rem;
+  border-radius: 8px;
 }
 .title {
   font-size: large;
@@ -14,7 +16,6 @@
 .ordenes {
   display: flex;
   flex-direction: column;
-  border: 0.1rem solid #000;
   gap: 1rem;
   margin: 1rem;
 }

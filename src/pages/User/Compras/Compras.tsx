@@ -15,12 +15,9 @@ export default function () {
   const getProducts = async () => {
     const { data } = await urlAxios(`/order/${token}`);
 
-    const ordenes = data?.order;
-
-    console.log(data);
+    const ordenes = data?.orders;
     setCompras(ordenes);
   };
-
   useEffect(() => {
     getProducts();
   }, []);
@@ -28,21 +25,20 @@ export default function () {
   return (
     <div>
       <h1 className={styles.title}>MIS COMPRAS</h1>
-      {compras.length ? (
+      {compras?.length ? (
         <div className={styles.cards}>
           {compras.map((order: any) => (
-            <div className={styles.ordenes}>
-              <h1>compra 1</h1>
+            <div className={styles.ordenes} key={Math.random()}>
+              <p>{order.created.slice(0, 10)}</p>
               {order.shoppingCart.map((product: any) => (
                 <CardCompras
-                  key={product._id}
+                  key={Math.random()}
                   id={product._id}
                   name={product.title}
                   image={product.image}
                   price={product.price}
                   punctuation={product.punctuation}
-                  cantidad={product.cantidadCarrito}
-                  fecha={product.createdAt.slice(0, 11)}
+                  cantidadCarrito={product.cantidadCarrito}
                 />
               ))}
             </div>
