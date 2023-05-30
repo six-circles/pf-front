@@ -1,27 +1,18 @@
 @use "../../styles/variables.scss" as v;
 .contenedor {
   display: flex;
-  gap: 5rem;
+  gap: 1rem;
 }
-
 .title {
-  width: fit-content;
-}
-.ventas {
   display: flex;
-  width: fit-content;
-  margin-top: 3rem;
-  align-items: end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
-.puntuacion {
-  display: flex;
-  font-size: xx-large;
-}
-// .puntuacionNum {
-//   display: flex;
-//   font-size: x-small;
-// }
 .button {
   display: flex;
-  background-color: red;
+  background-color: v.$color-red;
+  height: fit-content;
+  &:hover {
+    background-color: darken(v.$color-red, 10%);
+  }
 }
