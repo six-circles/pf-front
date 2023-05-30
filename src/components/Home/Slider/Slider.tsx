@@ -50,8 +50,12 @@ const Slider = () => {
     <div className={styles.carousel}>
       <div className={styles.slider}>
         <div className={styles.contImage} onClick={handleClick}>
-          {randomProducts[slide]?.image[slide] && (
-            <img className={styles.image} src={products[slide].image[0].url} alt="" />
+          {randomProducts[slide] && (
+            <img
+              className={styles.image}
+              src={products[slide].image[0].url}
+              alt=""
+            />
           )}
         </div>
         <div className={styles.contDesc}>
@@ -64,7 +68,9 @@ const Slider = () => {
                 : products[slide]?.description}
             </p>
             <br />
-            <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>Ver detalles</button>
+            <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>
+              Ver detalles
+            </button>
           </div>
         </div>
       </div>

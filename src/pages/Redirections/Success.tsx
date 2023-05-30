@@ -14,7 +14,7 @@ function Success() {
 
   const createOrder = async () => {
     const newOrder = {
-      shoppingCart: cartProducts,
+      // shoppingCart: cartProducts,
       token,
     };
 
