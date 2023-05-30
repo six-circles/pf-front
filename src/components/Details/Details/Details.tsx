@@ -12,15 +12,14 @@ interface DetailsProps {
 
 function Details({ detail }: DetailsProps) {
   const [admin, setAdmin] = useState(false);
-  const [enable, setEnable] = useState(detail.enable);
-  const { token, config } = getToken();
+  const { token } = getToken();
   const productInit = {
     cantidad: 0,
     characteristics: {},
   };
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
-  const obj = { token, productsId: detail._id, cantidad: cart.cantidad };
+  const obj = { token, productsId: detail._id, cantidad: cart.cantidad || 1 };
   const navigate = useNavigate();
   // const prodChars =
   //   detail.moreCharacteristics && Object.entries(detail.moreCharacteristics);
@@ -59,22 +58,24 @@ function Details({ detail }: DetailsProps) {
   const submitAddCart = async (event: any) => {
     event.preventDefault();
 
-    if (cart.cantidad > 0) {
-      try {
-        await urlAxios.post("user/shoppingCart", obj);
+    try {
+      await urlAxios.post("user/shoppingCart", obj);
 
-        dispatch(getCartProducts());
-        setCart(productInit);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Añadido a Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } catch (err: any) {
-        console.log(err.response);
+      dispatch(getCartProducts());
+      setCart(productInit);
+      Swal.fire({
+        position: "top-right",
+        icon: "success",
+        title: "Añadido a Carrito",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+
+      if (event.target.name === "buy") {
+        navigate("/carrito");
       }
+    } catch (err: any) {
+      console.log(err.response);
     }
   };
 
@@ -155,7 +156,13 @@ function Details({ detail }: DetailsProps) {
           />
           <button onClick={submitAddCart}>Agregar al carrito</button>
         </div>
-        <button className={styles.button_buy}>Comprar</button>
+        <button
+          className={styles.button_buy}
+          name="buy"
+          onClick={submitAddCart}
+        >
+          Comprar
+        </button>
         {admin && (
           <button className={styles.button_disable} onClick={handleDelete}>
             Eliminar producto
