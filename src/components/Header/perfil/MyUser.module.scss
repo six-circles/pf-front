@@ -34,7 +34,7 @@
   padding: 2px;
   z-index: 1;
   text-align: right;
-  // width: 100%;
+  width: 120px;
 }
 
 .optionsContainer .option {
@@ -51,7 +51,7 @@
 
 .optionsContainer .option:hover {
   // background-color: #256cfa;
-  background-color: rgba(65, 137, 230, .15);
+  background-color: rgba(65, 137, 230, 0.15);
   border-radius: 4px;
   // color: white;
 }
