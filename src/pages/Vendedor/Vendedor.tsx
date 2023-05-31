@@ -92,7 +92,7 @@ export default function () {
         ) : null}
       </div>
       <div className={styles.contenedor}>
-        <Rating punctuation={puntuaction} />
+        <Rating punctuation={puntuaction || 0} />
         <p>({cantPuntuaciones})</p>
       </div>
 
