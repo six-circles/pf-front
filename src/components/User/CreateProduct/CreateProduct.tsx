@@ -82,27 +82,27 @@ function CreateProduct() {
     setImage(files);
   };
 
-  const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = event.target;
+  // const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value, checked } = event.target;
 
-    console.log("object");
+  //   console.log("object");
 
-    setForm((prevForm: any) => {
-      const { moreCharacteristics } = prevForm;
+  //   setForm((prevForm: any) => {
+  //     const { moreCharacteristics } = prevForm;
 
-      const updatedCharacteristics = {
-        ...moreCharacteristics,
-        [name]: checked
-          ? [...(moreCharacteristics[name] || []), value]
-          : moreCharacteristics[name].filter((item: string) => item !== value),
-      };
+  //     const updatedCharacteristics = {
+  //       ...moreCharacteristics,
+  //       [name]: checked
+  //         ? [...(moreCharacteristics[name] || []), value]
+  //         : moreCharacteristics[name].filter((item: string) => item !== value),
+  //     };
 
-      return {
-        ...prevForm,
-        moreCharacteristics: updatedCharacteristics,
-      };
-    });
-  };
+  //     return {
+  //       ...prevForm,
+  //       moreCharacteristics: updatedCharacteristics,
+  //     };
+  //   });
+  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

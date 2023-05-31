@@ -19,8 +19,8 @@ interface Product {
   price: number;
   condition?: string;
   user?: string;
-  enable: boolean;
-  stock: number;
+  enable?: boolean;
+  stock?: number;
 }
 
 interface Favorites {
