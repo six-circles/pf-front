@@ -14,6 +14,7 @@ function CommentList(props: State) {
   const { setPuntuacion } = props;
   const { name } = props;
 
+  const [isLoading, setIsLoading] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(0);
   const { token, config } = getToken();
@@ -27,13 +28,9 @@ function CommentList(props: State) {
       token,
     };
     try {
-      console.log(newCommentObj);
-      const response = await urlAxios.post(
-        "/product/comments",
-        newCommentObj,
-        config
-      );
-      console.log(response);
+      setIsLoading(true);
+      await urlAxios.post("/product/comments", newCommentObj, config);
+      setIsLoading(false);
       Swal.fire({
         position: "center",
         icon: "success",
@@ -84,14 +81,23 @@ function CommentList(props: State) {
               onChange={(event) => setNewComment(event.target.value)}
               placeholder="Escribe tu comentario"
             />
-            <button className={styles.buttonSend} onClick={handleCommentSubmit}>
+            <button
+              onClick={handleCommentSubmit}
+              disabled={isLoading}
+              className={`${styles.buttonSend} ${isLoading && styles.wait}`}
+            >
               Publicar comentario
             </button>
           </div>
-            <div className={styles.contX}>
-            <button onClick={()=>setPuntuacion(false)} className={styles.buttonX}>X</button>
-            </div>
-          
+          <div className={styles.contX}>
+            <button
+              disabled={isLoading}
+              onClick={() => setPuntuacion(false)}
+              className={`${styles.buttonX} ${isLoading && styles.wait}`}
+            >
+              X
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -162,6 +162,8 @@ function CardProduct(props: Product) {
     shortName = props.name.slice(0, 40) + "...";
   }
 
+  console.log(props.enable, props.stock);
+
   useEffect(() => {
     const finded = favoritos.find((fav: any) => fav._id === props.id);
     if (finded) {
