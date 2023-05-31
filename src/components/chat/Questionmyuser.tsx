@@ -1,5 +1,5 @@
 
-import React, { Fragment, useState, useEffect } from "react";
+import  { Fragment, useState, useEffect } from "react";
 import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
