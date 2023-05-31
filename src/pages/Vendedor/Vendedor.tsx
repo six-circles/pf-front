@@ -27,8 +27,8 @@ export default function () {
   const getAdmin = async () => {
     const { token } = getToken();
     const { data } = await urlAxios(`/user/${token}`);
-    const admin = data?.admin;
-    if (admin && data.email !== emailOriginal) {
+    const { admin } = data;
+    if (admin && data?.email !== emailOriginal) {
       setAdmin(true);
     }
   };
@@ -71,11 +71,11 @@ export default function () {
 
   const getAllProd = async () => {
     const { data } = await urlAxios(`/user?email=${emailOriginal}`);
-    const products = data?.products;
+    const { products } = data?.user;
     setAllProducts(products);
-    const puntuation = data?.punctuation;
-    setPunctuation(puntuation);
-    const name = data?.name;
+    const { punctuation } = data?.user;
+    setPunctuation(punctuation);
+    const { name } = data?.user;
     setName(name);
     setEnable(data.enable);
   };
