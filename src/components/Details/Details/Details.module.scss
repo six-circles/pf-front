@@ -203,4 +203,14 @@
       background-color: darken(v.$color-gray, 10%);
     }
   }
+
+  .disable {
+    filter: grayscale(1);
+    cursor: default;
+
+    // &:hover,
+    // &:focus {
+    //   pointer-events: none;
+    // }
+  }
 }
