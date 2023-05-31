@@ -49,5 +49,10 @@
   button {
     margin-top: 2.5rem;
     width: 100%;
+
+    .wait {
+      filter: grayscale(0.5);
+      cursor: wait;
+    }
   }
 }

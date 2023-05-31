@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 function NewPass() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [pass, setPass] = useState({ pass1: "", pass2: "" });
   const { email, token }: string | any = useParams();
 
@@ -23,9 +24,11 @@ function NewPass() {
 
     if (pass.pass1 === pass.pass2) {
       try {
+        setIsLoading(true);
         await urlAxios.post(`/reset-password/${decEmail}/${decToken}`, {
           password: pass.pass1,
         });
+        setIsLoading(false);
         Swal.fire({
           icon: "success",
           title: "Contraseña cambiada",
@@ -77,7 +80,13 @@ function NewPass() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Cambiar Contraseña</button>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={isLoading ? styles.wait : ""}
+        >
+          Cambiar Contraseña
+        </button>
         <div className={styles.form_links}>
           <Link to="/login">Ya tengo cuenta</Link>
           <Link to="/register">Crear cuenta</Link>

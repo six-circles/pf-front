@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 function ForgotPass() {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -15,7 +16,9 @@ function ForgotPass() {
     event.preventDefault();
 
     try {
+      setIsLoading(true);
       await urlAxios.post("/forgot-password", { email });
+      setIsLoading(false);
       Swal.fire({
         icon: "success",
         title: "Revisa tu Email",
@@ -49,7 +52,13 @@ function ForgotPass() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Enviar Email</button>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={isLoading ? styles.wait : ""}
+        >
+          Enviar Email
+        </button>
         <div className={styles.form_links}>
           <Link to="/login">Ya tengo cuenta</Link>
           <Link to="/register">Crear cuenta</Link>
