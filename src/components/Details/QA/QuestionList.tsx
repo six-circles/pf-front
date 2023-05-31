@@ -10,6 +10,7 @@ interface Question {
   text: string;
 }
 
+
 export function QuestionList(props: any) {
  const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
