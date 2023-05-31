@@ -17,7 +17,7 @@ import {
   Pending,
   Vendedor,
 } from "./pages";
-import { CreateProduct } from "./components";
+import { CreateProduct, MisVentas } from "./components";
 
 import Layout from "./layout/Layout";
 import LayoutUser from "./layout/LayoutUser";
@@ -38,6 +38,7 @@ function App() {
           <Route index element={<Datos />} />
           <Route path="products" element={<Ventas />} />
           <Route path="products/create_product" element={<CreateProduct />} />
+          <Route path="products/my_sells" element={<MisVentas />} />
           <Route path="shopping" element={<Compras />} />
           <Route path="qa" element={<Preguntas />} />
           <Route path="favoritos" element={<Favoritos />} />

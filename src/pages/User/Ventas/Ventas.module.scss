@@ -1,8 +1,11 @@
 .ventas {
   display: flex;
   flex-direction: column;
-  button {
-    margin-left: auto;
+
+  .ventas_buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
   }
 }
 
