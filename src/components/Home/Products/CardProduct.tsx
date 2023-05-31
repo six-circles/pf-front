@@ -214,7 +214,7 @@ function CardProduct(props: Product) {
       <div className={styles.card_info}>
         <div className={styles.info}>
           <p className={styles.card_price}>${props.price}</p>
-          {props.enable === false || props.stock <= 0 ? (
+          {props.enable === false || props?.stock <= 0 ? (
             <p className={styles.noDisponible}>No disponible</p>
           ) : (
             <p

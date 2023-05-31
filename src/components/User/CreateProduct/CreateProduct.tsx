@@ -281,19 +281,6 @@ function CreateProduct() {
           </div>
 
           <div className={styles.form_camp}>
-            <label>Imagenes</label>
-            <input
-              className={styles.input_image}
-              type="file"
-              placeholder="Ingrese al menos una imagen"
-              required
-              accept="image/jpg, image/jpeg, image/png"
-              multiple={true}
-              name="image1"
-              onChange={handleAddImage}
-            />
-          </div>
-          <div className={styles.form_camp}>
             <label>Descripcion</label>
             <textarea
               placeholder="Descripcion del producto"
@@ -303,6 +290,22 @@ function CreateProduct() {
               onChange={handleChange}
             ></textarea>
           </div>
+
+          {!product && (
+            <div className={styles.form_camp}>
+              <label>Imagenes</label>
+              <input
+                className={styles.input_image}
+                type="file"
+                placeholder="Ingrese al menos una imagen"
+                required
+                accept="image/jpg, image/jpeg, image/png"
+                multiple={true}
+                name="image1"
+                onChange={handleAddImage}
+              />
+            </div>
+          )}
           <button
             disabled={isLoading}
             className={`${isLoading && styles.wait}`}
