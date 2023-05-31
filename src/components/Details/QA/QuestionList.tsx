@@ -40,7 +40,7 @@ const dispatch: any = useDispatch();
   
   return (
     <Fragment>
-      <div className={Style.card}>
+      
         <div className={Style.view}>
           <br />
           <div></div>
@@ -74,7 +74,7 @@ const dispatch: any = useDispatch();
           </div>
           <br />
         </form>
-      </div>
+      
     </Fragment>
   );
 }
