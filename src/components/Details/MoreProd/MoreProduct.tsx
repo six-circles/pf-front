@@ -23,7 +23,8 @@ export default function MoreProduct() {
   const getProduct = async (email: string) => {
     const { data } = await urlAxios(`/user?email=${email}`);
     const { products } = data.user;
-    setMoreProducts(products);
+    const allprod = products.filter((p: any) => p.enable === true);
+    setMoreProducts(allprod);
   };
 
   useEffect(() => {
