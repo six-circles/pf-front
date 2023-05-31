@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import CommentList from "../../Details/coments/CommentsList";
-import { urlAxios } from "../../../utils";
-import { getToken } from "../../../utils";
+
 interface Product {
   key: any;
   id: any;
@@ -30,7 +29,7 @@ export default function (props: Product) {
     setPuntuacion(true);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>

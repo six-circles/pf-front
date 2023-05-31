@@ -13,10 +13,6 @@ function ShopingCart() {
 
   const navigate = useNavigate();
   const username: any = window.localStorage.getItem("user");
-  let user;
-  if (username) {
-    user = JSON.parse(username);
-  }
 
   const handleClick = () => {
     setIsOpen(!isOpen);

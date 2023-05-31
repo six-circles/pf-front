@@ -3,12 +3,7 @@ import { getToken } from "../../../utils";
 import CardCompras from "../../../components/User/Compras/CardCompras";
 import styles from "./Compras.module.scss";
 import { urlAxios } from "../../../utils";
-interface State {
-  compras: Product;
-}
-interface Product {
-  products: object[];
-}
+
 export default function () {
   const [compras, setCompras] = useState([]);
   const { token } = getToken();

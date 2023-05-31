@@ -1,17 +1,14 @@
-import React, { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Style from "./QAS.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getToken, urlAxios } from "../../utils";
 interface Question {
   id: number;
   text: string;
 }
 
-export function Questionmyuser(props: any) {
+export function Questionmyuser() {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [getQuestion, setGetQuestion] = useState("");
-
-  const { id } = useParams();
   const { token, config } = getToken();
 
   const handleQuestion = async () => {
@@ -29,28 +26,28 @@ export function Questionmyuser(props: any) {
   useEffect(() => {
     handleQuestion();
   }, []);
+
   return (
     <Fragment>
       <div className={Style.card}>
         <br />
         <br />
         <ul className={Style.ulquestion}>
-        
+
           <br />
           {questions &&
             questions?.map((question: any) => (
               <>
-              <strong>
-              <Link to={`/detail/${question?.product[0]?._id}`} className={Style.aproduct}>{question?.product[0]?.title}</Link></strong>
-              <li key={question._id}>{question.body}</li>
+                <strong>
+                  <Link to={`/detail/${question?.product[0]?._id}`} className={Style.aproduct}>{question?.product[0]?.title}</Link></strong>
+                <li key={question._id}>{question.body}</li>
               </>
             ))}
           <br />
-          
+
         </ul>
         <br />
       </div>
     </Fragment>
   );
 }
- 

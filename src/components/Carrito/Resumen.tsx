@@ -4,13 +4,11 @@ import styles from "./Resumen.module.scss";
 import { useNavigate } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import Swal from "sweetalert2";
-import { Loading } from "..";
 
 initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MERCADOPAGO);
 
 export default function ({ productos, button = true }: any) {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const prod = productos.filter((p: any) => p.enable);
   let totalPerProduct = prod.map((p: any) => p.price * p.cantidadCarrito);
   const { token } = getToken();
@@ -25,12 +23,10 @@ export default function ({ productos, button = true }: any) {
 
   const getPreferenceId = async () => {
     try {
-      setIsLoading(true);
-      console.log(products, token);
+
       const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
-      console.log(data);
+
       setPreferenceId(data.id);
-      setIsLoading(false);
     } catch (err: any) {
       if (err.response.data.message === "Error al crear la preferencia de pago")
         return;

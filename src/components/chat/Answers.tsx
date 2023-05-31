@@ -1,12 +1,6 @@
 import React, { Fragment, useState, useEffect, ReactNode } from "react";
 import Style from "./QAS.module.scss";
-import { useParams } from "react-router-dom";
-import { getToken, urlAxios } from "../../utils";
-
-interface Question {
-  id: number;
-  text: string;
-}
+import { urlAxios } from "../../utils";
 
 interface Answer {
   body: ReactNode;
@@ -15,11 +9,9 @@ interface Answer {
 }
 
 export function Answers(props: any) {
-  const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [newAnswer, setNewAnswer] = useState("");
-  const { token, config } = getToken();
-  const { id } = useParams();
+
   const [answered, setAnswered] = useState(false);
 
   const newAnswerObj = {
@@ -36,7 +28,6 @@ export function Answers(props: any) {
     try {
       const responses = await urlAxios.get(`/product/questions/answers/${props.id}`);
       setAnswers(responses.data);
-      console.log(responses);
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -50,9 +41,6 @@ export function Answers(props: any) {
     }
 
     try {
-      console.log(newAnswerObj);
-      const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
-
       setNewAnswer("");
       setAnswered(true);
       localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
