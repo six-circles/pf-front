@@ -38,7 +38,7 @@ export default function ({ datos, setIsOpen }: any) {
     } catch (error: any) {
       Swal.fire({
         position: "center",
-        icon: "success",
+        icon: "error",
         title: "Vuelve a intentarlo",
         showConfirmButton: false,
         timer: 2000,
