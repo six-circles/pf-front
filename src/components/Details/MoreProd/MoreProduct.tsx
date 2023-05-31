@@ -48,6 +48,7 @@ export default function MoreProduct() {
                 punctuation={item.punctuations}
                 price={item.price}
                 condition={item.condition}
+                stock={item.stock}
               />
             ))}
           </div>
