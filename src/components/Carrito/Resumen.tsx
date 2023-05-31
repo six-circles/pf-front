@@ -26,11 +26,14 @@ export default function ({ productos, button = true }: any) {
   const getPreferenceId = async () => {
     try {
       setIsLoading(true);
+      console.log(products, token);
       const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
       console.log(data);
       setPreferenceId(data.id);
       setIsLoading(false);
     } catch (err: any) {
+      if (err.response.data.message === "Error al crear la preferencia de pago")
+        return;
       Swal.fire({
         icon: "warning",
         timer: 3000,
