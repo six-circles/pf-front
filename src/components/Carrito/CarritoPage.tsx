@@ -101,7 +101,7 @@ export default function (props: any) {
           <div className={styles.card_info}>
             <h4 className={styles.title}>{name}</h4>
             <div>
-              {enable === false || stock === 0 ? (
+              {enable === false || stock <= 0 ? (
                 <p>Producto no disponible</p>
               ) : null}
             </div>
@@ -109,7 +109,7 @@ export default function (props: any) {
               <p className={styles.info_eliminar} onClick={deleteProduct}>
                 Eliminar
               </p>
-              {enable === false || stock === 0 ? (
+              {enable === false || stock <= 0 ? (
                 <p className={styles.info_detailDesabled}>Detalles</p>
               ) : (
                 <p onClick={() => details(id)} className={styles.info_detail}>
@@ -121,7 +121,7 @@ export default function (props: any) {
 
           <div className={styles.cont_cantidad}>
             <div className={styles.card_cantidad}>
-              {enable === false || stock === 0 ? (
+              {enable === false || stock <= 0 ? (
                 <button disabled className={styles.buttonDisabled}>
                   -
                 </button>
@@ -133,8 +133,8 @@ export default function (props: any) {
                   -
                 </button>
               )}
-              {enable === false || stock === 0 ? <p>0</p> : <p>{cant}</p>}
-              {enable === false || stock === 0 ? (
+              {enable === false || stock <= 0 ? <p>0</p> : <p>{cant}</p>}
+              {enable === false || stock <= 0 ? (
                 <button disabled className={styles.buttonDisabled}>
                   +
                 </button>
@@ -144,14 +144,14 @@ export default function (props: any) {
                 </button>
               )}
             </div>
-            {enable === false || stock === 0 ? (
+            {enable === false || stock <= 0 ? (
               <p className={styles.stock}>0 en Stock</p>
             ) : (
               <p>{prod.stock} en Stock</p>
             )}
           </div>
 
-          {enable === false || stock === 0 ? (
+          {enable === false || stock <= 0 ? (
             <div className={styles.priceDisabled}>
               <p>${prod.price}</p>
             </div>
