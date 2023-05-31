@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Rating } from "../..";
 import styles from "./Details.module.scss";
 import { DetailProd, getToken, urlAxios } from "../../../utils";
@@ -11,6 +11,7 @@ interface DetailsProps {
 }
 
 function Details({ detail }: DetailsProps) {
+  const { cartProducts } = useSelector((state: any) => state.carrito);
   const [admin, setAdmin] = useState(false);
   const { token } = getToken();
   const productInit = {
@@ -57,6 +58,22 @@ function Details({ detail }: DetailsProps) {
 
   const submitAddCart = async (event: any) => {
     event.preventDefault();
+
+    const cartProduct = cartProducts.find(
+      (product: any) => product._id === detail._id
+    );
+
+    if (cartProduct) {
+      if (cartProduct.cantidadCarrito + obj.cantidad > detail.stock) {
+        Swal.fire({
+          title: "No hay mas stock de este producto",
+          icon: "error",
+          timer: 2000,
+          position: "center",
+        });
+        return;
+      }
+    }
 
     try {
       await urlAxios.post("user/shoppingCart", obj);
