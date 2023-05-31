@@ -14,10 +14,10 @@ export default function () {
   const { token } = getToken();
   const getProducts = async () => {
     const { data } = await urlAxios(`/order/${token}`);
-
     const ordenes = data?.orders;
     setCompras(ordenes);
   };
+
   useEffect(() => {
     getProducts();
   }, []);
