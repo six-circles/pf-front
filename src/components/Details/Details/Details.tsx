@@ -87,12 +87,36 @@ function Details({ detail }: DetailsProps) {
         showConfirmButton: false,
         timer: 1000,
       });
-
-      if (event.target.name === "buy") {
-        navigate("/carrito");
-      }
     } catch (err: any) {
       console.log(err.response);
+    }
+  };
+
+  const handleBuy = async () => {
+    const cartProduct = cartProducts.find(
+      (product: any) => product._id === detail._id
+    );
+
+    if (cartProduct) {
+      if (cartProduct.cantidadCarrito > 0) {
+        navigate("/carrito");
+      } else {
+        try {
+          await urlAxios.post("user/shoppingCart", obj);
+
+          dispatch(getCartProducts());
+          setCart(productInit);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Añadido a Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (err: any) {
+          console.log(err.response);
+        }
+      }
     }
   };
 
@@ -173,11 +197,7 @@ function Details({ detail }: DetailsProps) {
           />
           <button onClick={submitAddCart}>Agregar al carrito</button>
         </div>
-        <button
-          className={styles.button_buy}
-          name="buy"
-          onClick={submitAddCart}
-        >
+        <button className={styles.button_buy} name="buy" onClick={handleBuy}>
           Comprar
         </button>
         {admin && (
