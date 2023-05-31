@@ -30,6 +30,7 @@ export const getUserRemote = async () => {
   let { data } = await urlAxios.get(`/user/${getUserLocal().token}`);
 
   let myData = {
+    id: data._id,
     name: data.name,
     email: data.email,
     phone: data.phone,
