@@ -54,7 +54,7 @@ const Slider = () => {
           {randomProducts[slide] && (
             <img
               className={styles.image}
-              src={products[slide].image[0].url}
+              src={randomProducts[slide].image[0].url}
               alt=""
             />
           )}
