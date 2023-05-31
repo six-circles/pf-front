@@ -27,6 +27,7 @@ export default function ({ productos, button = true }: any) {
     try {
       setIsLoading(true);
       const { data } = await urlAxios.post(`/mercadopago/${token}`, products);
+      console.log(data);
       setPreferenceId(data.id);
       setIsLoading(false);
     } catch (err: any) {

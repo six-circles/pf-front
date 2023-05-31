@@ -162,8 +162,6 @@ function CardProduct(props: Product) {
     shortName = props.name.slice(0, 40) + "...";
   }
 
-  console.log(props.enable, props.stock);
-
   useEffect(() => {
     const finded = favoritos.find((fav: any) => fav._id === props.id);
     if (finded) {
@@ -202,15 +200,9 @@ function CardProduct(props: Product) {
               className={styles.icon_cart_act}
               onClick={addToCarrito}
             />
-          ) : (
-            props.enable &&
-            props.stock && (
-              <IoCartSharp
-                className={styles.icon_cart}
-                onClick={addToCarrito}
-              />
-            )
-          )}
+          ) : props.enable && props.stock ? (
+            <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
+          ) : null}
         </div>
       </div>
       <div className={styles.card_info}>
