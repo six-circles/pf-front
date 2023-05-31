@@ -29,12 +29,22 @@
   margin-left: 1rem;
   margin-bottom: 1rem;
   font-size: medium;
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
 }
 .buttonX {
   display: flex;
   height: fit-content;
   font-size: x-small;
   background-color: red;
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
 }
 .raiting {
   margin-left: 1rem;

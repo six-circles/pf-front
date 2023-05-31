@@ -116,7 +116,8 @@ function CreateProduct() {
 
     const obj_post = {
       condition: form.condition,
-      title: form.title,
+      title:
+        form.title.charAt(0).toUpperCase() + form.title.substr(1).toLowerCase(),
       stock: Number(form.stock),
       price: Number(form.price),
       description: form.description,
