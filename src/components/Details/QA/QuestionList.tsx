@@ -52,7 +52,7 @@ export function QuestionList(props: any) {
 
   return (
     <Fragment>
-      <div className={Style.card}>
+      
         <div className={Style.view}>
           <br />
           <div></div>
@@ -88,7 +88,7 @@ export function QuestionList(props: any) {
             <br />
           </form>
         )}
-      </div>
+    
     </Fragment>
   );
 }
