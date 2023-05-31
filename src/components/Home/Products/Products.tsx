@@ -3,7 +3,6 @@ import CardProduct from "./CardProduct";
 import styles from "./Products.module.scss";
 
 function Products({ products }: any) {
-  console.log("PRODUCTS", products);
   return (
     <div className={styles.products}>
       {products.map((item: any) => (
