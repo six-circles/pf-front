@@ -155,7 +155,11 @@ function Details({ detail }: DetailsProps) {
           >
             {detail.condition}
           </p>
-          <p>{detail.stock} en Stock</p>
+          {isAvaible ? (
+            <p>{detail.stock} en Stock</p>
+          ) : (
+            <p className={styles.noAvaible}>No disponible</p>
+          )}
         </div>
         <div className={styles.details_rating}>
           {(detail.punctuations || detail.punctuations === 0) && (
@@ -210,7 +214,7 @@ function Details({ detail }: DetailsProps) {
           <input
             type="number"
             name="cantidad"
-            placeholder={`1 - ${detail.stock}`}
+            placeholder={`${isAvaible ? 1 - detail.stock : "N/A"}`}
             value={!cart.cantidad ? "" : cart.cantidad}
             min={1}
             max={detail.stock}

@@ -48,7 +48,8 @@
     }
 
     .new,
-    .used {
+    .used,
+    .noAvaible {
       padding: 0.25rem 0.5rem;
       border-radius: 0.5rem;
       font-size: 1.4rem;
@@ -64,6 +65,11 @@
     .used {
       background-color: v.$color-orange-l;
       color: v.$color-orange-s;
+    }
+
+    .noAvaible {
+      background-color: v.$color-gray;
+      color: v.$color-dark;
     }
   }
 
