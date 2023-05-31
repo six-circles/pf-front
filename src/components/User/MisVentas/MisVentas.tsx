@@ -44,7 +44,7 @@ export default function () {
 
         </div>
       ) : (
-        <h3>no realizaste compras aún...</h3>
+        <h3>no tienes ventas aún...</h3>
       )}
     </div>
   );
