@@ -214,7 +214,7 @@ function Details({ detail }: DetailsProps) {
           <input
             type="number"
             name="cantidad"
-            placeholder={`${isAvaible ? 1 - detail.stock : "N/A"}`}
+            placeholder={`${isAvaible ? `1 - ${detail.stock}` : "N/A"}`}
             value={!cart.cantidad ? "" : cart.cantidad}
             min={1}
             max={detail.stock}
