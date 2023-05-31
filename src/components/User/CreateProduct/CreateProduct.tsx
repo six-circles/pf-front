@@ -10,9 +10,9 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
-import Tech from "./Categories/Tech";
-import Clothe from "./Categories/Clothe";
-import Muebles from "./Categories/Muebles";
+// import Tech from "./Categories/Tech";
+// import Clothe from "./Categories/Clothe";
+// import Muebles from "./Categories/Muebles";
 
 interface Products {
   detail: DetailProd;
@@ -33,6 +33,7 @@ function CreateProduct() {
     category: "Others",
   };
 
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState<any>(initState);
   const [image, setImage] = useState<File[] | any>([]);
   const navigate = useNavigate();
@@ -136,8 +137,10 @@ function CreateProduct() {
     formData.append("data", JSON.stringify(obj_post));
 
     try {
+      setIsLoading(true);
       if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
       else await urlAxios.post("/product", formData, config);
+      setIsLoading(false);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -300,10 +303,16 @@ function CreateProduct() {
               onChange={handleChange}
             ></textarea>
           </div>
-          <button>{product ? "Guardar Cambios" : "Crear"}</button>
           <button
-            className={styles.button_back}
+            disabled={isLoading}
+            className={`${isLoading && styles.wait}`}
+          >
+            {product ? "Guardar Cambios" : "Crear"}
+          </button>
+          <button
+            className={`${styles.button_back} ${isLoading && styles.wait}`}
             onClick={() => navigate("/user/products")}
+            disabled={isLoading}
           >
             Cancelar
           </button>

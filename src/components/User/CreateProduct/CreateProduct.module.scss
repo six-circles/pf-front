@@ -35,6 +35,11 @@
       background-color: darken(v.$color-gray, 10%);
     }
   }
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
 }
 
 .form_camp_cont {
