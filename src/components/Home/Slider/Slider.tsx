@@ -12,7 +12,8 @@ const Slider = () => {
     if (count >= products.length) {
       return products;
     }
-    const shuffled = products.sort(() => 0.5 - Math.random());
+    const prod = [...products];
+    const shuffled = prod.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   };
 
