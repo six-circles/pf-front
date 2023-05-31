@@ -1,4 +1,3 @@
-
 import  { Fragment, useState, useEffect } from "react";
 import Style from"./QAS.module.scss";
 import { useParams } from "react-router-dom";
@@ -11,11 +10,8 @@ interface Question {
 export function Questionmyuser(props:any) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [getQuestion, setGetQuestion] = useState("");
-
   const {id}=useParams()
 const {token, config}=getToken()
-
-
 
 const handleQuestion = async () => {
 
@@ -25,16 +21,14 @@ try{
   console.log(get.data);
 setQuestions([...get.data])
 console.log(questions);
-
-}   
-
-catch(error:any){
+}   catch(error:any){
   console.log(error.response.data);
 }}
 
 useEffect(() => {
 handleQuestion();
 },[]);
+
   return (
     <Fragment> 
     <div className={Style.card}>  
