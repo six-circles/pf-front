@@ -10,7 +10,7 @@
   height: 40rem;
   box-sizing: border-box;
   background-color: v.$color-gray;
-  padding: 2rem;
+  padding: 2rem 2.5rem;
 }
 
 .prevButton,
@@ -25,7 +25,7 @@
 }
 
 .prevButton {
-  left: 10px;
+  left: 2px;
   background-image: url(../../../assets/images/slider/b-left.svg);
   background-size: contain;
   width: 30px;
@@ -34,7 +34,7 @@
 }
 
 .nextButton {
-  right: 10px;
+  right: 2px;
   background-image: url(../../../assets/images/slider/b-right.svg);
   background-size: contain;
   width: 3rem;
