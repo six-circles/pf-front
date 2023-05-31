@@ -30,6 +30,7 @@ export default function () {
           {compras.map((order: any) => (
             <div className={styles.ordenes} key={Math.random()}>
               <p>{order.created.slice(0, 10)}</p>
+              {console.log(order._id)}
               {order.shoppingCart.map((product: any) => (
                 <CardCompras
                   key={Math.random()}
