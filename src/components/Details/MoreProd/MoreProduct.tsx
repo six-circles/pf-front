@@ -49,6 +49,7 @@ export default function MoreProduct() {
                 price={item.price}
                 condition={item.condition}
                 stock={item.stock}
+                enable={item.enable}
               />
             ))}
           </div>
