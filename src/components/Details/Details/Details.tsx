@@ -13,6 +13,7 @@ interface DetailsProps {
 
 function Details({ detail }: DetailsProps) {
   const { cartProducts } = useSelector((state: any) => state.carrito);
+  const [isAvaible, setIsAvaible] = useState(true);
   const [admin, setAdmin] = useState(false);
   const { token } = getToken();
   const productInit = {
@@ -92,10 +93,6 @@ function Details({ detail }: DetailsProps) {
           showConfirmButton: false,
           timer: 1000,
         });
-
-        if (event.target.name === "buy") {
-          navigate("/carrito");
-        }
       } else {
         Swal.fire({
           position: "center",
@@ -106,12 +103,46 @@ function Details({ detail }: DetailsProps) {
         });
       }
     } catch (err: any) {
-      console.log(err.response);
+      console.log(err.response.data);
     }
+  };
+
+  const handleBuy = async () => {
+    const cartProduct = cartProducts.find(
+      (product: any) => product._id === detail._id
+    );
+
+    if (cartProduct) {
+      if (cartProduct.cantidadCarrito > 0) {
+        navigate("/carrito");
+      }
+    } else {
+      try {
+        await urlAxios.post("user/shoppingCart", obj);
+
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Añadido a Carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+
+        navigate("/carrito");
+      } catch (err: any) {
+        console.log(err.response);
+      }
+    }
+  };
+
+  const avaible = () => {
+    if (detail.stock > 0) setIsAvaible(true);
+    else setIsAvaible(false);
   };
 
   useEffect(() => {
     isAdmin();
+    avaible();
   }, [detail]);
 
   return (
@@ -184,13 +215,22 @@ function Details({ detail }: DetailsProps) {
             min={1}
             max={detail.stock}
             onChange={handleSetCart}
+            disabled={!isAvaible}
+            className={!isAvaible ? styles.disable : ""}
           />
-          <button onClick={submitAddCart}>Agregar al carrito</button>
+          <button
+            onClick={submitAddCart}
+            disabled={!isAvaible}
+            className={!isAvaible ? styles.disable : ""}
+          >
+            Agregar al carrito
+          </button>
         </div>
         <button
-          className={styles.button_buy}
+          className={`${styles.button_buy} ${!isAvaible ? styles.disable : ""}`}
           name="buy"
-          onClick={submitAddCart}
+          onClick={handleBuy}
+          disabled={!isAvaible}
         >
           Comprar
         </button>
