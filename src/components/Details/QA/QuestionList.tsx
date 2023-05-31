@@ -1,20 +1,22 @@
-import React, { Fragment, useState } from "react";
-import Style from "./QA.module.scss";
+import React, { Fragment, useEffect, useState } from "react";
+import Style from"./QA.module.scss";
 import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { getProductDetail } from "../../../redux/actions/productActions.";
+import { useDispatch } from "react-redux";
 
 interface Question {
   id: number;
   text: string;
 }
+
 export function QuestionList(props: any) {
-  const dispatch: Function = useDispatch();
-  const [questions, setQuestions] = useState<Question[]>([]);
+ const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
-  const { id } = useParams();
-  const { token, config } = getToken();
+  const {id}=useParams()
+const {token, config}=getToken()
+const dispatch: any = useDispatch();
+
 
   const handleQuestionSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,18 +24,19 @@ export function QuestionList(props: any) {
       const body = { token, productId: id, body: newQuestion };
       try {
         await urlAxios.post("/product/questions", body, config);
-        dispatch(getProductDetail(id));
-        setQuestions([
-          ...questions,
-          { id: questions.length + 1, text: newQuestion },
-        ]);
+         //await urlAxios.get(`/product/questions/${id}`);
+         dispatch(getProductDetail(id))
+        setQuestions([...questions, { id: questions.length + 1, text: newQuestion }]);
+      
         setNewQuestion("");
       } catch (error: any) {
         console.log(error.response.data);
       }
+      
     }
   };
 
+  
   return (
     <Fragment>
       <div className={Style.card}>
@@ -74,3 +77,5 @@ export function QuestionList(props: any) {
     </Fragment>
   );
 }
+
+

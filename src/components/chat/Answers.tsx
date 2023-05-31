@@ -10,7 +10,7 @@ interface Question {
 
 interface Answer {
   body: ReactNode;
-  question: any;
+  questionId: number;
   id: number;
 }
 
@@ -20,7 +20,6 @@ export function Answers(props: any) {
   const [newAnswer, setNewAnswer] = useState("");
   const { token, config } = getToken();
   const { id } = useParams();
-  const [getAnswer, setGetAnswer] = useState("");
   const [answered, setAnswered] = useState(false);
 
   const newAnswerObj = {
@@ -30,14 +29,13 @@ export function Answers(props: any) {
 
   useEffect(() => {
     handleAnswer();
-    checkAnswered(); // Verificar si la pregunta ha sido respondida al cargar la página
+    checkAnswered();
   }, []);
 
   const handleAnswer = async () => {
     try {
       const responses = await urlAxios.get(`/product/questions/answers/${props.id}`);
       setAnswers(responses.data);
-      setGetAnswer("");
       console.log(responses);
     } catch (error: any) {
       console.log(error.response.data);
@@ -56,9 +54,7 @@ export function Answers(props: any) {
       const response = await urlAxios.post("/product/questions/answers", newAnswerObj, config);
 
       setNewAnswer("");
-      setAnswered(true); // Marcar la pregunta como respondida
-
-      // Guardar la pregunta respondida en el almacenamiento local
+      setAnswered(true);
       localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
 
       handleAnswer();
@@ -68,13 +64,16 @@ export function Answers(props: any) {
   };
 
   const checkAnswered = () => {
-    // Verificar si la pregunta ha sido respondida anteriormente
     const answeredQuestion = localStorage.getItem(`answered_${props.id}`);
 
     if (answeredQuestion) {
       setAnswered(true);
     }
   };
+
+  if (answered) {
+    return null;
+  }
 
   return (
     <Fragment>
@@ -84,11 +83,13 @@ export function Answers(props: any) {
             <ul className={Style.ulanswer}>
               <br />
               {answers &&
-                answers?.map((answer: any) => (
-                  <li className={Style.lianswer} key={answer._id}>
-                    {answer.body}
-                  </li>
-                ))}
+                answers
+                  .filter((answer) => answer.questionId === props.id)
+                  .map((answer: any) => (
+                    <li className={Style.lianswer} key={answer._id}>
+                      {answer.body}
+                    </li>
+                  ))}
               <br />
             </ul>
             <input
