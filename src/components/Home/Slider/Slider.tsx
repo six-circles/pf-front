@@ -60,12 +60,16 @@ const Slider = () => {
         </div>
         <div className={styles.contDesc}>
           <div className={styles.desc}>
-            <h2 onClick={handleClick}>{products[slide]?.title}</h2>
+            <h2 onClick={handleClick}>
+              {randomProducts[slide]?.title.length > 40
+                ? randomProducts[slide]?.title.slice(0, 40) + "..."
+                : randomProducts[slide]?.title}
+            </h2>
             <br />
             <p>
-              {products[slide]?.description.length > 250
-                ? products[slide]?.description.slice(0, 250) + "..."
-                : products[slide]?.description}
+              {randomProducts[slide]?.description.length > 200
+                ? randomProducts[slide]?.description.slice(0, 200) + "..."
+                : randomProducts[slide]?.description}
             </p>
             <br />
             <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>
