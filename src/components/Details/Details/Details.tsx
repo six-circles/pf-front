@@ -67,7 +67,7 @@ function Details({ detail }: DetailsProps) {
     );
 
     if (cartProduct) {
-      if (cartProduct.cantidadCarrito + obj.cantidad > detail.stock) {
+      if (cartProduct.cantidadCarrito + Number(obj.cantidad) > detail.stock) {
         Swal.fire({
           title: "No hay mas stock de este producto",
           icon: "error",
