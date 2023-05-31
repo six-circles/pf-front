@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './MyUser.module.scss';
 import { useNavigate } from 'react-router';
-import { Link } from "react-router-dom";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import Swal from "sweetalert2";
-
 
 function MyUser() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +63,7 @@ function MyUser() {
     <div className={styles.buttonContainer} ref={buttonRef} onClick={handleLogin}>
       <div className={`${styles.button} ${isOpen ? styles.expanded : ''}`} onClick={handleClick}>
         <MdOutlineAccountCircle className={styles.icons2} />
-        {!user?.user ? "Ingresar" : user?.user}
+        {!user?.user ? "Ingresar" : (user?.user.split(" ")[0])}
       </div>
       {isOpen && (
         <div className={styles.optionsContainer}>

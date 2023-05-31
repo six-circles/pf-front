@@ -89,7 +89,7 @@ export default function () {
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{user.name}</td>
+                  <td>{user.name} <b>({user.admin ? "admin" : "usuario"})</b></td>
                   <td>{user.email}</td>
                   <td> <button onClick={() => enableUser(user.email)} className={user.enable ? styles.enabled : styles.disabled}>{user.enable ? "Habilitado" : "Deshabilitado"}</button></td>
                   <td><Link to={`/detail/${name}/${encriptadoEmail}`}>Ver perfil</Link></td>
