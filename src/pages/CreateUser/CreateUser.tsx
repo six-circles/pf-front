@@ -7,6 +7,7 @@ import validation from "./validate";
 import Swal from "sweetalert2";
 
 export default function () {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/login");
 
@@ -33,28 +34,26 @@ export default function () {
     password: form.password,
   };
 
-
-
-
-
   const handleChange = (e: any) => {
-    e.preventDefault()
-    const property: string = e.target.name
-    const value: string = e.target.value
-    setForm({ ...form, [property]: value })
-    setError({ ...validation({ ...form, [property]: value }) })
-  }
+    e.preventDefault();
+    const property: string = e.target.name;
+    const value: string = e.target.value;
+    setForm({ ...form, [property]: value });
+    setError({ ...validation({ ...form, [property]: value }) });
+  };
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await urlAxios.post("/user", newUser)
+      setIsLoading(true);
+      await urlAxios.post("/user", newUser);
+      setIsLoading(false);
       Swal.fire({
-        position: 'center',
-        icon: 'success',
+        position: "center",
+        icon: "success",
         title: "Usuario creado con exito",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
       setForm({
         name: "",
@@ -62,33 +61,29 @@ export default function () {
         phone: "",
         birthday: "",
         password: "",
-        repeatPassword: ""
-      })
-      navigate("/login")
-    }
-    catch (error: any) {
+        repeatPassword: "",
+      });
+      navigate("/login");
+    } catch (error: any) {
       if (error.response.data.error.includes("duplicate key")) {
         Swal.fire({
-          position: 'center',
-          icon: 'info',
+          position: "center",
+          icon: "info",
           title: "Email ya registrado",
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,
         });
-
       } else {
         Swal.fire({
-          position: 'center',
-          icon: 'warning',
+          position: "center",
+          icon: "warning",
           title: error.response.data.error,
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,
         });
       }
-
     }
-
-  }
+  };
   return (
     <div className={styles.contenedor}>
       <div className={styles.contenedor}>
@@ -159,8 +154,15 @@ export default function () {
               <p className={styles.errorBirth}>{error.birthday}</p>
             </div>
           </div>
-          {error.password.length === 0 && error.email.length === 0 && error.birthday.length === 0 ? (
-            <button className={styles.buttonRes}>Registrar</button>
+          {error.password.length === 0 &&
+          error.email.length === 0 &&
+          error.birthday.length === 0 ? (
+            <button
+              className={`${styles.buttonRes} ${isLoading && styles.wait}`}
+              disabled={isLoading}
+            >
+              Registrar
+            </button>
           ) : (
             <button className={styles.buttonResDisabl} disabled>
               Registrar
