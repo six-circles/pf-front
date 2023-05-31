@@ -173,46 +173,48 @@ function CreateProduct() {
           </div>
           {!product && (
             <>
-              <div className={styles.form_camp}>
-                <label>Estado</label>
-                <div className={styles.form_camp_cond}>
-                  <div>
-                    <input
-                      id="product-nuevo"
-                      type="radio"
-                      value="Nuevo"
-                      name="condition"
-                      checked={form.condition === "Nuevo"}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="product-nuevo">Nuevo</label>
+              <div className={styles.form_camp_cont}>
+                <div className={styles.form_camp}>
+                  <label>Estado</label>
+                  <div className={styles.form_camp_cond}>
+                    <div>
+                      <input
+                        id="product-nuevo"
+                        type="radio"
+                        value="Nuevo"
+                        name="condition"
+                        checked={form.condition === "Nuevo"}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="product-nuevo">Nuevo</label>
+                    </div>
+                    <div>
+                      <input
+                        id="product-usado"
+                        type="radio"
+                        value="Usado"
+                        name="condition"
+                        checked={form.condition === "Usado"}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="product-usado">Usado</label>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      id="product-usado"
-                      type="radio"
-                      value="Usado"
-                      name="condition"
-                      checked={form.condition === "Usado"}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="product-usado">Usado</label>
-                  </div>
+                </div>
+
+                <div className={styles.form_camp}>
+                  <p>Categoria</p>
+                  <select name="category" onChange={handleChange}>
+                    <option value="Others" defaultChecked>
+                      Otros
+                    </option>
+                    <option value="Technology">Tecnologia</option>
+                    <option value="Indumentary">Ropa</option>
+                    <option value="Furniture">Muebles</option>
+                  </select>
                 </div>
               </div>
 
-              <div className={styles.form_camp}>
-                <label>Imagenes</label>
-                <input
-                  type="file"
-                  placeholder="Ingrese al menos una imagen"
-                  required
-                  accept="image/jpg, image/jpeg, image/png"
-                  multiple={true}
-                  name="image1"
-                  onChange={handleAddImage}
-                />
-              </div>
               {/* <div className={styles.form_camp}>
                 <label>Imagen 2</label>
                 <input
@@ -232,18 +234,6 @@ function CreateProduct() {
                 />
               </div> */}
 
-              <div className={styles.form_camp}>
-                <p>Categoria</p>
-                <select name="category" onChange={handleChange}>
-                  <option value="Others" defaultChecked>
-                    Otros
-                  </option>
-                  <option value="Technology">Tecnologia</option>
-                  <option value="Indumentary">Ropa</option>
-                  <option value="Furniture">Muebles</option>
-                </select>
-              </div>
-
               {/* {form.category !== "Other" && (
                 <div className={styles.form_camp}>
                   {form.category === "Technology" ? (
@@ -257,31 +247,47 @@ function CreateProduct() {
               )} */}
             </>
           )}
-          <div className={styles.form_camp}>
-            <label>Precio</label>
-            <input
-              type="number"
-              placeholder="Precio de venta"
-              required
-              min={0}
-              max={999999}
-              value={form.price}
-              name="price"
-              onChange={handleChange}
-              step=".01"
-            />
+          <div className={styles.form_camp_cont}>
+            <div className={styles.form_camp}>
+              <label>Precio</label>
+              <input
+                type="number"
+                placeholder="Precio de venta"
+                required
+                min={0}
+                max={999999}
+                value={form.price}
+                name="price"
+                onChange={handleChange}
+                step=".01"
+              />
+            </div>
+            <div className={styles.form_camp}>
+              <label>Stock</label>
+              <input
+                type="number"
+                placeholder="¿Cuanto producto hay en stock?"
+                required
+                min={0}
+                max={9999}
+                name="stock"
+                value={form.stock}
+                onChange={handleChange}
+              />
+            </div>
           </div>
+
           <div className={styles.form_camp}>
-            <label>Stock</label>
+            <label>Imagenes</label>
             <input
-              type="number"
-              placeholder="¿Cuanto producto hay en stock?"
+              className={styles.input_image}
+              type="file"
+              placeholder="Ingrese al menos una imagen"
               required
-              min={0}
-              max={9999}
-              name="stock"
-              value={form.stock}
-              onChange={handleChange}
+              accept="image/jpg, image/jpeg, image/png"
+              multiple={true}
+              name="image1"
+              onChange={handleAddImage}
             />
           </div>
           <div className={styles.form_camp}>
