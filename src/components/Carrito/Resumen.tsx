@@ -1,11 +1,15 @@
 import { getToken, urlAxios } from "../../utils";
 import { useEffect, useState } from "react";
 import styles from "./Resumen.module.scss";
+import { useNavigate } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import Swal from "sweetalert2";
 import { Loading } from "..";
+
 initMercadoPago(import.meta.env.VITE_PUBLIC_KEY_MERCADOPAGO);
 
 export default function ({ productos, button = true }: any) {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const prod = productos.filter((p: any) => p.enable);
   let totalPerProduct = prod.map((p: any) => p.price * p.cantidadCarrito);
@@ -26,7 +30,19 @@ export default function ({ productos, button = true }: any) {
       setPreferenceId(data.id);
       setIsLoading(false);
     } catch (err: any) {
-      console.log(err.response.data);
+      Swal.fire({
+        icon: "warning",
+        timer: 3000,
+        title: err.response.data.message,
+        position: "center",
+      }).then(() => {
+        if (
+          err.response.data.message ===
+          "Debes completar tus datos antes de realizar una compra"
+        ) {
+          navigate("/user");
+        }
+      });
     }
   };
 
