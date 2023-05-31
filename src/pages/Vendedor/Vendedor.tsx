@@ -77,7 +77,7 @@ export default function () {
     setPunctuation(punctuation);
     const { name } = data?.user;
     setName(name);
-    setEnable(enable);
+    setEnable(data.user.enable);
     setCantPuntuaciones(data.cantPuntuaciones);
   };
 
