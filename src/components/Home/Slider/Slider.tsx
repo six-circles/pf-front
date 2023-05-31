@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const { products } = useSelector((state: any) => state.products);
-  // const { products } = productsList;
+
   const navigate = useNavigate();
 
   const getRandomProducts = (products: any, count: number) => {
@@ -21,7 +21,6 @@ const Slider = () => {
 
   const [slide, setSlide] = useState(0);
   let cant: number;
-  // products.length > 2 ? cant = 3 : cant = 1;
   cant = randomProducts.length;
 
   const handleClick = () => {
@@ -53,7 +52,6 @@ const Slider = () => {
         <div className={styles.contImage} onClick={handleClick}>
           {randomProducts[slide] && (
             <img
-              className={styles.image}
               src={randomProducts[slide].image[0].url}
               alt=""
             />
@@ -73,6 +71,9 @@ const Slider = () => {
                 : randomProducts[slide]?.description}
             </p>
             <br />
+
+          </div>
+          <div className={styles.deBoton}>
             <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>
               Ver detalles
             </button>
