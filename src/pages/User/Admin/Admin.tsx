@@ -10,23 +10,30 @@ export default function () {
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const { admin } = await getUserRemote();
+    const { admin, name } = await getUserRemote();
     const user = await getToken();
     const token = user.token;
 
     if (!!token && admin) {
       try {
         const { data } = await urlAxios.get(`${import.meta.env.VITE_BACK_URL}/users`);
+        const datos = data.filter((elem: any) => elem.name !== name)
 
         if (userEnabled === "enable") {
-          setUsers(data.filter((elem: any) => elem.enable === true))
+          setUsers(datos.filter((elem: any) => elem.enable === true))
         }
         if (userEnabled === "disable") {
-          return setUsers(data.filter((elem: any) => elem.enable === false))
+          return setUsers(datos.filter((elem: any) => elem.enable === false))
         }
-        if (userEnabled === "all") return setUsers([...data]);
+        if (userEnabled === "all") return setUsers([...datos]);
       } catch (error: any) {
-        console.log(error.message);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Vuelve a intentarlo",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     } else {
       Swal.fire({
@@ -45,7 +52,13 @@ export default function () {
       await urlAxios.patch(`${import.meta.env.VITE_BACK_URL}/user/?email=${email}`);
       getUsers();
     } catch (error: any) {
-      console.log(error.message);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Vuelve a intentarlo",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }
 

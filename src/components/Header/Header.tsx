@@ -1,8 +1,5 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-// import { MdOutlineAccountCircle } from "react-icons/md";
-// import { AiOutlineHeart } from "react-icons/ai";
-// import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
@@ -14,15 +11,10 @@ import FavoritesCart from "./perfil/FavoritesCart";
 // import Favs from "./PopUps/Favs/Favs";
 
 function Header() {
-  // const [showFavs, setShowFavs] = useState(true);
   const [title, setTitle] = useState("");
-  const [showCarrito, setShowCarrito] = useState(false);
-  const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
-
   const queryParams = new URLSearchParams(window.location.search);
-  // queryParams.toString();
 
   const handleNavigate = () => {
     const cleanSearch = new URLSearchParams();

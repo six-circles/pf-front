@@ -1,6 +1,6 @@
 // import React from "react";
 import styles from "./Login.module.scss";
-import { BsGoogle, BsFacebook, BsApple } from "react-icons/bs";
+import { BsGoogle } from "react-icons/bs";
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";

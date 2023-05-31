@@ -50,7 +50,6 @@ export default function () {
   };
 
   function compareObjects<T>(obj1: T, obj2: T): Partial<T> {
-    console.log("N1: ", obj1, " N2:", obj2);
 
     const result: Partial<T> = {};
     for (const key in obj1) {

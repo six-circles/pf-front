@@ -36,7 +36,13 @@ export default function ({ datos, setIsOpen }: any) {
         }
       });
     } catch (error: any) {
-      console.log(error.message);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Vuelve a intentarlo",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
 

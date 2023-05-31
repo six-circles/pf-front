@@ -36,7 +36,13 @@ export default function CarritoLight({ datos, setIsOpen }: any) {
         }
       });
     } catch (error: any) {
-      console.log(error.message);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Vuelve a intentarlo",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
 
@@ -54,7 +60,7 @@ export default function CarritoLight({ datos, setIsOpen }: any) {
     setIsOpen(false);
   };
 
-  { console.log(datos) }
+
   return (
     <div className={styles.container}>
       <div className={`${styles.contCard}`}>
