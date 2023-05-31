@@ -6,6 +6,7 @@ import { DetailProd, getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { getUserRemote } from "../../../utils";
 interface DetailsProps {
   detail: DetailProd;
 }
@@ -18,6 +19,7 @@ function Details({ detail }: DetailsProps) {
     cantidad: 0,
     characteristics: {},
   };
+
   const [cart, setCart] = useState(productInit);
   const dispatch: Function = useDispatch();
   const obj = { token, productsId: detail._id, cantidad: cart.cantidad || 1 };
@@ -76,20 +78,32 @@ function Details({ detail }: DetailsProps) {
     }
 
     try {
-      await urlAxios.post("user/shoppingCart", obj);
+      const sellerId = detail.user._id;
+      const { id } = await getUserRemote();
+      const userId = id;
+      if (sellerId !== userId) {
+        await urlAxios.post("user/shoppingCart", obj);
+        dispatch(getCartProducts());
+        setCart(productInit);
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Añadido a Carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
 
-      dispatch(getCartProducts());
-      setCart(productInit);
-      Swal.fire({
-        position: "top-right",
-        icon: "success",
-        title: "Añadido a Carrito",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-
-      if (event.target.name === "buy") {
-        navigate("/carrito");
+        if (event.target.name === "buy") {
+          navigate("/carrito");
+        }
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "No puedes agregar tus productos",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     } catch (err: any) {
       console.log(err.response);

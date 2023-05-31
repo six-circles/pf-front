@@ -10,7 +10,7 @@ import { getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
 import { getFavorites } from "../../../redux/actions/favoritosActions";
 import Swal from "sweetalert2";
-
+import { getUserRemote } from "../../../utils";
 interface Product {
   id: string;
   name: string;
@@ -54,49 +54,58 @@ function CardProduct(props: Product) {
 
   const addToCarrito = async (event: any) => {
     event.stopPropagation();
-
+    const { id } = await getUserRemote();
     const prod = {
       productsId: props.id,
       token,
       cantidad: 1,
     };
-
-    if (inCart) {
-      try {
-        await urlAxios.delete(`/${token}/shoppingCart/${props.id}`);
-        setInCart(false);
-        dispatch(getCartProducts());
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Eliminado de Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } catch (error: any) {
-        console.log(error.response.data.error);
+    if (id !== props.user) {
+      if (inCart) {
+        try {
+          await urlAxios.delete(`/${token}/shoppingCart/${props.id}`);
+          setInCart(false);
+          dispatch(getCartProducts());
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Eliminado de Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (error: any) {
+          console.log(error.response.data.error);
+        }
+      } else {
+        try {
+          await urlAxios.post("/user/shoppingCart", prod);
+          setInCart(true);
+          dispatch(getCartProducts());
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Añadido a Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (error: any) {
+          console.log(error.response.data.error);
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Debes estar logeado",
+            showConfirmButton: true,
+          });
+        }
       }
     } else {
-      try {
-        await urlAxios.post("/user/shoppingCart", prod);
-        setInCart(true);
-        dispatch(getCartProducts());
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Añadido a Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } catch (error: any) {
-        console.log(error.response.data.error);
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Debes estar logeado",
-          showConfirmButton: true,
-        });
-      }
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "No puedes agregar tus productos",
+        showConfirmButton: false,
+        timer: 1000,
+      });
     }
   };
 
