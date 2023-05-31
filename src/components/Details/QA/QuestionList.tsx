@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 import React, { Fragment, useEffect, useState } from "react";
 import Style from"./QA.module.scss";
 import { getToken, urlAxios } from "../../../utils";
 import { useParams } from "react-router-dom";
 import { getProductDetail } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
-=======
-import React, { Fragment, useState } from "react";
-import Style from "./QA.module.scss";
-import { getToken, urlAxios } from "../../../utils";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getProductDetail } from "../../../redux/actions/productActions.";
->>>>>>> develop
 
 interface Question {
   id: number;
@@ -20,8 +11,7 @@ interface Question {
 }
 
 export function QuestionList(props: any) {
-  const dispatch: Function = useDispatch();
-  const [questions, setQuestions] = useState<Question[]>([]);
+ const [questions, setQuestions] = useState<Question[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
   const {id}=useParams()
 const {token, config}=getToken()
