@@ -5,11 +5,13 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import CommentList from "../../Details/coments/CommentsList";
 interface Product {
+  key: any;
   id: any;
   name: string;
   image: any;
   price: number;
   punctuation: number;
+  cantidadCarrito: number;
 }
 export default function (props: Product) {
   const navigate = useNavigate();
@@ -28,24 +30,28 @@ export default function (props: Product) {
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
-        <img src={props.image[0].url} alt={props.name.slice(0, 10)} />
+        <img
+          src={props.image[0].url}
+          alt={props.name.slice(0, 10)}
+          onClick={() => handleClick()}
+        />
       </div>
-      <div className={styles.info}>
-        <h3 className={styles.title}>{props.name}</h3>
-        <button className={styles.rating} onClick={showpuntuacion}>
-          Dejale tu comentario al vendedor!
+      <div className={styles.contTitle}>
+        <h3 className={styles.title} onClick={() => handleClick()}>
+          {props.name.slice(0, 15)}...
+        </h3>
+        <p>({props.cantidadCarrito})</p>
+        <button className={styles.buttonComent} onClick={showpuntuacion}>
+          Puntuar
         </button>
       </div>
 
       <div className={styles.precio}>
-        <p className={styles.precio}>Total ${props.price}</p>
+        <p className={styles.precio}>
+          Total ${props.price * props.cantidadCarrito}
+        </p>
       </div>
-      <div className={styles.entregado}>
-        <p className={styles.entrega}>Entregado el 08/02/2023</p>
-        <button onClick={() => handleClick()} className={styles.buttonDetails}>
-          Detalles
-        </button>
-      </div>
+
       {puntuacion ? (
         <div className={styles.puntuacion}>
           {" "}

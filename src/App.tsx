@@ -47,7 +47,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<CreateUser />} />
       <Route path="/recuperar-pass" element={<ForgotPass />} />
-      <Route path="/new-pass" element={<NewPass />} />
+      <Route path="/reset-password/:email/:token" element={<NewPass />} />
       <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/success" element={<Success />} />
       <Route path="/failure" element={<Failure />} />

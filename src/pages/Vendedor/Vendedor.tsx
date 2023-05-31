@@ -22,11 +22,11 @@ export default function () {
   const [puntuaction, setPunctuation] = useState(0);
   const [name, setName] = useState("");
   const [admin, setAdmin] = useState(false);
-
+  const [enable, setEnable] = useState();
+  const [cantPuntuaciones, setCantPuntuaciones] = useState(0);
   const getAdmin = async () => {
     const { token } = getToken();
     const { data } = await urlAxios(`/user/${token}`);
-
     const admin = data?.admin;
     if (admin && data.email !== emailOriginal) {
       setAdmin(true);
@@ -36,13 +36,24 @@ export default function () {
   const bannerSeller = async () => {
     try {
       await urlAxios.patch(`/user?email=${emailOriginal}`);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "User Blocked",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      if (enable) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usuario desabilitado",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Usuario habilitado",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+      getAllProd();
     } catch (error) {
       Swal.fire({
         position: "center",
@@ -60,28 +71,30 @@ export default function () {
 
   const getAllProd = async () => {
     const { data } = await urlAxios(`/user?email=${emailOriginal}`);
-    const products = data?.products;
+    const user = data?.user;
+    const products = user.products;
     setAllProducts(products);
-    const puntuation = data?.punctuation;
+    const puntuation = user.punctuation;
     setPunctuation(puntuation);
-    const name = data?.name;
+    const name = user.name;
     setName(name);
+    setEnable(user.enable);
+    setCantPuntuaciones(data.cantPuntuaciones);
   };
 
   return (
     <div>
       <div className={styles.title}>
+        <h1 className={styles.title}>{name}</h1>
         {admin ? (
           <button onClick={bannerSeller} className={styles.button}>
-            Suspender vendedor
+            {enable ? <p>Suspender vendedor</p> : <p>Habilitar vendedor</p>}
           </button>
         ) : null}
-
-        <h1 className={styles.title}>{name}</h1>
       </div>
       <div className={styles.contenedor}>
         <Rating punctuation={puntuaction} />
-        <p>(5)</p>
+        <p>({cantPuntuaciones})</p>
       </div>
 
       <div>
