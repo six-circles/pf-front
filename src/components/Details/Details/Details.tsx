@@ -53,6 +53,12 @@ function Details({ detail }: DetailsProps) {
       console.error(error.response.data);
     }
   };
+  const auth = async () => {
+    const sellerId = detail.user._id;
+    const { id } = await getUserRemote();
+    const userId = id;
+    return { sellerId, userId };
+  };
 
   const user = detail.user;
   const email = user?.email;
@@ -79,9 +85,7 @@ function Details({ detail }: DetailsProps) {
     }
 
     try {
-      const sellerId = detail.user._id;
-      const { id } = await getUserRemote();
-      const userId = id;
+      const { sellerId, userId } = await auth();
       if (sellerId !== userId) {
         await urlAxios.post("user/shoppingCart", obj);
         dispatch(getCartProducts());
@@ -108,6 +112,8 @@ function Details({ detail }: DetailsProps) {
   };
 
   const handleBuy = async () => {
+    const { sellerId, userId } = await auth();
+
     const cartProduct = cartProducts.find(
       (product: any) => product._id === detail._id
     );
@@ -116,19 +122,30 @@ function Details({ detail }: DetailsProps) {
       if (cartProduct.cantidadCarrito > 0) {
         navigate("/carrito");
       }
-    } else {
+    }
+    {
       try {
-        await urlAxios.post("user/shoppingCart", obj);
+        if (sellerId !== userId) {
+          await urlAxios.post("user/shoppingCart", obj);
 
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Añadido a Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Añadido a Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
 
-        navigate("/carrito");
+          navigate("/carrito");
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "No puedes agregar tus productos",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
       } catch (err: any) {
         console.log(err.response);
       }
