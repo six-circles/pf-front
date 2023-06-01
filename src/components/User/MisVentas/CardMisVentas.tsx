@@ -2,6 +2,7 @@ import styles from "./CardMisVentas.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 interface Product {
   key: any;
@@ -16,11 +17,14 @@ export default function (props: Product) {
   const navigate = useNavigate();
   const dispatch: Function = useDispatch();
   const id = props.id;
+
   const handleClick = () => {
     dispatch(clearProducts());
     navigate(`/detail/${id}`);
     window.scrollTo(0, 0);
   };
+
+
 
   return (
     <div className={styles.card}>
