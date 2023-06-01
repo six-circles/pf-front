@@ -2,7 +2,7 @@ import styles from "./CardCompras.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import CommentList from "../../Details/coments/CommentsList";
 
 interface Product {
@@ -13,9 +13,16 @@ interface Product {
   price: number;
   punctuation: number;
   cantidadCarrito: number;
+  order?: string;
+  delivery?: any;
 }
+
 export default function (props: Product) {
   const navigate = useNavigate();
+  const [delivery, setDelivery] = useState<any>({
+    status: 0,
+    productId: "",
+  });
   const dispatch: Function = useDispatch();
   const id = props.id;
   const handleClick = () => {
@@ -29,7 +36,20 @@ export default function (props: Product) {
     setPuntuacion(true);
   };
 
-  useEffect(() => { }, []);
+  const setStatus = () => {
+    const status = props.delivery.find(
+      (prod: any) => prod.productId === props.id
+    );
+
+    if (status) {
+      setDelivery(status);
+    }
+  };
+
+  useEffect(() => {
+    setStatus();
+  }, []);
+
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
@@ -65,6 +85,16 @@ export default function (props: Product) {
           />{" "}
         </div>
       ) : null}
+
+      <div className={styles.status}>
+        {delivery.status == 0 ? (
+          <p className={styles.status_0}>Pendiente</p>
+        ) : delivery.status == 1 ? (
+          <p className={styles.status_1}>En camino</p>
+        ) : (
+          <p className={styles.status_2}>Entregado</p>
+        )}
+      </div>
     </div>
   );
 }

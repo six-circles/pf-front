@@ -9,8 +9,9 @@
   cursor: pointer;
   margin-bottom: 1rem;
   gap: 1rem;
-  width: fit-content;
+  width: 100%;
   border-bottom: 0.1rem solid v.$color-gray;
+  justify-content: space-between;
   // &:hover {
   //   scale: 1.025;
   // }
@@ -66,4 +67,33 @@
   position: fixed;
   background-color: antiquewhite;
   width: fit-content;
+}
+
+.status {
+  display: flex;
+  justify-content: end;
+  padding-inline: 2rem;
+  height: fit-content;
+
+  .status_0,
+  .status_1,
+  .status_2 {
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .status_0 {
+    background-color: v.$color-gray;
+    color: v.$color-dark;
+  }
+
+  .status_1 {
+    background-color: v.$color-orange-l;
+    color: v.$color-orange-s;
+  }
+
+  .status_2 {
+    background-color: v.$color-green-l;
+    color: v.$color-green-s;
+  }
 }
