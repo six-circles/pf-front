@@ -2,7 +2,6 @@ import styles from "./CardMisVentas.module.scss";
 import { clearProducts } from "../../../redux/actions/productActions.";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { useState } from "react";
 
 interface Product {
   key: any;
@@ -24,8 +23,6 @@ export default function (props: Product) {
     window.scrollTo(0, 0);
   };
 
-
-
   return (
     <div className={styles.card}>
       <div className={styles.card_image}>
@@ -46,7 +43,6 @@ export default function (props: Product) {
         Total ${props.price * props.cantidadCarrito}
         {/* </p> */}
       </div>
-
     </div>
   );
 }
