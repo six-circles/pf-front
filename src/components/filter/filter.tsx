@@ -10,7 +10,7 @@ const Filter: React.FC = () => {
   const dispatch: Function = useDispatch();
   const searchParams = new URLSearchParams(location.search);
   let minP = "0",
-    maxP = "5000",
+    maxP = "50000",
     minR = "0",
     maxR = "5";
 
