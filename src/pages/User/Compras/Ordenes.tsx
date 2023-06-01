@@ -6,6 +6,7 @@ import { urlAxios } from "../../../utils";
 function Ordenes({ order }: any) {
   const [delivery, setDelivery] = useState([]);
   const getDeliveryOrders = async () => {
+    console.log(order._id);
     const { data } = await urlAxios(`/deliveries/${order._id}`);
 
     console.log(data);
