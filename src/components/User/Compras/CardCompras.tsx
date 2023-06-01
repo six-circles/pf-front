@@ -19,13 +19,21 @@ interface Product {
 
 export default function (props: Product) {
   const navigate = useNavigate();
-  const [delivery, setDelivery] = useState<any>({});
+  const [delivery, setDelivery] = useState<any>({
+    status: 0,
+    productId: "",
+  });
   const dispatch: Function = useDispatch();
   const id = props.id;
   const handleClick = () => {
     dispatch(clearProducts());
     navigate(`/detail/${id}`);
     window.scrollTo(0, 0);
+  };
+
+  const [puntuacion, setPuntuacion] = useState(false);
+  const showpuntuacion = () => {
+    setPuntuacion(true);
   };
 
   const setStatus = () => {
@@ -36,11 +44,6 @@ export default function (props: Product) {
     if (status) {
       setDelivery(status);
     }
-  };
-
-  const [puntuacion, setPuntuacion] = useState(false);
-  const showpuntuacion = () => {
-    setPuntuacion(true);
   };
 
   useEffect(() => {
@@ -85,9 +88,11 @@ export default function (props: Product) {
 
       <div className={styles.status}>
         {delivery.status == 0 ? (
-          <p className={styles.status_0}>En camino</p>
+          <p className={styles.status_0}>Pendiente</p>
+        ) : delivery.status == 1 ? (
+          <p className={styles.status_1}>En camino</p>
         ) : (
-          <p className={styles.status_1}>Entregado</p>
+          <p className={styles.status_2}>Entregado</p>
         )}
       </div>
     </div>

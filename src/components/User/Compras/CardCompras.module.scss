@@ -76,12 +76,18 @@
   height: fit-content;
 
   .status_0,
-  .status_1 {
+  .status_1,
+  .status_2 {
     border-radius: 0.5rem;
     padding: 0.25rem 0.75rem;
   }
 
   .status_0 {
+    background-color: v.$color-gray;
+    color: v.$color-dark;
+  }
+
+  .status_q {
     background-color: v.$color-orange-l;
     color: v.$color-orange-s;
   }
