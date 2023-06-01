@@ -259,7 +259,7 @@ function CreateProduct() {
                 placeholder="Precio de venta"
                 required
                 min={0}
-                max={999999}
+                max={50000}
                 value={form.price}
                 name="price"
                 onChange={handleChange}

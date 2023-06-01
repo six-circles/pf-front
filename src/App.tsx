@@ -24,7 +24,7 @@ import LayoutUser from "./layout/LayoutUser";
 import Admin from "./pages/User/Admin/Admin";
 import ForgotPass from "./pages/ForgotPass/ForgotPass";
 import NewPass from "./pages/ForgotPass/NewPass";
-import LoginLayout from "./layout/LoginLayout";
+import LoginLayout from "./layout/LoginLayout.tsx";
 
 function App() {
   return (
