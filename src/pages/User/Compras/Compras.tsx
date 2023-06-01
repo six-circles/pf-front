@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../../../utils";
-import CardCompras from "../../../components/User/Compras/CardCompras";
 import styles from "./Compras.module.scss";
 import { urlAxios } from "../../../utils";
+import Ordenes from "./Ordenes";
 
 export default function () {
   const [compras, setCompras] = useState([]);
@@ -23,21 +23,7 @@ export default function () {
       {compras?.length ? (
         <div className={styles.cards}>
           {compras.map((order: any) => (
-            <div className={styles.ordenes} key={Math.random()}>
-              <p>{order.created.slice(0, 10)}</p>
-              {console.log(order._id)}
-              {order.shoppingCart.map((product: any) => (
-                <CardCompras
-                  key={Math.random()}
-                  id={product._id}
-                  name={product.title}
-                  image={product.image}
-                  price={product.price}
-                  punctuation={product.punctuation}
-                  cantidadCarrito={product.cantidadCarrito}
-                />
-              ))}
-            </div>
+            <Ordenes order={order} key={order._id} />
           ))}
         </div>
       ) : (
