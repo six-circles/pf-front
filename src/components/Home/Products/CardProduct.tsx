@@ -54,7 +54,22 @@ function CardProduct(props: Product) {
 
   const addToCarrito = async (event: any) => {
     event.stopPropagation();
-    const { id } = await getUserRemote();
+    let userId;
+    let id;
+
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Debes estar logeado",
+        showConfirmButton: true,
+      });
+      return;
+    } else {
+      userId = await getUserRemote();
+      id = userId.id;
+    }
+
     const prod = {
       productsId: props.id,
       token,
@@ -74,7 +89,13 @@ function CardProduct(props: Product) {
             timer: 1000,
           });
         } catch (error: any) {
-          console.log(error.response.data.error);
+          console.log(error);
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: error.message,
+            showConfirmButton: true,
+          });
         }
       } else {
         try {
@@ -89,11 +110,11 @@ function CardProduct(props: Product) {
             timer: 1000,
           });
         } catch (error: any) {
-          console.log(error.response.data.error);
+          console.log(error);
           Swal.fire({
             position: "center",
             icon: "error",
-            title: "Debes estar logeado",
+            title: error.message,
             showConfirmButton: true,
           });
         }
