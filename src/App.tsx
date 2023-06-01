@@ -24,6 +24,7 @@ import LayoutUser from "./layout/LayoutUser";
 import Admin from "./pages/User/Admin/Admin";
 import ForgotPass from "./pages/ForgotPass/ForgotPass";
 import NewPass from "./pages/ForgotPass/NewPass";
+import LoginLayout from "./layout/LoginLayout";
 
 function App() {
   return (
@@ -45,14 +46,16 @@ function App() {
           <Route path="admin" element={<Admin />} />
         </Route>
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<CreateUser />} />
-      <Route path="/recuperar-pass" element={<ForgotPass />} />
-      <Route path="/reset-password/:email/:token" element={<NewPass />} />
-      <Route path="/aboutUs" element={<AboutUs />} />
-      <Route path="/success" element={<Success />} />
-      <Route path="/failure" element={<Failure />} />
-      <Route path="/pending" element={<Pending />} />
+      <Route path="/" element={<LoginLayout />}>
+        <Route index path="login" element={<Login />} />
+        <Route path="register" element={<CreateUser />} />
+        <Route path="recuperar-pass" element={<ForgotPass />} />
+        <Route path="reset-password/:email/:token" element={<NewPass />} />
+        <Route path="aboutUs" element={<AboutUs />} />
+        <Route path="success" element={<Success />} />
+        <Route path="failure" element={<Failure />} />
+        <Route path="pending" element={<Pending />} />
+      </Route>
     </Routes>
   );
 }
