@@ -1,13 +1,12 @@
 import styles from "./User.module.scss";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { getUserRemote } from "../../utils";
+import { useEffect, useState } from "react";
 function User() {
   const navigate: Function = useNavigate();
   const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   checkAuth("product", navigate);
-  // }, []);
+  const [admin, setAdmin] = useState(false);
 
   const handleClick = () => {
     Swal.fire({
@@ -33,6 +32,10 @@ function User() {
   //   };
   // };
 
+  useEffect(() => {
+    getUserRemote().then((elem) => setAdmin(elem.admin));
+  }, []);
+
   return (
     <div className={styles.perfil}>
       <Link className={pathname === "/user" ? styles.active : ""} to="/user">
@@ -48,7 +51,7 @@ function User() {
         to="/user/products"
         className={({ isActive }) => (isActive ? styles.active : "")}
       >
-        Ventas
+        Mis productos
       </NavLink>
       <NavLink
         to="/user/qa"
@@ -62,6 +65,14 @@ function User() {
       >
         Favoritos
       </NavLink>
+      {admin ? (
+        <NavLink
+          to="/user/admin"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          Administrador
+        </NavLink>
+      ) : null}
       <Link to="/login" onClick={handleClick}>
         Salir
       </Link>

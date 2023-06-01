@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../../../utils";
-import CardCompras from "../../../components/User/Compras/CardCompras";
-import styles from "./Compras.module.scss";
+import styles from "./MisVentas.module.scss";
 import { urlAxios } from "../../../utils";
+import CardMisVentas from "./CardMisVentas";
 
 export default function () {
   const [compras, setCompras] = useState([]);
   const { token } = getToken();
+
   const getProducts = async () => {
-    const { data } = await urlAxios(`/order/${token}`);
+    const { data } = await urlAxios.get(`/sales/${token}`);
+    console.log(data);
+
     const ordenes = data?.orders;
     setCompras(ordenes);
   };
@@ -19,15 +22,14 @@ export default function () {
 
   return (
     <div>
-      <h1 className={styles.title}>MIS COMPRAS</h1>
+      <h1 className={styles.title}>MIS VENTAS</h1>
       {compras?.length ? (
         <div className={styles.cards}>
           {compras.map((order: any) => (
             <div className={styles.ordenes} key={Math.random()}>
-              <p>{order.created.slice(0, 10)}</p>
-              {console.log(order._id)}
+              <p>{order.created.slice(0, 10)} | <b>Comprador: <a href={`mailto:${order.userComprador.email}`}>{order.userComprador.email}</a></b></p>
               {order.shoppingCart.map((product: any) => (
-                <CardCompras
+                <CardMisVentas
                   key={Math.random()}
                   id={product._id}
                   name={product.title}
@@ -39,9 +41,10 @@ export default function () {
               ))}
             </div>
           ))}
+
         </div>
       ) : (
-        <h3>no realizaste compras aún...</h3>
+        <h3>no tienes ventas aún...</h3>
       )}
     </div>
   );

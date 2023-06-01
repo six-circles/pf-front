@@ -5,12 +5,23 @@ import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const { products } = useSelector((state: any) => state.products);
-  // const { products } = productsList;
+
   const navigate = useNavigate();
+
+  const getRandomProducts = (products: any, count: number) => {
+    if (count >= products.length) {
+      return products;
+    }
+    const prod = [...products];
+    const shuffled = prod.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  const randomProducts = getRandomProducts(products, 3);
 
   const [slide, setSlide] = useState(0);
   let cant: number;
-  products.length > 2 ? cant = 3 : cant = 1;
+  cant = randomProducts.length;
 
   const handleClick = () => {
     navigate(`/detail/${products[slide]._id}`);
@@ -39,21 +50,33 @@ const Slider = () => {
     <div className={styles.carousel}>
       <div className={styles.slider}>
         <div className={styles.contImage} onClick={handleClick}>
-          {products[slide]?.image[slide] && (
-            <img className={styles.image} src={products[slide].image[0]} alt="" />
+          {randomProducts[slide] && (
+            <img
+              src={randomProducts[slide].image[0].url}
+              alt=""
+            />
           )}
         </div>
         <div className={styles.contDesc}>
           <div className={styles.desc}>
-            <h2 onClick={handleClick}>{products[slide]?.title}</h2>
+            <h2 onClick={handleClick}>
+              {randomProducts[slide]?.title.length > 40
+                ? randomProducts[slide]?.title.slice(0, 40) + "..."
+                : randomProducts[slide]?.title}
+            </h2>
             <br />
             <p>
-              {products[slide]?.description.length > 250
-                ? products[slide]?.description.slice(0, 250) + "..."
-                : products[slide]?.description}
+              {randomProducts[slide]?.description.length > 200
+                ? randomProducts[slide]?.description.slice(0, 200) + "..."
+                : randomProducts[slide]?.description}
             </p>
             <br />
-            <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>Ver detalles</button>
+
+          </div>
+          <div className={styles.deBoton}>
+            <button onClick={() => navigate(`/detail/${products[slide]._id}`)}>
+              Ver detalles
+            </button>
           </div>
         </div>
       </div>

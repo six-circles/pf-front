@@ -17,10 +17,13 @@ import {
   Pending,
   Vendedor,
 } from "./pages";
-import { CreateProduct } from "./components";
+import { CreateProduct, MisVentas } from "./components";
 
 import Layout from "./layout/Layout";
 import LayoutUser from "./layout/LayoutUser";
+import Admin from "./pages/User/Admin/Admin";
+import ForgotPass from "./pages/ForgotPass/ForgotPass";
+import NewPass from "./pages/ForgotPass/NewPass";
 
 function App() {
   return (
@@ -35,13 +38,17 @@ function App() {
           <Route index element={<Datos />} />
           <Route path="products" element={<Ventas />} />
           <Route path="products/create_product" element={<CreateProduct />} />
+          <Route path="products/my_sells" element={<MisVentas />} />
           <Route path="shopping" element={<Compras />} />
           <Route path="qa" element={<Preguntas />} />
           <Route path="favoritos" element={<Favoritos />} />
+          <Route path="admin" element={<Admin />} />
         </Route>
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<CreateUser />} />
+      <Route path="/recuperar-pass" element={<ForgotPass />} />
+      <Route path="/reset-password/:email/:token" element={<NewPass />} />
       <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/success" element={<Success />} />
       <Route path="/failure" element={<Failure />} />

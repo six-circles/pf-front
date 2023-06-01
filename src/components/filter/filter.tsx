@@ -2,7 +2,7 @@ import styles from "./filter.module.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getProducts, selectPage } from "../../redux/actions/productActions.";
+import { selectPage } from "../../redux/actions/productActions.";
 
 const Filter: React.FC = () => {
   const location = useLocation();

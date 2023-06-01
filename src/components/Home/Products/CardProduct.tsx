@@ -10,7 +10,7 @@ import { getToken, urlAxios } from "../../../utils";
 import { getCartProducts } from "../../../redux/actions/carritoActions";
 import { getFavorites } from "../../../redux/actions/favoritosActions";
 import Swal from "sweetalert2";
-
+import { getUserRemote } from "../../../utils";
 interface Product {
   id: string;
   name: string;
@@ -19,6 +19,8 @@ interface Product {
   price: number;
   condition?: string;
   user?: string;
+  enable?: boolean;
+  stock: number;
 }
 
 interface Favorites {
@@ -52,49 +54,58 @@ function CardProduct(props: Product) {
 
   const addToCarrito = async (event: any) => {
     event.stopPropagation();
-
+    const { id } = await getUserRemote();
     const prod = {
       productsId: props.id,
       token,
       cantidad: 1,
     };
-
-    if (inCart) {
-      try {
-        await urlAxios.delete(`/${token}/shoppingCart/${props.id}`);
-        setInCart(false);
-        dispatch(getCartProducts());
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Eliminado de Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } catch (error: any) {
-        console.log(error.response.data.error);
+    if (id !== props.user) {
+      if (inCart) {
+        try {
+          await urlAxios.delete(`/${token}/shoppingCart/${props.id}`);
+          setInCart(false);
+          dispatch(getCartProducts());
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Eliminado de Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (error: any) {
+          console.log(error.response.data.error);
+        }
+      } else {
+        try {
+          await urlAxios.post("/user/shoppingCart", prod);
+          setInCart(true);
+          dispatch(getCartProducts());
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Añadido a Carrito",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } catch (error: any) {
+          console.log(error.response.data.error);
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Debes estar logeado",
+            showConfirmButton: true,
+          });
+        }
       }
     } else {
-      try {
-        await urlAxios.post("/user/shoppingCart", prod);
-        setInCart(true);
-        dispatch(getCartProducts());
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Añadido a Carrito",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } catch (error: any) {
-        console.log(error.response.data.error);
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Debes estar logeado",
-          showConfirmButton: true,
-        });
-      }
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "No puedes agregar tus productos",
+        showConfirmButton: false,
+        timer: 1000,
+      });
     }
   };
 
@@ -189,17 +200,23 @@ function CardProduct(props: Product) {
               className={styles.icon_cart_act}
               onClick={addToCarrito}
             />
-          ) : (
+          ) : props.enable && props.stock ? (
             <IoCartSharp className={styles.icon_cart} onClick={addToCarrito} />
-          )}
+          ) : null}
         </div>
       </div>
       <div className={styles.card_info}>
         <div className={styles.info}>
           <p className={styles.card_price}>${props.price}</p>
-          <p className={props.condition === "Nuevo" ? styles.new : styles.used}>
-            {props.condition}
-          </p>
+          {props.enable === false || props?.stock <= 0 ? (
+            <p className={styles.noDisponible}>No disponible</p>
+          ) : (
+            <p
+              className={props.condition === "Nuevo" ? styles.new : styles.used}
+            >
+              {props.condition}
+            </p>
+          )}
         </div>
         <p>{shortName}</p>
         <Rating punctuation={props.punctuation} />

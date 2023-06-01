@@ -53,21 +53,41 @@
   gap: 0.6rem;
 }
 
-.option2 {
+.carrito_btn {
+  display: flex;
+}
+
+.option2,
+.clear {
   display: block;
   // background-color: transparent;
   border: none;
   padding: 8px;
   width: 100%;
-  text-align: left;
   cursor: pointer;
-  color: v.$color-white;
   // transition: background-color 0.8s ease;
   // border-radius: 0 0 10px 10px;
   text-align: center;
+  color: v.$color-white;
+  transition: 150ms;
 
   // background-color: #c0c0c0;
+}
+
+.option2 {
   background-color: v.$color-blue;
+
+  &:hover {
+    background-color: darken(v.$color-blue, 10%);
+  }
+}
+
+.clear {
+  background-color: v.$color-red;
+
+  &:hover {
+    background-color: darken(v.$color-red, 10%);
+  }
 }
 
 .dots {
@@ -81,4 +101,10 @@
   padding: 8px 0 8px 0;
   text-align: center;
   background-color: #fff;
+}
+
+.disabled {
+  // -webkit-filter: grayscale(1);
+  // filter: grayscale(1);
+  // color: red;
 }

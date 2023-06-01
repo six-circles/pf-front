@@ -1,7 +1,9 @@
 @use "../../../styles/variables.scss" as v;
 
 .form {
-  width: fit-content;
+  min-width: 30rem;
+  width: 100%;
+  max-width: 60rem;
 
   h2 {
     margin-bottom: 3rem;
@@ -33,9 +35,21 @@
       background-color: darken(v.$color-gray, 10%);
     }
   }
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
+}
+
+.form_camp_cont {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
 }
 
 .form_camp {
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
@@ -49,7 +63,7 @@
     height: 4rem;
     padding-left: 1rem;
     background-color: v.$color-white;
-    max-width: 30rem;
+    width: 100%;
     border: 0.1rem solid v.$color-gray;
     transition: 150ms;
 
@@ -59,7 +73,7 @@
   }
 
   textarea {
-    max-width: 30rem;
+    width: 100%;
     padding: 1rem;
     height: 10rem;
     background-color: v.$color-white;
@@ -72,7 +86,8 @@
   }
 
   select {
-    width: 30rem;
+    width: 100%;
+    height: 4rem;
     border: 0.1rem solid v.$color-gray;
     font-size: 1.6rem;
   }

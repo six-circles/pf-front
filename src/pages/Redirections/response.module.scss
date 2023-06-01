@@ -1,6 +1,6 @@
 @use "../../styles/variables.scss" as v;
 
-.success {
+.response {
   width: 100%;
   height: 100vh;
 
@@ -9,14 +9,27 @@
   justify-content: center;
 }
 
-.success_cont {
+.response_pending {
+  box-shadow: 0 0 2.5rem 0.5rem v.$color-orange-l;
+}
+
+.response_success {
+  box-shadow: 0 0 2.5rem 0.5rem v.$color-green-l;
+}
+
+.response_failure {
+  box-shadow: 0 0 2.5rem 0.5rem lighten(v.$color-red, 15%);
+}
+
+.response_success,
+.response_pending,
+.response_failure {
   display: grid;
   grid-template-columns: 4fr 3fr;
-  box-shadow: 0 0 2.5rem 0.5rem v.$color-green-l;
   background-color: v.$color-white;
   border-radius: 0.5rem;
 
-  .success_info {
+  .response_info {
     padding: 2rem;
     display: flex;
     flex-direction: column;

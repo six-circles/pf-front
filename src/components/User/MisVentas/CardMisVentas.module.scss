@@ -1,0 +1,14 @@
+@use "../../../styles/variables.scss" as v;
+.card {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 10px;
+}
+.card div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card_image img {
+  width: 100px;
+}

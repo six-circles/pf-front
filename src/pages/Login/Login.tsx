@@ -1,6 +1,6 @@
 // import React from "react";
 import styles from "./Login.module.scss";
-import { BsGoogle, BsFacebook, BsApple } from "react-icons/bs"
+import { BsGoogle } from "react-icons/bs";
 import logo from "../../assets/icons/logo.svg";
 import { validateField, firstValidateField } from "./validate";
 import { useState } from "react";
@@ -14,7 +14,7 @@ interface Credentials {
 }
 
 function Login() {
-  const urlBack = import.meta.env.VITE_BACK_URL || '';
+  const urlBack = import.meta.env.VITE_BACK_URL || "";
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState<Credentials>({
     email: "",
@@ -42,11 +42,11 @@ function Login() {
         if (data.status === 202) {
           window.localStorage.setItem("user", JSON.stringify(data.data));
           Swal.fire({
-            position: 'center',
-            icon: 'success',
+            position: "center",
+            icon: "success",
             title: "Bienvenido a Six Circles",
             showConfirmButton: false,
-            timer: 2000
+            timer: 2000,
           });
           navigate("/");
         }
@@ -61,7 +61,7 @@ function Login() {
   const GoogleCallback = (event: React.FormEvent) => {
     event.preventDefault();
     window.location.href = `${urlBack}/auth/google`;
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -70,7 +70,6 @@ function Login() {
       </div>
 
       <div className={styles.formContainer}>
-
         <form onSubmit={handleSubmit}>
           <h2>Iniciar sesión</h2>
           <div className={styles.inputs}>
@@ -97,15 +96,22 @@ function Login() {
           </div>
           <div className={styles.links}>
             <a href="/register">Crear cuenta</a>
-            <a href="#">Olvidé mi contraseña</a>
+            <a href="/recuperar-pass">Olvidé mi contraseña</a>
           </div>
           {message && <p className={styles.message}>{message}</p>}
-          <button className={styles.buttonLocal} type="submit">Iniciar sesión</button><br />
-          <a href="/" className={styles.buttonInvitado} >Continuar como invitado</a>
+          <button className={styles.buttonLocal} type="submit">
+            Iniciar sesión
+          </button>
+          <br />
+          <a href="/" className={styles.buttonInvitado}>
+            Continuar como invitado
+          </a>
         </form>
 
         <div className={styles.socialContainer}>
-          <button onClick={GoogleCallback}><BsGoogle />  Iniciar sesión con Google</button>
+          <button onClick={GoogleCallback}>
+            <BsGoogle /> Iniciar sesión con Google
+          </button>
           {/* <button onClick={GoogleCallback}><BsFacebook />  Iniciar sesión con Facebook</button>
           <button onClick={GoogleCallback}><BsApple />  Iniciar sesión con Apple</button> */}
         </div>

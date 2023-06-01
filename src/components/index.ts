@@ -19,9 +19,11 @@ import Calificar from "./Rating/Calificar";
 import { Questionmyuser } from "./chat/Questionmyuser";
 import { Answer } from "./chat/getAnswers";
 import Loading from "./Loading/Loading";
+import MisVentas from "./User/MisVentas/MisVentas";
 
 import Resumen from "./Carrito/Resumen";
 export {
+  MisVentas,
   Loading,
   Calificar,
   Paginator,

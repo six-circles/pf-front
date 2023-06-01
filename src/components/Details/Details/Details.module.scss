@@ -36,6 +36,7 @@
     .details_rating {
       display: flex;
       gap: 1rem;
+      margin-bottom: 0.25rem;
 
       a {
         transition: 150ms;
@@ -48,7 +49,8 @@
     }
 
     .new,
-    .used {
+    .used,
+    .noAvaible {
       padding: 0.25rem 0.5rem;
       border-radius: 0.5rem;
       font-size: 1.4rem;
@@ -64,6 +66,11 @@
     .used {
       background-color: v.$color-orange-l;
       color: v.$color-orange-s;
+    }
+
+    .noAvaible {
+      background-color: v.$color-gray;
+      color: v.$color-dark;
     }
   }
 
@@ -172,5 +179,45 @@
     &:hover {
       background-color: darken(v.$color-blue, 10%);
     }
+  }
+
+  .button_disable {
+    background-color: v.$color-red;
+    color: v.$color-white;
+    padding-block: 1rem;
+    font-size: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-red, 10%);
+    }
+  }
+
+  .button_enable {
+    background-color: v.$color-gray;
+    color: v.$color-white;
+    padding-block: 1rem;
+    font-size: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+
+    transition: 200ms;
+
+    &:hover {
+      background-color: darken(v.$color-gray, 10%);
+    }
+  }
+
+  .disable {
+    filter: grayscale(1);
+    cursor: default;
+
+    // &:hover,
+    // &:focus {
+    //   pointer-events: none;
+    // }
   }
 }

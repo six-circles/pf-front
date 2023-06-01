@@ -13,6 +13,8 @@ export default function (props: any) {
   const token = user.token;
   const prod = props.producto;
   const id = props.producto._id;
+  const enable = props.producto.enable;
+  const stock = props.producto.stock;
   const navigate = useNavigate();
   const deleteProduct = async () => {
     try {
@@ -77,14 +79,6 @@ export default function (props: any) {
     try {
       await urlAxios.post("/user/shoppingCart", product);
       dispatch(getCartProducts());
-
-      // Swal.fire({
-      //   position: "center",
-      //   icon:"success",
-      //   title: "actualizado con éxito",
-      //   showConfirmButton: false,
-      //   timer: 1000,
-      // })
     } catch (error: any) {
       console.log(error);
       Swal.fire({
@@ -96,6 +90,7 @@ export default function (props: any) {
       });
     }
   };
+
   return (
     <Fragment>
       {prod ? (
@@ -105,29 +100,66 @@ export default function (props: any) {
           </div>
           <div className={styles.card_info}>
             <h4 className={styles.title}>{name}</h4>
-
+            <div>
+              {enable === false || stock <= 0 ? (
+                <p>Producto no disponible</p>
+              ) : null}
+            </div>
             <div className={styles.card_info_btn}>
               <p className={styles.info_eliminar} onClick={deleteProduct}>
                 Eliminar
               </p>
-              <p onClick={() => details(id)} className={styles.info_detail}>
-                Detalles
-              </p>
+              {enable === false || stock <= 0 ? (
+                <p className={styles.info_detailDesabled}>Detalles</p>
+              ) : (
+                <p onClick={() => details(id)} className={styles.info_detail}>
+                  Detalles
+                </p>
+              )}
             </div>
           </div>
 
           <div className={styles.cont_cantidad}>
             <div className={styles.card_cantidad}>
-              <button onClick={deleteCarrito}>-</button>
-              <p>{cant}</p>
-              <button onClick={addCarrito}>+</button>
+              {enable === false || stock <= 0 ? (
+                <button disabled className={styles.buttonDisabled}>
+                  -
+                </button>
+              ) : (
+                <button
+                  onClick={deleteCarrito}
+                  className={styles.buttonEnabled}
+                >
+                  -
+                </button>
+              )}
+              {enable === false || stock <= 0 ? <p>0</p> : <p>{cant}</p>}
+              {enable === false || stock <= 0 ? (
+                <button disabled className={styles.buttonDisabled}>
+                  +
+                </button>
+              ) : (
+                <button onClick={addCarrito} className={styles.buttonEnabled}>
+                  +
+                </button>
+              )}
             </div>
-            <p>{prod.stock} en Stock</p>
+            {enable === false || stock <= 0 ? (
+              <p className={styles.stock}>0 en Stock</p>
+            ) : (
+              <p>{prod.stock} en Stock</p>
+            )}
           </div>
 
-          <div className={styles.precio}>
-            <p>${prod.price}</p>
-          </div>
+          {enable === false || stock <= 0 ? (
+            <div className={styles.priceDisabled}>
+              <p>${prod.price}</p>
+            </div>
+          ) : (
+            <div className={styles.precio}>
+              <p>${prod.price}</p>
+            </div>
+          )}
         </div>
       ) : (
         <h3>No hay productos aún...</h3>

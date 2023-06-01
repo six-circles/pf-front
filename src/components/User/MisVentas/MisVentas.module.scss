@@ -1,0 +1,25 @@
+@use "../../../styles/variables.scss" as v;
+
+.cards {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.ordenes {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  border: 1px solid v.$color-gray;
+}
+.ordenes > p {
+  background-color: rgba(222, 222, 222, 0.3);
+  border-radius: 5px;
+  padding: 5px;
+}
+.ordenes > p > b > a {
+  color: v.$color-blue;
+}

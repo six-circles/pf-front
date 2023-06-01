@@ -1,11 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './ShopingCart.module.scss';
 import { useNavigate } from 'react-router';
-import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Swal from "sweetalert2";
 import { useSelector } from 'react-redux';
-// import { CarritoPage } from '../..';
 import CarritoLight from '../../../pages/Carrito/MenuDesplegable/CarritoLight';
 
 function ShopingCart() {
@@ -16,10 +13,6 @@ function ShopingCart() {
 
   const navigate = useNavigate();
   const username: any = window.localStorage.getItem("user");
-  let user;
-  if (username) {
-    user = JSON.parse(username);
-  }
 
   const handleClick = () => {
     setIsOpen(!isOpen);

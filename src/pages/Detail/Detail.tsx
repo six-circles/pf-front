@@ -75,7 +75,13 @@ function Detail() {
 
           <br />
           {tipo === "question"
-            ? detail.questions && <QuestionList questions={detail?.questions} />
+            ? detail?.questions && (
+                <QuestionList
+                  isOwner={false}
+                  questions={detail?.questions}
+                  user={detail.user._id}
+                />
+              )
             : detail.comments && <Comments comments={detail?.comments} />}
         </Fragment>
       )}

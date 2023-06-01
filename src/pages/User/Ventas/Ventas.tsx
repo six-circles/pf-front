@@ -30,7 +30,12 @@ export default function () {
 
   return (
     <div className={styles.ventas}>
-      <button onClick={() => navigate("create_product")}>Crear Producto</button>
+      <div className={styles.ventas_buttons}>
+        <button onClick={() => navigate("create_product")}>
+          Crear Producto
+        </button>
+        <button onClick={() => navigate("my_sells")}>Mis ventas</button>
+      </div>
 
       <div className={styles.products}>
         {products?.map((item: any) => (

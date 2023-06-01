@@ -10,9 +10,9 @@ import {
 } from "../../../redux/actions/productActions.";
 
 import { DetailProd } from "../../../utils";
-import Tech from "./Categories/Tech";
-import Clothe from "./Categories/Clothe";
-import Muebles from "./Categories/Muebles";
+// import Tech from "./Categories/Tech";
+// import Clothe from "./Categories/Clothe";
+// import Muebles from "./Categories/Muebles";
 
 interface Products {
   detail: DetailProd;
@@ -33,6 +33,7 @@ function CreateProduct() {
     category: "Others",
   };
 
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState<any>(initState);
   const [image, setImage] = useState<File[] | any>([]);
   const navigate = useNavigate();
@@ -82,27 +83,27 @@ function CreateProduct() {
     setImage(files);
   };
 
-  const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = event.target;
+  // const handleChars = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value, checked } = event.target;
 
-    console.log("object");
+  //   console.log("object");
 
-    setForm((prevForm: any) => {
-      const { moreCharacteristics } = prevForm;
+  //   setForm((prevForm: any) => {
+  //     const { moreCharacteristics } = prevForm;
 
-      const updatedCharacteristics = {
-        ...moreCharacteristics,
-        [name]: checked
-          ? [...(moreCharacteristics[name] || []), value]
-          : moreCharacteristics[name].filter((item: string) => item !== value),
-      };
+  //     const updatedCharacteristics = {
+  //       ...moreCharacteristics,
+  //       [name]: checked
+  //         ? [...(moreCharacteristics[name] || []), value]
+  //         : moreCharacteristics[name].filter((item: string) => item !== value),
+  //     };
 
-      return {
-        ...prevForm,
-        moreCharacteristics: updatedCharacteristics,
-      };
-    });
-  };
+  //     return {
+  //       ...prevForm,
+  //       moreCharacteristics: updatedCharacteristics,
+  //     };
+  //   });
+  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -115,7 +116,8 @@ function CreateProduct() {
 
     const obj_post = {
       condition: form.condition,
-      title: form.title,
+      title:
+        form.title.charAt(0).toUpperCase() + form.title.substr(1).toLowerCase(),
       stock: Number(form.stock),
       price: Number(form.price),
       description: form.description,
@@ -136,8 +138,10 @@ function CreateProduct() {
     formData.append("data", JSON.stringify(obj_post));
 
     try {
+      setIsLoading(true);
       if (product) await urlAxios.patch(`/product/${product}`, obj_put, config);
       else await urlAxios.post("/product", formData, config);
+      setIsLoading(false);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -150,7 +154,7 @@ function CreateProduct() {
     } catch (error: any) {
       Swal.fire({
         icon: "error",
-        title: error.response.data.error,
+        title: error.response.data,
       });
     }
   };
@@ -173,46 +177,48 @@ function CreateProduct() {
           </div>
           {!product && (
             <>
-              <div className={styles.form_camp}>
-                <label>Estado</label>
-                <div className={styles.form_camp_cond}>
-                  <div>
-                    <input
-                      id="product-nuevo"
-                      type="radio"
-                      value="Nuevo"
-                      name="condition"
-                      checked={form.condition === "Nuevo"}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="product-nuevo">Nuevo</label>
+              <div className={styles.form_camp_cont}>
+                <div className={styles.form_camp}>
+                  <label>Estado</label>
+                  <div className={styles.form_camp_cond}>
+                    <div>
+                      <input
+                        id="product-nuevo"
+                        type="radio"
+                        value="Nuevo"
+                        name="condition"
+                        checked={form.condition === "Nuevo"}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="product-nuevo">Nuevo</label>
+                    </div>
+                    <div>
+                      <input
+                        id="product-usado"
+                        type="radio"
+                        value="Usado"
+                        name="condition"
+                        checked={form.condition === "Usado"}
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="product-usado">Usado</label>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      id="product-usado"
-                      type="radio"
-                      value="Usado"
-                      name="condition"
-                      checked={form.condition === "Usado"}
-                      onChange={handleChange}
-                    />
-                    <label htmlFor="product-usado">Usado</label>
-                  </div>
+                </div>
+
+                <div className={styles.form_camp}>
+                  <p>Categoria</p>
+                  <select name="category" onChange={handleChange}>
+                    <option value="Others" defaultChecked>
+                      Otros
+                    </option>
+                    <option value="Technology">Tecnologia</option>
+                    <option value="Indumentary">Ropa</option>
+                    <option value="Furniture">Muebles</option>
+                  </select>
                 </div>
               </div>
 
-              <div className={styles.form_camp}>
-                <label>Imagenes</label>
-                <input
-                  type="file"
-                  placeholder="Ingrese al menos una imagen"
-                  required
-                  accept="image/jpg, image/jpeg, image/png"
-                  multiple={true}
-                  name="image1"
-                  onChange={handleAddImage}
-                />
-              </div>
               {/* <div className={styles.form_camp}>
                 <label>Imagen 2</label>
                 <input
@@ -232,19 +238,7 @@ function CreateProduct() {
                 />
               </div> */}
 
-              <div className={styles.form_camp}>
-                <p>Categoria</p>
-                <select name="category" onChange={handleChange}>
-                  <option value="Others" defaultChecked>
-                    Otros
-                  </option>
-                  <option value="Technology">Tecnologia</option>
-                  <option value="Indumentary">Ropa</option>
-                  <option value="Furniture">Muebles</option>
-                </select>
-              </div>
-
-              {form.category !== "Other" && (
+              {/* {form.category !== "Other" && (
                 <div className={styles.form_camp}>
                   {form.category === "Technology" ? (
                     <Tech handleChars={handleChars} />
@@ -254,36 +248,39 @@ function CreateProduct() {
                     <Muebles handleChars={handleChars} />
                   ) : null}
                 </div>
-              )}
+              )} */}
             </>
           )}
-          <div className={styles.form_camp}>
-            <label>Precio</label>
-            <input
-              type="number"
-              placeholder="Precio de venta"
-              required
-              min={0}
-              max={999999}
-              value={form.price}
-              name="price"
-              onChange={handleChange}
-              step=".01"
-            />
+          <div className={styles.form_camp_cont}>
+            <div className={styles.form_camp}>
+              <label>Precio</label>
+              <input
+                type="number"
+                placeholder="Precio de venta"
+                required
+                min={0}
+                max={999999}
+                value={form.price}
+                name="price"
+                onChange={handleChange}
+                step=".01"
+              />
+            </div>
+            <div className={styles.form_camp}>
+              <label>Stock</label>
+              <input
+                type="number"
+                placeholder="¿Cuanto producto hay en stock?"
+                required
+                min={0}
+                max={9999}
+                name="stock"
+                value={form.stock}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className={styles.form_camp}>
-            <label>Stock</label>
-            <input
-              type="number"
-              placeholder="¿Cuanto producto hay en stock?"
-              required
-              min={0}
-              max={9999}
-              name="stock"
-              value={form.stock}
-              onChange={handleChange}
-            />
-          </div>
+
           <div className={styles.form_camp}>
             <label>Descripcion</label>
             <textarea
@@ -294,10 +291,32 @@ function CreateProduct() {
               onChange={handleChange}
             ></textarea>
           </div>
-          <button>{product ? "Guardar Cambios" : "Crear"}</button>
+
+          {!product && (
+            <div className={styles.form_camp}>
+              <label>Imagenes</label>
+              <input
+                className={styles.input_image}
+                type="file"
+                placeholder="Ingrese al menos una imagen"
+                required
+                accept="image/jpg, image/jpeg, image/png"
+                multiple={true}
+                name="image1"
+                onChange={handleAddImage}
+              />
+            </div>
+          )}
           <button
-            className={styles.button_back}
+            disabled={isLoading}
+            className={`${isLoading && styles.wait}`}
+          >
+            {product ? "Guardar Cambios" : "Crear"}
+          </button>
+          <button
+            className={`${styles.button_back} ${isLoading && styles.wait}`}
             onClick={() => navigate("/user/products")}
+            disabled={isLoading}
           >
             Cancelar
           </button>

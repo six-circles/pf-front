@@ -22,9 +22,11 @@ export default function MoreProduct() {
 
   const getProduct = async (email: string) => {
     const { data } = await urlAxios(`/user?email=${email}`);
-    const { products } = data;
-    setMoreProducts(products);
+    const { products } = data.user;
+    const allprod = products.filter((p: any) => p.enable === true);
+    setMoreProducts(allprod);
   };
+
   useEffect(() => {
     getProduct(email);
   }, []);
@@ -32,21 +34,27 @@ export default function MoreProduct() {
   const moreProd = moreProducts.slice(0, 5);
 
   return (
-    <div className={styles.contenedor}>
-      <h1 className={styles.title}>Más productos del vendedor</h1>
-      <div className={styles.card}>
-        {moreProd.map((item: any) => (
-          <CardProduct
-            key={item._id}
-            id={item._id}
-            name={item.title}
-            image={item.image}
-            punctuation={item.punctuations}
-            price={item.price}
-            condition={item.condition}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      {moreProd && (
+        <div className={styles.contenedor}>
+          <h1 className={styles.title}>Más productos del vendedor</h1>
+          <div className={styles.card}>
+            {moreProd?.map((item: any) => (
+              <CardProduct
+                key={item._id}
+                id={item._id}
+                name={item.title}
+                image={item.image}
+                punctuation={item.punctuations}
+                price={item.price}
+                condition={item.condition}
+                stock={item.stock}
+                enable={item.enable}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

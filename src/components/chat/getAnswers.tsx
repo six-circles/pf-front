@@ -1,13 +1,6 @@
-import React, { Fragment, useState, useEffect, ReactNode } from "react";
-import Style from"./QAS.module.scss";
-import { useParams } from "react-router-dom";
-import { getToken, urlAxios } from "../../utils";
-
-
-interface Question {
-  id: number;
-  text: string;
-}
+import { Fragment, useState, useEffect, ReactNode } from "react";
+import Style from "./QAS.module.scss";
+import { urlAxios } from "../../utils";
 
 interface Answer {
   body: ReactNode;
@@ -16,17 +9,7 @@ interface Answer {
 }
 
 export function Answer(props: any) {
-  const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Answer[]>([]);
-  const [newAnswer, setNewAnswer] = useState("");
- // const { token, config } = getToken();
-  const { id } = useParams();
-  const [getAnswer, setGetAnswer] = useState("");
-
-  const newAnswerObj = {
-    body: newAnswer,
-    questionId: props.id,
-  };
 
   useEffect(() => {
     handleAnswer();
@@ -36,31 +19,24 @@ export function Answer(props: any) {
     try {
       const responses = await urlAxios.get(`/product/questions/answers/${props.id}`);
       setAnswers(responses.data);
-      setGetAnswer("");
       console.log(responses);
     } catch (error: any) {
       console.log(error.response.data);
     }
   };
 
-  
-
   return (
     <Fragment>
-   
-        <div className={Style.new}>
-          <ul className={Style.ulanswer}>
-            {answers &&
-              answers?.map((answer: any) => (
-                <li className={Style.lianswer} key={answer._id}>
-                  {answer.body}
-                </li>
-              ))}
-          </ul>
-          
-        </div>
-      
-    
+      <div className={Style.new}>
+        <ul className={Style.ulanswer}>
+          {answers &&
+            answers?.map((answer: any) => (
+              <li className={Style.lianswer} key={answer._id}>
+                {answer.body}
+              </li>
+            ))}
+        </ul>
+      </div>
     </Fragment>
   );
 }

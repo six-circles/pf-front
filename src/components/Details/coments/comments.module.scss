@@ -1,46 +1,55 @@
 @use "../../../styles/variables.scss" as v;
-.contenedor{
+.contenedor {
   display: flex;
   position: fixed;
   // justify-content: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   margin-right: 15rem;
   background-color: v.$color-gray;
   font-size: medium;
   border-radius: 5px;
+  box-shadow: 24px 10px 54px 2px rgba(66, 61, 66, 1);
 }
-.input{
-  width:fit-content;
+.input {
+  width: fit-content;
   padding: 1rem;
   margin: 1rem;
- 
 }
-.title{
+.title {
   // white-space: nowrap;
   padding: 0.5rem;
   margin: 1.25rem;
 }
-.buttonSend{
+.buttonSend {
   width: fit-content;
   height: fit-content;
   display: flex;
   margin-left: 1rem;
- margin-bottom: 1rem;
- font-size: medium;
-  
+  margin-bottom: 1rem;
+  font-size: medium;
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
 }
-.buttonX{
-  display:flex;
-  height: fit-content; 
+.buttonX {
+  display: flex;
+  height: fit-content;
   font-size: x-small;
   background-color: red;
+
+  .wait {
+    filter: grayscale(0.5);
+    cursor: wait;
+  }
 }
-.raiting{
-  margin-left: 1rem
+.raiting {
+  margin-left: 1rem;
 }
-.contX{
+.contX {
   display: flex;
   text-align: lefts;
 }

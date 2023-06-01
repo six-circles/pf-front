@@ -1,13 +1,24 @@
-.cards{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-left: 1rem;
+@use "../../../styles/variables.scss" as v;
+.cards {
+  display: flex;
+  width: fit-content;
+  flex-wrap: wrap;
 }
-.title{
-    font-size:large;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4rem;
+.title {
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+.ordenes {
+  background-color: v.$color-white;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border: 0.2rem solid #000;
+  border-radius: 8px;
+  height: fit-content;
+  &:hover {
+    box-shadow: 24px 10px 54px 2px rgba(66, 61, 66, 1);
+  }
 }

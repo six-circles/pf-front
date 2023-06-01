@@ -2,7 +2,7 @@
 
 .card {
   display: flex;
-  height: 10rem;
+  height: 12.5rem;
   background-color: v.$color-white;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -12,6 +12,7 @@
 
   .title {
     white-space: nowrap;
+    font-weight: 500;
   }
 
   .card_image {
@@ -65,6 +66,13 @@
   align-items: center;
 }
 
+.buttonDisabled {
+  background-color: v.$color-gray;
+  cursor: default;
+  &:hover {
+    background-color: v.$color-gray;
+  }
+}
 .card_cantidad {
   width: 10rem;
   height: 3rem;
@@ -81,7 +89,7 @@
     width: 100%;
   }
 
-  button {
+  .buttonEnabled {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,47 +121,25 @@
   }
 }
 
-// .img {
-//   width: 10rem;
-//   height: auto;
-// }
-// .buttonEliminar {
-//   height: fit-content;
-//   width: fit-content;
-//   background-color: red;
-//   font-size: x-small;
-//   margin-left: 5rem;
-// }
-// .input {
-//   width: 3rem;
-//   height: fit-content;
-//   color: #000;
-// }
-// .cantidad {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-left: 8rem;
-//   width: fit-content;
-//   height: 3rem;
-//   gap: 1rem;
-// }
-// .buttonDetails {
-//   display: flex;
-//   position: relative;
-//   margin-left: 5rem;
-//   font-size: xx-small;
-//   width: fit-content;
-//   height: fit-content;
-// }
-// .contador {
-//   display: flex;
-//   margin-left: 49rem;
-//   height: fit-content;
-//   gap: 0.7rem;
-//   position: relative;
-//   bottom: 5rem;
-// }
-// .buttonMenos {
-//   display: flex;
-// }
+.info_detailDesabled {
+  color: v.$color-gray;
+  cursor: default;
+}
+.stock {
+  cursor: default;
+}
+.priceDisabled {
+  text-decoration: line-through;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 1.5rem;
+  cursor: default;
+  font-size: larger;
+
+  p {
+    text-align: end;
+    width: 100%;
+  }
+}

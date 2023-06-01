@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../CreateProduct.module.scss";
 
 function Colors({ handleChars }: any) {
