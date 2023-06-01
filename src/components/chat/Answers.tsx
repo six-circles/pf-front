@@ -26,7 +26,8 @@ export function Answers(props: any) {
 
   const handleAnswer = async () => {
     try {
-      const responses = await urlAxios.get(`/product/questions/answers/${props.id}`);
+      console.log(newAnswerObj,"newAnswerObj")
+      const responses = await urlAxios.post(`/product/questions/answers`, newAnswerObj);
       setAnswers(responses.data);
     } catch (error: any) {
       console.log(error.response.data);
@@ -41,7 +42,6 @@ export function Answers(props: any) {
     }
 
     try {
-      setNewAnswer("");
       setAnswered(true);
       localStorage.setItem(`answered_${props.id}`, JSON.stringify(newAnswerObj));
 
